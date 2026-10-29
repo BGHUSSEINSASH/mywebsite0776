@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Requests — BG Sash admin</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <style>
+    :root { --bg:#0e0f11; --fg:#e9e6dd; --muted:#9a978f; --line:rgba(233,230,221,.14); --accent:#ff5a2a; --card:#17181b; }
+    * { box-sizing: border-box; }
+    body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 "Segoe UI", system-ui, sans-serif; padding:32px; }
+    h1 { font-size:18px; text-transform:uppercase; letter-spacing:.04em; }
+    .muted { color:var(--muted); }
+    #gate { max-width:420px; margin:12vh auto; text-align:center; }
+    input, select { background:var(--card); border:1px solid var(--line); color:var(--fg); padding:12px 14px; border-radius:6px; font:inherit; width:100%; }
+    button { background:var(--accent); border:0; color:#fff; font:inherit; font-weight:600; padding:12px 22px; border-radius:6px; cursor:pointer; }
+    button:hover { filter:brightness(1.1); }
+    #login { display:flex; gap:10px; margin-top:18px; }
+    table { width:100%; border-collapse:collapse; margin:18px 0 34px; }
+    th, td { text-align:start; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+    th { font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+    tr:hover td { background:rgba(255,255,255,.02); }
+    .pill { display:inline-block; padding:3px 10px; border-radius:999px; font-size:11px; border:1px solid var(--line); }
+    .pill.new { color:var(--accent); border-color:var(--accent); }
+    select.status { width:auto; padding:4px 8px; font-size:12px; }
+    .wrap { max-width:1200px; margin:0 auto; }
+    .err { color:var(--accent); margin-top:12px; }
+    @media (max-width:820px){ td,th{padding:8px 6px;font-size:12px} .hide-sm{display:none} }
+  </style>
+</head>
+<body>
+  <div id="gate">
+    <h1>Requests admin</h1>
+    <p class="muted">Enter the admin password to see saved requests.</p>
+    <form id="login">
+      <input type="password" id="pw" placeholder="admin password" autocomplete="current-password">
+      <button type="submit">Open</button>
+    </form>
+    <p class="err" id="err"></p>
+  </div>
+
+  <div class="wrap" id="board" hidden>
+    <h1>Requests <span class="muted" id="stamp"></span></h1>
+    <h2>Build requests</h2>
+    <table id="reqTable">
+      <thead><tr><th>When</th><th>Service</th><th>Budget</th><th>Name</th><th>Contact</th><th class="hide-sm">Details</th><th>Status</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <h2>Contact messages</h2>
+    <table id="msgTable">
+      <thead><tr><th>When</th><th>Name</th><th>Email</th><th>Message</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+<script>
+(function () {
+  'use strict';
+  var board = document.getElementById('board');
+  var gate = document.getElementById('gate');
+  var err = document.getElementById('err');
+  // endpoint is filled in when the supabase project goes live:
+  // var ENDPOINT = 'https://YOUR-PROJECT.supabase.co/functions/v1/list-requests';
+  var ENDPOINT = '';
+
+  function esc(s) {
+    var d = document.createElement('div');
+    d.textContent = s == null ? '' : String(s);
+    return d.innerHTML;
+  }
+  function fmt(t) { return new Date(t).toLocaleString(); }
+
+  function load(pw) {
+    if (!ENDPOINT) { err.textContent = 'Set ENDPOINT to your supabase function URL first.'; return; }
+    fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: pw }) })
+      .then(function (r) { if (r.status === 401) throw new Error('wrong password'); if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
+      .then(function (data) {
+        gate.hidden = true; board.hidden = false;
+        try { sessionStorage.setItem('admpw', pw); } catch (e) {}
+        document.getElementById('stamp').textContent = '· ' + new Date().toLocaleTimeString();
+        var rows = (data.requests || []).map(function (r) {
+          return '<tr><td>' + esc(fmt(r.created_at)) + '</td><td>' + esc(r.service) + '</td><td>' + esc(r.budget || '-') +
+            '</td><td>' + esc(r.name) + '</td><td>' + esc(r.email) + (r.phone ? '<br>' + esc(r.phone) : '') +
+            '</td><td class="hide-sm">' + esc(r.details || '') + '</td><td><span class="pill ' + esc(r.status) + '">' + esc(r.status) + '</span></td></tr>';
+        }).join('');
+        document.querySelector('#reqTable tbody').innerHTML = rows || '<tr><td colspan="7" class="muted">empty</td></tr>';
+        var mrows = (data.messages || []).map(function (m) {
+          return '<tr><td>' + esc(fmt(m.created_at)) + '</td><td>' + esc(m.name) + '</td><td>' + esc(m.email) + '</td><td>' + esc(m.message) + '</td></tr>';
+        }).join('');
+        document.querySelector('#msgTable tbody').innerHTML = mrows || '<tr><td colspan="4" class="muted">empty</td></tr>';
+      })
+      .catch(function (e) { err.textContent = e.message; });
+  }
+
+  document.getElementById('login').addEventListener('submit', function (e) {
+    e.preventDefault();
+    load(document.getElementById('pw').value);
+  });
+
+  var saved = null;
+  try { saved = sessionStorage.getItem('admpw'); } catch (e) {}
+  if (saved) load(saved);
+})();
+</script>
+</body>
+</html>

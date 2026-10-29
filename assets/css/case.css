@@ -1,0 +1,59 @@
+/* case.css — the standalone case-study pages (work/<slug>.html).
+   shares every token with style.css; only the page-specific layout. */
+
+body.case-page { padding-top: 92px; }
+
+.cs { padding-block: 40px 90px; }
+
+.cs-crumb {
+  font-family: var(--f-mono); font-size: 12px; text-transform: uppercase;
+  letter-spacing: .08em; color: var(--muted); margin-bottom: 44px;
+  display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+}
+.cs-crumb a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--line); }
+.cs-crumb a:hover { color: var(--accent-text); border-color: var(--accent-text); }
+
+.cs-title { font-size: clamp(38px, 6.4vw, 92px); margin: 18px 0 0; max-width: 20ch; }
+.cs-lead { margin-top: 26px; max-width: 62ch; }
+
+.cs-chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 30px 0 0; }
+.cs-chips li {
+  font-family: var(--f-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .05em;
+  border: 1px solid var(--line); border-radius: 999px; padding: 8px 15px; color: var(--muted);
+}
+
+.cs-shot {
+  margin: 52px 0 0; border: 1px solid var(--line); border-radius: 6px;
+  overflow: hidden; background: var(--card); position: relative;
+}
+.cs-shot img { display: block; width: 100%; height: auto; }
+
+.cs-facts {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  background: var(--line); border: 1px solid var(--line); border-radius: 6px;
+  overflow: hidden; margin: 46px 0 0;
+}
+.cs-facts > div { background: var(--bg); padding: 24px 26px; }
+.cs-facts dt {
+  font-family: var(--f-mono); font-size: 11px; text-transform: uppercase;
+  letter-spacing: .1em; color: var(--muted); margin-bottom: 10px;
+}
+.cs-facts dd { margin: 0; font-size: 16px; line-height: 1.5; }
+
+.cs-block { margin-top: 52px; max-width: 74ch; }
+.cs-block .label { margin-bottom: 16px; }
+.cs-text { font-size: clamp(17px, 1.7vw, 21px); line-height: 1.65; color: var(--fg); }
+
+.cs-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 64px; }
+
+.cs-next-hint {
+  margin-top: 40px; padding-top: 26px; border-top: 1px solid var(--line);
+  font-family: var(--f-mono); font-size: 13px; color: var(--muted);
+}
+.cs-next-hint a { color: var(--accent-text); text-decoration: none; }
+.cs-next-hint a:hover { text-decoration: underline; }
+
+@media (max-width: 760px) {
+  .cs-facts { grid-template-columns: 1fr; }
+  body.case-page { padding-top: 76px; }
+}

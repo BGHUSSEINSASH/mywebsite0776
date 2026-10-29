@@ -1,0 +1,9 @@
+# local junk
+node_modules/
+.firebase/
+*.log
+.DS_Store
+Thumbs.db
+
+# generated pdf-extract temp work
+pdf-extract/

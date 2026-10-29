@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>404 — Page not found · BG Hussein Sash</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0e0f11">
+  <script>
+    try {
+      var st = localStorage.getItem('theme');
+      document.documentElement.dataset.theme = st || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    } catch (e) { document.documentElement.dataset.theme = 'dark'; }
+  </script>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300..900&family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=IBM+Plex+Mono:wght@400;500&family=Hanken+Grotesk:wght@300..800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #e9e6dd; --fg: #14151a; --muted: #5c5f66; --line: rgba(20,21,26,.16);
+      --card: rgba(20,21,26,.045); --accent: #ff4d1a; --accent-ink: #fff;
+      --f-display: "Unbounded", sans-serif; --f-body: "Hanken Grotesk", sans-serif;
+      --f-mono: "IBM Plex Mono", monospace; --f-serif: "Newsreader", serif;
+    }
+    :root[data-theme="dark"] {
+      --bg: #0e0f11; --fg: #e9e6dd; --muted: #9a978f; --line: rgba(233,230,221,.16);
+      --card: rgba(233,230,221,.05); --accent: #ff5a2a;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      background: var(--bg); color: var(--fg); font-family: var(--f-body);
+      min-height: 100vh; min-height: 100dvh; display: grid; place-items: center;
+      padding: 32px; text-align: center; -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 720px; }
+    .code {
+      font-family: var(--f-display); font-size: clamp(96px, 26vw, 300px); line-height: .85;
+      font-weight: 500; letter-spacing: -.04em; color: var(--accent);
+      animation: rise 1s cubic-bezier(.2,.7,.2,1) both;
+    }
+    h1 {
+      font-family: var(--f-display); font-size: clamp(22px, 3.4vw, 38px); text-transform: uppercase;
+      font-weight: 500; letter-spacing: -.02em; margin-top: 22px;
+      animation: rise 1s .1s cubic-bezier(.2,.7,.2,1) both;
+    }
+    h1 em { font-family: var(--f-serif); font-style: italic; text-transform: none; color: var(--accent); }
+    p {
+      color: var(--muted); font-size: clamp(15px, 1.6vw, 18px); line-height: 1.6;
+      max-width: 46ch; margin: 18px auto 0; animation: rise 1s .2s cubic-bezier(.2,.7,.2,1) both;
+    }
+    .row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 36px; animation: rise 1s .3s cubic-bezier(.2,.7,.2,1) both; }
+    a.btn {
+      display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+      font-family: var(--f-mono); font-size: 13px; text-transform: uppercase; letter-spacing: .06em;
+      padding: 15px 26px; border: 1px solid var(--fg); border-radius: 999px; color: var(--fg);
+      background: transparent; transition: background .3s, color .3s, border-color .3s;
+    }
+    a.btn:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    a.btn.ghost { border-color: var(--line); color: var(--muted); }
+    a.btn.ghost:hover { border-color: var(--fg); color: var(--bg); background: var(--fg); }
+    .mark { margin-top: 54px; font-family: var(--f-mono); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; }
+    @keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="code">404</div>
+    <h1>Page <em>not found</em></h1>
+    <p>This link leads nowhere — the page may have moved, or the address has a typo. The work, services and contact are one click away.</p>
+    <div class="row">
+      <a class="btn" href="/"><span>Back home</span><span>&rarr;</span></a>
+      <a class="btn ghost" href="/#work"><span>See the work</span><span>&rarr;</span></a>
+      <a class="btn ghost" href="/#contact"><span>Contact</span><span>&rarr;</span></a>
+    </div>
+    <div class="mark">BG Hussein Sash · Baghdad, Iraq · UTC+3</div>
+  </main>
+</body>
+</html>

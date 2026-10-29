@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://mywebsite0776.web.app/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mywebsite0776.web.app/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mywebsite0776.web.app/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="ku" href="https://mywebsite0776.web.app/?lang=ku"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mywebsite0776.web.app/?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://mywebsite0776.web.app/?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://mywebsite0776.web.app/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://mywebsite0776.web.app/?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://mywebsite0776.web.app/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://mywebsite0776.web.app/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://mywebsite0776.web.app/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://mywebsite0776.web.app/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://mywebsite0776.web.app/?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mywebsite0776.web.app/"/>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

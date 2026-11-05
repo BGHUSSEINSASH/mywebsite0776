@@ -69,8 +69,11 @@
       if (typeof val === 'string') el.textContent = val;
     });
 
-    var title = say('meta.title');
-    if (title) doc.title = doc.title;   // page titles are per-project; leave them
+    // the tab title follows the page: the project name the h1 is wearing,
+    // not the site-wide title, which would erase which case you are on
+    var h1 = doc.querySelector('.cs-title[data-i18n]');
+    var name = h1 ? say(h1.getAttribute('data-i18n'), null) : null;
+    if (name) doc.title = name + ' — ' + (say('case.intro') || 'Case study') + ' · BG Hussein Sash';
 
     var sel = doc.querySelector('#langSelect');
     if (sel && sel.value !== code) sel.value = code;
@@ -97,7 +100,7 @@
 
   function start() {
     wireTheme();
-    fetch('/assets/i18n/translations.json?v=r09b')
+    fetch('/assets/i18n/translations.json?v=r18')
       .then(function (r) { return r.json(); })
       .then(function (json) {
         words = json;

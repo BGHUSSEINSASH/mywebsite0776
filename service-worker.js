@@ -3,23 +3,52 @@
    try the network first (so new posts/translations show up immediately)
    and fall back to the cache when the visitor is offline.            */
 
-var CACHE = 'bgsash-v9';
+/* the versioned query strings have to match what the html asks for,
+   or install-time caching stores one url and the page requests
+   another and everything falls through to the network. */
+var V = '?v=r18';
+var CACHE = 'bgsash-v18';
 var SHELL = [
   '/',
   '/index.html',
   '/404.html',
   '/manifest.webmanifest',
-  '/assets/css/style.css',
-  '/assets/js/main.js',
+  '/assets/css/style.css' + V,
+  '/assets/css/spec.css' + V,
+  '/assets/css/case.css' + V,
+  '/assets/js/main.js' + V,
+  '/assets/js/spec.js' + V,
+  '/assets/js/case.js' + V,
   '/assets/favicon.svg',
-  '/assets/i18n/translations.json',
+  '/assets/icons/icon-192.png',
+  '/assets/icons/icon-512.png',
+  '/assets/icons/apple-touch-icon.png',
+  '/assets/i18n/translations.json' + V,
   '/assets/cv/CV-en.pdf',
-  '/assets/cv/CV-ar.pdf'
+  '/assets/cv/CV-ar.pdf',
+  '/work/smartmaid',
+  '/work/mukallaf',
+  '/work/flossk',
+  '/work/bookly',
+  '/work/ziona-passports',
+  '/work/hala-sat'
+];
+
+// screenshots are big: cached on demand, never blocking an install
+var SHOTS = [
+  '/assets/shots/smartmaid.webp',
+  '/assets/shots/mukallaf.webp',
+  '/assets/shots/flossk.webp',
+  '/assets/shots/bookly.webp',
+  '/assets/shots/og-cover.png'
 ];
 
 self.addEventListener('install', function (e) {
   e.waitUntil(
-    caches.open(CACHE).then(function (c) { return c.addAll(SHELL); }).then(function () { return self.skipWaiting(); })
+    caches.open(CACHE)
+      .then(function (c) { return c.addAll(SHELL); })
+      .then(function (c) { return Promise.all(SHOTS.map(function (s) { return c.add(s).catch(function () {}); })); })
+      .then(function () { return self.skipWaiting(); })
   );
 });
 

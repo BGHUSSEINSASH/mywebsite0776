@@ -13,19 +13,23 @@
     } catch (e) { document.documentElement.dataset.theme = 'dark'; }
   </script>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <link rel="canonical" href="https://mywebsite0776.web.app/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300..900&family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=IBM+Plex+Mono:wght@400;500&family=Hanken+Grotesk:wght@300..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300..900&family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=IBM+Plex+Mono:wght@400;500&family=Hanken+Grotesk:wght@300..800&family=Noto+Sans+Arabic:wght@300..800&family=Noto+Naskh+Arabic:wght@400..700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #e9e6dd; --fg: #14151a; --muted: #5c5f66; --line: rgba(20,21,26,.16);
-      --card: rgba(20,21,26,.045); --accent: #ff4d1a; --accent-ink: #fff;
-      --f-display: "Unbounded", sans-serif; --f-body: "Hanken Grotesk", sans-serif;
-      --f-mono: "IBM Plex Mono", monospace; --f-serif: "Newsreader", serif;
+      --card: rgba(20,21,26,.045); --accent: #ff4d1a; --accent-ink: #fff; --accent-text: #b53209;
+      --f-display: "Unbounded", "Noto Sans Arabic", sans-serif; --f-body: "Hanken Grotesk", "Noto Sans Arabic", sans-serif;
+      --f-mono: "IBM Plex Mono", ui-monospace, monospace; --f-serif: "Newsreader", "Noto Naskh Arabic", serif;
+      color-scheme: light;
     }
     :root[data-theme="dark"] {
       --bg: #0e0f11; --fg: #e9e6dd; --muted: #9a978f; --line: rgba(233,230,221,.16);
-      --card: rgba(233,230,221,.05); --accent: #ff5a2a;
+      --card: rgba(233,230,221,.05); --accent: #ff5a2a; --accent-text: #ff5a2a;
+      color-scheme: dark;
     }
     * { box-sizing: border-box; margin: 0; }
     body {
@@ -33,18 +37,30 @@
       min-height: 100vh; min-height: 100dvh; display: grid; place-items: center;
       padding: 32px; text-align: center; -webkit-font-smoothing: antialiased;
     }
-    .wrap { max-width: 720px; }
+    .wrap { max-width: 760px; width: 100%; position: relative; }
+    /* blueprint corner ticks — the same register marks as the main sheet */
+    .wrap::before, .wrap::after {
+      content: ""; position: absolute; width: 15px; height: 15px;
+      border: 1px solid var(--accent); pointer-events: none;
+    }
+    .wrap::before { top: -18px; inset-inline-start: 0; border-right: 0; border-bottom: 0; }
+    .wrap::after { bottom: -18px; inset-inline-end: 0; border-left: 0; border-top: 0; }
     .code {
       font-family: var(--f-display); font-size: clamp(96px, 26vw, 300px); line-height: .85;
       font-weight: 500; letter-spacing: -.04em; color: var(--accent);
       animation: rise 1s cubic-bezier(.2,.7,.2,1) both;
     }
+    .sheet {
+      font-family: var(--f-mono); font-size: 11.5px; text-transform: uppercase;
+      letter-spacing: .12em; color: var(--muted); margin-top: 26px;
+    }
     h1 {
       font-family: var(--f-display); font-size: clamp(22px, 3.4vw, 38px); text-transform: uppercase;
-      font-weight: 500; letter-spacing: -.02em; margin-top: 22px;
+      font-weight: 500; letter-spacing: -.02em; margin-top: 14px;
       animation: rise 1s .1s cubic-bezier(.2,.7,.2,1) both;
     }
     h1 em { font-family: var(--f-serif); font-style: italic; text-transform: none; color: var(--accent); }
+    [dir="rtl"] h1 em { font-style: normal; }
     p {
       color: var(--muted); font-size: clamp(15px, 1.6vw, 18px); line-height: 1.6;
       max-width: 46ch; margin: 18px auto 0; animation: rise 1s .2s cubic-bezier(.2,.7,.2,1) both;
@@ -59,7 +75,19 @@
     a.btn:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
     a.btn.ghost { border-color: var(--line); color: var(--muted); }
     a.btn.ghost:hover { border-color: var(--fg); color: var(--bg); background: var(--fg); }
-    .mark { margin-top: 54px; font-family: var(--f-mono); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; }
+    [dir="rtl"] a.btn { letter-spacing: 0; }
+    .mark { margin-top: 46px; font-family: var(--f-mono); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; }
+    .tools { display: flex; gap: 10px; justify-content: center; align-items: center; margin-top: 22px; }
+    select {
+      font-family: var(--f-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em;
+      background: var(--card); color: var(--fg); border: 1px solid var(--line);
+      border-radius: 999px; padding: 8px 12px; cursor: pointer;
+    }
+    button.theme {
+      width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line);
+      background: transparent; color: var(--fg); cursor: pointer; display: grid; place-items: center;
+    }
+    button.theme i { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid currentColor; background: linear-gradient(90deg, currentColor 50%, transparent 50%); }
     @keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
     @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
   </style>
@@ -67,14 +95,84 @@
 <body>
   <main class="wrap">
     <div class="code">404</div>
-    <h1>Page <em>not found</em></h1>
-    <p>This link leads nowhere — the page may have moved, or the address has a typo. The work, services and contact are one click away.</p>
+    <p class="sheet" data-i18n="notfound.sheet">sheet not found · error 404</p>
+    <h1><span data-i18n="notfound.h1a">Page</span> <em data-i18n="notfound.h1b">not found</em></h1>
+    <p data-i18n="notfound.p">This link leads nowhere — the page may have moved, or the address has a typo. The work, services and contact are one click away.</p>
     <div class="row">
-      <a class="btn" href="/"><span>Back home</span><span>&rarr;</span></a>
-      <a class="btn ghost" href="/#work"><span>See the work</span><span>&rarr;</span></a>
-      <a class="btn ghost" href="/#contact"><span>Contact</span><span>&rarr;</span></a>
+      <a class="btn" href="/"><span data-i18n="notfound.home">Back home</span><span>&rarr;</span></a>
+      <a class="btn ghost" href="/#work"><span data-i18n="notfound.work">See the work</span><span>&rarr;</span></a>
+      <a class="btn ghost" href="/#contact"><span data-i18n="notfound.contact">Contact</span><span>&rarr;</span></a>
     </div>
-    <div class="mark">BG Hussein Sash · Baghdad, Iraq · UTC+3</div>
+    <div class="tools">
+      <select id="langSelect" aria-label="Language">
+        <option value="en">English</option><option value="ar">العربية</option><option value="ku">کوردی</option><option value="tr">Türkçe</option><option value="fr">Français</option><option value="es">Español</option><option value="de">Deutsch</option><option value="ru">Русский</option><option value="zh">中文</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="hi">हिन्दी</option>
+      </select>
+      <button class="theme" id="themeBtn" type="button" aria-label="Switch light or dark theme"><i></i></button>
+    </div>
+    <div class="mark"><span data-i18n="notfound.mark">BG Hussein Sash · Baghdad, Iraq · UTC+3</span></div>
   </main>
+
+<script>
+/* the 404 has to speak the visitor's language too — same json, same
+   rules as the rest of the site, nothing more than a text swap. */
+(function () {
+  'use strict';
+  var doc = document, html = doc.documentElement;
+  var flipped = ['ar', 'ku'];
+  var words = {}, lang = 'en';
+
+  function say(key) {
+    var l = words[lang] || words.en || {};
+    var v = (l.notfound || {})[key.split('.')[1]];
+    if (typeof v === 'string' && v) return v;
+    v = ((words.en || {}).notfound || {})[key.split('.')[1]];
+    return typeof v === 'string' ? v : null;
+  }
+
+  function apply() {
+    var rtl = flipped.indexOf(lang) > -1;
+    html.lang = lang;
+    html.dir = rtl ? 'rtl' : 'ltr';
+    Array.prototype.forEach.call(doc.querySelectorAll('[data-i18n]'), function (el) {
+      var v = say(el.getAttribute('data-i18n'));
+      if (v) el.textContent = v;
+    });
+    var sel = doc.querySelector('#langSelect');
+    if (sel && sel.value !== lang) sel.value = lang;
+    var a = say('notfound.h1a'), b = say('notfound.h1b');
+    if (a && b) doc.title = '404 — ' + a + ' ' + b + ' · BG Hussein Sash';
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+  }
+
+  function pick() {
+    var fromUrl = '';
+    try { fromUrl = (new URLSearchParams(location.search).get('lang') || '').toLowerCase(); } catch (e) {}
+    var saved = null;
+    try { saved = localStorage.getItem('lang'); } catch (e) {}
+    var browser = ((navigator.languages && navigator.languages[0]) || navigator.language || 'en').toLowerCase();
+    var codes = Object.keys(words);
+    var cands = [fromUrl, saved, browser, browser.split('-')[0]];
+    for (var i = 0; i < cands.length; i++) {
+      var c = (cands[i] || '').split('-')[0];
+      if (c && codes.indexOf(c) > -1) return c;
+    }
+    return 'en';
+  }
+
+  var btn = doc.querySelector('#themeBtn');
+  if (btn) btn.addEventListener('click', function () {
+    html.dataset.theme = (html.dataset.theme || 'dark') === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem('theme', html.dataset.theme); } catch (e) {}
+  });
+
+  var sel = doc.querySelector('#langSelect');
+  if (sel) sel.addEventListener('change', function () { lang = sel.value; apply(); });
+
+  fetch('/assets/i18n/translations.json?v=r18')
+    .then(function (r) { return r.json(); })
+    .then(function (json) { words = json; lang = pick(); apply(); })
+    .catch(function () { /* english markup is already in the page */ });
+})();
+</script>
 </body>
 </html>

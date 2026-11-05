@@ -49,7 +49,10 @@
 
   function say(key, fallback) {
     var v = dig(words[lang], key);
-    if (typeof v === 'string' && v) return v;
+    // an entry that exists but is empty is a translator's decision — the
+    // phrase is rearranged in that language and the word disappears.
+    // falling through to english there leaks latin into a finished page.
+    if (typeof v === 'string') return v.trim() ? v : '';
     v = dig(words.en, key);
     if (typeof v === 'string' && v) return v;
     return fallback === undefined ? null : fallback;
@@ -136,11 +139,15 @@
     wallClock();
     buildRail();
     if (scrub) ScrollTrigger.refresh();
+
+    // spec.js rebuilds its own dynamic strings (estimator, availability,
+    // palette) — it can't see say(), so it listens instead
+    doc.dispatchEvent(new CustomEvent('sash:lang', { detail: { lang: code } }));
   }
 
   function loadLanguages() {
     // bust: the json changes with every release, the browser must not sit on it
-    return fetch('assets/i18n/translations.json?v=r09b')
+    return fetch('assets/i18n/translations.json?v=r18')
       .then(function (r) { return r.json(); })
       .catch(function (e) { console.warn('translations missing', e); return {}; })
       .then(function (json) { words = json; });
@@ -187,7 +194,7 @@
   /* ── the clock in the corner ────────────────────────────── */
 
   var hhmmss = new Intl.DateTimeFormat('en-GB', {
-    timeZone: 'Asia/Baghdad', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+    timeZone: 'Asia/Baghdad', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23'
   });
 
   function wallClock() {
@@ -553,14 +560,26 @@
   var SUBMIT_FN  = 'submit-request';
   var oStep = 1;
   var oOpen = false;
+  var oOpener = null;
 
   function orderShow() {
     var box = q('#orderModal');
     if (!box) return;
     oOpen = true;
+    oOpener = doc.activeElement;
     box.hidden = false;
+    // reopening starts on the form: the draft stays, the last receipt goes
+    var form = q('#orderForm');
+    if (form) form.hidden = false;
+    var done = q('#oDone');
+    if (done) done.hidden = true;
+    qa('.err', box).forEach(function (e) { e.textContent = ''; });
+    oReceipt('order.success', 'order.successD');
     oGo(1);
-    if (q('#oName')) q('#oName').focus();
+    // step one is what the visitor sees, so that is where focus belongs —
+    // #oName lives on step three and a hidden input swallows the call
+    var focusable = q('#oTypes input:checked') || q('#oTypes input');
+    if (focusable) focusable.focus();
   }
 
   function orderHide() {
@@ -571,6 +590,9 @@
     oGo(1);
     var st = q('#oStatus');
     if (st) st.textContent = '';
+    // the keyboard goes back where the visitor came from
+    if (oOpener && oOpener.focus) oOpener.focus();
+    oOpener = null;
   }
 
   function orderData() {
@@ -669,7 +691,19 @@
     if (motion) gsap.from(done, { opacity: 0, y: 14, duration: .5, ease: 'power2.out' });
     var wa = q('#oWa');
     if (wa) wa.href = 'https://wa.me/9647762425266?text=' + encodeURIComponent(waSummary(d));
-    if (!saved) toast(say('order.offline') || '');
+    // with no backend configured the order only exists once the visitor
+    // presses send in their mail app — the receipt has to say so, and it
+    // swaps data-i18n so a language change keeps the honest wording
+    if (!saved) {
+      oReceipt('order.pending', 'order.offline');
+    }
+  }
+
+  // the two receipt lines, rewritten (or restored) in one place
+  function oReceipt(titleKey, noteKey) {
+    var t = q('.o-success'), n = q('.o-success-d');
+    if (t) { t.setAttribute('data-i18n', titleKey); t.textContent = say(titleKey) || t.textContent; }
+    if (n) { n.setAttribute('data-i18n', noteKey); n.textContent = say(noteKey) || n.textContent; }
   }
 
   function wireOrder() {
@@ -1157,6 +1191,37 @@
     s.dataset.websiteId = UMAMI_ID;
     doc.head.appendChild(s);
   }
+
+  /* ── bridge for spec.js ───────────────────────────────────
+     the datasheet extras (hud, estimator, palette, terminal, github)
+     live in their own file. this is the only door between them:
+     read-only translation access plus the few actions they need
+     to drive the order wizard. nothing here is public API — a
+     visitor editing window.SASH can only do what the buttons do. */
+
+  window.SASH = {
+    say: say,
+    lang: function () { return lang; },
+    rtl: function () { return flipped.indexOf(lang) > -1; },
+    calm: function () { return calm; },
+    motion: function () { return motion; },
+    langs: function () { return Object.keys(words); },
+    toast: toast,
+    mail: MAIL,
+    phone: '9647762425266',
+    wa: function (text) {
+      return 'https://wa.me/9647762425266?text=' + encodeURIComponent(text);
+    },
+    pickService: function (svc) {
+      var r = q('#oTypes input[value="' + svc + '"]');
+      if (r) r.checked = true;
+    },
+    setDetails: function (txt) {
+      var t = q('#oDetails');
+      if (t) t.value = txt;
+    },
+    openOrder: orderShow
+  };
 
   /* ── boot ───────────────────────────────────────────────── */
 

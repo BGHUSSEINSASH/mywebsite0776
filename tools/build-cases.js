@@ -11,6 +11,13 @@ const ROOT = path.join(__dirname, '..');
 const OUT = path.join(ROOT, 'work');
 const words = JSON.parse(fs.readFileSync(path.join(ROOT, 'assets', 'i18n', 'translations.json'), 'utf8'));
 
+// absolute origin: canonical, og:url and og:image must be full urls —
+// social crawlers do not resolve relative ones, and a relative canonical
+// is simply dropped by google.
+const SITE = 'https://mywebsite0776.web.app';
+const VER = 'r18';                       // bump with every asset change
+const LOCALES = { en: 'en_US', ar: 'ar_IQ', ku: 'ku_IQ', tr: 'tr_TR', fr: 'fr_FR', es: 'es_ES', de: 'de_DE', ru: 'ru_RU', zh: 'zh_CN', ja: 'ja_JP', ko: 'ko_KR', hi: 'hi_IN' };
+
 // slug, image, live url (null for the two field cases), role = services key
 const PROJECTS = [
   { n: 1, slug: 'smartmaid',  img: 'smartmaid.webp',  w: 1280, h: 998,  url: 'https://smartmaid-website.vercel.app/ar',            role: 's1' },
@@ -63,6 +70,11 @@ function build(p, idx) {
         <p class="cs-text" data-i18n="projects.${p.n}.${f}">${esc(en.projects[String(p.n)][f])}</p>
       </section>`).join('');
 
+  const langs = Object.keys(words);
+  const hreflang = langs.map((c) => `  <link rel="alternate" hreflang="${c}" href="${SITE}/work/${p.slug}?lang=${c}">`).join('\n');
+  const ogLocale = langs.filter((c) => c !== 'en')
+    .map((c) => `  <meta property="og:locale:alternate" content="${LOCALES[c] || c}">`).join('\n');
+
   return `<!DOCTYPE html>
 <html lang="en" dir="ltr" data-theme="dark">
 <head>
@@ -72,11 +84,24 @@ function build(p, idx) {
   <meta name="description" content="${esc(desc)}">
   <meta name="theme-color" content="#0e0f11">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <link rel="canonical" href="/work/${p.slug}">
+  <link rel="canonical" href="${SITE}/work/${p.slug}">
+${hreflang}
+  <link rel="alternate" hreflang="x-default" href="${SITE}/work/${p.slug}">
+  <meta property="og:site_name" content="BG Hussein Sash">
+  <meta property="og:type" content="article">
   <meta property="og:title" content="${esc(title)} — ${esc(en.case.intro)}">
   <meta property="og:description" content="${esc(desc)}">
-  <meta property="og:type" content="article">
-  <meta property="og:image" content="/assets/shots/${p.img}">
+  <meta property="og:url" content="${SITE}/work/${p.slug}">
+  <meta property="og:image" content="${SITE}/assets/shots/${p.img}">
+  <meta property="og:image:width" content="${p.w}">
+  <meta property="og:image:height" content="${p.h}">
+  <meta property="og:image:alt" content="${esc(title)}">
+  <meta property="og:locale" content="en_US">
+${ogLocale}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${esc(title)} — ${esc(en.case.intro)}">
+  <meta name="twitter:description" content="${esc(desc)}">
+  <meta name="twitter:image" content="${SITE}/assets/shots/${p.img}">
   <script>
     try {
       var st = localStorage.getItem('theme');
@@ -84,7 +109,9 @@ function build(p, idx) {
     } catch (e) { document.documentElement.dataset.theme = 'dark'; }
   </script>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="preload" as="image" href="/assets/shots/${p.img}">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -111,8 +138,8 @@ function build(p, idx) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300..900&family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=IBM+Plex+Mono:wght@400;500&family=Hanken+Grotesk:wght@300..800&family=Noto+Sans+Arabic:wght@300..800&family=Noto+Naskh+Arabic:wght@400..700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/style.css?v=r06">
-  <link rel="stylesheet" href="/assets/css/case.css?v=r06">
+  <link rel="stylesheet" href="/assets/css/style.css?v=${VER}">
+  <link rel="stylesheet" href="/assets/css/case.css?v=${VER}">
   <noscript><style>.loader{display:none!important}</style></noscript>
 </head>
 <body class="case-page">
@@ -174,7 +201,7 @@ ${sections}
   </div>
 </footer>
 
-<script src="/assets/js/case.js?v=r06"></script>
+<script src="/assets/js/case.js?v=${VER}"></script>
 </body>
 </html>
 `;
@@ -186,6 +213,47 @@ PROJECTS.forEach((p, i) => {
   fs.writeFileSync(file, build(p, i), 'utf8');
   console.log('built', path.relative(ROOT, file));
 });
+
+/* the sitemap is generated from the same project list, so a new case
+   page can never be published without being announced to crawlers.
+   lastmod comes from the source files — not from "today" — so the date
+   only moves when content actually moved. */
+function lastmodOf(rel) {
+  try { return new Date(fs.statSync(path.join(ROOT, rel)).mtimeMs()).toISOString().slice(0, 10); }
+  catch (e) { return '2026-10-29'; }
+}
+const langs = Object.keys(words);
+const alt = (href) => langs.map((c) => `    <xhtml:link rel="alternate" hreflang="${c}" href="${href}?lang=${c}"/>`).join('\n');
+
+const home = lastmodOf(path.join('index.html'));
+const urls = [
+  `  <url>
+    <loc>${SITE}/</loc>
+${alt(SITE + '/')}
+    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE}/"/>
+    <lastmod>${home}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>`
+].concat(PROJECTS.map((p) => {
+  const href = `${SITE}/work/${p.slug}`;
+  return `  <url>
+    <loc>${href}</loc>
+${alt(href)}
+    <xhtml:link rel="alternate" hreflang="x-default" href="${href}"/>
+    <lastmod>${lastmodOf(path.join('work', p.slug + '.html'))}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>`;
+}));
+
+fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${urls.join('\n')}
+</urlset>
+`, 'utf8');
+console.log('built sitemap.xml with', urls.length, 'urls');
 
 // report any language that is missing a key these pages read
 const needed = ['case.back', 'case.intro', 'case.next', 'case.live', 'case.year', 'case.role', 'case.stack', 'nav.work', 'nav.services', 'nav.about', 'nav.contact', 'footer.tag', 'footer.place', 'modal.problem', 'modal.solution', 'modal.result'];

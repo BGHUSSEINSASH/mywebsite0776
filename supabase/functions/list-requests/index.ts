@@ -23,6 +23,21 @@ function tooMany(ip: string): boolean {
   return list.length > 10;
 }
 
+// hashing both sides first means the compare walks a fixed 32 bytes,
+// so response timing carries no information about the password
+async function sameSecret(a: string, b: string): Promise<boolean> {
+  const enc = new TextEncoder();
+  const [ha, hb] = await Promise.all([
+    crypto.subtle.digest("SHA-256", enc.encode(a)),
+    crypto.subtle.digest("SHA-256", enc.encode(b)),
+  ]);
+  const ba = new Uint8Array(ha);
+  const bb = new Uint8Array(hb);
+  let diff = 0;
+  for (let i = 0; i < ba.length; i++) diff |= ba[i] ^ bb[i];
+  return diff === 0;
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: cors });
   if (req.method !== "POST") {
@@ -38,7 +53,7 @@ Deno.serve(async (req) => {
   try { password = String((await req.json()).password ?? ""); } catch { /* noop */ }
 
   const expected = Deno.env.get("ADMIN_PASSWORD");
-  if (!expected || password !== expected) {
+  if (!expected || !(await sameSecret(password, expected))) {
     return new Response(JSON.stringify({ error: "unauthorized" }), { status: 401, headers: cors });
   }
 

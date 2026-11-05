@@ -7,14 +7,15 @@
       ".firebase/**",
       "**/node_modules/**",
       "tools/**",
+      "supabase/**",
+      ".git/**",
       "README.md"
     ],
     "cleanUrls": true,
     "headers": [
       {
-        "source": "**/*.html",
+        "source": "**",
         "headers": [
-          { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" },
           { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data:; connect-src 'self' https://*.supabase.co https://api.github.com; frame-src https://challenges.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self' mailto:" },
           { "key": "X-Frame-Options", "value": "DENY" },
           { "key": "X-Content-Type-Options", "value": "nosniff" },
@@ -24,23 +25,21 @@
         ]
       },
       {
-        "source": "/admin.html",
+        "source": "**/*.html",
         "headers": [
-          { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
-          { "key": "Referrer-Policy", "value": "no-referrer" }
+          { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+        ]
+      },
+      {
+        "source": "/**",
+        "headers": [
+          { "key": "Cache-Control", "value": "no-cache" }
         ]
       },
       {
         "source": "/",
         "headers": [
           { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
-        ]
-      },
-      {
-        "source": "**",
-        "headers": [
-          { "key": "X-Content-Type-Options", "value": "nosniff" },
-          { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
         ]
       },
       {
@@ -53,6 +52,20 @@
         "source": "service-worker.js",
         "headers": [
           { "key": "Cache-Control", "value": "no-cache" }
+        ]
+      },
+      {
+        "source": "/admin",
+        "headers": [
+          { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+          { "key": "Referrer-Policy", "value": "no-referrer" }
+        ]
+      },
+      {
+        "source": "/admin.html",
+        "headers": [
+          { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+          { "key": "Referrer-Policy", "value": "no-referrer" }
         ]
       }
     ]

@@ -354,7 +354,11 @@
     // the chips may be built before the translation file lands, so every
     // repaint re-resolves them instead of trusting build-time wording
     qa('#est [data-i18n]', host).forEach(function (n) {
-      if (n.dataset.i18nFallback !== undefined) n.textContent = say(n.getAttribute('data-i18n'), n.dataset.i18nFallback);
+      if (n.dataset.i18nFallback === undefined) return;
+      var v = say(n.getAttribute('data-i18n'), n.dataset.i18nFallback);
+      /* main.js owns the turkish casing splitter; writing textContent
+         straight here would erase the lang=en spans it laid down. */
+      if (window.sashPaint) window.sashPaint(n, v); else n.textContent = v;
     });
 
     var f = readForm();
@@ -457,7 +461,10 @@
     });
   }
 
+  var ghLast = null;            // remembered so a language change can repaint it
+
   function paintGh(box, data, fromCache) {
+    ghLast = { box: box, data: data, fromCache: fromCache };
     var stats = q('.gh-stats', box);
     if (stats) {
       stats.textContent = '';
@@ -490,7 +497,9 @@
           var dot = mk('span', 'gh-dot');
           dot.style.setProperty('--gh-lang', langColor(r.language));
           meta.appendChild(dot);
-          meta.appendChild(doc.createTextNode(r.language));
+          var lname = mk('span', '', r.language);
+          lname.setAttribute('lang', 'en');   // a github language name is not a turkish word
+          meta.appendChild(lname);
         }
         meta.appendChild(doc.createTextNode('★ ' + (r.stargazers_count || 0)));
         meta.appendChild(doc.createTextNode('↺ ' + (r.forks_count || 0)));
@@ -980,6 +989,9 @@
   function repaint() {
     paintAvail();
     paintEstimate();
+    // the github block is built once from a fetch, so without this a
+    // visitor who arrived in english and switched later keeps english
+    if (ghLast) paintGh(ghLast.box, ghLast.data, ghLast.fromCache);
     if (hudRepaint) hudRepaint();
     if (pal && !pal.root.hidden) filterPal(pal.input.value);
   }

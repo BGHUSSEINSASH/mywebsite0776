@@ -51,7 +51,13 @@
       "tem": "interfaces",
       "t3": " and systems",
       "case": "Case study",
-      "visit": "Visit live"
+      "visit": "Visit live",
+      "f1": "marketplace",
+      "f2": "tax",
+      "f3": "mobile",
+      "f4": "bookings",
+      "f5": "servers",
+      "f6": "fiber"
     },
     "projects": {
       "1": {
@@ -233,7 +239,8 @@
       "tab3": "Systems",
       "tab4": "Networks",
       "tab5": "Design",
-      "tab6": "Ops"
+      "tab6": "Ops",
+      "cats": "Technology categories"
     },
     "form": {
       "name": "Name",
@@ -428,7 +435,8 @@
       "p3": "Work happens in the open — a preview link you can click every week, built from the Arabic layout first rather than translated from English afterwards.",
       "p4": "Deployed, tested on real devices, handed over with the accounts, keys and a short written guide. You own the repository, the domain, the hosting.",
       "p5": "The same desk that answered during the build answers after it — server faults, printer queues, camera records and the next feature.",
-      "note": "Every stage is one message away — ask at any point and you get the answer the sheet already shows."
+      "note": "Every stage is one message away — ask at any point and you get the answer the sheet already shows.",
+      "cont": "CONT"
     },
     "gh": {
       "label": "SPEC / live code",
@@ -515,6 +523,18 @@
       "pick": "select",
       "esc": "close",
       "none": "No match"
+    },
+    "a11y": {
+      "skip": "Skip to content",
+      "primary": "Primary navigation",
+      "footer": "Footer navigation",
+      "language": "Language",
+      "theme": "Switch light or dark theme",
+      "close": "Close",
+      "estCur": "Show price alongside in"
+    },
+    "alt": {
+      "shot": "live site screenshot"
     }
   },
   "ar": {
@@ -569,7 +589,13 @@
       "tem": "واجهات",
       "t3": " وأنظمة",
       "case": "دراسة حالة",
-      "visit": "زيارة الموقع"
+      "visit": "زيارة الموقع",
+      "f1": "سوق",
+      "f2": "ضرائب",
+      "f3": "جوال",
+      "f4": "حجوزات",
+      "f5": "خوادم",
+      "f6": "ألياف"
     },
     "projects": {
       "1": {
@@ -751,7 +777,8 @@
       "tab3": "أنظمة",
       "tab4": "شبكات",
       "tab5": "تصميم",
-      "tab6": "تشغيل"
+      "tab6": "تشغيل",
+      "cats": "فئات التقنيات"
     },
     "testimonials": {
       "label": "06 / آراء",
@@ -946,7 +973,8 @@
       "p3": "يجري العمل على المكشوف: رابط معاينة تفتحه كل أسبوع، مبني من التخطيط العربي أولًا لا ترجمة عن الإنجليزية لاحقًا.",
       "p4": "يُنشر ويُختبر على أجهزة حقيقية، ويُسَلَّم مع الحسابات والمفاتيح ودليل مكتوب قصير. المستودع والنطاق والاستضافة ملكك.",
       "p5": "يبقى المكتب نفسه الذي ردّ أثناء البناء يردّ بعدَه — أعطال الخادم، طوابير الطابعة، تسجيلات الكاميرات والميزة التالية.",
-      "note": "كل مرحلة على بُعد رسالة — اسأل في أي وقت فتحصل على الجواب الذي تعرضه الورقة بالفعل."
+      "note": "كل مرحلة على بُعد رسالة — اسأل في أي وقت فتحصل على الجواب الذي تعرضه الورقة بالفعل.",
+      "cont": "تكملة"
     },
     "gh": {
       "label": "SPEC / الشيفرة الحيّة",
@@ -1033,6 +1061,18 @@
       "pick": "اختيار",
       "esc": "إغلاق",
       "none": "لا نتيجة"
+    },
+    "a11y": {
+      "skip": "تخطَّ إلى المحتوى",
+      "primary": "التنقل الرئيسي",
+      "footer": "تنقل التذييل",
+      "language": "اللغة",
+      "theme": "تبديل المظهر الفاتح أو الداكن",
+      "close": "إغلاق",
+      "estCur": "أظهر السعر أيضًا بـ"
+    },
+    "alt": {
+      "shot": "لقطة من الموقع الحيّ"
     }
   },
   "ku": {
@@ -1087,7 +1127,13 @@
       "tem": "ڕووکارەکان",
       "t3": " و سیستەمەکان",
       "case": "لێکۆڵینەوەی کەیس",
-      "visit": "سەردانی ڕاستەقینە بکە"
+      "visit": "سەردانی ڕاستەقینە بکە",
+      "f1": "بازاڕ",
+      "f2": "تەكس",
+      "f3": "مۆبایل",
+      "f4": "ڕێزێرڤەیشن",
+      "f5": "سێرڤەر",
+      "f6": "فایبەر"
     },
     "projects": {
       "1": {
@@ -1158,7 +1204,7 @@
         "problem": "بەکارهێنەران لەسەرانسەری بەغدا لە ڕێگای وێستان و هێڵی خێرا دەڕۆشن — پاسخێکی خێرا و لە شوێن نییە.",
         "solution": "هێڵە فایبەرەکان لە شوێن پشکنینم، هەڵەکانی بەکارهێنەر و زەمینە چارەسەرکردم و چارەسەرییەکان بۆ تیمەکە تۆمارکردم.",
         "result": "کاتی گەڕاندنەوەی خێراتر و پڕۆسەیەکی دووبارەکردنەوە بۆ هەڵە فایبەری باوەکان.",
-        "c1": "Fiber Optic",
+        "c1": "فایبەری ئۆپتیکی",
         "c2": "CCNA",
         "c3": "MikroTik"
       }
@@ -1269,7 +1315,8 @@
       "tab3": "سیستەمەکان",
       "tab4": "تۆڕکان",
       "tab5": "دیزاین",
-      "tab6": "بەڕێوەبردن"
+      "tab6": "بەڕێوەبردن",
+      "cats": "پۆلەکانی تەکنەلۆژیا"
     },
     "form": {
       "name": "ناو",
@@ -1464,7 +1511,8 @@
       "p3": "کار بە ڕوونی دەبێت — بەستێری پێشبینین کە هەفتانە کرتەی پێ دەکەیت؛ سەرەتا لە ڕوونکردنەوەی عەرەبییەوە دروست دەکرێت، نەک دواتر وەرگێڕان لە ئینگلیزییەوە.",
       "p4": "جێگیر دەکرێت و لەسەر ئامێری ڕاستەقینە تاقی دەکرێتەوە، لەگەڵ هەژمارەکان و کلیل و ڕێنمایییەکی کورتی نووسراو سپاردەکرێت. کۆگا، دوومەین و هۆستینگەکە هی تۆیە.",
       "p5": "هەمان مێز کە لە ماوەی بنیاتندا وەڵامی دابووە، دوای کارەکەش وەڵام دەداتەوە — کێشەی سێرڤەر، ڕیزی چاپکەر، تۆمارەکانی کامێرا و تایبەتمەندی داهاتوو.",
-      "note": "هەموو قۆناغێک لە پەیامێک دایە — لە هەر کاتێکێک بپرسە، ئەو وەڵامەت پێ دەدرێت کە پەڕەکە پێشتر نیشانی داوە."
+      "note": "هەموو قۆناغێک لە پەیامێک دایە — لە هەر کاتێکێک بپرسە، ئەو وەڵامەت پێ دەدرێت کە پەڕەکە پێشتر نیشانی داوە.",
+      "cont": "بەردەوامی"
     },
     "gh": {
       "label": "SPEC / کۆدی ڕاستەوخۆ",
@@ -1551,6 +1599,18 @@
       "pick": "هەڵبژاردن",
       "esc": "داخستن",
       "none": "ئەنجام نییە"
+    },
+    "a11y": {
+      "skip": "بپەڕە بۆ ناوەڕۆک",
+      "primary": "ناڤیگەیشنی سەرەکی",
+      "footer": "ناڤیگەیشنی فووتەر",
+      "language": "زمان",
+      "theme": "ڕووکاری ڕووناک یان تاریک بگۆڕە",
+      "close": "داخستن",
+      "estCur": "نرخ بە ئەم پارەش پیشان بدە"
+    },
+    "alt": {
+      "shot": "وێنەی ماڵپەڕی زیندوو"
     }
   },
   "tr": {
@@ -1605,7 +1665,13 @@
       "tem": "arayüzler",
       "t3": " ve sistemler",
       "case": "Vaka çalışması",
-      "visit": "Canlı siteyi ziyaret et"
+      "visit": "Canlı siteyi ziyaret et",
+      "f1": "pazar",
+      "f2": "vergi",
+      "f3": "mobil",
+      "f4": "rezervasyon",
+      "f5": "sunucu",
+      "f6": "fiber"
     },
     "projects": {
       "1": {
@@ -1787,7 +1853,8 @@
       "tab3": "Sistemler",
       "tab4": "Ağlar",
       "tab5": "Tasarım",
-      "tab6": "Operasyon"
+      "tab6": "Operasyon",
+      "cats": "Teknoloji kategorileri"
     },
     "form": {
       "name": "Ad",
@@ -1936,7 +2003,7 @@
       "view": "Gör"
     },
     "modal": {
-      "problem": "Problem",
+      "problem": "Sorun",
       "solution": "Çözüm",
       "result": "Sonuç",
       "visit": "Canlı siteyi ziyaret et"
@@ -1967,7 +2034,7 @@
       "label": "SPEC / Süreç",
       "t1": "İş ",
       "tem": "nasıl ilerler",
-      "h1": "Brief",
+      "h1": "Brifing",
       "h2": "Plan ve teklif",
       "h3": "Üretim",
       "h4": "Teslim",
@@ -1982,7 +2049,8 @@
       "p3": "İş açık yapılır — her hafta tıklayabileceğin bir önizleme bağlantısı; İngilizceden çeviri yerine önce Arapça yerleşimle kurulur.",
       "p4": "Yayınlanır, gerçek cihazlarda test edilir; hesaplar, anahtarlar ve kısa yazılı bir rehberle teslim edilir. Depo, alan adı ve hosting senin.",
       "p5": "Üretim sırasında cevap veren masa, sonrasında da cevap verir — sunucu arızaları, yazıcı kuyrukları, kamera kayıtları ve bir sonraki özellik.",
-      "note": "Her aşama bir mesaj uzaklıkta — istediğin an sor, sayfada zaten görünen cevabı alırsın."
+      "note": "Her aşama bir mesaj uzaklıkta — istediğin an sor, sayfada zaten görünen cevabı alırsın.",
+      "cont": "Devam"
     },
     "gh": {
       "label": "SPEC / canlı kod",
@@ -2022,7 +2090,7 @@
       "speed": "Teslim hızı",
       "addons": "Ekstralar",
       "cur": "ayrıca göster",
-      "cta": "brief olarak gönder",
+      "cta": "Brifing olarak gönder",
       "wa": "WhatsApp’a gönder",
       "reset": "temizle",
       "duration": "tahmini süre",
@@ -2049,7 +2117,7 @@
       "aAdmin": "yönetim paneli",
       "aPay": "ödeme / escrow",
       "aSeo": "SEO + analitik",
-      "aMotion": "motion design",
+      "aMotion": "Animasyon tasarımı",
       "aHost": "alan adı + hosting 1 yıl",
       "aCare": "3 ay destek",
       "included": "temel fiyata dahil"
@@ -2069,6 +2137,18 @@
       "pick": "seç",
       "esc": "kapat",
       "none": "eşleşme yok"
+    },
+    "a11y": {
+      "skip": "İçeriğe geç",
+      "primary": "Ana menü",
+      "footer": "Alt bilgi menüsü",
+      "language": "Dil",
+      "theme": "Açık veya koyu temaya geç",
+      "close": "Kapat",
+      "estCur": "Fiyatı şu para biriminde de göster"
+    },
+    "alt": {
+      "shot": "canlı site ekran görüntüsü"
     }
   },
   "fr": {
@@ -2123,7 +2203,13 @@
       "tem": "interfaces",
       "t3": " et systèmes",
       "case": "Étude de cas",
-      "visit": "Voir en ligne"
+      "visit": "Voir en ligne",
+      "f1": "marketplace",
+      "f2": "fiscalité",
+      "f3": "mobile",
+      "f4": "réservations",
+      "f5": "serveurs",
+      "f6": "fibre"
     },
     "projects": {
       "1": {
@@ -2305,7 +2391,8 @@
       "tab3": "Systèmes",
       "tab4": "Réseaux",
       "tab5": "Design",
-      "tab6": "Exploitation"
+      "tab6": "Exploitation",
+      "cats": "Catégories de technologies"
     },
     "form": {
       "name": "Nom",
@@ -2489,7 +2576,7 @@
       "h2": "Plan et devis",
       "h3": "Production",
       "h4": "Livraison",
-      "h5": "Support",
+      "h5": "Assistance",
       "s1": "quoi et pourquoi",
       "s2": "périmètre, coût, délais",
       "s3": "lien d’aperçu hebdomadaire",
@@ -2500,7 +2587,8 @@
       "p3": "Le travail se fait à découvert — un lien d’aperçu cliquable chaque semaine, construit d’abord sur la maquette arabe, pas traduit de l’anglais après coup.",
       "p4": "Déployé, testé sur de vrais appareils, remis avec les comptes, les clés et un court guide écrit. Le dépôt, le domaine et l’hébergement sont à vous.",
       "p5": "Le bureau qui répond pendant la production répond aussi après — pannes serveur, files d’impression, enregistrements des caméras et la fonctionnalité suivante.",
-      "note": "Chaque étape est à un message — demandez à tout moment, vous obtenez la réponse déjà affichée sur la fiche."
+      "note": "Chaque étape est à un message — demandez à tout moment, vous obtenez la réponse déjà affichée sur la fiche.",
+      "cont": "Suite"
     },
     "gh": {
       "label": "SPEC / code en direct",
@@ -2566,7 +2654,7 @@
       "aI18n": "arabe + anglais",
       "aAdmin": "tableau d’administration",
       "aPay": "paiement / séquestre",
-      "aSeo": "SEO + analytics",
+      "aSeo": "SEO + statistiques",
       "aMotion": "motion design",
       "aHost": "domaine + hébergement 1 an",
       "aCare": "assistance 3 mois",
@@ -2587,6 +2675,18 @@
       "pick": "choisir",
       "esc": "fermer",
       "none": "aucun résultat"
+    },
+    "a11y": {
+      "skip": "Aller au contenu",
+      "primary": "Navigation principale",
+      "footer": "Navigation de pied de page",
+      "language": "Langue",
+      "theme": "Basculer entre thème clair et sombre",
+      "close": "Fermer",
+      "estCur": "Afficher aussi le prix en"
+    },
+    "alt": {
+      "shot": "capture du site en ligne"
     }
   },
   "es": {
@@ -2641,7 +2741,13 @@
       "tem": "interfaces",
       "t3": " y sistemas",
       "case": "Caso de estudio",
-      "visit": "Ver en vivo"
+      "visit": "Ver en vivo",
+      "f1": "marketplace",
+      "f2": "impuestos",
+      "f3": "móvil",
+      "f4": "reservas",
+      "f5": "servidores",
+      "f6": "fibra"
     },
     "projects": {
       "1": {
@@ -2823,7 +2929,8 @@
       "tab3": "Sistemas",
       "tab4": "Redes",
       "tab5": "Diseño",
-      "tab6": "Operaciones"
+      "tab6": "Operaciones",
+      "cats": "Categorías de tecnologías"
     },
     "form": {
       "name": "Nombre",
@@ -3003,7 +3110,7 @@
       "label": "SPEC / Proceso",
       "t1": "Cómo ",
       "tem": "avanza el trabajo",
-      "h1": "Brief",
+      "h1": "Briefing",
       "h2": "Plan y presupuesto",
       "h3": "Desarrollo",
       "h4": "Entrega",
@@ -3018,7 +3125,8 @@
       "p3": "El trabajo ocurre a la vista — un enlace de vista previa que abres cada semana, construido primero desde el layout árabe y no traducido después del inglés.",
       "p4": "Desplegado, probado en dispositivos reales y entregado con las cuentas, las claves y una guía escrita breve. El repositorio, el dominio y el hosting son tuyos.",
       "p5": "La misma mesa que responde durante el desarrollo responde después — fallos de servidor, colas de impresora, grabaciones de cámaras y la siguiente función.",
-      "note": "Cada etapa está a un mensaje — pregunta cuando quieras y recibes la respuesta que la ficha ya muestra."
+      "note": "Cada etapa está a un mensaje — pregunta cuando quieras y recibes la respuesta que la ficha ya muestra.",
+      "cont": "Cont."
     },
     "gh": {
       "label": "SPEC / código en vivo",
@@ -3105,6 +3213,18 @@
       "pick": "elegir",
       "esc": "cerrar",
       "none": "sin coincidencias"
+    },
+    "a11y": {
+      "skip": "Ir al contenido",
+      "primary": "Navegación principal",
+      "footer": "Navegación de pie de página",
+      "language": "Idioma",
+      "theme": "Cambiar entre tema claro u oscuro",
+      "close": "Cerrar",
+      "estCur": "Mostrar el precio también en"
+    },
+    "alt": {
+      "shot": "captura del sitio en línea"
     }
   },
   "de": {
@@ -3119,7 +3239,7 @@
       "stack": "Tech-Stack",
       "pricing": "Preise",
       "contact": "Kontakt",
-      "start": "Start"
+      "start": "Loslegen"
     },
     "hero": {
       "city": "Bagdad",
@@ -3159,7 +3279,13 @@
       "tem": "Oberflächen",
       "t3": " und Systeme",
       "case": "Fallstudie",
-      "visit": "Live ansehen"
+      "visit": "Live ansehen",
+      "f1": "Marktplatz",
+      "f2": "Steuern",
+      "f3": "Mobil",
+      "f4": "Buchungen",
+      "f5": "Server",
+      "f6": "Glasfaser"
     },
     "projects": {
       "1": {
@@ -3303,7 +3429,7 @@
       "cr2t": "Cisco-Netzwerktechnik — MK.NET Center",
       "cr3l": "MikroTik",
       "cr3t": "Routing & Netzwerkadministration — MK.NET Center",
-      "cr4l": "Cyber",
+      "cr4l": "Cyber-Sicherheit",
       "cr4t": "Zertifikat für Cybersicherheit",
       "stat1": "Softwareprojekte",
       "stat2": "Sprachen",
@@ -3341,7 +3467,8 @@
       "tab3": "Systeme",
       "tab4": "Netzwerke",
       "tab5": "Design",
-      "tab6": "Betrieb"
+      "tab6": "Betrieb",
+      "cats": "Technologie-Kategorien"
     },
     "form": {
       "name": "Name",
@@ -3536,7 +3663,8 @@
       "p3": "Die Arbeit passiert offen — ein Preview-Link, den du jede Woche anklickst, zuerst aus dem arabischen Layout gebaut statt hinterher aus dem Englischen übersetzt.",
       "p4": "Deployt, auf echten Geräten getestet, übergeben mit Zugängen, Schlüsseln und einem kurzen schriftlichen Guide. Repository, Domain und Hosting gehören dir.",
       "p5": "Dieselbe Stelle, die während der Entwicklung antwortet, antwortet auch danach — Serverausfälle, Druckerwarteschlangen, Kameraaufnahmen und das nächste Feature.",
-      "note": "Jede Stufe ist eine Nachricht entfernt — frag jederzeit und bekomm die Antwort, die der Bogen schon zeigt."
+      "note": "Jede Stufe ist eine Nachricht entfernt — frag jederzeit und bekomm die Antwort, die der Bogen schon zeigt.",
+      "cont": "Fort."
     },
     "gh": {
       "label": "SPEC / Live-Code",
@@ -3623,6 +3751,18 @@
       "pick": "auswählen",
       "esc": "schließen",
       "none": "kein Treffer"
+    },
+    "a11y": {
+      "skip": "Zum Inhalt springen",
+      "primary": "Hauptnavigation",
+      "footer": "Fußzeilen-Navigation",
+      "language": "Sprache",
+      "theme": "Zwischen hellem und dunklem Theme wechseln",
+      "close": "Schließen",
+      "estCur": "Preis zusätzlich anzeigen in"
+    },
+    "alt": {
+      "shot": "Screenshot der Live-Site"
     }
   },
   "ru": {
@@ -3677,7 +3817,13 @@
       "tem": "интерфейсы",
       "t3": " и системы",
       "case": "Кейс",
-      "visit": "Открыть сайт"
+      "visit": "Открыть сайт",
+      "f1": "услуги",
+      "f2": "налоги",
+      "f3": "мобильное",
+      "f4": "бронирование",
+      "f5": "серверы",
+      "f6": "оптоволокно"
     },
     "projects": {
       "1": {
@@ -3815,7 +3961,7 @@
       "p3h": "Опыт на стороне бизнеса",
       "p3p": "Годами управлял продажами и соцсетями магазинов и клиник — я знаю, что должно приносить программное обеспечение.",
       "creds": "Квалификация",
-      "cr1l": "B.Sc.",
+      "cr1l": "Бакалавр",
       "cr1t": "Компьютерная инженерия — Университет Диялы",
       "cr2l": "CCNA",
       "cr2t": "Сетевые технологии Cisco — MK.NET Center",
@@ -3859,7 +4005,8 @@
       "tab3": "Системы",
       "tab4": "Сети",
       "tab5": "Дизайн",
-      "tab6": "Эксплуатация"
+      "tab6": "Эксплуатация",
+      "cats": "Категории технологий"
     },
     "form": {
       "name": "Имя",
@@ -4054,7 +4201,8 @@
       "p3": "Работа идёт открыто — ссылка-превью, которую вы открываете каждую неделю; сборка начинается с арабской вёрстки, а не с перевода с английского.",
       "p4": "Развёрнуто, проверено на реальных устройствах, передано с аккаунтами, ключами и кратким письменным гидом. Репозиторий, домен и хостинг — ваши.",
       "p5": "Тот же стол, что отвечал во время разработки, отвечает и после — сбои сервера, очереди печати, записи камер и следующая функция.",
-      "note": "Каждый этап — на расстоянии одного сообщения: спросите в любой момент, и вы получите ответ, уже показанный в этом листе."
+      "note": "Каждый этап — на расстоянии одного сообщения: спросите в любой момент, и вы получите ответ, уже показанный в этом листе.",
+      "cont": "Далее"
     },
     "gh": {
       "label": "SPEC / живой код",
@@ -4141,6 +4289,18 @@
       "pick": "выбор",
       "esc": "закрыть",
       "none": "нет совпадений"
+    },
+    "a11y": {
+      "skip": "Перейти к содержимому",
+      "primary": "Основная навигация",
+      "footer": "Навигация в подвале",
+      "language": "Язык",
+      "theme": "Переключить светлую или тёмную тему",
+      "close": "Закрыть",
+      "estCur": "Показывать цену также в"
+    },
+    "alt": {
+      "shot": "скриншот живого сайта"
     }
   },
   "zh": {
@@ -4195,7 +4355,13 @@
       "tem": "界面",
       "t3": "与系统",
       "case": "案例研究",
-      "visit": "访问线上站点"
+      "visit": "访问线上站点",
+      "f1": "服务",
+      "f2": "税务",
+      "f3": "移动端",
+      "f4": "预约",
+      "f5": "服务器",
+      "f6": "光纤"
     },
     "projects": {
       "1": {
@@ -4377,7 +4543,8 @@
       "tab3": "系统",
       "tab4": "网络",
       "tab5": "设计",
-      "tab6": "运维"
+      "tab6": "运维",
+      "cats": "技术分类"
     },
     "form": {
       "name": "姓名",
@@ -4572,7 +4739,8 @@
       "p3": "工作全程透明——每周你都能点开预览链接；先从阿拉伯语版式搭起，而不是事后从英语翻译过来。",
       "p4": "完成部署、在真机上测试，并连同账号、密钥与简明书面指南一并交接。仓库、域名、主机都归你所有。",
       "p5": "开发期间随叫随到的同一张桌子，交付之后依然如此——服务器故障、打印队列、监控录像，以及下一个功能。",
-      "note": "每个阶段都只隔一条消息——随时提出，答案就是这份规格书上已经写明的内容。"
+      "note": "每个阶段都只隔一条消息——随时提出，答案就是这份规格书上已经写明的内容。",
+      "cont": "待续"
     },
     "gh": {
       "label": "SPEC / 实时代码",
@@ -4659,6 +4827,18 @@
       "pick": "选择",
       "esc": "关闭",
       "none": "无匹配结果"
+    },
+    "a11y": {
+      "skip": "跳到内容",
+      "primary": "主导航",
+      "footer": "页脚导航",
+      "language": "语言",
+      "theme": "切换浅色或深色主题",
+      "close": "关闭",
+      "estCur": "同时以下列货币显示价格"
+    },
+    "alt": {
+      "shot": "网站实际截图"
     }
   },
   "ja": {
@@ -4713,7 +4893,13 @@
       "tem": "インターフェース",
       "t3": "そしてシステム",
       "case": "ケーススタディ",
-      "visit": "サイトを見る"
+      "visit": "サイトを見る",
+      "f1": "サービス",
+      "f2": "税務",
+      "f3": "モバイル",
+      "f4": "予約",
+      "f5": "サーバー",
+      "f6": "光回線"
     },
     "projects": {
       "1": {
@@ -4895,7 +5081,8 @@
       "tab3": "システム",
       "tab4": "ネットワーク",
       "tab5": "デザイン",
-      "tab6": "運用"
+      "tab6": "運用",
+      "cats": "技術カテゴリ"
     },
     "form": {
       "name": "お名前",
@@ -5090,7 +5277,8 @@
       "p3": "仕事は開かれた状態で行います — 毎週クリックできるプレビューリンク。英語からの後付け翻訳ではなく、アラビア語レイアウトから先に作ります。",
       "p4": "デプロイと実機テストを終え、アカウント・鍵・簡潔な書面ガイドとともに引き渡します。リポジトリもドメインもホスティングもあなたのものです。",
       "p5": "開発中に対応した窓口が、納品後もそのまま対応します — サーバー障害、プリンターのキュー、カメラの録画、次の機能まで。",
-      "note": "どの工程もメッセージ一通分 — いつでも質問でき、このシートに既に出ている回答が返ります。"
+      "note": "どの工程もメッセージ一通分 — いつでも質問でき、このシートに既に出ている回答が返ります。",
+      "cont": "続き"
     },
     "gh": {
       "label": "SPEC / ライブコード",
@@ -5177,6 +5365,18 @@
       "pick": "選択",
       "esc": "閉じる",
       "none": "該当なし"
+    },
+    "a11y": {
+      "skip": "コンテンツへ移動",
+      "primary": "メインナビゲーション",
+      "footer": "フッターナビゲーション",
+      "language": "言語",
+      "theme": "ライト／ダークテーマを切り替え",
+      "close": "閉じる",
+      "estCur": "価格をこの通貨でも表示"
+    },
+    "alt": {
+      "shot": "公開中のサイトのスクリーンショット"
     }
   },
   "ko": {
@@ -5231,7 +5431,13 @@
       "tem": "인터페이스",
       "t3": " 그리고 시스템",
       "case": "사례 연구",
-      "visit": "라이브 사이트 보기"
+      "visit": "라이브 사이트 보기",
+      "f1": "서비스",
+      "f2": "세금",
+      "f3": "모바일",
+      "f4": "예약",
+      "f5": "서버",
+      "f6": "광통신"
     },
     "projects": {
       "1": {
@@ -5413,7 +5619,8 @@
       "tab3": "시스템",
       "tab4": "네트워크",
       "tab5": "디자인",
-      "tab6": "운영"
+      "tab6": "운영",
+      "cats": "기술 카테고리"
     },
     "form": {
       "name": "이름",
@@ -5608,7 +5815,8 @@
       "p3": "작업은 공개적으로 진행됩니다 — 매주 열어 보는 미리보기 링크. 영어에서 나중에 번역하는 게 아니라 아라비아어 레이아웃부터 만듭니다.",
       "p4": "배포하고 실제 기기에서 테스트한 뒤, 계정과 키, 짧은 문서 가이드와 함께 넘겨드립니다. 저장소도 도메인도 호스팅도 당신의 것입니다.",
       "p5": "개발 중 답변했던 그 창구가 납품 후에도 그대로 답합니다 — 서버 장애, 프린터 대기열, 카메라 기록, 그리고 다음 기능까지.",
-      "note": "모든 단계는 메시지 한 통 거리입니다 — 언제든 물어보시면 이 시트에 이미 적힌 답을 드리겠습니다."
+      "note": "모든 단계는 메시지 한 통 거리입니다 — 언제든 물어보시면 이 시트에 이미 적힌 답을 드리겠습니다.",
+      "cont": "계속"
     },
     "gh": {
       "label": "SPEC / 라이브 코드",
@@ -5695,6 +5903,18 @@
       "pick": "선택",
       "esc": "닫기",
       "none": "일치 없음"
+    },
+    "a11y": {
+      "skip": "본문으로 건너뛰기",
+      "primary": "주요 내비게이션",
+      "footer": "푸터 내비게이션",
+      "language": "언어",
+      "theme": "라이트 또는 다크 테마로 전환",
+      "close": "닫기",
+      "estCur": "다음 통화로도 가격 표시"
+    },
+    "alt": {
+      "shot": "실제 사이트 스크린샷"
     }
   },
   "hi": {
@@ -5749,7 +5969,13 @@
       "tem": "इंटरफ़ेस",
       "t3": " और सिस्टम",
       "case": "केस स्टडी",
-      "visit": "लाइव साइट देखें"
+      "visit": "लाइव साइट देखें",
+      "f1": "सेवा",
+      "f2": "कर",
+      "f3": "मोबाइल",
+      "f4": "बुकिंग",
+      "f5": "सर्वर",
+      "f6": "फाइबर"
     },
     "projects": {
       "1": {
@@ -5931,7 +6157,8 @@
       "tab3": "सिस्टम",
       "tab4": "नेटवर्क",
       "tab5": "डिज़ाइन",
-      "tab6": "ऑप्स"
+      "tab6": "ऑप्स",
+      "cats": "तकनीकी श्रेणियाँ"
     },
     "form": {
       "name": "नाम",
@@ -6126,7 +6353,8 @@
       "p3": "काम खुले तौर पर होता है — हर हफ़्ते खोलने योग्य प्रीव्यू लिंक; पहले अरबी लेआउट से बनाया जाता है, बाद में अंग्रेज़ी से अनुवाद नहीं।",
       "p4": "डिप्लॉय किया जाता है, असली डिवाइस पर जाँचा जाता है, और खाते, कुंजियाँ व एक छोटा लिखित गाइड के साथ सौंपा जाता है। रिपॉज़िटरी, डोमेन, होस्टिंग — सब आपका।",
       "p5": "जो डेस्क निर्माण के दौरान जवाब देती रही, वही बाद में भी देती है — सर्वर खराबी, प्रिंटर क्यू, कैमरा रिकॉर्डिंग और अगला फ़ीचर।",
-      "note": "हर चरण एक संदेश दूर है — कभी भी पूछिए, वही उत्तर मिलेगा जो शीट पर पहले से छपा है।"
+      "note": "हर चरण एक संदेश दूर है — कभी भी पूछिए, वही उत्तर मिलेगा जो शीट पर पहले से छपा है।",
+      "cont": "जारी"
     },
     "gh": {
       "label": "SPEC / लाइव कोड",
@@ -6213,6 +6441,18 @@
       "pick": "चुनें",
       "esc": "बंद करें",
       "none": "कोई मेल नहीं"
+    },
+    "a11y": {
+      "skip": "सामग्री पर जाएँ",
+      "primary": "मुख्य नेविगेशन",
+      "footer": "फ़ुटर नेविगेशन",
+      "language": "भाषा",
+      "theme": "लाइट या डार्क थीम पर करें",
+      "close": "बंद करें",
+      "estCur": "इस सिक्के में मूल्य भी दिखाएँ"
+    },
+    "alt": {
+      "shot": "लाइव साइट का स्क्रीनशॉट"
     }
   }
 }

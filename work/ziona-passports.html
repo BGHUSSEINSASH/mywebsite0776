@@ -82,25 +82,25 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300..900&family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=IBM+Plex+Mono:wght@400;500&family=Hanken+Grotesk:wght@300..800&family=Noto+Sans+Arabic:wght@300..800&family=Noto+Naskh+Arabic:wght@400..700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/style.css?v=r20">
-  <link rel="stylesheet" href="/assets/css/case.css?v=r20">
+  <link rel="stylesheet" href="/assets/css/style.css?v=r22">
+  <link rel="stylesheet" href="/assets/css/case.css?v=r22">
   <noscript><style>.loader{display:none!important}</style></noscript>
 </head>
 <body class="case-page">
 
-<a class="skip" href="#main">Skip to content</a>
+<a class="skip" href="#main" data-i18n="a11y.skip">Skip to content</a>
 
 <header class="nav">
   <div class="nav-in">
     <a href="/" class="logo">BG<i>.</i>SASH</a>
-    <nav aria-label="Primary">
+    <nav data-i18n-aria="a11y.primary" aria-label="Primary">
       <a href="/#work" data-i18n="nav.work">Work</a><a href="/#services" data-i18n="nav.services">Services</a><a href="/#about" data-i18n="nav.about">About</a><a href="/#contact" data-i18n="nav.contact">Contact</a>
     </nav>
     <div class="nav-actions">
-      <select id="langSelect" class="lang" aria-label="Language">
-        <option value="en">English</option><option value="ar">العربية</option><option value="ku">کوردی</option><option value="tr">Türkçe</option><option value="fr">Français</option><option value="es">Español</option><option value="de">Deutsch</option><option value="ru">Русский</option><option value="zh">中文</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="hi">हिन्दी</option>
+      <select id="langSelect" class="lang" data-i18n-aria="a11y.language" aria-label="Language">
+        <option value="en" lang="en">English</option><option value="ar" lang="ar">العربية</option><option value="ku" lang="ku">کوردی</option><option value="tr" lang="tr">Türkçe</option><option value="fr" lang="fr">Français</option><option value="es" lang="es">Español</option><option value="de" lang="de">Deutsch</option><option value="ru" lang="ru">Русский</option><option value="zh" lang="zh">中文</option><option value="ja" lang="ja">日本語</option><option value="ko" lang="ko">한국어</option><option value="hi" lang="hi">हिन्दी</option>
       </select>
-      <button class="theme" id="themeBtn" aria-label="Switch light or dark theme" title="Switch theme"><i></i></button>
+      <button class="theme" id="themeBtn" data-i18n-aria="a11y.theme" aria-label="Switch light or dark theme" data-i18n-title="pal.theme" title="Switch theme"><i></i></button>
     </div>
   </div>
 </header>
@@ -115,10 +115,10 @@
   <ul class="chips cs-chips"><li data-i18n="projects.5.c1">Windows Server</li><li data-i18n="projects.5.c2">CCTV</li><li data-i18n="projects.5.c3">Networking</li></ul>
 
   <figure class="cs-shot">
-    <img src="/assets/shots/smartmaid-2.webp" width="1280" height="998" alt="Ziona Passports — Servers &amp; CCTV — screenshot" loading="eager" decoding="async">
+    <img src="/assets/shots/smartmaid-2.webp" width="1280" height="998" alt="Ziona Passports — Servers &amp; CCTV — live site screenshot" data-alt="projects.5.title" loading="eager" decoding="async">
   </figure>
 
-  <dl class="cs-facts"><div><dt data-i18n="case.year">Year</dt><dd>Field work</dd></div><div><dt data-i18n="case.role">Role</dt><dd>IT Infrastructure &amp; Networking</dd></div><div><dt data-i18n="case.stack">Stack</dt><dd>Windows Server · CCTV · Networking</dd></div></dl>
+  <dl class="cs-facts"><div><dt data-i18n="case.year">Year</dt><dd data-i18n="projects.5.when">Field work</dd></div><div><dt data-i18n="case.role">Role</dt><dd data-i18n="services.s3.title">IT Infrastructure &amp; Networking</dd></div><div><dt data-i18n="case.stack">Stack</dt><dd data-facts-stack>Windows Server · CCTV · Networking</dd></div></dl>
 
 
       <section class="cs-block">
@@ -140,16 +140,16 @@
     <a class="btn ghost" href="/#contact"><span data-i18n="nav.contact">Contact</span><span class="arrow">&rarr;</span></a>
   </div>
 
-  <p class="cs-next-hint">Next project: <a href="/work/hala-sat">Hala Sat — Fiber Internet Support</a></p>
+  <p class="cs-next-hint"><span data-i18n="case.next">Next project</span>: <a href="/work/hala-sat"><span data-i18n="projects.6.title">Hala Sat — Fiber Internet Support</span></a></p>
 </main>
 
 <footer>
   <div class="wrap">
     <div class="foot">
       <span data-i18n="footer.tag">BG Hussein Sash — Full stack, Flutter, IT infrastructure, graphic design</span>
-      <nav aria-label="Footer">
+      <nav data-i18n-aria="a11y.footer" aria-label="Footer">
         <a href="/#work" data-i18n="nav.work">Work</a><a href="/#services" data-i18n="nav.services">Services</a><a href="/#contact" data-i18n="nav.contact">Contact</a>
-        <a href="https://github.com/BGHUSSEINSASH" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/BGHUSSEINSASH" target="_blank" rel="noopener" lang="en">GitHub</a>
       </nav>
       <span>&copy; 2026 &middot; <span data-i18n="footer.place">Baghdad, Iraq · UTC+3</span></span>
     </div>
@@ -157,6 +157,6 @@
   </div>
 </footer>
 
-<script src="/assets/js/case.js?v=r20"></script>
+<script src="/assets/js/case.js?v=r22"></script>
 </body>
 </html>

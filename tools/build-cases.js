@@ -15,7 +15,7 @@ const words = JSON.parse(fs.readFileSync(path.join(ROOT, 'assets', 'i18n', 'tran
 // social crawlers do not resolve relative ones, and a relative canonical
 // is simply dropped by google.
 const SITE = 'https://mywebsite0776.web.app';
-const VER = 'r20';                       // bump with every asset change
+const VER = 'r22';                       // bump with every asset change
 const LOCALES = { en: 'en_US', ar: 'ar_IQ', ku: 'ku_IQ', tr: 'tr_TR', fr: 'fr_FR', es: 'es_ES', de: 'de_DE', ru: 'ru_RU', zh: 'zh_CN', ja: 'ja_JP', ko: 'ko_KR', hi: 'hi_IN' };
 
 // slug, image, live url (null for the two field cases), role = services key
@@ -59,10 +59,10 @@ function build(p, idx) {
   const nextTitle = en.projects[String(next.n)].title;
 
   const facts = [
-    ['case.year', en.case.year, when],
-    ['case.role', en.case.role, role],
-    ['case.stack', en.case.stack, ['c1', 'c2', 'c3'].map((k) => en.projects[String(p.n)][k]).join(' · ')]
-  ].map(([k, label, val]) => `<div><dt data-i18n="${k}">${esc(label)}</dt><dd>${esc(val)}</dd></div>`).join('');
+    ['case.year', en.case.year, when, 'projects.' + p.n + '.when'],
+    ['case.role', en.case.role, role, 'services.' + p.role + '.title'],
+    ['case.stack', en.case.stack, ['c1', 'c2', 'c3'].map((k) => en.projects[String(p.n)][k]).join(' · '), 'stack']
+  ].map(([k, label, val, tr]) => `<div><dt data-i18n="${k}">${esc(label)}</dt><dd${tr === 'stack' ? ' data-facts-stack' : (tr ? ` data-i18n="${tr}"` : '')}>${esc(val)}</dd></div>`).join('');
 
   const sections = ['problem', 'solution', 'result'].map((f) => `
       <section class="cs-block">
@@ -144,19 +144,19 @@ ${ogLocale}
 </head>
 <body class="case-page">
 
-<a class="skip" href="#main">Skip to content</a>
+<a class="skip" href="#main" data-i18n="a11y.skip">${esc(en.a11y.skip)}</a>
 
 <header class="nav">
   <div class="nav-in">
     <a href="/" class="logo">BG<i>.</i>SASH</a>
-    <nav aria-label="Primary">
+    <nav data-i18n-aria="a11y.primary" aria-label="Primary">
       <a href="/#work" data-i18n="nav.work">${esc(en.nav.work)}</a><a href="/#services" data-i18n="nav.services">${esc(en.nav.services)}</a><a href="/#about" data-i18n="nav.about">${esc(en.nav.about)}</a><a href="/#contact" data-i18n="nav.contact">${esc(en.nav.contact)}</a>
     </nav>
     <div class="nav-actions">
-      <select id="langSelect" class="lang" aria-label="Language">
-        <option value="en">English</option><option value="ar">العربية</option><option value="ku">کوردی</option><option value="tr">Türkçe</option><option value="fr">Français</option><option value="es">Español</option><option value="de">Deutsch</option><option value="ru">Русский</option><option value="zh">中文</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="hi">हिन्दी</option>
+      <select id="langSelect" class="lang" data-i18n-aria="a11y.language" aria-label="Language">
+        <option value="en" lang="en">English</option><option value="ar" lang="ar">العربية</option><option value="ku" lang="ku">کوردی</option><option value="tr" lang="tr">Türkçe</option><option value="fr" lang="fr">Français</option><option value="es" lang="es">Español</option><option value="de" lang="de">Deutsch</option><option value="ru" lang="ru">Русский</option><option value="zh" lang="zh">中文</option><option value="ja" lang="ja">日本語</option><option value="ko" lang="ko">한국어</option><option value="hi" lang="hi">हिन्दी</option>
       </select>
-      <button class="theme" id="themeBtn" aria-label="Switch light or dark theme" title="Switch theme"><i></i></button>
+      <button class="theme" id="themeBtn" data-i18n-aria="a11y.theme" aria-label="Switch light or dark theme" data-i18n-title="pal.theme" title="Switch theme"><i></i></button>
     </div>
   </div>
 </header>
@@ -171,7 +171,7 @@ ${ogLocale}
   <ul class="chips cs-chips">${chips}</ul>
 
   <figure class="cs-shot">
-    <img src="/assets/shots/${p.img}" width="${p.w}" height="${p.h}" alt="${esc(title)} — screenshot" loading="eager" decoding="async">
+    <img src="/assets/shots/${p.img}" width="${p.w}" height="${p.h}" alt="${esc(title)} — ${esc(en.alt.shot)}" data-alt="projects.${p.n}.title" loading="eager" decoding="async">
   </figure>
 
   <dl class="cs-facts">${facts}</dl>
@@ -184,16 +184,16 @@ ${sections}
     <a class="btn ghost" href="/#contact"><span data-i18n="nav.contact">${esc(en.nav.contact)}</span><span class="arrow">&rarr;</span></a>
   </div>
 
-  <p class="cs-next-hint">${esc(en.case.next)}: <a href="/work/${next.slug}">${esc(nextTitle)}</a></p>
+  <p class="cs-next-hint"><span data-i18n="case.next">${esc(en.case.next)}</span>: <a href="/work/${next.slug}"><span data-i18n="projects.${next.n}.title">${esc(nextTitle)}</span></a></p>
 </main>
 
 <footer>
   <div class="wrap">
     <div class="foot">
       <span data-i18n="footer.tag">${esc(en.footer.tag)}</span>
-      <nav aria-label="Footer">
+      <nav data-i18n-aria="a11y.footer" aria-label="Footer">
         <a href="/#work" data-i18n="nav.work">${esc(en.nav.work)}</a><a href="/#services" data-i18n="nav.services">${esc(en.nav.services)}</a><a href="/#contact" data-i18n="nav.contact">${esc(en.nav.contact)}</a>
-        <a href="https://github.com/BGHUSSEINSASH" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/BGHUSSEINSASH" target="_blank" rel="noopener" lang="en">GitHub</a>
       </nav>
       <span>&copy; 2026 &middot; <span data-i18n="footer.place">${esc(en.footer.place)}</span></span>
     </div>
@@ -256,7 +256,7 @@ ${urls.join('\n')}
 console.log('built sitemap.xml with', urls.length, 'urls');
 
 // report any language that is missing a key these pages read
-const needed = ['case.back', 'case.intro', 'case.next', 'case.live', 'case.year', 'case.role', 'case.stack', 'nav.work', 'nav.services', 'nav.about', 'nav.contact', 'footer.tag', 'footer.place', 'modal.problem', 'modal.solution', 'modal.result'];
+const needed = ['case.back', 'case.intro', 'case.next', 'case.live', 'case.year', 'case.role', 'case.stack', 'nav.work', 'nav.services', 'nav.about', 'nav.contact', 'footer.tag', 'footer.place', 'modal.problem', 'modal.solution', 'modal.result', 'a11y.skip', 'a11y.primary', 'a11y.language', 'a11y.theme', 'a11y.footer', 'alt.shot', 'pal.theme', 'services.s1.title', 'services.s2.title', 'services.s3.title'];
 for (const lang of Object.keys(words)) {
   const miss = needed.filter((k) => !t(lang, k));
   PROJECTS.forEach((p) => ['title', 'desc', 'tag', 'problem', 'solution', 'result', 'c1', 'c2', 'c3'].forEach((f) => { if (!t(lang, `projects.${p.n}.${f}`)) miss.push(`projects.${p.n}.${f}`); }));

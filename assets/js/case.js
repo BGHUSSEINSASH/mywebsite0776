@@ -37,6 +37,35 @@
 
   var aliases = { ckb: 'ku', kmr: 'ku', 'zh-cn': 'zh', 'zh-tw': 'zh', 'fa': 'ar', 'ur': 'ar' };
 
+  /* uppercase turkish turns i into İ, which is right for türk words and
+     wrong inside a name — the case titles are full of names. the list in
+     main.js is the long version; this one carries what a case page says. */
+  var LATIN = ('Hussein Sash SmartMaid Mukallaf Flossk Bookly Ziona Hala Sat MikroTik Cisco CCNA ' +
+    'Windows Linux Ubuntu JavaScript TypeScript Flutter Dart React Node.js MySQL PHP Laravel Docker ' +
+    'GitHub Firebase Figma Hosting TCP/IP'
+    ).split(' ').filter(Boolean).sort(function (a, b) { return b.length - a.length; });
+
+  var latinRe = null;
+  function paint(el, val) {
+    el.textContent = val;
+    if (lang !== 'tr') return;
+    if (!latinRe) latinRe = new RegExp('\\b(' + LATIN.join('|').replace(/\./g, '\\.') + ')\\b', 'gi');
+    latinRe.lastIndex = 0;
+    if (!latinRe.test(val)) return;
+    el.textContent = '';
+    val.split(latinRe).forEach(function (chunk, i) {
+      if (!chunk) return;
+      if (i % 2 === 1) {
+        var s = doc.createElement('span');
+        s.setAttribute('lang', 'en');
+        s.textContent = chunk;
+        el.appendChild(s);
+      } else el.appendChild(doc.createTextNode(chunk));
+    });
+  }
+
+  window.sashPaint = paint;   // same hook main.js exposes
+
   function pick() {
     var fromUrl = '';
     try { fromUrl = (new URLSearchParams(location.search).get('lang') || '').toLowerCase(); } catch (e) {}
@@ -65,9 +94,40 @@
     html.dir = rtl ? 'rtl' : 'ltr';
 
     qa('[data-i18n]').forEach(function (el) {
-      var val = say(el.getAttribute('data-i18n'), null);
-      if (typeof val === 'string') el.textContent = val;
+      var key = el.getAttribute('data-i18n');
+      var val = say(key, null);
+      if (typeof val !== 'string') return;
+      paint(el, val);
+      // same rule as the main page: a string identical to english is a
+      // name, not a phrase — keep turkish casing rules away from it
+      var base = dig(words.en, key);
+      if (typeof base === 'string' && base === val) el.setAttribute('lang', 'en');
+      else el.removeAttribute('lang');
     });
+
+    qa('[data-i18n-aria]').forEach(function (el) {
+      var v = say(el.getAttribute('data-i18n-aria'), null);
+      if (typeof v === 'string' && v) el.setAttribute('aria-label', v);
+    });
+
+    qa('[data-alt]').forEach(function (img) {
+      var name = say(img.getAttribute('data-alt'), null);
+      var what = say('alt.shot');
+      if (typeof name === 'string' && name && what) img.alt = name + ' — ' + what;
+    });
+
+    qa('[data-i18n-title]').forEach(function (el) {
+      var v = say(el.getAttribute('data-i18n-title'), null);
+      if (typeof v === 'string' && v) el.setAttribute('title', v);
+    });
+
+    // the stack line in the facts table is the chips a few rows above it,
+    // already translated — repeating the english here would undo that work
+    var stackCell = doc.querySelector('[data-facts-stack]');
+    if (stackCell) {
+      var chips = qa('.cs-chips li').map(function (li) { return li.textContent.trim(); }).filter(Boolean);
+      if (chips.length) paint(stackCell, chips.join(' · '));
+    }
 
     // the tab title follows the page: the project name the h1 is wearing,
     // not the site-wide title, which would erase which case you are on
@@ -100,7 +160,7 @@
 
   function start() {
     wireTheme();
-    fetch('/assets/i18n/translations.json?v=r20')
+    fetch('/assets/i18n/translations.json?v=r22')
       .then(function (r) { return r.json(); })
       .then(function (json) {
         words = json;

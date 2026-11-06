@@ -58,6 +58,68 @@
     return fallback === undefined ? null : fallback;
   }
 
+  /* ── latin islands ────────────────────────────────────────
+     uppercase turkish turns i into İ. that is correct turkish and
+     wrong inside a name: "SmartMaid — Ev Hizmetleri" painted under
+     lang=cookbook comes out SMARTMAİD. the names keep their letters in
+     every language, so in turkish they travel in their own span and the
+     casing rules stop touching them. other languages need none of this. */
+
+  var LATIN = ['Hussein', 'Sash', 'SmartMaid', 'Mukallaf', 'Flossk', 'Bookly', 'Ziona', 'Hala',
+    'Sat', 'GitHub', 'GitLab', 'Firebase', 'Vercel', 'Netlify', 'Supabase', 'Figma', 'MikroTik',
+    'Mikrotik', 'Cisco', 'CCNA', 'Windows', 'Linux', 'Ubuntu', 'JavaScript', 'TypeScript', 'Flutter',
+    'Dart', 'React', 'Node.js', 'MySQL', 'MariaDB', 'PHP', 'Laravel', 'Docker', 'Nginx', 'WhatsApp',
+    'Instagram', 'LinkedIn', 'YouTube', 'Telegram', 'Meta', 'Google', 'Excel', 'PowerPoint', 'Canva',
+    'PayPal', 'Stripe', 'Escrow', 'ERP', 'HTML', 'HTML5', 'CSS', 'CSS3', 'iOS', 'Android', 'Diyala',
+    'Baghdad', 'Iraq', 'Erbil', 'Basra', 'Mosul', 'Najaf', 'Karbala', 'Sulaymaniyah', 'Koya',
+    'Hosting', 'TCP/IP', 'TCP', 'CCTV', 'IoT']
+    // longest first, so "GitHub Pages" wins over "GitHub" and "Windows
+    // Server" over "Windows" — the shorter name would split the phrase
+    .sort(function (a, b) { return b.length - a.length; });
+
+  var latinRe = null;
+  function latinParts(val) {
+    if (!latinRe) {
+      var alt = LATIN.map(function (n) { return n.replace(/\./g, '\\.'); }).join('|');
+      /* case-insensitive: the copy says "alan adı ve hosting" in lower
+         case and the uppercase rule bites it just the same. bare "git"
+         and "ip" stay out of the list — they are ordinary turkish words
+         ("go" and "rope") and would split a sentence in half. */
+      latinRe = new RegExp('\\b(' + alt + ')\\b', 'gi');
+    }
+    latinRe.lastIndex = 0;
+    if (!latinRe.test(val)) return null;
+    latinRe.lastIndex = 0;
+    // split on a capturing group alternates gap, name, gap, name …
+    return val.split(latinRe).map(function (chunk, i) {
+      return { text: chunk, name: i % 2 === 1 };
+    });
+  }
+
+  function paint(el, val) {
+    el.textContent = val;
+    if (lang !== 'tr') return;
+    var parts = latinParts(val);
+    if (!parts) return;
+    el.textContent = '';
+    parts.forEach(function (p) {
+      if (!p.text) return;
+      if (p.name) {
+        var s = doc.createElement('span');
+        s.setAttribute('lang', 'en');
+        s.textContent = p.text;
+        el.appendChild(s);
+      } else {
+        el.appendChild(doc.createTextNode(p.text));
+      }
+    });
+  }
+
+  /* spec.js builds the estimator after this file has painted, and writes
+     plain textContent over the result — so the splitter travels as a
+     hook instead of being copied a second time. */
+  window.sashPaint = paint;
+
   function row(key) {          // for the tickers
     var v = dig(words[lang], key) || dig(words.en, key);
     return Array.isArray(v) ? v : [];
@@ -102,8 +164,35 @@
     html.dir = rtl ? 'rtl' : 'ltr';
 
     qa('[data-i18n]').forEach(function (el) {
-      var val = say(el.getAttribute('data-i18n'), null);
-      if (typeof val === 'string') el.textContent = val;
+      var key = el.getAttribute('data-i18n');
+      var val = say(key, null);
+      if (typeof val !== 'string') return;
+      paint(el, val);
+      // brand and tech names are deliberately the same string in every
+      // language. tagging them lang=en keeps the turkish casing rules out
+      // of them, because uppercasing "Windows Server" under lang=tr
+      // renders WİNDOWS — a dotted İ inside a latin product name.
+      var base = dig(words.en, key);
+      if (typeof base === 'string' && base === val) el.setAttribute('lang', 'en');
+      else el.removeAttribute('lang');
+    });
+
+    // aria-labels and image alts are read aloud, so they belong to the
+    // visitor's language as much as the visible text does
+    qa('[data-i18n-aria]').forEach(function (el) {
+      var v = say(el.getAttribute('data-i18n-aria'), null);
+      if (typeof v === 'string' && v) el.setAttribute('aria-label', v);
+    });
+
+    qa('[data-alt]').forEach(function (img) {
+      var name = say(img.getAttribute('data-alt'), null);
+      var what = say('alt.shot');
+      if (typeof name === 'string' && name && what) img.alt = name + ' — ' + what;
+    });
+
+    qa('[data-i18n-title]').forEach(function (el) {
+      var v = say(el.getAttribute('data-i18n-title'), null);
+      if (typeof v === 'string' && v) el.setAttribute('title', v);
     });
 
     // textcontent above wiped the per-letter spans — rebuild where the
@@ -143,7 +232,7 @@
 
   function loadLanguages() {
     // bust: the json changes with every release, the browser must not sit on it
-    return fetch('assets/i18n/translations.json?v=r20')
+    return fetch('assets/i18n/translations.json?v=r22')
       .then(function (r) { return r.json(); })
       .catch(function (e) { console.warn('translations missing', e); return {}; })
       .then(function (json) { words = json; });
@@ -416,6 +505,7 @@
     box.innerHTML = '';
     (shelf[what] || []).forEach(function (name) {
       var s = doc.createElement('span');
+      s.setAttribute('lang', 'en');       // names, not words: turkish casing must skip them
       s.textContent = name;
       box.appendChild(s);
     });

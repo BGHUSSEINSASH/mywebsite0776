@@ -6,8 +6,8 @@
 /* the versioned query strings have to match what the html asks for,
    or install-time caching stores one url and the page requests
    another and everything falls through to the network. */
-var V = '?v=r19';
-var CACHE = 'bgsash-v19';
+var V = '?v=r20';
+var CACHE = 'bgsash-v20';
 var SHELL = [
   '/',
   '/index.html',

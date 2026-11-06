@@ -10,3 +10,6 @@ pdf-extract/
 
 # CV pdfs stay local — never published
 assets/cv/
+
+# scratch downloads from live checks
+live1*.*

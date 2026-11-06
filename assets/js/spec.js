@@ -559,8 +559,6 @@
     out.push({ kind: 'action', title: say('pal.mail', 'Email'), hint: S ? S.mail : 'mailto', run: function () { location.href = 'mailto:' + (S ? S.mail : ''); } });
     out.push({ kind: 'action', title: say('pal.wa', 'WhatsApp'), hint: 'wa.me', run: function () { if (S) { var n = q('#palWa'); location.href = S.wa(n ? n.value : say('pal.waMsg', 'Hello — I found your site.')); } } });
     out.push({ kind: 'link', title: say('pal.gh', 'GitHub profile'), hint: '↗', run: function () { open('https://github.com/' + GH_USER); } });
-    out.push({ kind: 'link', title: say('pal.cvEn', 'CV — English'), hint: 'pdf', run: function () { open('/assets/cv/CV-en.pdf'); } });
-    out.push({ kind: 'link', title: say('pal.cvAr', 'CV — Arabic'), hint: 'pdf', run: function () { open('/assets/cv/CV-ar.pdf'); } });
     var NATIVE = { en: 'English', ar: 'العربية', ku: 'کوردی (Kurmanji)', tr: 'Türkçe', fr: 'Français', es: 'Español', de: 'Deutsch', ru: 'Русский', zh: '中文', ja: '日本語', ko: '한국어', hi: 'हिन्दी' };
     (S ? S.langs() : ['en']).forEach(function (code) {
       out.push({ kind: 'lang', title: 'Language · ' + (NATIVE[code] || code.toUpperCase()), hint: code, run: function () {

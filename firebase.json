@@ -8,6 +8,7 @@
       "**/node_modules/**",
       "tools/**",
       "supabase/**",
+      "assets/cv/**",
       ".git/**",
       "README.md"
     ],

@@ -7,3 +7,6 @@ Thumbs.db
 
 # generated pdf-extract temp work
 pdf-extract/
+
+# CV pdfs stay local — never published
+assets/cv/

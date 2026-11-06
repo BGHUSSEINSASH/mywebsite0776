@@ -132,10 +132,6 @@
       wa.href = 'https://wa.me/9647762425266?text=' + encodeURIComponent(hello || '');
     }
 
-    // the CV the hero + contact point at follows the visitor's language
-    var rtlCv = flipped.indexOf(code) > -1 ? 'CV-ar.pdf' : 'CV-en.pdf';
-    qa('.cv-link').forEach(function (a) { a.href = 'assets/cv/' + rtlCv; });
-
     wallClock();
     buildRail();
     if (scrub) ScrollTrigger.refresh();
@@ -147,7 +143,7 @@
 
   function loadLanguages() {
     // bust: the json changes with every release, the browser must not sit on it
-    return fetch('assets/i18n/translations.json?v=r18')
+    return fetch('assets/i18n/translations.json?v=r19')
       .then(function (r) { return r.json(); })
       .catch(function (e) { console.warn('translations missing', e); return {}; })
       .then(function (json) { words = json; });

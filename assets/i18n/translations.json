@@ -27,8 +27,7 @@
         "Network engineer"
       ],
       "ctaWork": "View work",
-      "ctaTalk": "Let's talk",
-      "cv": "CV"
+      "ctaTalk": "Let's talk"
     },
     "ticker1": [
       "Full stack development",
@@ -182,7 +181,7 @@
       "t3": " always",
       "text": "I'm Hussein — an IT manager and software engineer from Baghdad who has built an ERP from scratch, kept servers alive and shipped apps.",
       "body1": "I graduated from the University of Diyala and started in the field: passport-printing servers, CCTV and IT for real offices — then fiber support for hundreds of subscribers.",
-      "body2": "Today I lead IT at a Baghdad company where I built a custom ERP that replaced Odoo entirely — and I still ship full stack web and Flutter apps, design and social, because one person can carry all of it.",
+      "body2": "Today I run client work end to end — full stack web and Flutter apps, design and social media — because one person can carry all of it.",
       "p1h": "Field-tested IT",
       "p1p": "Servers, fiber, CCTV and networking — fixed under real production pressure, not in a lab.",
       "p2h": "One person, whole stack",
@@ -208,10 +207,6 @@
       "t1": "Eight years of ",
       "tem": "real work",
       "t3": "",
-      "e1r": "IT Coordinator",
-      "e1c": "Middle East Lawyers Company · Baghdad",
-      "e1p": "Aug 2025 — Present",
-      "e1d": "Designed and built a custom ERP from scratch that fully replaced commercial suites like Odoo, led all IT infrastructure — servers, systems and internal networks — and delivered 10+ software projects and websites.",
       "e2r": "IT Engineer",
       "e2c": "Scope Sky · Ziona Passports · Baghdad",
       "e2p": "Dec 2023 — Aug 2025",
@@ -373,9 +368,7 @@
       "whatsapp": "WhatsApp",
       "book": "Book a call",
       "copy": "Copy",
-      "cv": "Download CV",
       "cvEn": "CV — English",
-      "cvAr": "CV — العربية",
       "waMsg": "Hello Hussein — I saw your portfolio and I'd like to talk about a project.",
       "response": "Typical reply: within 24 hours · Sat–Thu, Baghdad (UTC+3)"
     },
@@ -519,8 +512,6 @@
       "wa": "WhatsApp",
       "waMsg": "Hello — I found your site.",
       "gh": "GitHub profile",
-      "cvEn": "CV — English",
-      "cvAr": "CV — Arabic",
       "nav": "navigate",
       "pick": "select",
       "esc": "close",
@@ -555,8 +546,7 @@
         "مهندس شبكات"
       ],
       "ctaWork": "شاهد الأعمال",
-      "ctaTalk": "لنتحدث",
-      "cv": "السيرة الذاتية"
+      "ctaTalk": "لنتحدث"
     },
     "ticker1": [
       "تطوير متكامل",
@@ -710,7 +700,7 @@
       "t3": " دائماً",
       "text": "أنا حسين — مدير تقنية معلومات ومهندس برمجيات من بغداد بنيت نظام ERP من الصفر، وأبقيت الخوادم حية، وسلّمت تطبيقات.",
       "body1": "تخرجت من جامعة ديالى وبدأت ميدانياً: خوادم طباعة الجوازات وكاميرات وتقنية معلومات لمكاتب حقيقية — ثم دعم الألياف لمئات المشتركين.",
-      "body2": "أدير اليوم تقنية المعلومات في شركة بغدادية بنيت فيها نظام ERP خلفياً استبدل Odoo بالكامل — وأواصل تسليم ويب متكامل وتطبيقات فلاتر وتصميم وإدارة تواصل، لأن يد واحدة تقدر تحمل كل ذلك.",
+      "body2": "أعمل اليوم مع عملائي من الفكرة إلى التسليم — ويب متكامل وتطبيقات فلاتر وتصميم وإدارة تواصل — لأن يدًا واحدة تقدر تحمل كل ذلك.",
       "p1h": "تقنية ميدانية مُجربة",
       "p1p": "خوادم وألياف وكاميرات وشبكات — أُصلحت تحت ضغط الإنتاج الحقيقي، لا في مختبر.",
       "p2h": "شخص واحد، الهرم كاملاً",
@@ -736,10 +726,6 @@
       "t1": "ثماني سنوات من ",
       "tem": "العمل الحقيقي",
       "t3": "",
-      "e1r": "منسّق تقنية معلومات",
-      "e1c": "شركة شرق الأوسط للمحامين · بغداد",
-      "e1p": "أغسطس 2025 — الآن",
-      "e1d": "صممت وبنيت نظام ERP خلفياً من الصفر استبدل الحلول التجارية مثل Odoo بالكامل، وتوليت كل البنية التحتية — الخوادم والأنظمة والشبكات الداخلية — وسلّمت أكثر من 10 مشاريع برمجية ومواقع.",
       "e2r": "مهندس تقنية معلومات",
       "e2c": "سكوب سكاي · سيونا للجوازات · بغداد",
       "e2p": "ديسمبر 2023 — أغسطس 2025",
@@ -883,9 +869,7 @@
       "whatsapp": "واتساب",
       "book": "احجز مكالمة",
       "copy": "نسخ",
-      "cv": "تنزيل السيرة",
       "cvEn": "السيرة — English",
-      "cvAr": "السيرة — العربية",
       "waMsg": "مرحباً حسين — رأيت محفظتك وأريد التحدث بمشروع.",
       "response": "وقت الرد المعتاد: خلال 24 ساعة · السبت–الخميس، بغداد (UTC+3)"
     },
@@ -1047,8 +1031,6 @@
       "wa": "واتساب",
       "waMsg": "مرحبًا — وجدت موقعك.",
       "gh": "ملف GitHub",
-      "cvEn": "السيرة الذاتية — إنجليزي",
-      "cvAr": "السيرة الذاتية — عربي",
       "nav": "تنقّل",
       "pick": "اختيار",
       "esc": "إغلاق",
@@ -1083,8 +1065,7 @@
         "ئەنجینێری تۆڕ"
       ],
       "ctaWork": "بینینی کارەکان",
-      "ctaTalk": "با قسە بکەین",
-      "cv": "کارنامە"
+      "ctaTalk": "با قسە بکەین"
     },
     "ticker1": [
       "پەرەکردنی فوڵ ستەک",
@@ -1238,7 +1219,7 @@
       "t3": " بەردەوام",
       "text": "من حوسێنم — بەڕێوەبەری IT و ئەنجینێری سۆفتوێر لە بەغدا کە ERPیەکی لە بنەڕەتەوە دروست کردووە، سێرڤەرەکان زیندوو ڕاگرتووە و ئەپی بڵاو کردووەتەوە.",
       "body1": "لە زانکۆی دیالە فۆراوە و لە میداندا دەستپێکردم: سێرڤەری چاپکردنی پاسپۆرت، CCTV و تەکنیۆلۆژیا بۆ ئیسکە ڕاستەقینەکان — پاشان پاڵپشتی فایبەر بۆ سەدەکان بەکارهێنەر.",
-      "body2": "ئەمڕۆ سەرپەرشتی IT لە کۆمپانیایەکی بەغدایی دەکەم، لەوێ ERPیەکی تایبەتم دروست کردووە کە بە تەواوی جێگەی Odooی گرتەوە — و هێشتا وێبی فوڵ ستەک و ئەپی فلاتەر بڵاو دەکەمەوە، دیزاین و سۆشیالیش بەڕێوە دەبەم، چونکە کەسێکی تاک دەتوانێت هەموویان هەڵبگرێت.",
+      "body2": "ئەمڕۆ کارەکانم بۆ کڕیارەکانم لە بیرۆکەوە تا گەیاندن بەتەنها بەڕێوە دەبەم — وێبی فوڵ ستەک و ئەپی فلاتەر، دیزاین و سۆشیال — چونکە کەسێکی تاک دەتوانێت هەموویان هەڵبگرێت.",
       "p1h": "ITی تاقیکراوی میدانی",
       "p1p": "سێرڤەر، فایبەر، CCTV و تۆڕ — چارەسەرکراو لە فشاری ڕاستی کارەکەدا، نەک لە پڕۆژەیەکی تاقیدا.",
       "p2h": "کەسێکی تاکە، سێڕەی تەواو",
@@ -1264,10 +1245,6 @@
       "t1": "هەشت ساڵی ",
       "tem": "کاری ڕاستەقینە",
       "t3": "",
-      "e1r": "کۆردیناتۆری IT",
-      "e1c": "کۆمپانیای پارێزەرانی ڕۆژهەڵاتی ناڤەڕاست · بەغدا",
-      "e1p": "ئاب ٢٠٢٥ — ئێستا",
-      "e1d": "ERPیەکی تایبەتم لە بنەڕەتەوە دیزاین و دروست کردم کە بە تەواوی جێگەی پاکێتە بازرگانییەکانی وەک Odooی گرتەوە، سەرپەرشتی هەموو ژێرخانی IT — سێرڤەرەکان، سیستەمەکان و تۆڕە ناوخۆییەکان — کردم و زیاتر لە ١٠ پرۆژەی سۆفتوێر و ماڵپەڕم تەواو کرد.",
       "e2r": "ئەنجینێری IT",
       "e2c": "Scope Sky · Ziona Passports · بەغدا",
       "e2p": "کانونی یەکەم ٢٠٢٣ — ئاب ٢٠٢٥",
@@ -1429,9 +1406,7 @@
       "whatsapp": "WhatsApp",
       "book": "کات دیاری بکە",
       "copy": "کۆپی بکە",
-      "cv": "دابەزاندنی کارنامە",
       "cvEn": "کارنامە — ئینگلیزی",
-      "cvAr": "کارنامە — العربية",
       "waMsg": "سڵاو حوسێن — پۆرتیۆکەت بینیم و دەمەوێت لەسەر پڕۆژەیەک قسە بکەین.",
       "response": "پاسخی ئاسایی: لە ناو 24 کاتژمێردا · شەممە–پێنجشەممە، بەغدا (UTC+3)"
     },
@@ -1575,8 +1550,6 @@
       "wa": "واتساب",
       "waMsg": "سڵاو — ماڵپەڕەکەتم دۆزیەوە.",
       "gh": "پڕۆفایلی GitHub",
-      "cvEn": "CV — ئینگلیزی",
-      "cvAr": "CV — عەرەبی",
       "nav": "گەڕان",
       "pick": "هەڵبژاردن",
       "esc": "داخستن",
@@ -1611,8 +1584,7 @@
         "Ağ mühendisi"
       ],
       "ctaWork": "İşleri gör",
-      "ctaTalk": "Konuşalım",
-      "cv": "CV"
+      "ctaTalk": "Konuşalım"
     },
     "ticker1": [
       "Full stack geliştirme",
@@ -1766,7 +1738,7 @@
       "t3": "",
       "text": "Ben Hussein — Bağdat'tan bir BT müdürü ve yazılım mühendisi; sıfırdan bir ERP inşa ettim, sunucuları ayakta tuttum ve uygulamalar yayınladım.",
       "body1": "Diyala Üniversitesi'nden mezun oldum ve sahada başladım: pasaport baskı sunucuları, CCTV ve gerçek ofisler için BT — ardından yüzlerce abone için fiber desteği.",
-      "body2": "Bugün Bağdat'ta bir şirkette BT'ye liderlik ediyorum; orada Odoo'nun yerini tamamen alan özel bir ERP inşa ettim — ve hâlâ full stack web ve Flutter uygulamaları yayınlıyorum, tasarım ve sosyal medyayı da yürütüyorum, çünkü bir kişi bunların hepsini üstlenebilir.",
+      "body2": "Bugün işlerimin tamamını baştan sona tek başıma yürütüyorum — full stack web ve Flutter uygulamaları, tasarım ve sosyal medya — çünkü hepsini bir kişi üstlenebilir.",
       "p1h": "Sahada denenmiş BT",
       "p1p": "Sunucular, fiber, CCTV ve ağ — laboratuvarda değil, gerçek üretim baskısı altında onarıldı.",
       "p2h": "Tek kişi, tüm yığın",
@@ -1792,10 +1764,6 @@
       "t1": "Sekiz yıllık ",
       "tem": "gerçek iş",
       "t3": "",
-      "e1r": "BT Koordinatörü",
-      "e1c": "Orta Doğu Avukatlık Şirketi · Bağdat",
-      "e1p": "Ağu 2025 — Günümüz",
-      "e1d": "Odoo gibi ticari paketlerin yerini tamamen alan, sıfırdan özel bir ERP tasarlayıp inşa ettim; tüm BT altyapısını — sunucular, sistemler ve iç ağlar — yönettim ve 10'dan fazla yazılım projesi ve web sitesi teslim ettim.",
       "e2r": "BT Mühendisi",
       "e2c": "Scope Sky · Ziona Passports · Bağdat",
       "e2p": "Ara 2023 — Ağu 2025",
@@ -1957,9 +1925,7 @@
       "whatsapp": "WhatsApp",
       "book": "Görüşme ayarla",
       "copy": "Kopyala",
-      "cv": "CV'yi indir",
       "cvEn": "CV — İngilizce",
-      "cvAr": "CV — العربية",
       "waMsg": "Merhaba Hussein — portföyünüzü gördüm ve bir proje hakkında konuşmak istiyorum.",
       "response": "Genel yanıt: 24 saat içinde · Cmt–Per, Bağdat (UTC+3)"
     },
@@ -2103,8 +2069,6 @@
       "wa": "WhatsApp",
       "waMsg": "Merhaba — siteni buldum.",
       "gh": "GitHub profili",
-      "cvEn": "CV — İngilizce",
-      "cvAr": "CV — Arapça",
       "nav": "gez",
       "pick": "seç",
       "esc": "kapat",
@@ -2139,8 +2103,7 @@
         "Ingénieur réseaux"
       ],
       "ctaWork": "Voir les projets",
-      "ctaTalk": "Discutons",
-      "cv": "CV"
+      "ctaTalk": "Discutons"
     },
     "ticker1": [
       "Développement full stack",
@@ -2294,7 +2257,7 @@
       "t3": " pour toujours",
       "text": "Je suis Hussein — un responsable informatique et ingénieur logiciel de Bagdad qui a construit un ERP de zéro, maintenu des serveurs en vie et publié des applications.",
       "body1": "Je suis diplômé de l'Université de Diyala et j'ai commencé sur le terrain : serveurs d'impression de passeports, CCTV et informatique pour de vrais bureaux — puis assistance fibre pour des centaines d'abonnés.",
-      "body2": "Aujourd'hui, je dirige l'informatique d'une entreprise de Bagdad où j'ai construit un ERP sur mesure qui a entièrement remplacé Odoo — et je livre toujours du web full stack et des applications Flutter, du design et des réseaux sociaux, car une seule personne peut porter tout cela.",
+      "body2": "Aujourd'hui, je mène mes missions de bout en bout — web full stack et applications Flutter, design et réseaux sociaux — parce qu'une seule personne peut tout porter.",
       "p1h": "IT éprouvé sur le terrain",
       "p1p": "Serveurs, fibre, CCTV et réseaux — réparés sous la vraie pression de la production, pas dans un laboratoire.",
       "p2h": "Une seule personne, toute la pile",
@@ -2320,10 +2283,6 @@
       "t1": "Huit ans de ",
       "tem": "travail réel",
       "t3": "",
-      "e1r": "Coordinateur informatique",
-      "e1c": "Middle East Lawyers Company · Bagdad",
-      "e1p": "août 2025 — aujourd'hui",
-      "e1d": "J'ai conçu et construit de zéro un ERP sur mesure qui a entièrement remplacé des suites commerciales comme Odoo, dirigé toute l'infrastructure informatique — serveurs, systèmes et réseaux internes — et livré plus de 10 projets logiciels et sites web.",
       "e2r": "Ingénieur informatique",
       "e2c": "Scope Sky · Ziona Passports · Bagdad",
       "e2p": "déc. 2023 — août 2025",
@@ -2485,9 +2444,7 @@
       "whatsapp": "WhatsApp",
       "book": "Réserver un appel",
       "copy": "Copier",
-      "cv": "Télécharger le CV",
       "cvEn": "CV — English",
-      "cvAr": "CV — العربية",
       "waMsg": "Bonjour Hussein — j'ai vu votre portfolio et j'aimerais parler d'un projet.",
       "response": "Réponse habituelle : sous 24 h · samedi–jeudi, Bagdad (UTC+3)"
     },
@@ -2631,8 +2588,6 @@
       "wa": "WhatsApp",
       "waMsg": "Bonjour — j’ai trouvé votre site.",
       "gh": "profil GitHub",
-      "cvEn": "CV — anglais",
-      "cvAr": "CV — arabe",
       "nav": "naviguer",
       "pick": "choisir",
       "esc": "fermer",
@@ -2667,8 +2622,7 @@
         "Ingeniero de redes"
       ],
       "ctaWork": "Ver proyectos",
-      "ctaTalk": "Hablemos",
-      "cv": "CV"
+      "ctaTalk": "Hablemos"
     },
     "ticker1": [
       "Desarrollo full stack",
@@ -2822,7 +2776,7 @@
       "t3": " siempre",
       "text": "Soy Hussein — un gerente de TI e ingeniero de software de Bagdad que ha construido un ERP desde cero, mantenido servidores vivos y publicado apps.",
       "body1": "Me gradué en la Universidad de Diyala y empecé en el campo: servidores de impresión de pasaportes, CCTV e informática para oficinas reales — y luego soporte de fibra para cientos de suscriptores.",
-      "body2": "Hoy dirijo el área de TI en una empresa de Bagdad donde construí un ERP a medida que reemplazó por completo a Odoo — y sigo entregando web full stack y apps Flutter, diseño y redes sociales, porque una sola persona puede llevarlo todo.",
+      "body2": "Hoy llevo mis proyectos de principio a fin — web full stack y apps Flutter, diseño y redes sociales — porque una sola persona puede encargarse de todo.",
       "p1h": "IT probado en el campo",
       "p1p": "Servidores, fibra, CCTV y redes — resueltos bajo la presión real de la producción, no en un laboratorio.",
       "p2h": "Una sola persona, toda la pila",
@@ -2848,10 +2802,6 @@
       "t1": "Ocho años de ",
       "tem": "trabajo real",
       "t3": "",
-      "e1r": "Coordinador de TI",
-      "e1c": "Middle East Lawyers Company · Bagdad",
-      "e1p": "ago 2025 — actualidad",
-      "e1d": "Diseñé y construí desde cero un ERP a medida que reemplazó por completo a suites comerciales como Odoo, dirigí toda la infraestructura de TI — servidores, sistemas y redes internas — y entregué más de 10 proyectos de software y sitios web.",
       "e2r": "Ingeniero de TI",
       "e2c": "Scope Sky · Ziona Passports · Bagdad",
       "e2p": "dic 2023 — ago 2025",
@@ -3013,9 +2963,7 @@
       "whatsapp": "WhatsApp",
       "book": "Reservar una llamada",
       "copy": "Copiar",
-      "cv": "Descargar CV",
       "cvEn": "CV — English",
-      "cvAr": "CV — العربية",
       "waMsg": "Hola Hussein — vi tu portafolio y me gustaría hablar sobre un proyecto.",
       "response": "Respuesta habitual: en menos de 24 h · sáb–jue, Bagdad (UTC+3)"
     },
@@ -3159,8 +3107,6 @@
       "wa": "WhatsApp",
       "waMsg": "Hola — encontré tu sitio.",
       "gh": "perfil de GitHub",
-      "cvEn": "CV — inglés",
-      "cvAr": "CV — árabe",
       "nav": "navegar",
       "pick": "elegir",
       "esc": "cerrar",
@@ -3195,8 +3141,7 @@
         "Netzwerkingenieur"
       ],
       "ctaWork": "Arbeiten ansehen",
-      "ctaTalk": "Sprechen wir",
-      "cv": "Lebenslauf"
+      "ctaTalk": "Sprechen wir"
     },
     "ticker1": [
       "Full-Stack-Entwicklung",
@@ -3350,7 +3295,7 @@
       "t3": "",
       "text": "Ich bin Hussein — IT-Manager und Software Engineer aus Bagdad, der ein ERP von Grund auf gebaut, Server am Laufen gehalten und Apps veröffentlicht hat.",
       "body1": "Ich habe an der Universität Diyala studiert und bin direkt in die Praxis eingestiegen: Passdruckserver, CCTV und IT für echte Büros — danach Glasfasersupport für Hunderte von Nutzern.",
-      "body2": "Heute leite ich die IT eines Bagdader Unternehmens, wo ich ein eigenes ERP gebaut habe, das Odoo vollständig ersetzt hat — und ich entwickle weiterhin Full-Stack-Web und Flutter-Apps, Design und Social Media, denn eine Person kann all das tragen.",
+      "body2": "Heute führe ich meine Projekte von Anfang bis Ende — Full-Stack-Web und Flutter-Apps, Design und Social Media — weil eine Person alles tragen kann.",
       "p1h": "IT aus der Praxis",
       "p1p": "Server, Glasfaser, CCTV und Netzwerktechnik — unter echtem Produktionsdruck gelöst, nicht im Labor.",
       "p2h": "Alles aus einer Hand",
@@ -3376,10 +3321,6 @@
       "t1": "Acht Jahre ",
       "tem": "echter Arbeit",
       "t3": "",
-      "e1r": "IT-Koordinator",
-      "e1c": "Middle East Lawyers Company · Bagdad",
-      "e1p": "Aug. 2025 — heute",
-      "e1d": "Ein eigenes ERP von Grund auf entworfen und gebaut, das kommerzielle Suiten wie Odoo vollständig ersetzt hat; die gesamte IT-Infrastruktur geleitet — Server, Systeme und interne Netzwerke — und über 10 Softwareprojekte und Websites geliefert.",
       "e2r": "IT-Ingenieur",
       "e2c": "Scope Sky · Ziona Passports · Bagdad",
       "e2p": "Dez. 2023 — Aug. 2025",
@@ -3541,9 +3482,7 @@
       "whatsapp": "WhatsApp",
       "book": "Gespräch buchen",
       "copy": "Kopieren",
-      "cv": "CV herunterladen",
       "cvEn": "CV — Englisch",
-      "cvAr": "CV — العربية",
       "waMsg": "Hallo Hussein — ich habe Ihr Portfolio gesehen und möchte über ein Projekt sprechen.",
       "response": "Antwort in der Regel innerhalb von 24 Stunden · Sa–Do, Bagdad (UTC+3)"
     },
@@ -3687,8 +3626,6 @@
       "wa": "WhatsApp",
       "waMsg": "Hallo — ich habe deine Seite gefunden.",
       "gh": "GitHub-Profil",
-      "cvEn": "Lebenslauf — Englisch",
-      "cvAr": "Lebenslauf — Arabisch",
       "nav": "navigieren",
       "pick": "auswählen",
       "esc": "schließen",
@@ -3723,8 +3660,7 @@
         "Сетевой инженер"
       ],
       "ctaWork": "Смотреть работы",
-      "ctaTalk": "Давайте поговорим",
-      "cv": "Резюме"
+      "ctaTalk": "Давайте поговорим"
     },
     "ticker1": [
       "Fullstack-разработка",
@@ -3878,7 +3814,7 @@
       "t3": "",
       "text": "Я — Хусейн, IT-менеджер и инженер-программист из Багдада, который построил ERP с нуля, поддерживал серверы в работе и выпускал приложения.",
       "body1": "Я окончил Университет Диялы и начал с реальной работы: серверы печати паспортов, CCTV и ИТ для настоящих офисов — затем поддержка оптоволокна для сотен абонентов.",
-      "body2": "Сегодня я руковожу ИТ в багдадской компании, где построил собственную ERP, полностью заменившую Odoo, — и по-прежнему выпускаю fullstack-веб и Flutter-приложения, занимаюсь дизайном и соцсетями, потому что один человек может нести всё это.",
+      "body2": "Сегодня я веду свои проекты от начала до конца — full-stack веб и Flutter-приложения, дизайн и соцсети — потому что один человек может вытянуть всё это.",
       "p1h": "ИТ, проверенная на практике",
       "p1p": "Серверы, оптоволокно, CCTV и сети — решённые под реальным производственным давлением, а не в лаборатории.",
       "p2h": "Один человек — весь стек",
@@ -3904,10 +3840,6 @@
       "t1": "Восемь лет ",
       "tem": "настоящей работы",
       "t3": "",
-      "e1r": "IT-координатор",
-      "e1c": "Middle East Lawyers Company · Багдад",
-      "e1p": "авг. 2025 — настоящее время",
-      "e1d": "Спроектировал и построил собственную ERP с нуля, полностью заменившую коммерческие решения вроде Odoo; руководил всей ИТ-инфраструктурой — серверами, системами и внутренними сетями — и реализовал более 10 программных проектов и сайтов.",
       "e2r": "IT-инженер",
       "e2c": "Scope Sky · Ziona Passports · Багдад",
       "e2p": "дек. 2023 — авг. 2025",
@@ -4069,9 +4001,7 @@
       "whatsapp": "WhatsApp",
       "book": "Заказать звонок",
       "copy": "Копировать",
-      "cv": "Скачать резюме",
       "cvEn": "CV — английский",
-      "cvAr": "CV — العربية",
       "waMsg": "Здравствуйте, Хусейн — я увидел ваше портфолио и хотел бы обсудить с вами проект.",
       "response": "Обычно отвечаю в течение 24 часов · Сб–Чт, Багдад (UTC+3)"
     },
@@ -4215,8 +4145,6 @@
       "wa": "WhatsApp",
       "waMsg": "Здравствуйте — нашёл ваш сайт.",
       "gh": "профиль GitHub",
-      "cvEn": "резюме — англ.",
-      "cvAr": "резюме — араб.",
       "nav": "навигация",
       "pick": "выбор",
       "esc": "закрыть",
@@ -4251,8 +4179,7 @@
         "网络工程师"
       ],
       "ctaWork": "查看作品",
-      "ctaTalk": "聊聊吧",
-      "cv": "简历"
+      "ctaTalk": "聊聊吧"
     },
     "ticker1": [
       "全栈开发",
@@ -4406,7 +4333,7 @@
       "t3": "，一直如此",
       "text": "我是 Hussein——一位来自巴格达的 IT 经理与软件工程师：从零打造过 ERP，让服务器持续稳定运行，也把应用送上线。",
       "body1": "我毕业于迪亚拉大学，从一线工作起步：护照打印服务器、CCTV 与企业 IT 运维——之后又为数百名光纤用户提供支持。",
-      "body2": "如今我在巴格达的一家公司负责 IT，从零构建了一套完全取代 Odoo 的自研 ERP——同时我依然在全栈 Web 与 Flutter 应用、设计和社交媒体领域持续交付，因为一个人也能扛起这一切。",
+      "body2": "如今我从头到尾独立交付项目——全栈网站、Flutter 应用、设计与社交媒体——因为一个人就能扛起全部。",
       "p1h": "实战检验的 IT 能力",
       "p1p": "服务器、光纤、CCTV 与网络——都是在真实生产压力下修复的，而不是在实验室里。",
       "p2h": "一人打通全栈",
@@ -4432,10 +4359,6 @@
       "t1": "八年",
       "tem": "真实工作",
       "t3": "",
-      "e1r": "IT 协调员",
-      "e1c": "Middle East Lawyers Company · 巴格达",
-      "e1p": "2025年8月 — 至今",
-      "e1d": "从零设计并构建了一套完全取代 Odoo 等商业套件的自研 ERP，统筹全部 IT 基础设施——服务器、系统与内部网络，并交付了 10 多个软件项目与网站。",
       "e2r": "IT 工程师",
       "e2c": "Scope Sky · Ziona Passports · 巴格达",
       "e2p": "2023年12月 — 2025年8月",
@@ -4597,9 +4520,7 @@
       "whatsapp": "WhatsApp",
       "book": "预约通话",
       "copy": "复制",
-      "cv": "下载简历",
       "cvEn": "CV — English",
-      "cvAr": "CV — العربية",
       "waMsg": "你好 Hussein——我看了你的作品集，想和你聊聊一个项目。",
       "response": "通常 24 小时内回复 · 周六至周四，巴格达（UTC+3）"
     },
@@ -4743,8 +4664,6 @@
       "wa": "WhatsApp",
       "waMsg": "你好——我看到了你的网站。",
       "gh": "GitHub 资料页",
-      "cvEn": "简历 — 英文",
-      "cvAr": "简历 — 阿拉伯文",
       "nav": "跳转",
       "pick": "选择",
       "esc": "关闭",
@@ -4779,8 +4698,7 @@
         "ネットワークエンジニア"
       ],
       "ctaWork": "制作実績を見る",
-      "ctaTalk": "相談する",
-      "cv": "履歴書"
+      "ctaTalk": "相談する"
     },
     "ticker1": [
       "フルスタック開発",
@@ -4934,7 +4852,7 @@
       "t3": "で在り続ける",
       "text": "私はHussein——バグダッド出身のITマネージャー・ソフトウェアエンジニアです。ERPをゼロから構築し、サーバーを動かし続け、アプリを世に送り出してきました。",
       "body1": "ディアラ大学を卒業後、現場からキャリアをスタート：パスポート印刷用サーバー、CCTV、事務所のIT支援——その後は数百世帯の光回線ユーザーのサポートに携わりました。",
-      "body2": "現在はバグダッドの企業でITを統括し、Odooを完全に置き換えるカスタムERPを構築しました——そして今もフルスタックWebやFlutterアプリ、デザイン、SNSを届け続けています。すべてを一人で担えるからです。",
+      "body2": "今は企画から納品まで一人で行っています——フルスタックのWebとFlutterアプリ、デザイン、SNS運用——これらすべてを一人で担えるからです。",
       "p1h": "現場で磨いたIT力",
       "p1p": "サーバー、光回線、CCTV、ネットワーク——ラボではなく、実際の本番環境の圧力の中で直してきたものです。",
       "p2h": "一人で、フルスタック",
@@ -4960,10 +4878,6 @@
       "t1": "八年間の",
       "tem": "実務",
       "t3": "",
-      "e1r": "ITコーディネーター",
-      "e1c": "Middle East Lawyers Company · バグダッド",
-      "e1p": "2025年8月 — 現在",
-      "e1d": "Odooなどの商用パッケージを完全に置き換える自社向けERPをゼロから設計・構築し、サーバー・システム・社内ネットワークからなるITインフラ全体を統括。10以上のソフトウェアプロジェクトとWebサイトを納品しました。",
       "e2r": "ITエンジニア",
       "e2c": "Scope Sky · Ziona Passports · バグダッド",
       "e2p": "2023年12月 — 2025年8月",
@@ -5125,9 +5039,7 @@
       "whatsapp": "WhatsApp",
       "book": "通話を予約",
       "copy": "コピー",
-      "cv": "履歴書をダウンロード",
       "cvEn": "CV — English",
-      "cvAr": "CV — العربية",
       "waMsg": "こんにちは、Husseinさん——ポートフォリオを拝見して、プロジェクトについて相談したいです。",
       "response": "返信目安：24時間以内 · 土〜木曜、バグダッド（UTC+3）"
     },
@@ -5271,8 +5183,6 @@
       "wa": "WhatsApp",
       "waMsg": "こんにちは — サイトを見ました。",
       "gh": "GitHub プロフィール",
-      "cvEn": "履歴書（英語）",
-      "cvAr": "履歴書（アラビア語）",
       "nav": "移動",
       "pick": "選択",
       "esc": "閉じる",
@@ -5307,8 +5217,7 @@
         "네트워크 엔지니어"
       ],
       "ctaWork": "작업 보기",
-      "ctaTalk": "대화하기",
-      "cv": "이력서"
+      "ctaTalk": "대화하기"
     },
     "ticker1": [
       "풀스택 개발",
@@ -5462,7 +5371,7 @@
       "t3": "은 늘 그대로",
       "text": "저는 후세인 — 바그다드 출신 IT 매니저이자 소프트웨어 엔지니어로, ERP를 직접 만들고 서버를 살려두고 앱을 출시해 왔습니다.",
       "body1": "디얄라 대학교를 졸업하고 현장에서 시작했습니다 — 여권 인쇄 서버, CCTV, 실제 사무소의 IT 업무, 그리고 수백 명의 가입자를 위한 광섬유 지원까지.",
-      "body2": "오늘날 저는 바그다드의 한 회사에서 IT를 이끌며, Odoo를 완전히 대체한 맞춤형 ERP를 직접 구축했습니다 — 그리고 지금도 풀스택 웹과 Flutter 앱, 디자인과 소셜을 계속 만듭니다. 한 사람이 그 전부를 감당할 수 있기 때문입니다.",
+      "body2": "이제는 기획부터 납품까지 혼자 챙깁니다 — 풀스택 웹과 플러터 앱, 디자인, 소셜 미디어 — 이 모든 것을 한 사람이 해낼 수 있으니까요.",
       "p1h": "현장에서 검증된 IT",
       "p1p": "서버, 광섬유, CCTV, 네트워크 — 실험실이 아니라 실제 운영 현장의 압박 속에서 고쳐 온 경험입니다.",
       "p2h": "한 사람이, 스택 전체",
@@ -5488,10 +5397,6 @@
       "t1": "8년의 ",
       "tem": "실전 경험",
       "t3": "",
-      "e1r": "IT 코디네이터",
-      "e1c": "Middle East Lawyers Company · 바그다드",
-      "e1p": "2025년 8월 — 현재",
-      "e1d": "Odoo 같은 상용 제품군을 완전히 대체하는 맞춤형 ERP를 설계하고 직접 구축했으며, 서버·시스템·내부 네트워크 등 모든 IT 인프라를 이끌고 10개 이상의 소프트웨어 프로젝트와 웹사이트를 완성했습니다.",
       "e2r": "IT 엔지니어",
       "e2c": "Scope Sky · Ziona Passports · 바그다드",
       "e2p": "2023년 12월 — 2025년 8월",
@@ -5653,9 +5558,7 @@
       "whatsapp": "WhatsApp",
       "book": "통화 예약",
       "copy": "복사",
-      "cv": "이력서 다운로드",
       "cvEn": "CV — English",
-      "cvAr": "CV — العربية",
       "waMsg": "안녕하세요 후세인님 — 포트폴리오를 보고 프로젝트에 대해 이야기하고 싶습니다.",
       "response": "일반 응답: 24시간 이내 · 토–목, 바그다드 (UTC+3)"
     },
@@ -5799,8 +5702,6 @@
       "wa": "WhatsApp",
       "waMsg": "안녕하세요 — 사이트를 보았습니다.",
       "gh": "GitHub 프로필",
-      "cvEn": "이력서 — 영어",
-      "cvAr": "이력서 — 아랍어",
       "nav": "이동",
       "pick": "선택",
       "esc": "닫기",
@@ -5835,8 +5736,7 @@
         "नेटवर्क इंजीनियर"
       ],
       "ctaWork": "काम देखें",
-      "ctaTalk": "बात करते हैं",
-      "cv": "सीवी"
+      "ctaTalk": "बात करते हैं"
     },
     "ticker1": [
       "फुल स्टैक डेवलपमेंट",
@@ -5990,7 +5890,7 @@
       "t3": " हमेशा",
       "text": "मैं हुसैन हूँ — बग़दाद का आईटी मैनेजर और सॉफ़्टवेयर इंजीनियर, जिसने ERP शुरू से बनाया है, सर्वर ज़िंदा रखे हैं और ऐप्स रिलीज़ किए हैं।",
       "body1": "मैंने दियाला विश्वविद्यालय से पढ़ाई पूरी की और फ़ील्ड से शुरुआत की: पासपोर्ट प्रिंटिंग सर्वर, CCTV और असली ऑफ़िसों के लिए IT — फिर सैकड़ों सब्सक्राइबर्स के लिए फ़ाइबर सपोर्ट।",
-      "body2": "आज मैं बग़दाद की एक कंपनी में IT का नेतृत्व करता हूँ, जहाँ मैंने Odoo को पूरी तरह बदल देने वाला कस्टम ERP बनाया — और आज भी फुल स्टैक वेब व Flutter ऐप्स, डिज़ाइन और सोशल संभालता हूँ, क्योंकि एक इंसान यह सब कर सकता है।",
+      "body2": "आज मैं अपने प्रोजेक्ट शुरुआत से अंतिम डिलीवरी तक खुद संभालता हूँ — फुल स्टैक वेब और फ्लटर ऐप्स, डिज़ाइन और सोशल — क्योंकि एक व्यक्ति यह सब कर सकता है।",
       "p1h": "फ़ील्ड में परखा हुआ IT",
       "p1p": "सर्वर, फ़ाइबर, CCTV और नेटवर्किंग — लैब में नहीं, असली प्रोडक्शन दबाव में ठीक किए।",
       "p2h": "एक इंसान, पूरा स्टैक",
@@ -6016,10 +5916,6 @@
       "t1": "आठ साल का ",
       "tem": "असली काम",
       "t3": "",
-      "e1r": "आईटी कोऑर्डिनेटर",
-      "e1c": "Middle East Lawyers Company · बग़दाद",
-      "e1p": "अगस्त 2025 — वर्तमान",
-      "e1d": "Odoo जैसी व्यावसायिक सुइट्स को पूरी तरह बदलने वाला कस्टम ERP शुरू से डिज़ाइन और बनाया, सारा IT इंफ़्रास्ट्रक्चर — सर्वर, सिस्टम और आंतरिक नेटवर्क — संभाला, और 10+ सॉफ़्टवेयर प्रोजेक्ट व वेबसाइटें डिलीवर कीं।",
       "e2r": "आईटी इंजीनियर",
       "e2c": "Scope Sky · Ziona Passports · बग़दाद",
       "e2p": "दिसंबर 2023 — अगस्त 2025",
@@ -6181,9 +6077,7 @@
       "whatsapp": "WhatsApp",
       "book": "कॉल बुक करें",
       "copy": "कॉपी",
-      "cv": "सीवी डाउनलोड करें",
       "cvEn": "CV — English",
-      "cvAr": "CV — العربية",
       "waMsg": "नमस्ते हुसैन — मैंने आपका पोर्टफोलियो देखा और किसी प्रोजेक्ट पर बात करना चाहूँगा।",
       "response": "सामान्य जवाब: 24 घंटे के भीतर · शनि–गुरु, बग़दाद (UTC+3)"
     },
@@ -6327,8 +6221,6 @@
       "wa": "WhatsApp",
       "waMsg": "नमस्ते — मुझे आपकी साइट मिली।",
       "gh": "GitHub प्रोफ़ाइल",
-      "cvEn": "CV — अंग्रेज़ी",
-      "cvAr": "CV — अरबी",
       "nav": "जाएँ",
       "pick": "चुनें",
       "esc": "बंद करें",

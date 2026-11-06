@@ -100,7 +100,7 @@
 
   function start() {
     wireTheme();
-    fetch('/assets/i18n/translations.json?v=r18')
+    fetch('/assets/i18n/translations.json?v=r19')
       .then(function (r) { return r.json(); })
       .then(function (json) {
         words = json;

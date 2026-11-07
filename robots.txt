@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
+# the admin desk is not in the sitemap and linked from nowhere, but a leaked
+# url should never even be fetched; firebase also answers it with
+# X-Robots-Tag: noindex, nofollow for crawlers that ignore this file
+Disallow: /admin
+Disallow: /admin.html
 
 Sitemap: https://mywebsite0776.web.app/sitemap.xml

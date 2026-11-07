@@ -16,17 +16,19 @@ const words = JSON.parse(fs.readFileSync(path.join(ROOT, 'assets', 'i18n', 'tran
 // social crawlers do not resolve relative ones, and a relative canonical
 // is simply dropped by google.
 const SITE = 'https://mywebsite0776.web.app';
-const VER = 'r22';                       // bump with every asset change
+const VER = 'r23';                       // bump with every asset change
 const LOCALES = { en: 'en_US', ar: 'ar_IQ', ku: 'ku_IQ', tr: 'tr_TR', fr: 'fr_FR', es: 'es_ES', de: 'de_DE', ru: 'ru_RU', zh: 'zh_CN', ja: 'ja_JP', ko: 'ko_KR', hi: 'hi_IN' };
 
-// slug, image, live url (null for the two field cases), role = services key
+// slug, image, live url (null for the two field cases), role = services key.
+// cover: true means the asset is a typographic case cover, not a screenshot —
+// the alt text has to say which one, or the page claims artwork it does not have.
 const PROJECTS = [
   { n: 1, slug: 'smartmaid',  img: 'smartmaid.webp',  w: 1280, h: 998,  url: 'https://smartmaid-website.vercel.app/ar',            role: 's1' },
   { n: 2, slug: 'mukallaf',   img: 'mukallaf.webp',   w: 1280, h: 1006, url: 'https://bghusseinsash.github.io/iraqi-tax-system/',   role: 's1' },
   { n: 3, slug: 'flossk',     img: 'flossk.webp',     w: 1280, h: 1006, url: 'https://bghusseinsash.github.io/flossk-app/',         role: 's2' },
   { n: 4, slug: 'bookly',     img: 'bookly.webp',     w: 1280, h: 1006, url: 'https://taupe-paprenjak-258494.netlify.app/',         role: 's1' },
-  { n: 5, slug: 'ziona-passports', img: 'smartmaid-2.webp', w: 1280, h: 998, url: null,                                              role: 's3' },
-  { n: 6, slug: 'hala-sat',   img: 'flossk-2.webp',   w: 1280, h: 1006, url: null,                                                role: 's3' }
+  { n: 5, slug: 'ziona-passports', img: 'ziona-passports.webp', w: 1280, h: 998, url: null, cover: true,                               role: 's3' },
+  { n: 6, slug: 'hala-sat',   img: 'hala-sat.webp',   w: 1280, h: 1006, url: null, cover: true,                                         role: 's3' }
 ];
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -168,7 +170,7 @@ ${ogLocale}
   <ul class="chips cs-chips">${chips}</ul>
 
   <figure class="cs-shot">
-    <img src="/assets/shots/${p.img}" width="${p.w}" height="${p.h}" alt="${esc(title)} — ${esc(en.alt.shot)}" data-alt="projects.${p.n}.title" loading="eager" decoding="async">
+    <img src="/assets/shots/${p.img}" width="${p.w}" height="${p.h}" alt="${esc(title)} — ${esc(en.alt[p.cover ? 'cover' : 'shot'])}" data-alt="projects.${p.n}.title" data-alt-key="alt.${p.cover ? 'cover' : 'shot'}" loading="eager" decoding="async">
   </figure>
 
   <dl class="cs-facts">${facts}</dl>
@@ -205,24 +207,38 @@ ${sections}
 }
 
 fs.mkdirSync(OUT, { recursive: true });
-PROJECTS.forEach((p, i) => {
-  const file = path.join(OUT, p.slug + '.html');
-  fs.writeFileSync(file, build(p, i), 'utf8');
-  console.log('built', path.relative(ROOT, file));
-});
+/* rewriting a file that did not change would move its mtime on every run,
+   which is exactly the stale-signal bug lastmod is supposed to avoid —
+   so a page is only written when its bytes actually differ. */
+function writeIfChanged(file, html, label) {
+  let same = false;
+  try { same = fs.readFileSync(file, 'utf8') === html; } catch (e) {}
+  if (same) { console.log('same  ', label); return; }
+  fs.writeFileSync(file, html, 'utf8');
+  console.log('built ', label);
+}
+PROJECTS.forEach((p, i) => writeIfChanged(path.join(OUT, p.slug + '.html'), build(p, i), path.relative(ROOT, path.join('work', p.slug + '.html'))));
 
 /* the sitemap is generated from the same project list, so a new case
    page can never be published without being announced to crawlers.
    lastmod comes from the source files — not from "today" — so the date
-   only moves when content actually moved. */
-function lastmodOf(rel) {
-  try { return new Date(fs.statSync(path.join(ROOT, rel)).mtimeMs()).toISOString().slice(0, 10); }
-  catch (e) { return '2026-10-29'; }
+   only moves when content actually moved. a translation edit moves the
+   date too: on a twelve-language site that is most of the churn, and a
+   page whose text changed but whose lastmod froze is a stale signal. */
+const SHARED = ['assets/i18n/translations.json'];
+function lastmodOf(rel, extra) {
+  const files = [rel].concat(SHARED, extra || []);
+  let newest = 0;
+  for (const f of files) {
+    try { newest = Math.max(newest, fs.statSync(path.join(ROOT, f)).mtimeMs); } catch (e) {}
+  }
+  if (!newest) return new Date().toISOString().slice(0, 10);
+  return new Date(newest).toISOString().slice(0, 10);
 }
 const langs = Object.keys(words);
 const alt = (href) => langs.map((c) => `    <xhtml:link rel="alternate" hreflang="${c}" href="${href}?lang=${c}"/>`).join('\n');
 
-const home = lastmodOf(path.join('index.html'));
+const home = lastmodOf('index.html', ['assets/js/main.js', 'assets/js/spec.js', 'assets/css/style.css', 'assets/css/spec.css']);
 const urls = [
   `  <url>
     <loc>${SITE}/</loc>
@@ -238,7 +254,7 @@ ${alt(SITE + '/')}
     <loc>${href}</loc>
 ${alt(href)}
     <xhtml:link rel="alternate" hreflang="x-default" href="${href}"/>
-    <lastmod>${lastmodOf(path.join('work', p.slug + '.html'))}</lastmod>
+    <lastmod>${lastmodOf(path.join('work', p.slug + '.html'), ['assets/js/case.js', 'assets/css/case.css'])}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>`;
@@ -253,7 +269,7 @@ ${urls.join('\n')}
 console.log('built sitemap.xml with', urls.length, 'urls');
 
 // report any language that is missing a key these pages read
-const needed = ['case.back', 'case.intro', 'case.next', 'case.live', 'case.year', 'case.role', 'case.stack', 'nav.work', 'nav.services', 'nav.about', 'nav.contact', 'footer.tag', 'footer.place', 'modal.problem', 'modal.solution', 'modal.result', 'a11y.skip', 'a11y.primary', 'a11y.language', 'a11y.theme', 'a11y.footer', 'alt.shot', 'pal.theme', 'services.s1.title', 'services.s2.title', 'services.s3.title'];
+const needed = ['case.back', 'case.intro', 'case.next', 'case.live', 'case.year', 'case.role', 'case.stack', 'nav.work', 'nav.services', 'nav.about', 'nav.contact', 'footer.tag', 'footer.place', 'modal.problem', 'modal.solution', 'modal.result', 'a11y.skip', 'a11y.primary', 'a11y.language', 'a11y.theme', 'a11y.footer', 'alt.shot', 'alt.cover', 'pal.theme', 'services.s1.title', 'services.s2.title', 'services.s3.title'];
 for (const lang of Object.keys(words)) {
   const miss = needed.filter((k) => !t(lang, k));
   PROJECTS.forEach((p) => ['title', 'desc', 'tag', 'problem', 'solution', 'result', 'c1', 'c2', 'c3'].forEach((f) => { if (!t(lang, `projects.${p.n}.${f}`)) miss.push(`projects.${p.n}.${f}`); }));

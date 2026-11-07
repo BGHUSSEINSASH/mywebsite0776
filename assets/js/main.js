@@ -163,6 +163,17 @@
     html.lang = code;
     html.dir = rtl ? 'rtl' : 'ltr';
 
+    // a ?lang= url is a variant, and google only keeps hreflinks whose target
+    // is its own canonical — left pointing at the bare url, all twelve
+    // alternates on the page are discarded as non-canonical.
+    if (/[?&]lang=/i.test(location.search)) {
+      var self = location.origin + location.pathname + '?lang=' + code;
+      var canon = q('link[rel="canonical"]');
+      if (canon) canon.href = self;
+      var ogu = q('meta[property="og:url"]');
+      if (ogu) ogu.content = self;
+    }
+
     qa('[data-i18n]').forEach(function (el) {
       var key = el.getAttribute('data-i18n');
       var val = say(key, null);
@@ -236,7 +247,7 @@
 
   function loadLanguages() {
     // bust: the json changes with every release, the browser must not sit on it
-    return fetch('assets/i18n/translations.json?v=r22')
+    return fetch('assets/i18n/translations.json?v=r23')
       .then(function (r) { return r.json(); })
       .catch(function (e) { console.warn('translations missing', e); return {}; })
       .then(function (json) { words = json; });
@@ -375,8 +386,9 @@
   }
 
   /* ── the little dot that follows the mouse ────────────────
-     runs on requestanimationframe, so it works even when gsap
-     is blocked or the visitor asked for reduced motion.       */
+     runs on requestanimationframe, so it works even when gsap is
+     blocked. under reduced motion it stays — it is the pointer —
+     but it lands where the mouse is instead of easing after it.  */
 
   function followPointer() {
     var dot = q('#cursor');
@@ -387,9 +399,18 @@
     var wantX = innerWidth / 2, wantY = innerHeight / 2;
     var atX = wantX, atY = wantY;
 
-    addEventListener('pointermove', function (e) { wantX = e.clientX; wantY = e.clientY; }, { passive: true });
+    function snap() {
+      atX = wantX; atY = wantY;
+      dot.style.transform = 'translate(' + atX + 'px,' + atY + 'px)';
+    }
 
-    (function frame() {
+    addEventListener('pointermove', function (e) {
+      wantX = e.clientX; wantY = e.clientY;
+      if (calm) snap();
+    }, { passive: true });
+
+    if (calm) snap();
+    else (function frame() {
       atX += (wantX - atX) * 0.2;
       atY += (wantY - atY) * 0.2;
       dot.style.transform = 'translate(' + atX + 'px,' + atY + 'px)';

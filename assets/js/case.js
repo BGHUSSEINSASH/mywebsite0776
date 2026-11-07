@@ -93,6 +93,16 @@
     html.lang = code;
     html.dir = rtl ? 'rtl' : 'ltr';
 
+    // the case pages declare twelve hreflang alternates on ?lang= urls, and
+    // google only trusts an alternate whose canonical points back at itself
+    if (/[?&]lang=/i.test(location.search)) {
+      var self = location.origin + location.pathname + '?lang=' + code;
+      var canon = doc.querySelector('link[rel="canonical"]');
+      if (canon) canon.href = self;
+      var ogu = doc.querySelector('meta[property="og:url"]');
+      if (ogu) ogu.content = self;
+    }
+
     qa('[data-i18n]').forEach(function (el) {
       var key = el.getAttribute('data-i18n');
       var val = say(key, null);
@@ -112,7 +122,7 @@
 
     qa('[data-alt]').forEach(function (img) {
       var name = say(img.getAttribute('data-alt'), null);
-      var what = say('alt.shot');
+      var what = say(img.getAttribute('data-alt-key') || 'alt.shot');
       if (typeof name === 'string' && name && what) img.alt = name + ' — ' + what;
     });
 
@@ -160,7 +170,7 @@
 
   function start() {
     wireTheme();
-    fetch('/assets/i18n/translations.json?v=r22')
+    fetch('/assets/i18n/translations.json?v=r23')
       .then(function (r) { return r.json(); })
       .then(function (json) {
         words = json;

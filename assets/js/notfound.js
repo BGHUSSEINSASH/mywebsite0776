@@ -94,7 +94,7 @@
   var sel = doc.querySelector('#langSelect');
   if (sel) sel.addEventListener('change', function () { lang = sel.value; apply(); });
 
-  fetch('/assets/i18n/translations.json?v=r22')
+  fetch('/assets/i18n/translations.json?v=r23')
     .then(function (r) { return r.json(); })
     .then(function (json) { words = json; lang = pick(); apply(); })
     .catch(function () { /* english markup is already in the page */ });

@@ -6,8 +6,8 @@
 /* the versioned query strings have to match what the html asks for,
    or install-time caching stores one url and the page requests
    another and everything falls through to the network. */
-var V = '?v=r22';
-var CACHE = 'bgsash-v22';
+var V = '?v=r23';
+var CACHE = 'bgsash-v23';
 var SHELL = [
   '/',
   '/index.html',
@@ -42,6 +42,8 @@ var SHOTS = [
   '/assets/shots/mukallaf.webp',
   '/assets/shots/flossk.webp',
   '/assets/shots/bookly.webp',
+  '/assets/shots/ziona-passports.webp',
+  '/assets/shots/hala-sat.webp',
   '/assets/shots/og-cover.png'
 ];
 

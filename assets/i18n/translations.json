@@ -546,7 +546,8 @@
       "estCur": "Show price alongside in"
     },
     "alt": {
-      "shot": "live site screenshot"
+      "shot": "live site screenshot",
+      "cover": "typographic case cover"
     }
   },
   "ar": {
@@ -1096,7 +1097,8 @@
       "estCur": "أظهر السعر أيضًا بـ"
     },
     "alt": {
-      "shot": "لقطة من الموقع الحيّ"
+      "shot": "لقطة من الموقع الحيّ",
+      "cover": "غلاف الحالة — تصميم نصّي"
     }
   },
   "ku": {
@@ -1646,7 +1648,8 @@
       "estCur": "نرخ بە ئەم پارەش پیشان بدە"
     },
     "alt": {
-      "shot": "وێنەی ماڵپەڕی زیندوو"
+      "shot": "وێنەی ماڵپەڕی زیندوو",
+      "cover": "بەرگی دۆخ — دیزاینی نووسین"
     }
   },
   "tr": {
@@ -2196,7 +2199,8 @@
       "estCur": "Fiyatı şu para biriminde de göster"
     },
     "alt": {
-      "shot": "canlı site ekran görüntüsü"
+      "shot": "canlı site ekran görüntüsü",
+      "cover": "tipografik vaka kapağı"
     }
   },
   "fr": {
@@ -2746,7 +2750,8 @@
       "estCur": "Afficher aussi le prix en"
     },
     "alt": {
-      "shot": "capture du site en ligne"
+      "shot": "capture du site en ligne",
+      "cover": "couverture typographique de l’étude de cas"
     }
   },
   "es": {
@@ -3296,7 +3301,8 @@
       "estCur": "Mostrar el precio también en"
     },
     "alt": {
-      "shot": "captura del sitio en línea"
+      "shot": "captura del sitio en línea",
+      "cover": "portada tipográfica del caso"
     }
   },
   "de": {
@@ -3846,7 +3852,8 @@
       "estCur": "Preis zusätzlich anzeigen in"
     },
     "alt": {
-      "shot": "Screenshot der Live-Site"
+      "shot": "Screenshot der Live-Site",
+      "cover": "typografisches Case-Study-Cover"
     }
   },
   "ru": {
@@ -4396,7 +4403,8 @@
       "estCur": "Показывать цену также в"
     },
     "alt": {
-      "shot": "скриншот живого сайта"
+      "shot": "скриншот живого сайта",
+      "cover": "типографская обложка кейса"
     }
   },
   "zh": {
@@ -4946,7 +4954,8 @@
       "estCur": "同时以下列货币显示价格"
     },
     "alt": {
-      "shot": "网站实际截图"
+      "shot": "网站实际截图",
+      "cover": "文字排版案例封面"
     }
   },
   "ja": {
@@ -5496,7 +5505,8 @@
       "estCur": "価格をこの通貨でも表示"
     },
     "alt": {
-      "shot": "公開中のサイトのスクリーンショット"
+      "shot": "公開中のサイトのスクリーンショット",
+      "cover": "タイポグラフィのケース表紙"
     }
   },
   "ko": {
@@ -6046,7 +6056,8 @@
       "estCur": "다음 통화로도 가격 표시"
     },
     "alt": {
-      "shot": "실제 사이트 스크린샷"
+      "shot": "실제 사이트 스크린샷",
+      "cover": "타이포그래피 케이스 표지"
     }
   },
   "hi": {
@@ -6596,7 +6607,8 @@
       "estCur": "इस सिक्के में मूल्य भी दिखाएँ"
     },
     "alt": {
-      "shot": "लाइव साइट का स्क्रीनशॉट"
+      "shot": "लाइव साइट का स्क्रीनशॉट",
+      "cover": "टाइपोग्राफिक केस कवर"
     }
   }
 }

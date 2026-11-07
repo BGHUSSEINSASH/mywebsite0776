@@ -1,6 +1,6 @@
 # BG Hussein Sash — Portfolio
 
-(current asset token: `r22` — see the cache-busting ritual below)
+(current asset token: `r23` — see the cache-busting ritual below)
 
 Studio spec-sheet portfolio for Hussein Majed Aidan (BG Hussein Sash) — IT Manager & Software Engineer, Baghdad.
 
@@ -86,16 +86,32 @@ Verify before every deploy:
 node tools/apply-security.js   # headers + meta from one config
 node tools/check-security.js   # the security gate
 node tools/check-i18n.js       # the language gate
-node tools/build-cases.js      # regenerate work/*.html
+node tools/build-cases.js      # regenerate work/*.html + sitemap.xml
 node tools/serve.js &          # then:
-node tools/verify-shell.js     # the PWA shell has no 404
+node tools/verify-shell.js     # the PWA shell has no 404, and every page's
+                               # og:image is that page's own artwork
 ```
 
 ## i18n pipeline
 
-- Source of truth: `assets/i18n/translations.json` — 12 languages, 427 keys
+- Source of truth: `assets/i18n/translations.json` — 12 languages, 437 keys
 - `node tools/build-cases.js` rebuilds the 6 case pages from it, with the same
-  CSP meta and the same `theme.js` boot the hand-written pages use.
+  CSP meta and the same `theme.js` boot the hand-written pages use. It also
+  rewrites `sitemap.xml`, whose `<lastmod>` is the newest mtime among the page,
+  the translations and the scripts that render it — a page is only rewritten
+  when its bytes change, so the date moves when content moves, not when the
+  tool happens to run.
+- Language URLs: `?lang=xx` is a real variant (the page renders in that
+  language), and `main.js`/`case.js` rewrite `canonical` + `og:url` to the
+  self URL when the parameter is present. Google only trusts an hreflang
+  cluster whose targets are their own canonical, so that rewrite is what makes
+  the twelve `<link rel="alternate">` tags on each page mean anything —
+  deleting it silently turns them back into decoration. `robots.txt` keeps
+  `/admin` out of the crawl; the desk also answers with `X-Robots-Tag`.
+- Two of the six projects (Ziona Passports, Hala Sat) have no product artwork,
+  so they ship a typographic cover named after their slug. `alt.shot` says
+  "live site screenshot" and `alt.cover` says it is a cover; the generator
+  picks per project, and a case page must never borrow another project's file.
 - Cache-busting ritual: `assets/**` is served `immutable`, so an asset change
   only reaches a returning visitor when the token moves. Bump `?v=rNN` in
   every page **and** `bgsash-vNN` in `service-worker.js` in the same commit —

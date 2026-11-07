@@ -51,9 +51,31 @@ async function check(list, label) {
 (async () => {
   const bad = [...await check(SHELL, 'SHELL'), ...await check(SHOTS, 'SHOTS')];
 
+  /* a picture of the wrong project passes every "does it exist" test: two case
+     pages shipped another project's screenshot for weeks. the rule that
+     catches it is that the file has to be named after the page using it. */
+  function shotOwnership() {
+    const pages = ['index.html', '404.html', 'admin.html']
+      .concat(fs.readdirSync(path.join(ROOT, 'work')).map((f) => 'work/' + f));
+    const out = [];
+    for (const rel of pages) {
+      const html = fs.readFileSync(path.join(ROOT, rel), 'utf8');
+      const m = /property="og:image" content="[^"]*\/([^"/]+)"/.exec(html);
+      if (!m) continue;
+      const file = m[1];
+      const slug = rel.startsWith('work/') ? path.basename(rel, '.html') : null;
+      if (slug) {
+        if (!file.startsWith(slug)) out.push(`${rel}: og:image is ${file}, not this project's own artwork`);
+      } else if (file !== 'og-cover.png') {
+        out.push(`${rel}: a shared page should use og-cover.png, found ${file}`);
+      }
+    }
+    return out;
+  }
+
   // manifest sanity
   const mf = JSON.parse(fs.readFileSync(path.join(ROOT, 'manifest.webmanifest'), 'utf8'));
-  const problems = [];
+  const problems = shotOwnership();
   if (!mf.id) problems.push('manifest: no id');
   if (!mf.scope) problems.push('manifest: no scope');
   (mf.icons || []).forEach((i) => {

@@ -67,7 +67,12 @@ Deno.serve(async (req) => {
       return new Response(JSON.stringify({ error: "rate_limited" }), { status: 429, headers: cors });
     }
 
-    const body = await req.json();
+    // read as text first so an oversized body is refused before parse
+    const raw = await req.text();
+    if (raw.length > 20_000) {
+      return new Response(JSON.stringify({ error: "too_large" }), { status: 413, headers: cors });
+    }
+    const body = JSON.parse(raw);
     const service = String(body.service ?? "other");
     const email = String(body.email ?? "").trim();
     const name = String(body.name ?? "").trim();
@@ -85,6 +90,13 @@ Deno.serve(async (req) => {
     }
     if (await turnstileOk(turnstile, ip) === false) {
       return new Response(JSON.stringify({ error: "captcha" }), { status: 403, headers: cors });
+    }
+
+    // honeypot: #orderForm has a hidden `website` input a human never
+    // fills. a bot that does gets the same 200 it expects, and the row
+    // is dropped — no signal back to retrain the script.
+    if (String(body.hp ?? "").trim() !== "") {
+      return new Response(JSON.stringify({ ok: true }), { headers: cors });
     }
 
     const { error: insErr } = await admin.from("service_requests").insert({

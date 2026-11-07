@@ -16,6 +16,8 @@ var SHELL = [
   '/assets/css/style.css' + V,
   '/assets/css/spec.css' + V,
   '/assets/css/case.css' + V,
+  '/assets/js/theme.js' + V,
+  '/assets/js/notfound.js' + V,
   '/assets/js/main.js' + V,
   '/assets/js/spec.js' + V,
   '/assets/js/case.js' + V,
@@ -24,6 +26,8 @@ var SHELL = [
   '/assets/icons/icon-512.png',
   '/assets/icons/apple-touch-icon.png',
   '/assets/i18n/translations.json' + V,
+  '/assets/cv/CV-en.pdf',
+  '/assets/cv/CV-ar.pdf',
   '/work/smartmaid',
   '/work/mukallaf',
   '/work/flossk',
@@ -65,15 +69,25 @@ self.addEventListener('fetch', function (e) {
   var url = new URL(req.url);
   if (url.origin !== location.origin) return;      // cdn / fonts: let the browser handle them
 
+  // the admin desk is never stored offline: it is not part of the public
+  // site and its html would sit in a cache anyone with the machine can read
+  if (/^\/admin(\.html)?$/.test(url.pathname)) return;
+
   // navigations: network first, cache fallback → always the freshest page online
   if (req.mode === 'navigate') {
     e.respondWith(
       fetch(req).then(function (res) {
-        var copy = res.clone();
-        caches.open(CACHE).then(function (c) { c.put('/index.html', copy); });
+        if (res && res.ok && res.type === 'basic') {
+          var copy = res.clone();
+          // stored under its own url: caching every page as index.html
+          // made an offline /work/x answer with the homepage
+          caches.open(CACHE).then(function (c) { c.put(url.pathname, copy); });
+        }
         return res;
       }).catch(function () {
-        return caches.match('/index.html').then(function (hit) { return hit || caches.match('/404.html'); });
+        return caches.match(url.pathname).then(function (hit) {
+          return hit || caches.match('/') || caches.match('/404.html');
+        });
       })
     );
     return;
@@ -84,7 +98,7 @@ self.addEventListener('fetch', function (e) {
     caches.match(req).then(function (hit) {
       if (hit) return hit;
       return fetch(req).then(function (res) {
-        if (res && res.status === 200 && res.type === 'basic') {
+        if (res && res.ok && res.type === 'basic') {
           var copy = res.clone();
           caches.open(CACHE).then(function (c) { c.put(req, copy); });
         }

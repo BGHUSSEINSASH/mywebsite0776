@@ -5,6 +5,36 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const { RULES } = require('./security-config');
+
+// security-config writes its headers as a keyed map because that reads
+// better; firebase wants a list of {key,value}. flattened here so the
+// local server sends exactly the bytes the real host would.
+const FLAT = RULES.map((r) => ({
+  source: r.source,
+  headers: Object.keys(r.headers).map((key) => ({ key: key, value: r.headers[key] }))
+}));
+
+// firebase.json never uploads these, so localhost must not answer for them
+const NOT_PUBLISHED = [/^\/tools\//, /^\/supabase\//, /^\/\.git/, /^\/\.firebase/];
+
+function ruleMatches(source, url) {
+  if (source === '**' || source === '/**') return true;
+  const clean = url.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+  return source === url || source === clean;
+}
+
+/* the same headers firebase would send, so a policy mistake shows up on
+   localhost instead of only after a deploy. later rules win, like in the
+   real config. */
+function withSecurity(url, base) {
+  const out = Object.assign({}, base);
+  for (const rule of FLAT) {
+    if (!ruleMatches(rule.source, url)) continue;
+    for (const h of rule.headers) out[h.key] = h.value;
+  }
+  return out;
+}
 
 const root = path.resolve(__dirname, '..');
 const port = Number(process.argv[2]) || 8080;
@@ -49,6 +79,7 @@ http.createServer((req, res) => {
   }
 
   let url = decodeURIComponent(req.url.split('?')[0]);
+  if (NOT_PUBLISHED.some((re) => re.test(url))) { res.writeHead(404, withSecurity(url, {})).end('not published'); return; }
   let file = path.join(root, url);
   if (!file.startsWith(root)) { res.writeHead(403).end('forbidden'); return; }
 
@@ -59,14 +90,17 @@ http.createServer((req, res) => {
   }
   if (!fs.existsSync(file)) {
     const nf = path.join(root, '404.html');
-    if (fs.existsSync(nf)) { res.writeHead(404, { 'Content-Type': types['.html'] }).end(fs.readFileSync(nf)); return; }
+    // firebase answers a miss with 404.html plus the same headers, so the
+    // local server has to send them too or a policy error hides until prod
+    const nfHead = withSecurity(url, { 'Content-Type': types['.html'] });
+    if (fs.existsSync(nf)) { res.writeHead(404, nfHead).end(fs.readFileSync(nf)); return; }
     res.writeHead(404).end('not found'); return;
   }
 
-  const head = {
+  const head = withSecurity(url, {
     'Content-Type': types[path.extname(file)] || 'application/octet-stream',
     'Cache-Control': /assets\/(css|js|shots|i18n|cv)\//.test(url) ? 'public, max-age=31536000, immutable' : 'no-cache'
-  };
+  });
   if (url.includes('service-worker.js')) head['Service-Worker-Allowed'] = '/';
   res.writeHead(200, head).end(fs.readFileSync(file));
 }).listen(port, () => console.log('serving ' + root + ' → http://localhost:' + port));

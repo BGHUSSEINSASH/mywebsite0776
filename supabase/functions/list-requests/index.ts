@@ -13,14 +13,24 @@ const cors = {
 };
 
 // simple fixed-window throttle: 10 tries / 10 min per ip
+// the map is swept on every call so a spoofed-ip flood cannot grow it
+// without bound — an isolate that runs out of memory stops serving,
+// which is the very thing this check exists to prevent
 const tries = new Map<string, number[]>();
+const WINDOW_MS = 600_000;
+const MAX_TRIES = 10;
+const MAX_IPS = 5000;
 
 function tooMany(ip: string): boolean {
   const now = Date.now();
-  const list = (tries.get(ip) ?? []).filter((t) => now - t < 600_000);
+  const list = (tries.get(ip) ?? []).filter((t) => now - t < WINDOW_MS);
   list.push(now);
   tries.set(ip, list);
-  return list.length > 10;
+  if (tries.size > MAX_IPS) {
+    for (const [k, v] of tries) if (v[v.length - 1] < now - WINDOW_MS) tries.delete(k);
+    if (tries.size > MAX_IPS) tries.clear();   // every slot is hot: start over
+  }
+  return list.length > MAX_TRIES;
 }
 
 // hashing both sides first means the compare walks a fixed 32 bytes,
@@ -50,7 +60,11 @@ Deno.serve(async (req) => {
   }
 
   let password = "";
-  try { password = String((await req.json()).password ?? ""); } catch { /* noop */ }
+  try {
+    const raw = await req.text();
+    if (raw.length > 4000) throw new Error("body");
+    password = String(JSON.parse(raw).password ?? "");
+  } catch { /* noop */ }
 
   const expected = Deno.env.get("ADMIN_PASSWORD");
   if (!expected || !(await sameSecret(password, expected))) {

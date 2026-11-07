@@ -221,6 +221,10 @@
       wa.href = 'https://wa.me/9647762425266?text=' + encodeURIComponent(hello || '');
     }
 
+    // the CV the hero + contact point at follows the visitor's language
+    var rtlCv = flipped.indexOf(code) > -1 ? 'CV-ar.pdf' : 'CV-en.pdf';
+    qa('.cv-link').forEach(function (a) { a.href = 'assets/cv/' + rtlCv; });
+
     wallClock();
     buildRail();
     if (scrub) ScrollTrigger.refresh();
@@ -644,9 +648,58 @@
 
   var SUPABASE_URL = '';        // e.g. 'https://xxxx.supabase.co'
   var SUBMIT_FN  = 'submit-request';
+  var TURNSTILE_SITEKEY = '';   // cloudflare site key — see README, pairs with the CSP
+  var TS_SCRIPT = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+  var SEND_COOLDOWN_MS = 20000; // one real send per visitor per 20 s
+  var lastSendAt = 0;
   var oStep = 1;
   var oOpen = false;
   var oOpener = null;
+
+  /* ── turnstile, loaded on demand ──────────────────────────
+     a site key is optional: with TURNSTILE_SITEKEY empty nothing is
+     fetched and the widget stays an empty div, so the page keeps its
+     budget and the CSP keeps its single third-party script host.
+     when it is set, the script loads at step three — the first place
+     a visitor can actually press send — not at page load.          */
+
+  var tsWidget = null;
+
+  function turnstileToken() {
+    if (!TURNSTILE_SITEKEY || !window.turnstile || !tsWidget) return '';
+    try { return window.turnstile.getResponse(tsWidget) || ''; } catch (e) { return ''; }
+  }
+
+  function turnstileReset() {
+    if (!window.turnstile || !tsWidget) return;
+    try { window.turnstile.remove(tsWidget); } catch (e) {}
+    tsWidget = null;
+    turnstileLoad();
+  }
+
+  function turnstileLoad() {
+    if (!TURNSTILE_SITEKEY || tsWidget || !doc.querySelector) return;
+    var box = q('#oTurnstile');
+    if (!box) return;
+    function render() {
+      if (tsWidget || !window.turnstile) return;
+      try {
+        tsWidget = window.turnstile.render(box, {
+          sitekey: TURNSTILE_SITEKEY,
+          theme: html.dataset.theme === 'light' ? 'light' : 'dark'
+        });
+      } catch (e) { /* no token — the server rejects, the mailto path still works */ }
+    }
+    var already = doc.querySelector('script[src^="' + TS_SCRIPT + '"]');
+    if (already) { already.addEventListener('load', render); render(); return; }
+    var s = doc.createElement('script');
+    s.src = TS_SCRIPT + '?render=explicit';
+    s.defer = true;
+    s.crossOrigin = 'anonymous';
+    s.referrerPolicy = 'no-referrer';
+    s.addEventListener('load', render);
+    doc.head.appendChild(s);
+  }
 
   function orderShow() {
     var box = q('#orderModal');
@@ -690,7 +743,9 @@
       name: (q('#oName') || {}).value || '',
       email: (q('#oEmail') || {}).value || '',
       phone: (q('#oPhone') || {}).value || '',
-      lang: lang
+      lang: lang,
+      hp: (f.website && f.website.value) || '',
+      turnstile: turnstileToken()
     };
   }
 
@@ -705,6 +760,7 @@
     if (bar) bar.style.width = (n * 33.34) + '%';
     var num = q('#oStep');
     if (num) num.textContent = String(n);
+    if (n === 3) turnstileLoad();
     var back = q('#oBack');
     if (back) back.hidden = n === 1;
     var next = q('#oNext');
@@ -747,6 +803,28 @@
     var d = orderData();
     if (!oValidate(3)) return;
     var status = q('#oStatus');
+
+    // the honeypot under the form: only a bot can see a reason to fill it.
+    // answer it with the receipt it expected and route nothing anywhere —
+    // the same trick as the contact form, one layer below.
+    if (d.hp) {
+      // empty receipt: nothing is stored, nothing is mailed, nothing leaks
+      oFinish({ service: d.service, name: '', email: '', phone: '', details: '', lang: lang }, true);
+      return;
+    }
+
+    if (TURNSTILE_SITEKEY && !d.turnstile) {
+      status.textContent = say('order.errCaptcha') || 'Please complete the verification.';
+      turnstileLoad();
+      return;
+    }
+
+    var waitLeft = Math.ceil((SEND_COOLDOWN_MS - (Date.now() - lastSendAt)) / 1000);
+    if (lastSendAt && waitLeft > 0) {
+      status.textContent = (say('order.tooSoon') || 'Please wait a moment.') + ' (' + waitLeft + 's)';
+      return;
+    }
+    lastSendAt = Date.now();
     status.textContent = say('order.sending') || 'Sending…';
 
     function oFallback(dd) {
@@ -764,7 +842,11 @@
       })
         .then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
         .then(function () { oFinish(d, true); })
-        .catch(function () { oFallback(d); });   // never lose the visitor
+        .catch(function () {
+          lastSendAt = 0;              // a failed send is not a sent request
+          turnstileReset();            // the token is single-use either way
+          oFallback(d);                // never lose the visitor
+        });
     } else {
       oFallback(d);
     }

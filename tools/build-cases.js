@@ -6,6 +6,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { CSP_META } = require('./security-config');
 
 const ROOT = path.join(__dirname, '..');
 const OUT = path.join(ROOT, 'work');
@@ -80,6 +81,7 @@ function build(p, idx) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="${CSP_META}">
   <title>${esc(title)} — ${esc(en.case.intro)} · BG Hussein Sash</title>
   <meta name="description" content="${esc(desc)}">
   <meta name="theme-color" content="#0e0f11">
@@ -102,12 +104,7 @@ ${ogLocale}
   <meta name="twitter:title" content="${esc(title)} — ${esc(en.case.intro)}">
   <meta name="twitter:description" content="${esc(desc)}">
   <meta name="twitter:image" content="${SITE}/assets/shots/${p.img}">
-  <script>
-    try {
-      var st = localStorage.getItem('theme');
-      document.documentElement.dataset.theme = st || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    } catch (e) { document.documentElement.dataset.theme = 'dark'; }
-  </script>
+  <script src="/assets/js/theme.js?v=${VER}"></script>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.webmanifest">

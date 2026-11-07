@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data:; connect-src 'self' https://api.github.com https://*.supabase.co https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto: https://wa.me; upgrade-insecure-requests">
   <title>Requests — BG Sash admin</title>
   <meta name="robots" content="noindex, nofollow">
   <meta name="referrer" content="no-referrer">
@@ -16,6 +17,7 @@
     input, select { background:var(--card); border:1px solid var(--line); color:var(--fg); padding:12px 14px; border-radius:6px; font:inherit; width:100%; }
     button { background:var(--accent); border:0; color:#fff; font:inherit; font-weight:600; padding:12px 22px; border-radius:6px; cursor:pointer; }
     button:hover { filter:brightness(1.1); }
+    button.lock { background:transparent; border:1px solid var(--line); color:var(--muted); font-size:11px; padding:4px 10px; margin-inline-start:10px; }
     #login { display:flex; gap:10px; margin-top:18px; }
     table { width:100%; border-collapse:collapse; margin:18px 0 34px; }
     th, td { text-align:start; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
@@ -41,7 +43,7 @@
   </div>
 
   <div class="wrap" id="board" hidden>
-    <h1>Requests <span class="muted" id="stamp"></span></h1>
+    <h1>Requests <span class="muted" id="stamp"></span> <button type="button" id="lockBtn" class="lock">Lock</button></h1>
     <h2>Build requests</h2>
     <table id="reqTable">
       <thead><tr><th>When</th><th>Service</th><th>Budget</th><th>Name</th><th>Contact</th><th class="hide-sm">Details</th><th>Status</th></tr></thead>
@@ -54,54 +56,6 @@
     </table>
   </div>
 
-<script>
-(function () {
-  'use strict';
-  var board = document.getElementById('board');
-  var gate = document.getElementById('gate');
-  var err = document.getElementById('err');
-  // endpoint is filled in when the supabase project goes live:
-  // var ENDPOINT = 'https://YOUR-PROJECT.supabase.co/functions/v1/list-requests';
-  var ENDPOINT = '';
-
-  function esc(s) {
-    var d = document.createElement('div');
-    d.textContent = s == null ? '' : String(s);
-    return d.innerHTML;
-  }
-  function fmt(t) { return new Date(t).toLocaleString(); }
-
-  function load(pw) {
-    if (!ENDPOINT) { err.textContent = 'Set ENDPOINT to your supabase function URL first.'; return; }
-    fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: pw }) })
-      .then(function (r) { if (r.status === 401) throw new Error('wrong password'); if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
-      .then(function (data) {
-        gate.hidden = true; board.hidden = false;
-        try { sessionStorage.setItem('admpw', pw); } catch (e) {}
-        document.getElementById('stamp').textContent = '· ' + new Date().toLocaleTimeString();
-        var rows = (data.requests || []).map(function (r) {
-          return '<tr><td>' + esc(fmt(r.created_at)) + '</td><td>' + esc(r.service) + '</td><td>' + esc(r.budget || '-') +
-            '</td><td>' + esc(r.name) + '</td><td>' + esc(r.email) + (r.phone ? '<br>' + esc(r.phone) : '') +
-            '</td><td class="hide-sm">' + esc(r.details || '') + '</td><td><span class="pill ' + esc(r.status) + '">' + esc(r.status) + '</span></td></tr>';
-        }).join('');
-        document.querySelector('#reqTable tbody').innerHTML = rows || '<tr><td colspan="7" class="muted">empty</td></tr>';
-        var mrows = (data.messages || []).map(function (m) {
-          return '<tr><td>' + esc(fmt(m.created_at)) + '</td><td>' + esc(m.name) + '</td><td>' + esc(m.email) + '</td><td>' + esc(m.message) + '</td></tr>';
-        }).join('');
-        document.querySelector('#msgTable tbody').innerHTML = mrows || '<tr><td colspan="4" class="muted">empty</td></tr>';
-      })
-      .catch(function (e) { err.textContent = e.message; });
-  }
-
-  document.getElementById('login').addEventListener('submit', function (e) {
-    e.preventDefault();
-    load(document.getElementById('pw').value);
-  });
-
-  var saved = null;
-  try { saved = sessionStorage.getItem('admpw'); } catch (e) {}
-  if (saved) load(saved);
-})();
-</script>
+<script src="assets/js/admin.js?v=r22"></script>
 </body>
 </html>

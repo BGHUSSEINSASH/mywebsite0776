@@ -16,7 +16,7 @@ const words = JSON.parse(fs.readFileSync(path.join(ROOT, 'assets', 'i18n', 'tran
 // social crawlers do not resolve relative ones, and a relative canonical
 // is simply dropped by google.
 const SITE = 'https://mywebsite0776.web.app';
-const VER = 'r23';                       // bump with every asset change
+const VER = 'r24';                       // bump with every asset change
 const LOCALES = { en: 'en_US', ar: 'ar_IQ', ku: 'ku_IQ', tr: 'tr_TR', fr: 'fr_FR', es: 'es_ES', de: 'de_DE', ru: 'ru_RU', zh: 'zh_CN', ja: 'ja_JP', ko: 'ko_KR', hi: 'hi_IN' };
 
 // slug, image, live url (null for the two field cases), role = services key.
@@ -200,6 +200,7 @@ ${sections}
   </div>
 </footer>
 
+<script src="/assets/js/tally.js?v=${VER}"></script>
 <script src="/assets/js/case.js?v=${VER}"></script>
 </body>
 </html>

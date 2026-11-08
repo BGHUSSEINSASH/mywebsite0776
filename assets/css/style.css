@@ -190,6 +190,17 @@ em.serif { font-family: var(--f-serif); font-style: italic; font-weight: 400; te
 .hero-top { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 .clock { margin-inline-start: auto; font-family: var(--f-mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
 
+/* the visitor tally, on its own line under the clock */
+.tally {
+  flex-basis: 100%; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 2px 14px;
+  font-family: var(--f-mono); font-size: 12px; color: var(--muted);
+  font-variant-numeric: tabular-nums; letter-spacing: .04em;
+}
+.tally[hidden] { display: none; }
+.t-num { display: inline-flex; align-items: baseline; gap: 6px; }
+.t-num b { font-weight: 500; color: var(--accent-text); }
+.tally:not(.live) .t-num b { color: var(--muted); }
+
 /* motion panel behind the hero (hand-tuned particle flow) */
 .flow { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: .6; }
 .hero > *:not(.flow) { position: relative; z-index: 1; }

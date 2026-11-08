@@ -28,6 +28,13 @@
     select.status { width:auto; padding:4px 8px; font-size:12px; }
     .wrap { max-width:1200px; margin:0 auto; }
     .err { color:var(--accent); margin-top:12px; }
+    h3 { font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:0 0 4px; }
+    .three { display:flex; flex-wrap:wrap; gap:26px; }
+    .three > div { flex:1 1 250px; min-width:230px; }
+    .three table { margin:8px 0 22px; }
+    .bar { display:block; height:8px; background:rgba(255,255,255,.06); border-radius:2px; overflow:hidden; }
+    .bar i { display:block; height:100%; background:var(--accent); opacity:.7; }
+    td b { font-weight:600; }
     @media (max-width:820px){ td,th{padding:8px 6px;font-size:12px} .hide-sm{display:none} }
   </style>
 </head>
@@ -44,6 +51,55 @@
 
   <div class="wrap" id="board" hidden>
     <h1>Requests <span class="muted" id="stamp"></span> <button type="button" id="lockBtn" class="lock">Lock</button></h1>
+    <h2>Visits <select id="vRange" class="status">
+      <option value="7">last 7 days</option>
+      <option value="30" selected>last 30 days</option>
+      <option value="90">last 90 days</option>
+      <option value="180">last 180 days</option>
+      <option value="365">last year</option>
+    </select></h2>
+    <p class="muted" id="vSummary">loading…</p>
+    <table id="vSeries">
+      <thead><tr><th>Day</th><th>Visitors</th><th>Views</th><th class="hide-sm">Shape</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <div class="three">
+      <div>
+        <h3>Pages</h3>
+        <table id="vPaths">
+          <thead><tr><th>Path</th><th>Views</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div>
+        <h3>Where they came from</h3>
+        <table id="vRefs">
+          <thead><tr><th>Referrer</th><th>Visits</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div>
+        <h3>Languages</h3>
+        <table id="vLangs">
+          <thead><tr><th>Language</th><th>Views</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div>
+        <h3>Devices</h3>
+        <table id="vDevices">
+          <thead><tr><th>Device</th><th>Views</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div>
+        <h3>Browsers</h3>
+        <table id="vBrowsers">
+          <thead><tr><th>Browser</th><th>Views</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
     <h2>Build requests</h2>
     <table id="reqTable">
       <thead><tr><th>When</th><th>Service</th><th>Budget</th><th>Name</th><th>Contact</th><th class="hide-sm">Details</th><th>Status</th></tr></thead>
@@ -56,6 +112,6 @@
     </table>
   </div>
 
-<script src="assets/js/admin.js?v=r23"></script>
+<script src="assets/js/admin.js?v=r24"></script>
 </body>
 </html>

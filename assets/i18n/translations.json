@@ -30,6 +30,11 @@
       "ctaTalk": "Let's talk",
       "cv": "CV"
     },
+    "tally": {
+      "guests": "visitors",
+      "views": "page views",
+      "today": "today"
+    },
     "ticker1": [
       "Full stack development",
       "Flutter apps",
@@ -543,7 +548,8 @@
       "language": "Language",
       "theme": "Switch light or dark theme",
       "close": "Close",
-      "estCur": "Show price alongside in"
+      "estCur": "Show price alongside in",
+      "tally": "Visitor tally"
     },
     "alt": {
       "shot": "live site screenshot",
@@ -580,6 +586,11 @@
       "ctaWork": "شاهد الأعمال",
       "ctaTalk": "لنتحدث",
       "cv": "السيرة الذاتية"
+    },
+    "tally": {
+      "guests": "زائر",
+      "views": "مشاهدة صفحة",
+      "today": "اليوم"
     },
     "ticker1": [
       "تطوير متكامل",
@@ -1094,7 +1105,8 @@
       "language": "اللغة",
       "theme": "تبديل المظهر الفاتح أو الداكن",
       "close": "إغلاق",
-      "estCur": "أظهر السعر أيضًا بـ"
+      "estCur": "أظهر السعر أيضًا بـ",
+      "tally": "عدّاد الزوّار"
     },
     "alt": {
       "shot": "لقطة من الموقع الحيّ",
@@ -1131,6 +1143,11 @@
       "ctaWork": "بینینی کارەکان",
       "ctaTalk": "با قسە بکەین",
       "cv": "کارنامە"
+    },
+    "tally": {
+      "guests": "سەردانکەر",
+      "views": "بینینی پەڕە",
+      "today": "ئەمڕۆ"
     },
     "ticker1": [
       "پەرەکردنی فوڵ ستەک",
@@ -1645,7 +1662,8 @@
       "language": "زمان",
       "theme": "ڕووکاری ڕووناک یان تاریک بگۆڕە",
       "close": "داخستن",
-      "estCur": "نرخ بە ئەم پارەش پیشان بدە"
+      "estCur": "نرخ بە ئەم پارەش پیشان بدە",
+      "tally": "ژمارەی سەردانکەران"
     },
     "alt": {
       "shot": "وێنەی ماڵپەڕی زیندوو",
@@ -1682,6 +1700,11 @@
       "ctaWork": "İşleri gör",
       "ctaTalk": "Konuşalım",
       "cv": "CV"
+    },
+    "tally": {
+      "guests": "ziyaretçi",
+      "views": "sayfa görüntüleme",
+      "today": "bugün"
     },
     "ticker1": [
       "Full stack geliştirme",
@@ -2196,7 +2219,8 @@
       "language": "Dil",
       "theme": "Açık veya koyu temaya geç",
       "close": "Kapat",
-      "estCur": "Fiyatı şu para biriminde de göster"
+      "estCur": "Fiyatı şu para biriminde de göster",
+      "tally": "Ziyaretçi sayacı"
     },
     "alt": {
       "shot": "canlı site ekran görüntüsü",
@@ -2233,6 +2257,11 @@
       "ctaWork": "Voir les projets",
       "ctaTalk": "Discutons",
       "cv": "CV"
+    },
+    "tally": {
+      "guests": "visiteurs",
+      "views": "pages vues",
+      "today": "aujourd'hui"
     },
     "ticker1": [
       "Développement full stack",
@@ -2747,7 +2776,8 @@
       "language": "Langue",
       "theme": "Basculer entre thème clair et sombre",
       "close": "Fermer",
-      "estCur": "Afficher aussi le prix en"
+      "estCur": "Afficher aussi le prix en",
+      "tally": "Compteur de visiteurs"
     },
     "alt": {
       "shot": "capture du site en ligne",
@@ -2784,6 +2814,11 @@
       "ctaWork": "Ver proyectos",
       "ctaTalk": "Hablemos",
       "cv": "CV"
+    },
+    "tally": {
+      "guests": "visitantes",
+      "views": "páginas vistas",
+      "today": "hoy"
     },
     "ticker1": [
       "Desarrollo full stack",
@@ -3298,7 +3333,8 @@
       "language": "Idioma",
       "theme": "Cambiar entre tema claro u oscuro",
       "close": "Cerrar",
-      "estCur": "Mostrar el precio también en"
+      "estCur": "Mostrar el precio también en",
+      "tally": "Contador de visitantes"
     },
     "alt": {
       "shot": "captura del sitio en línea",
@@ -3335,6 +3371,11 @@
       "ctaWork": "Arbeiten ansehen",
       "ctaTalk": "Sprechen wir",
       "cv": "Lebenslauf"
+    },
+    "tally": {
+      "guests": "Besucher",
+      "views": "Seitenaufrufe",
+      "today": "heute"
     },
     "ticker1": [
       "Full-Stack-Entwicklung",
@@ -3849,7 +3890,8 @@
       "language": "Sprache",
       "theme": "Zwischen hellem und dunklem Theme wechseln",
       "close": "Schließen",
-      "estCur": "Preis zusätzlich anzeigen in"
+      "estCur": "Preis zusätzlich anzeigen in",
+      "tally": "Besucherzähler"
     },
     "alt": {
       "shot": "Screenshot der Live-Site",
@@ -3886,6 +3928,11 @@
       "ctaWork": "Смотреть работы",
       "ctaTalk": "Давайте поговорим",
       "cv": "Резюме"
+    },
+    "tally": {
+      "guests": "посетители",
+      "views": "просмотры страниц",
+      "today": "сегодня"
     },
     "ticker1": [
       "Fullstack-разработка",
@@ -4400,7 +4447,8 @@
       "language": "Язык",
       "theme": "Переключить светлую или тёмную тему",
       "close": "Закрыть",
-      "estCur": "Показывать цену также в"
+      "estCur": "Показывать цену также в",
+      "tally": "Счётчик посетителей"
     },
     "alt": {
       "shot": "скриншот живого сайта",
@@ -4437,6 +4485,11 @@
       "ctaWork": "查看作品",
       "ctaTalk": "聊聊吧",
       "cv": "简历"
+    },
+    "tally": {
+      "guests": "访客",
+      "views": "页面浏览",
+      "today": "今日"
     },
     "ticker1": [
       "全栈开发",
@@ -4951,7 +5004,8 @@
       "language": "语言",
       "theme": "切换浅色或深色主题",
       "close": "关闭",
-      "estCur": "同时以下列货币显示价格"
+      "estCur": "同时以下列货币显示价格",
+      "tally": "访客计数"
     },
     "alt": {
       "shot": "网站实际截图",
@@ -4988,6 +5042,11 @@
       "ctaWork": "制作実績を見る",
       "ctaTalk": "相談する",
       "cv": "履歴書"
+    },
+    "tally": {
+      "guests": "訪問者",
+      "views": "ページビュー",
+      "today": "本日"
     },
     "ticker1": [
       "フルスタック開発",
@@ -5502,7 +5561,8 @@
       "language": "言語",
       "theme": "ライト／ダークテーマを切り替え",
       "close": "閉じる",
-      "estCur": "価格をこの通貨でも表示"
+      "estCur": "価格をこの通貨でも表示",
+      "tally": "訪問者カウント"
     },
     "alt": {
       "shot": "公開中のサイトのスクリーンショット",
@@ -5539,6 +5599,11 @@
       "ctaWork": "작업 보기",
       "ctaTalk": "대화하기",
       "cv": "이력서"
+    },
+    "tally": {
+      "guests": "방문자",
+      "views": "페이지 조회수",
+      "today": "오늘"
     },
     "ticker1": [
       "풀스택 개발",
@@ -6053,7 +6118,8 @@
       "language": "언어",
       "theme": "라이트 또는 다크 테마로 전환",
       "close": "닫기",
-      "estCur": "다음 통화로도 가격 표시"
+      "estCur": "다음 통화로도 가격 표시",
+      "tally": "방문자 수"
     },
     "alt": {
       "shot": "실제 사이트 스크린샷",
@@ -6090,6 +6156,11 @@
       "ctaWork": "काम देखें",
       "ctaTalk": "बात करते हैं",
       "cv": "सीवी"
+    },
+    "tally": {
+      "guests": "आगंतुक",
+      "views": "पृष्ठ देखे गए",
+      "today": "आज"
     },
     "ticker1": [
       "फुल स्टैक डेवलपमेंट",
@@ -6604,7 +6675,8 @@
       "language": "भाषा",
       "theme": "लाइट या डार्क थीम पर करें",
       "close": "बंद करें",
-      "estCur": "इस सिक्के में मूल्य भी दिखाएँ"
+      "estCur": "इस सिक्के में मूल्य भी दिखाएँ",
+      "tally": "आगंतुक गणक"
     },
     "alt": {
       "shot": "लाइव साइट का स्क्रीनशॉट",

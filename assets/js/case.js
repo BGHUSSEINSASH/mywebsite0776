@@ -170,7 +170,7 @@
 
   function start() {
     wireTheme();
-    fetch('/assets/i18n/translations.json?v=r23')
+    fetch('/assets/i18n/translations.json?v=r24')
       .then(function (r) { return r.json(); })
       .then(function (json) {
         words = json;

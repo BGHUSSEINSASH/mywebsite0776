@@ -186,7 +186,9 @@ check('target=_blank always pairs with rel=noopener', leaky);
 /* ── 8. secrets in the tree ───────────────────────────────── */
 
 const secretHunt = [];
-const SECRET_RE = /(service_role|eyJ[A-Za-z0-9_-]{20,}|sk_live_|sk-proj-|xoxb-|AKIA[0-9A-Z]{16}|ghp_[A-Za-z0-9]{20,}|bearer\s+[a-z0-9._-]{30,})/i;
+// service_role is only a leak when a value is assigned to it — naming the
+// postgres role in a grant (schema.sql) is ddl, not a credential
+const SECRET_RE = /(service_role["']?\s*[:=]\s*["'][A-Za-z0-9._-]{12,}|eyJ[A-Za-z0-9_-]{20,}|sk_live_|sk-proj-|xoxb-|AKIA[0-9A-Z]{16}|ghp_[A-Za-z0-9]{20,}|bearer\s+[a-z0-9._-]{30,})/i;
 const LONG_SECRET = /(secret|password|apikey|api_key|token)\s*[:=]\s*["'][^"']{16,}["']/i;
 const SCAN = PAGES.concat(JS, ['firebase.json', 'manifest.webmanifest', 'tools/security-config.js', 'tools/serve.js'])
   .filter(exists)

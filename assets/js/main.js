@@ -247,7 +247,7 @@
 
   function loadLanguages() {
     // bust: the json changes with every release, the browser must not sit on it
-    return fetch('assets/i18n/translations.json?v=r23')
+    return fetch('assets/i18n/translations.json?v=r24')
       .then(function (r) { return r.json(); })
       .catch(function (e) { console.warn('translations missing', e); return {}; })
       .then(function (json) { words = json; });
@@ -667,7 +667,7 @@
      summary rides a mailto/whatsapp link. never blocks the
      visitor: worst case the request opens in their mail app. */
 
-  var SUPABASE_URL = '';        // e.g. 'https://xxxx.supabase.co'
+  var SUPABASE_URL = (window.BGSASH_STATS && window.BGSASH_STATS.url) || '';  // set it once: assets/js/tally.js
   var SUBMIT_FN  = 'submit-request';
   var TURNSTILE_SITEKEY = '';   // cloudflare site key — see README, pairs with the CSP
   var TS_SCRIPT = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
@@ -1365,21 +1365,9 @@
     }, { passive: true });
   }
 
-  /* ── privacy analytics (umami) ─────────────────────────────
-     no cookies, no fingerprinting, nothing leaves the page until
-     these two values are filled in. drop in a self-hosted umami
-     instance (or cloud.umami.is) and the script loads by itself.  */
-  var UMAMI_SRC = '';      // e.g. 'https://cloud.umami.is/script.js'
-  var UMAMI_ID  = '';      // e.g. 'xxxxxxxx-xxxx-....'
-
-  function watchVisits() {
-    if (!UMAMI_SRC || !UMAMI_ID || !doc.body) return;
-    var s = doc.createElement('script');
-    s.defer = true;
-    s.src = UMAMI_SRC;
-    s.dataset.websiteId = UMAMI_ID;
-    doc.head.appendChild(s);
-  }
+  /* the visitor tally lives in assets/js/tally.js — loaded before this
+     file on every public page, so the count is site-wide and this file
+     only lends its url to the form below.                            */
 
   /* ── bridge for spec.js ───────────────────────────────────
      the datasheet extras (hud, estimator, palette, terminal, github)
@@ -1453,7 +1441,6 @@
     shelfTabs();
     startFlow();
     runCounter();
-    watchVisits();
 
     loadLanguages().then(ready);
     setTimeout(ready, 4000);                   // slow or failed json still opens the door

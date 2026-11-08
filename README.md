@@ -1,6 +1,6 @@
 # BG Hussein Sash — Portfolio
 
-(current asset token: `r23` — see the cache-busting ritual below)
+(current asset token: `r24` — see the cache-busting ritual below)
 
 Studio spec-sheet portfolio for Hussein Majed Aidan (BG Hussein Sash) — IT Manager & Software Engineer, Baghdad.
 
@@ -20,13 +20,14 @@ to mail/WhatsApp). To save every request in PostgreSQL:
 
 1. Create a free project at https://supabase.com
 2. SQL Editor → paste `supabase/schema.sql` → run
-3. Deploy the two edge functions:
+3. Deploy the three edge functions:
    ```bash
    npm i -g supabase
    supabase login
    supabase link --project-ref YOUR-PROJECT-REF
    supabase functions deploy submit-request
    supabase functions deploy list-requests
+   supabase functions deploy site-stats --no-verify-jwt   # the visitor counter
    ```
 4. Secrets:
    ```bash
@@ -35,9 +36,13 @@ to mail/WhatsApp). To save every request in PostgreSQL:
    supabase secrets set RESEND_API_KEY=...        # from resend.com (free tier)
    supabase secrets set NOTIFY_EMAIL=sash0750605070607@gmail.com
    supabase secrets set IP_SALT="$(openssl rand -hex 16)"
+   supabase secrets set STATS_SALT="$(openssl rand -hex 16)"   # visitor-key salt
    ```
-5. Point the frontend at it — in `assets/js/main.js`:
+5. Point the frontend at it — in `assets/js/tally.js` (the script every public page
+   loads first, so it is the one place the url lives):
    - `SUPABASE_URL = 'https://YOUR-PROJECT.supabase.co'`
+   `main.js` reads that back for the order form; filling it in `main.js` instead
+   works too and wins when both are set.
 6. Anti-spam (Turnstile): put the **site key** in `assets/js/main.js`
    (`TURNSTILE_SITEKEY = '0x4AAA...'`). The script then loads itself at step 3
    of the wizard, from `challenges.cloudflare.com` — the host the CSP already
@@ -94,7 +99,7 @@ node tools/verify-shell.js     # the PWA shell has no 404, and every page's
 
 ## i18n pipeline
 
-- Source of truth: `assets/i18n/translations.json` — 12 languages, 437 keys
+- Source of truth: `assets/i18n/translations.json` — 12 languages, 441 keys
 - `node tools/build-cases.js` rebuilds the 6 case pages from it, with the same
   CSP meta and the same `theme.js` boot the hand-written pages use. It also
   rewrites `sitemap.xml`, whose `<lastmod>` is the newest mtime among the page,
@@ -117,9 +122,39 @@ node tools/verify-shell.js     # the PWA shell has no 404, and every page's
   every page **and** `bgsash-vNN` in `service-worker.js` in the same commit —
   the two must never disagree. `node tools/check-security.js` says so.
 
-## Analytics
+## The visitor counter
 
-Umami hooks are wired but inert — fill `UMAMI_SRC`/`UMAMI_ID` in `assets/js/main.js`.
-An analytics host is a third-party script: adding one means adding it to
-`tools/security-config.js` (`script-src` **and** `connect-src`), then re-running
-`apply-security.js`. Until you do, CSP blocks it — which is the point.
+No analytics provider is in this path and none will be: a counter that
+reports your visitors to somebody else's server is not your counter.
+
+- **What runs** — `assets/js/tally.js` is loaded by `index.html`, `404.html` and every
+  `work/*.html`, before `main.js`. It posts one JSON body (`path`, `lang`, referrer
+  *host*) to `supabase/functions/site-stats`, which writes the visit and returns the
+  numbers. Nothing else: no cookie, no localStorage, no fingerprint, no script tag
+  from a third domain, so the CSP never had to change (`connect-src` already allows
+  `https://*.supabase.co`).
+- **What is stored** — `site_hits` (one row per page view), `site_visitors` (one row
+  per visitor-day), `site_days` and `site_totals` (the aggregates). The homepage reads
+  `site_totals` and `site_days` through the function, which is why the tally is two
+  indexed rows and not a scan, and why `assets/**` stays `immutable` — the numbers are
+  never in a cached file.
+- **Who is a visitor** — `sha256(STATS_SALT | ip | baghdad-day)`, 32 hex chars. The raw
+  ip is never written, and because the day is in the hash the key is different
+  tomorrow, so a person cannot be followed across days. `visitors` on the page is
+  therefore unique-visitor-days summed: the honest unit when there is no cookie.
+- **What is not counted** — crawlers, scripts, headless checks, uptime pings and an
+  ip that posts more than 120 times in 10 minutes. Those calls get the real numbers
+  and write nothing, so a flood cannot inflate the tally.
+- **R.L.S.** — all four tables have row level security on and **no policies**, so
+  `anon` cannot select, insert, update or delete a single row, and `record_hit` is
+  revoked from `anon`. Every write goes through the edge function with the service key.
+- **The full breakdown** — open `/admin` and the Visits desk asks the same function
+  with the same password: totals, a day-by-day series with a shape bar, top pages,
+  outside referrers, languages, devices and browsers, for 7/30/90/180/365 days.
+  `site_hits` ages out after 180 days (`prune_site_hits()`); the day rows and the
+  totals stay, so the numbers never shrink.
+
+Set `STATS_SALT` or the function falls back to a per-isolate salt: page views stay
+exact, daily uniques are counted per isolate — conservative, never spoofable. Leave
+`SUPABASE_URL` empty and the box under the clock stays hidden. The site never prints
+a number nobody counted.

@@ -97,7 +97,7 @@
       "desc": "Première application de budget irakienne avec un assistant vocal qui comprend votre dialecte — gratuite, hors ligne, sans publicité.",
       "problem": "Les utilisateurs irakiens gèrent leur argent avec du papier ou des applications étrangères qui ignorent le dinar, les habitudes locales et la langue arabe.",
       "solution": "Revenus, dépenses et déductions avec un assistant vocal de plus de 80 commandes, portefeuilles multiples, dettes, 11 devises avec l'IQD par défaut et rapports — le tout stocké localement, fonctionnant hors ligne.",
-      "result": "Une application financière 100 % arabe et d'abord hors ligne : les données restent sur l'appareil, tout se fait par la voix, gratuite pour toujours.",
+      "result": "Une application financière 100 % arabe et d'abord hors ligne : les données restent sur l'appareil, tout se fait par la voix, gratuite pour toujours.",
       "c1": "Assistant vocal (80+)",
       "c2": "Hors ligne d'abord",
       "c3": "Web · Android · iOS"
@@ -271,7 +271,8 @@
     "rights": "Tous droits réservés.",
     "place": "Bagdad, Irak · UTC+3",
     "privacy": "Confidentialité",
-    "terms": "Conditions"
+    "terms": "Conditions",
+    "stats": "Statistiques"
   },
   "testimonials": {
     "label": "06 / Témoignages",
@@ -302,14 +303,14 @@
     "a5": "Oui — mises à jour, surveillance, sauvegardes et correctifs après le lancement, sous forme d'abonnement mensuel ou à la demande.",
     "q6": "Où êtes-vous basé ?",
     "a6": "Bagdad, Irak (UTC+3). Je travaille à distance avec des clients partout et j'assure les interventions sur site à Bagdad.",
-    "q7": "Ce site utilise-t-il des cookies ou de l’analyse ?",
-    "a7": "Aucun cookie n’est déposé ici et aucun prestataire d’analyse n’est sur le chemin. Le compteur garde un seul condensat salé de l’adresse ip par jour à l’heure de Bagdad — une visite ne compte donc pas deux fois — et rien qui nomme qui que ce soit : la page Confidentialité énumère tout.",
-    "q8": "En quelles langues un produit est-il livré ?",
-    "a8": "L’arabe et l’anglais par défaut, avec une mise en page complète dans leur sens à chacun. Ce site lui-même est écrit en douze langues depuis un seul fichier de traduction : y ajouter la vôtre est une modification, pas une reconstruction.",
-    "q9": "De quoi avez-vous besoin de moi pour commencer ?",
-    "a9": "Ce qui existe et ce qui coince : les pages, écrans ou systèmes concernés, les logos et textes dont vous disposez déjà, et qui approuve. C’est suffisant pour une portée, un prix et des dates écrits — et le travail commence quand vous le dites.",
-    "q10": "Vais-je voir le travail pendant qu’il se fait ?",
-    "a10": "Oui : un lien d’aperçu chaque semaine plutôt qu’une révélation à la fin. Chaque étape est à un message de distance, et les réponses sont sur cette fiche avant qu’il faille les demander."
+    "q7": "Ce site utilise-t-il des cookies ou de l’analyse ?",
+    "a7": "Aucun cookie n’est déposé ici et aucun prestataire d’analyse n’est sur le chemin. Le compteur garde un seul condensat salé de l’adresse ip par jour à l’heure de Bagdad — une visite ne compte donc pas deux fois — et rien qui nomme qui que ce soit : la page Confidentialité énumère tout.",
+    "q8": "En quelles langues un produit est-il livré ?",
+    "a8": "L’arabe et l’anglais par défaut, avec une mise en page complète dans leur sens à chacun. Ce site lui-même est écrit en douze langues depuis un seul fichier de traduction : y ajouter la vôtre est une modification, pas une reconstruction.",
+    "q9": "De quoi avez-vous besoin de moi pour commencer ?",
+    "a9": "Ce qui existe et ce qui coince : les pages, écrans ou systèmes concernés, les logos et textes dont vous disposez déjà, et qui approuve. C’est suffisant pour une portée, un prix et des dates écrits — et le travail commence quand vous le dites.",
+    "q10": "Vais-je voir le travail pendant qu’il se fait ?",
+    "a10": "Oui : un lien d’aperçu chaque semaine plutôt qu’une révélation à la fin. Chaque étape est à un message de distance, et les réponses sont sur cette fiche avant qu’il faille les demander."
   },
   "pricing": {
     "label": "08 / Tarifs",
@@ -457,7 +458,7 @@
     "s4": "remise complète, pas de boîte noire",
     "s5": "le bureau reste ouvert",
     "p1": "Vous décrivez le problème avec vos mots. Je le reformule, j’ajoute ce qui manque, et nous convenons de l’objectif avant tout chiffrage.",
-    "p2": "Un périmètre écrit : pages ou écrans, fonctions, ce qui est exclu, un prix ferme et des dates réelles. Le chiffre de ce document est celui de la facture.",
+    "p2": "Un périmètre écrit : pages ou écrans, fonctions, ce qui est exclu, un prix ferme et des dates réelles. Le chiffre de ce document est celui de la facture.",
     "p3": "Le travail se fait à découvert — un lien d’aperçu cliquable chaque semaine, construit d’abord sur la maquette arabe, pas traduit de l’anglais après coup.",
     "p4": "Déployé, testé sur de vrais appareils, remis avec les comptes, les clés et un court guide écrit. Le dépôt, le domaine et l’hébergement sont à vous.",
     "p5": "Le bureau qui répond pendant la production répond aussi après — pannes serveur, files d’impression, enregistrements des caméras et la fonctionnalité suivante.",
@@ -480,8 +481,8 @@
     "h3": "Terminal",
     "close": "fermer",
     "label": "commande du terminal",
-    "motd": "BG Hussein Sash — terminal fiche technique. tapez « help ».",
-    "helpNote": "les commandes sont en lecture seule : elles font ce que font les boutons de la page",
+    "motd": "BG Hussein Sash — terminal fiche technique. tapez « help ».",
+    "helpNote": "les commandes sont en lecture seule : elles font ce que font les boutons de la page",
     "whoami1": "responsable informatique & ingénieur logiciel · Bagdad, Irak",
     "whoami2": "ERP · full stack · Flutter · serveurs et réseaux",
     "usage": "utilisation",
@@ -497,7 +498,7 @@
   "est": {
     "h3": "Estimateur en direct",
     "sub": "indicatif · devis final en USD",
-    "type": "De quoi avez-vous besoin ?",
+    "type": "De quoi avez-vous besoin ?",
     "scope": "Périmètre",
     "speed": "Vitesse de livraison",
     "addons": "Options",
@@ -506,7 +507,7 @@
     "wa": "Envoyer sur WhatsApp",
     "reset": "Effacer",
     "duration": "durée estimée",
-    "note": "Ce n’est pas un contrat — c’est la même arithmétique que j’utilise pour rédiger le devis ferme ; ce chiffre et la facture sont donc produits de la même façon.",
+    "note": "Ce n’est pas un contrat — c’est la même arithmétique que j’utilise pour rédiger le devis ferme ; ce chiffre et la facture sont donc produits de la même façon.",
     "total": "total indicatif",
     "indicative": "indicatif uniquement",
     "usdNote": "prix en USD",
@@ -573,34 +574,34 @@
       "h1": "Confidentialité",
       "lead": "Ce site compte ses visiteurs lui-même. Aucun prestataire d’analyse, aucun cookie publicitaire, aucune demande de police à un tiers — ce qu’une page apprend d’une visite, cette page vous le dit.",
       "countH": "Ce que le compteur conserve",
-      "countP": "Une fois par jour, heure de Bagdad : un condensat salé de votre adresse ip, la page qui vous a mené ici et la famille d’appareils indiquée par votre navigateur. Le sel change : une même personne ne peut pas être suivie d’un jour à l’autre.",
+      "countP": "Une fois par jour, heure de Bagdad : un condensat salé de votre adresse ip, la page qui vous a mené ici et la famille d’appareils indiquée par votre navigateur. Le sel change : une même personne ne peut pas être suivie d’un jour à l’autre.",
       "neverH": "Ce sur quoi il ne touche jamais",
       "never1": "Ce site ne dépose aucun cookie.",
-      "never2": "Identifiant publicitaire, pixel ou traceur inter-sites : aucun.",
+      "never2": "Identifiant publicitaire, pixel ou traceur inter-sites : aucun.",
       "never3": "Aucune adresse ip complète n’est stockée, et rien qui vous nomme.",
       "never4": "Pas de nom, d’email ni de téléphone tant que vous n’envoyez pas le formulaire de commande.",
       "formH": "Si vous envoyez une demande",
-      "formP": "Le formulaire de commande transmet votre nom, email, téléphone, le service, le budget, l’échéance et votre message à la base de données du site et à la boîte qui vous répond. Il sert à répondre et à préparer un devis — pas à du marketing ; il n’est pas vendu, pas transmis.",
+      "formP": "Le formulaire de commande transmet votre nom, email, téléphone, le service, le budget, l’échéance et votre message à la base de données du site et à la boîte qui vous répond. Il sert à répondre et à préparer un devis — pas à du marketing ; il n’est pas vendu, pas transmis.",
       "hostH": "Où cela tourne",
       "hostP": "L’hébergement, la base de données, le courriel et le captcha appartiennent chacun à un fournisseur unique, et chacun ne reçoit que ce que son rôle exige. Le script du captcha n’est chargé que lorsqu’un formulaire atteint l’étape qui le demande, et jamais si cette étape est désactivée.",
       "askH": "Demander au sujet de vos données",
-      "askP": "Écrivez à l’adresse de contact de la page d’accueil. Si vous avez envoyé une demande, demandez : vous pouvez la voir, la corriger ou la supprimer ; une question simple reçoit une réponse simple, pas un formulaire."
+      "askP": "Écrivez à l’adresse de contact de la page d’accueil. Si vous avez envoyé une demande, demandez : vous pouvez la voir, la corriger ou la supprimer ; une question simple reçoit une réponse simple, pas un formulaire."
     },
     "t": {
       "h1": "Conditions d’utilisation",
-      "lead": "Utiliser ce site, c’est accepter les règles ci-dessous. Elles sont courtes à dessein : écrites pour la personne qui les lit, pas pour l’avocat qui les classe.",
+      "lead": "Utiliser ce site, c’est accepter les règles ci-dessous. Elles sont courtes à dessein : écrites pour la personne qui les lit, pas pour l’avocat qui les classe.",
       "workH": "Ce que vous lisez",
       "workP": "Les projets et études de cas décrivent un travail réel pour des clients réels, avec les chiffres tels qu’ils ont été mesurés ou convenus sur le moment. Les captures et les visuels appartiennent aux produits montrés, et rien ici n’est une promesse pour votre projet.",
       "priceH": "Devis et prix",
       "priceP": "L’estimateur et tout chiffre dans une réponse sont une indication en dollars américains, valable pour la période indiquée dans ce message. Un prix ne lie qu’un accord écrit des deux parties.",
       "reqH": "Envoyer une demande",
-      "reqP": "Merci de donner un email exact — une demande avec une adresse fausse ne peut pas avoir de réponse. Une demande par projet ; le formulaire est limité en débit et protégé par captcha, donc les envois en masse ou automatisés sont refusés. Rien d’envoyé ne crée d’obligation tant qu’un accord n’est pas signé.",
+      "reqP": "Merci de donner un email exact — une demande avec une adresse fausse ne peut pas avoir de réponse. Une demande par projet ; le formulaire est limité en débit et protégé par captcha, donc les envois en masse ou automatisés sont refusés. Rien d’envoyé ne crée d’obligation tant qu’un accord n’est pas signé.",
       "useH": "Usage loyal du site",
-      "useP": "Vous pouvez lire ces pages, y faire un lien et les imprimer pendant que vous décidez du travail. Extraire le site en masse, rejouer ses formulaires, sonder son infrastructure ou présenter ses textes, visuels ou études de cas comme vôtres : non.",
+      "useP": "Vous pouvez lire ces pages, y faire un lien et les imprimer pendant que vous décidez du travail. Extraire le site en masse, rejouer ses formulaires, sonder son infrastructure ou présenter ses textes, visuels ou études de cas comme vôtres : non.",
       "yoursH": "Vos mots restent les vôtres",
       "yoursP": "Ce que vous envoyez dans un message reste à vous. Cela n’emporte aucune licence au-delà de ce qu’il faut pour vous répondre, et votre nom ou votre entreprise n’apparaît qu’où vous l’avez accepté.",
       "outH": "Liens qui sortent",
-      "outP": "GitHub, WhatsApp, le courriel et quelques pages de produits mènent hors de ce site. Leur comportement et leurs politiques leur appartiennent ; le lien est une courtoisie, non un adoubement ni une garantie.",
+      "outP": "GitHub, WhatsApp, le courriel et quelques pages de produits mènent hors de ce site. Leur comportement et leurs politiques leur appartiennent ; le lien est une courtoisie, non un adoubement ni une garantie.",
       "lawH": "Droit applicable",
       "lawP": "Ces conditions et tout travail convenu ensuite suivent la loi de la République d’Irak, Bagdad étant le lieu d’exécution. Aucune partie ne répond d’une perte indirecte ou occasionnelle, et la responsabilité pour un projet ne dépasse jamais ce que ce projet a payé."
     }
@@ -614,5 +615,10 @@
     "title": "Raccourcis clavier",
     "tabs": "Se déplacer entre les onglets de stack",
     "esc": "Fermer ce qui est ouvert"
+  },
+  "stats": {
+    "h1": "Statistiques du site",
+    "lead": "Ce site compte lui-même ses visiteurs — aucun prestataire d'analyse, aucun cookie publicitaire, aucun serveur tiers sur le chemin. Ce sont les mêmes chiffres qu'il garde pour lui, affichés en direct.",
+    "offline": "Le compteur n'est pas encore connecté — lorsque la base de données propre à ce site sera en ligne, les chiffres apparaîtront ici."
   }
 }

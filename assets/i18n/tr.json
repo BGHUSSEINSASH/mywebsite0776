@@ -271,7 +271,8 @@
     "rights": "Tüm hakları saklıdır.",
     "place": "Bağdat, Irak · UTC+3",
     "privacy": "Gizlilik",
-    "terms": "Koşullar"
+    "terms": "Koşullar",
+    "stats": "İstatistikler"
   },
   "testimonials": {
     "label": "06 / Sesler",
@@ -614,5 +615,10 @@
     "title": "Klavye kısayolları",
     "tabs": "Teknoloji sekmeleri arasında geç",
     "esc": "Açık olanı kapat"
+  },
+  "stats": {
+    "h1": "Site istatistikleri",
+    "lead": "Bu site ziyaretçilerini kendisi sayar — analiz şirketi yok, reklam çerezi yok, yolda üçüncü bir sunucu yok. Bunlar, sitenin kendisi için tuttuğu sayıların aynısıdır, canlı gösterilir.",
+    "offline": "Sayaç henüz bağlı değil — bu sitenin kendi veritabanı yayına girdiğinde sayılar burada görünecek."
   }
 }

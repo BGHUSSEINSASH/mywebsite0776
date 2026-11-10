@@ -271,7 +271,8 @@
     "rights": "All rights reserved.",
     "place": "Baghdad, Iraq · UTC+3",
     "privacy": "Privacy",
-    "terms": "Terms"
+    "terms": "Terms",
+    "stats": "Stats"
   },
   "testimonials": {
     "label": "06 / Voices",
@@ -614,5 +615,10 @@
     "title": "Keyboard shortcuts",
     "tabs": "Move between the stack tabs",
     "esc": "Close what is open"
+  },
+  "stats": {
+    "h1": "Site statistics",
+    "lead": "This site counts its own visitors — no analytics vendor, no advertising cookie, no third server in the path. These are the same numbers it keeps for itself, shown live.",
+    "offline": "The counter is not connected yet — once this site's own database is live, the numbers appear here."
   }
 }

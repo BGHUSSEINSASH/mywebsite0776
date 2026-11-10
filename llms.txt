@@ -12,6 +12,7 @@ is written in 12 languages: every page takes `?lang=` with one of
 - [Home](https://mywebsite0776.web.app/): the whole portfolio — work, services, stack, experience, pricing, estimator, FAQ, contact
 - [Privacy](https://mywebsite0776.web.app/privacy): what a visit leaves behind, in plain terms
 - [Terms](https://mywebsite0776.web.app/terms): what a client agrees to before work starts
+- [Statistics](https://mywebsite0776.web.app/stats): the live visitor count this site keeps for itself, in the open
 - [Case studies as RSS 2.0](https://mywebsite0776.web.app/feed.xml): all six, in the order the site lists them
 - [Case studies as Atom](https://mywebsite0776.web.app/atom.xml): the same six entries, Atom syntax
 - [Profile as JSON](https://mywebsite0776.web.app/api/profile.json): identity, services, cases, pricing and FAQ as data

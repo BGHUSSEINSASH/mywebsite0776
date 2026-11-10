@@ -271,7 +271,8 @@
     "rights": "Alle Rechte vorbehalten.",
     "place": "Bagdad, Irak · UTC+3",
     "privacy": "Datenschutz",
-    "terms": "Bedingungen"
+    "terms": "Bedingungen",
+    "stats": "Statistiken"
   },
   "testimonials": {
     "label": "06 / Stimmen",
@@ -614,5 +615,10 @@
     "title": "Tastenkürzel",
     "tabs": "Zwischen den Stack-Tabs wechseln",
     "esc": "Offenes schließen"
+  },
+  "stats": {
+    "h1": "Website-Statistiken",
+    "lead": "Diese Website zählt ihre Besucher selbst — kein Analyseanbieter, kein Werbe-Cookie, kein fremder Server im Weg. Das sind dieselben Zahlen, die sie für sich führt, live angezeigt.",
+    "offline": "Der Zähler ist noch nicht verbunden — sobald die eigene Datenbank dieser Website live ist, erscheinen die Zahlen hier."
   }
 }

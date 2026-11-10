@@ -55,7 +55,7 @@
     if (words[code]) return Promise.resolve(words[code]);
     // root-absolute: a case page lives at /work/<name>, where a relative url
     // would ask for /work/assets/... and get a 404
-    return fetch('/assets/i18n/' + code + '.json?v=r27')
+    return fetch('/assets/i18n/' + code + '.json?v=r28')
       .then(function (r) { return r.ok ? r.json() : {}; })
       .catch(function (e) { console.warn('translation file missing:', code, e); return {}; })
       .then(function (tree) { words[code] = tree || {}; return words[code]; });

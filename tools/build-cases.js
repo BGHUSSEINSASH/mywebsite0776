@@ -20,7 +20,7 @@ const words = JSON.parse(fs.readFileSync(path.join(ROOT, 'assets', 'i18n', 'tran
 // social crawlers do not resolve relative ones, and a relative canonical
 // is simply dropped by google.
 const SITE = 'https://mywebsite0776.web.app';
-const VER = 'r27';                       // bump with every asset change
+const VER = 'r28';                       // bump with every asset change
 const LOCALES = { en: 'en_US', ar: 'ar_IQ', ku: 'ku_IQ', tr: 'tr_TR', fr: 'fr_FR', es: 'es_ES', de: 'de_DE', ru: 'ru_RU', zh: 'zh_CN', ja: 'ja_JP', ko: 'ko_KR', hi: 'hi_IN' };
 
 // slug, image, live url (null for the two field cases), role = services key.
@@ -306,16 +306,20 @@ ${alt(href)}
   </url>`;
 }));
 
-/* the two legal pages are hand-written, but they belong in the sitemap for
-   the same reason the cases do: a crawler that is not told will not read
-   them, and a policy nobody can find is not much of a policy. */
-['privacy', 'terms'].forEach((slug) => {
+/* the legal pages and the public stats page are hand-written, but they
+   belong in the sitemap for the same reason the cases do: a crawler that
+   is not told will not read them, and a page nobody can find is not much
+   of a page. */
+['privacy', 'terms', 'stats'].forEach((slug) => {
   const href = `${SITE}/${slug}`;
+  const deps = slug === 'stats'
+    ? ['assets/css/legal.css', 'assets/js/case.js', 'assets/js/stats.js']
+    : ['assets/css/legal.css', 'assets/js/case.js'];
   urls.push(`  <url>
     <loc>${href}</loc>
 ${alt(href)}
     <xhtml:link rel="alternate" hreflang="x-default" href="${href}"/>
-    <lastmod>${lastmodOf(slug + '.html', ['assets/css/legal.css', 'assets/js/case.js'])}</lastmod>
+    <lastmod>${lastmodOf(slug + '.html', deps)}</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>`);
@@ -402,6 +406,7 @@ const llSite = [
   [SITE + '/', 'Home', 'the whole portfolio — work, services, stack, experience, pricing, estimator, FAQ, contact'],
   [SITE + '/privacy', 'Privacy', 'what a visit leaves behind, in plain terms'],
   [SITE + '/terms', 'Terms', 'what a client agrees to before work starts'],
+  [SITE + '/stats', 'Statistics', 'the live visitor count this site keeps for itself, in the open'],
   [SITE + '/feed.xml', 'Case studies as RSS 2.0', 'all six, in the order the site lists them'],
   [SITE + '/atom.xml', 'Case studies as Atom', 'the same six entries, Atom syntax'],
   [SITE + '/api/profile.json', 'Profile as JSON', 'identity, services, cases, pricing and FAQ as data'],

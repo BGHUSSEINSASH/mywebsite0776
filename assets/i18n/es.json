@@ -271,7 +271,8 @@
     "rights": "Todos los derechos reservados.",
     "place": "Bagdad, Irak · UTC+3",
     "privacy": "Privacidad",
-    "terms": "Términos"
+    "terms": "Términos",
+    "stats": "Estadísticas"
   },
   "testimonials": {
     "label": "06 / Voces",
@@ -614,5 +615,10 @@
     "title": "Atajos de teclado",
     "tabs": "Moverse entre las pestañas de stack",
     "esc": "Cerrar lo que esté abierto"
+  },
+  "stats": {
+    "h1": "Estadísticas del sitio",
+    "lead": "Este sitio cuenta sus propios visitantes — sin empresa de analítica, sin cookie publicitaria, sin un servidor de terceros en el camino. Son las mismas cifras que guarda para sí, mostradas en vivo.",
+    "offline": "El contador aún no está conectado — cuando la base de datos propia de este sitio esté en línea, las cifras aparecerán aquí."
   }
 }

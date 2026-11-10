@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; connect-src 'self' https://api.github.com https://*.supabase.co https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto: https://wa.me; upgrade-insecure-requests">
+  <title>Statistics · BG Hussein Sash</title>
+  <meta name="description" content="The live visitor count this site keeps for itself — total page views, unique visitors and today, counted with no analytics vendor and no advertising cookie.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#0e0f11">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <script src="/assets/js/theme.js?v=r28"></script>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="canonical" href="https://mywebsite0776.web.app/stats">
+  <link rel="alternate" hreflang="en" href="https://mywebsite0776.web.app/stats?lang=en">
+  <link rel="alternate" hreflang="ar" href="https://mywebsite0776.web.app/stats?lang=ar">
+  <link rel="alternate" hreflang="ku" href="https://mywebsite0776.web.app/stats?lang=ku">
+  <link rel="alternate" hreflang="tr" href="https://mywebsite0776.web.app/stats?lang=tr">
+  <link rel="alternate" hreflang="fr" href="https://mywebsite0776.web.app/stats?lang=fr">
+  <link rel="alternate" hreflang="es" href="https://mywebsite0776.web.app/stats?lang=es">
+  <link rel="alternate" hreflang="de" href="https://mywebsite0776.web.app/stats?lang=de">
+  <link rel="alternate" hreflang="ru" href="https://mywebsite0776.web.app/stats?lang=ru">
+  <link rel="alternate" hreflang="zh" href="https://mywebsite0776.web.app/stats?lang=zh">
+  <link rel="alternate" hreflang="ja" href="https://mywebsite0776.web.app/stats?lang=ja">
+  <link rel="alternate" hreflang="ko" href="https://mywebsite0776.web.app/stats?lang=ko">
+  <link rel="alternate" hreflang="hi" href="https://mywebsite0776.web.app/stats?lang=hi">
+  <link rel="alternate" hreflang="x-default" href="https://mywebsite0776.web.app/stats">
+  <meta property="og:site_name" content="BG Hussein Sash">
+  <meta property="og:title" content="Statistics · BG Hussein Sash">
+  <meta property="og:description" content="The live visitor count this site keeps for itself — no analytics vendor, no advertising cookie.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mywebsite0776.web.app/stats">
+  <meta property="og:image" content="https://mywebsite0776.web.app/assets/shots/og-cover.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="BG Hussein Sash — IT Manager &amp; Software Engineer, Baghdad">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Statistics · BG Hussein Sash">
+  <meta name="twitter:description" content="The live visitor count this site keeps for itself — no analytics vendor, no advertising cookie.">
+  <meta name="twitter:image" content="https://mywebsite0776.web.app/assets/shots/og-cover.png">
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=r28">
+  <link rel="stylesheet" href="/assets/css/legal.css?v=r28">
+</head>
+<body>
+  <a class="skip" href="#sheet" data-i18n="a11y.skip">Skip to content</a>
+
+  <div class="wrap">
+    <header class="lg-head">
+      <a class="lg-brand" href="/"><span lang="en">BG</span> <em lang="en">Hussein Sash</em></a>
+      <div class="lg-tools">
+        <select id="langSelect" data-i18n-aria="a11y.language" aria-label="Language">
+          <option value="en" lang="en">English</option><option value="ar" lang="ar">العربية</option><option value="ku" lang="ku">کوردی</option><option value="tr" lang="tr">Türkçe</option><option value="fr" lang="fr">Français</option><option value="es" lang="es">Español</option><option value="de" lang="de">Deutsch</option><option value="ru" lang="ru">Русский</option><option value="zh" lang="zh">中文</option><option value="ja" lang="ja">日本語</option><option value="ko" lang="ko">한국어</option><option value="hi" lang="hi">हिन्दी</option>
+        </select>
+        <button class="theme" id="themeBtn" type="button" data-i18n-aria="a11y.theme" aria-label="Switch light or dark theme"><i></i></button>
+      </div>
+    </header>
+
+    <main class="lg" id="sheet">
+      <p class="updated" data-i18n="legal.updated">Last updated 8 November 2026</p>
+      <h1 data-i18n="stats.h1" data-page-title>Site statistics</h1>
+      <p class="lead" data-i18n="stats.lead">This site counts its own visitors — no analytics vendor, no advertising cookie, no third server in the path. These are the same numbers it keeps for itself, shown live.</p>
+
+      <div id="tally" class="stat-grid" hidden>
+        <div class="stat"><b id="tViews"></b><span data-i18n="tally.views">page views</span></div>
+        <div class="stat"><b id="tGuests"></b><span data-i18n="tally.guests">visitors</span></div>
+        <div class="stat"><b id="tToday"></b><span data-i18n="tally.today">today</span></div>
+      </div>
+      <p id="statsOffline" class="stat-offline" data-i18n="stats.offline" hidden>The counter is not connected yet — once this site's own database is live, the numbers appear here.</p>
+
+      <section>
+        <h2 data-num="01" data-i18n="legal.p.countH">What the counter keeps</h2>
+        <p data-i18n="legal.p.countP">Once per day, Baghdad time: a salted hash of your ip address, the page that sent you here, and the device family your browser reports. The salt changes, so the same person cannot be followed from one day to the next.</p>
+      </section>
+
+      <ul class="tabs" data-i18n-aria="a11y.legal" aria-label="Privacy and terms">
+        <li><a href="/privacy" data-i18n="footer.privacy">Privacy</a></li>
+        <li><a href="/terms" data-i18n="footer.terms">Terms</a></li>
+      </ul>
+    </main>
+
+    <footer class="lg-foot">
+      <a href="/" data-i18n="notfound.home">Back home</a>
+      <a href="/#contact" data-i18n="notfound.contact">Contact</a>
+      <span class="mark"><span>&copy; 2026</span> · <span data-i18n="footer.place">Baghdad, Iraq · UTC+3</span></span>
+    </footer>
+  </div>
+
+<script src="/assets/js/tally.js?v=r28"></script>
+<script src="/assets/js/case.js?v=r28"></script>
+<script src="/assets/js/stats.js?v=r28"></script>
+</body>
+</html>

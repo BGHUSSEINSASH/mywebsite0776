@@ -6,14 +6,15 @@
 /* the versioned query strings have to match what the html asks for,
    or install-time caching stores one url and the page requests
    another and everything falls through to the network. */
-var V = '?v=r27';
-var CACHE = 'bgsash-v27';
+var V = '?v=r28';
+var CACHE = 'bgsash-v28';
 var SHELL = [
   '/',
   '/index.html',
   '/404.html',
   '/privacy',
   '/terms',
+  '/stats',
   '/manifest.webmanifest',
   '/assets/css/style.css' + V,
   '/assets/css/fonts.css' + V,
@@ -26,6 +27,7 @@ var SHELL = [
   '/assets/js/spec.js' + V,
   '/assets/js/case.js' + V,
   '/assets/js/tally.js' + V,
+  '/assets/js/stats.js' + V,
   '/assets/favicon.svg',
   '/assets/icons/icon-192.png',
   '/assets/icons/icon-512.png',

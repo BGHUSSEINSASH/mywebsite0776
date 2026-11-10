@@ -206,3 +206,36 @@ ul.clauses li::before {
     --line: CanvasText; --accent: LinkText; --accent-ink: Canvas; --accent-text: LinkText;
   }
 }
+
+/* ── the public stats page ────────────────────────────────── */
+/* three headline numbers, the same three the box under the clock shows.
+   the grid stays hidden until tally.js marks it live, so the page never
+   prints a zero it did not count — stats.js reveals the note instead. */
+.stat-grid {
+  display: grid; gap: 14px; margin: 26px 0 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+/* display:grid overrides the [hidden] UA rule, so both panels need this
+   stated plainly or a not-yet-live grid would show three zeros */
+.stat-grid[hidden], .stat-offline[hidden] { display: none; }
+.stat {
+  border: 1px solid var(--line); background: var(--card);
+  border-radius: 10px; padding: 18px 16px; text-align: center;
+}
+.stat b {
+  display: block; font-family: var(--f-display); font-weight: 500;
+  font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -.02em;
+  color: var(--fg); font-variant-numeric: tabular-nums;
+}
+.stat span {
+  display: block; margin-top: 8px; font-family: var(--f-mono);
+  font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted);
+}
+.stat-offline {
+  border: 1px dashed var(--line); border-radius: 10px; background: var(--card);
+  padding: 16px 18px; margin: 26px 0 8px; color: var(--muted);
+  font-family: var(--f-serif); font-size: 16px; line-height: 1.6;
+}
+@media (max-width: 560px) {
+  .stat-grid { grid-template-columns: 1fr; }
+}

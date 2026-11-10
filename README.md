@@ -1,6 +1,6 @@
 # BG Hussein Sash — Portfolio
 
-(current asset token: `r27` — see the cache-busting ritual below)
+(current asset token: `r28` — see the cache-busting ritual below)
 
 Studio spec-sheet portfolio for Hussein Majed Aidan (BG Hussein Sash) — IT Manager & Software Engineer, Baghdad.
 

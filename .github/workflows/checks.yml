@@ -60,8 +60,11 @@ jobs:
       - name: offline shell
         # the service worker promises to answer these urls with no network, so
         # each one has to exist for real — verify-shell walks the shell list
+        # the log goes to the runner's temp dir, never the workspace: a file
+        # written into the checkout is a file a deploy can pick up
         run: |
-          node tools/serve.js 8080 > serve.log 2>&1 &
+          log="$RUNNER_TEMP/serve.log"
+          node tools/serve.js 8080 > "$log" 2>&1 &
           server=$!
           trap 'kill "$server" 2>/dev/null || true' EXIT
           ready=""
@@ -69,7 +72,7 @@ jobs:
             if curl -fsS -o /dev/null http://127.0.0.1:8080/; then ready=yes; break; fi
             sleep 1
           done
-          if [ -z "$ready" ]; then cat serve.log; exit 1; fi
+          if [ -z "$ready" ]; then cat "$log"; exit 1; fi
           node tools/verify-shell.js http://127.0.0.1:8080
 
       - name: edge functions type-check

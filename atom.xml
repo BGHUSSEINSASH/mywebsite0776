@@ -3,7 +3,7 @@
   <id>tag:mywebsite0776.web.app,2026:/work</id>
   <title>BG Hussein Sash — case studies</title>
   <subtitle>Portfolio of Hussein Majed Aidan (BG Hussein Sash) — IT manager and software engineer in Baghdad, Iraq. ERP systems, full stack web, Flutter apps, servers and networks, with live links.</subtitle>
-  <updated>2026-11-10T17:56:25.057Z</updated>
+  <updated>2026-11-10T21:07:05.162Z</updated>
   <link href="https://mywebsite0776.web.app/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://mywebsite0776.web.app/" rel="alternate" type="text/html"/>
   <author><name>Hussein Majed Aidan</name></author>
@@ -12,7 +12,7 @@
     <title>SmartMaid — Home Services</title>
     <id>https://mywebsite0776.web.app/work/smartmaid</id>
     <link href="https://mywebsite0776.web.app/work/smartmaid" rel="alternate" type="text/html"/>
-    <updated>2026-11-10T17:56:25.048Z</updated>
+    <updated>2026-11-10T21:07:05.098Z</updated>
     <category term="Full Stack Web Development"/>
     <category term="Escrow payments"/>
     <category term="Voice search"/>
@@ -29,7 +29,7 @@ Result: Book in a minute with price and rating up front — money only moves whe
     <title>Mukallaf — Iraqi Tax System</title>
     <id>https://mywebsite0776.web.app/work/mukallaf</id>
     <link href="https://mywebsite0776.web.app/work/mukallaf" rel="alternate" type="text/html"/>
-    <updated>2026-11-10T17:56:25.055Z</updated>
+    <updated>2026-11-10T21:07:05.033Z</updated>
     <category term="Full Stack Web Development"/>
     <category term="7 tax modules"/>
     <category term="Arabic RTL"/>
@@ -45,7 +45,7 @@ Result: One Arabic platform where every return is calculated, generated and trac
     <title>Flossk — Iraqi Money Assistant</title>
     <id>https://mywebsite0776.web.app/work/flossk</id>
     <link href="https://mywebsite0776.web.app/work/flossk" rel="alternate" type="text/html"/>
-    <updated>2026-11-10T17:56:25.055Z</updated>
+    <updated>2026-11-10T21:07:04.900Z</updated>
     <category term="Mobile Apps — Flutter"/>
     <category term="Voice assistant (80+)"/>
     <category term="Offline-first"/>
@@ -61,7 +61,7 @@ Result: A 100% Arabic, offline-first money app: data stays on the device, everyt
     <title>Bookly — Bookings &amp; Stays</title>
     <id>https://mywebsite0776.web.app/work/bookly</id>
     <link href="https://mywebsite0776.web.app/work/bookly" rel="alternate" type="text/html"/>
-    <updated>2026-11-10T17:56:25.056Z</updated>
+    <updated>2026-11-10T21:07:04.836Z</updated>
     <category term="Full Stack Web Development"/>
     <category term="Wallet &amp; refunds"/>
     <category term="Supplier dashboard"/>
@@ -78,7 +78,7 @@ Result: Guests book and pay with a clear summary and get refunds to the wallet i
     <title>Ziona Passports — Servers &amp; CCTV</title>
     <id>https://mywebsite0776.web.app/work/ziona-passports</id>
     <link href="https://mywebsite0776.web.app/work/ziona-passports" rel="alternate" type="text/html"/>
-    <updated>2026-11-10T17:56:25.056Z</updated>
+    <updated>2026-11-10T21:07:05.162Z</updated>
     <category term="IT Infrastructure &amp; Networking"/>
     <category term="Windows Server"/>
     <category term="CCTV"/>
@@ -94,7 +94,7 @@ Result: Stable day-to-day operations with faster fault recovery across the offic
     <title>Hala Sat — Fiber Internet Support</title>
     <id>https://mywebsite0776.web.app/work/hala-sat</id>
     <link href="https://mywebsite0776.web.app/work/hala-sat" rel="alternate" type="text/html"/>
-    <updated>2026-11-10T17:56:25.057Z</updated>
+    <updated>2026-11-10T21:07:04.965Z</updated>
     <category term="IT Infrastructure &amp; Networking"/>
     <category term="Fiber Optic"/>
     <category term="CCNA"/>

@@ -102,7 +102,7 @@
 
   function loadLanguage(code) {
     if (words[code]) return Promise.resolve(words[code]);
-    return fetch('/assets/i18n/' + code + '.json?v=r26')
+    return fetch('/assets/i18n/' + code + '.json?v=r27')
       .then(function (r) { return r.ok ? r.json() : {}; })
       .catch(function (e) { console.warn('translation file missing:', code, e); return {}; })
       .then(function (tree) { words[code] = tree || {}; return words[code]; });

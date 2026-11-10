@@ -18,7 +18,11 @@
     11 the fonts are this origin's, each url hashed to its own file
     12 the machine-readable layer: feeds, llms files, profile.json, security.txt
     13 the faq counts the same in the page, the json-ld, the twelve languages
-       and the generated layer                                              */
+       and the generated layer
+    14 the apache rendering of the policy cannot drift or 500 a host
+    15 what a deploy publishes: the site, and no file git calls junk
+    16 the estimator and all twelve price cards say the same number
+    17 the exchange rates are dated, positive, and cover every currency offered */
 
 const fs = require('fs');
 const path = require('path');
@@ -26,6 +30,7 @@ const os = require('os');
 const crypto = require('crypto');
 const { execFileSync } = require('child_process');
 const { CSP, CSP_META, HEADERS, ADMIN_HEADERS } = require('./security-config');
+const { walk, gitJunk } = require('./shipset');
 const PAGES = require('./pages').PAGES;
 
 const ROOT = path.join(__dirname, '..');
@@ -445,7 +450,7 @@ const section = (text, heading) => {
 }
 check('faq: page, json-ld, twelve languages and the generated layer all count the same', faqBad);
 
-/* ── 12. the apache rendering ─────────────────────────────── */
+/* ── 14. the apache rendering ─────────────────────────────── */
 
 /* firebase.json is not the only host this site is published from. an Apache
    box — InfinityFree, a cPanel account, a VPS — gets the same policy from
@@ -532,6 +537,174 @@ if (!exists('.htaccess')) {
   if (!ig.includes('dist/**')) htBad.push('firebase.json does not ignore dist/** — a built package would deploy as a second copy of the site');
 }
 check('apache: .htaccess is the same policy as firebase.json, and cannot 500 a host', htBad);
+
+/* ── 15. the deploy publishes the site and nothing else ─────── */
+
+/* .gitignore and firebase.json's "ignore" are two lists nobody keeps in step,
+   and the one that wins is the one that publishes. a dev server's log reached
+   production this way, carrying the absolute path of the machine it was
+   written on — git hid it from every command that would have shown it, so
+   nothing in the normal workflow ever displayed the file that was live.
+
+   this walks the same set make-package.js walks, out of shipset.js, because a
+   gate with its own copy of the matcher can agree with itself and still be
+   wrong about the deploy. both directions are checked: junk that would ship,
+   and an ignore list broad enough to swallow the site. */
+const shipBad = [];
+const SHIP = walk(ROOT, firebase.hosting.ignore || []);
+gitJunk(ROOT, SHIP).forEach((j) => shipBad.push(j + ' is git junk that firebase.json would publish — add a matching pattern to its "ignore" list'));
+if (!SHIP.length) shipBad.push('the ship set is empty — the ignore list has swallowed the site');
+['index.html', '404.html', 'admin.html', 'service-worker.js', 'manifest.webmanifest',
+  'assets/css/style.css', 'assets/js/main.js', 'assets/js/tally.js', '.well-known/security.txt']
+  .forEach((must) => {
+    if (!SHIP.some((f) => f.rel === must)) shipBad.push(must + ' would not be deployed');
+  });
+check('deploy: the ship set is the site, and none of it is git junk', shipBad, SHIP.length + ' files');
+
+/* ── 16. one price, in the estimator and on every card ──────── */
+
+/* spec.js carries a comment promising the estimator can never undercut the
+   published table, and for a long time nothing tested the promise: TYPES.base
+   in the script and pricing.pNpr in the dictionary were two numbers in two
+   files that merely happened to agree. the estimator's own arithmetic makes
+   the equality exact — at default scope, standard speed and no addons it
+   returns base and nothing else — so a card saying one figure and a calculator
+   returning another is a false price on the thing being sold, in whichever of
+   the twelve languages the visitor is reading. */
+const priceBad = [];
+const spec = exists('assets/js/spec.js') ? read('assets/js/spec.js') : '';
+const dict = exists('assets/i18n/translations.json') ? JSON.parse(read('assets/i18n/translations.json')) : {};
+const LANGS = Object.keys(dict).filter((l) => dict[l] && dict[l].pricing);
+if (!spec) priceBad.push('assets/js/spec.js is missing');
+if (!LANGS.length) priceBad.push('translations.json has no language branch carrying pricing');
+
+/* a price is locale-shaped, not numeric: "1 100 $", "١١٠٠ $", "1100 USD",
+   "$1100부터". reading the value out means undoing the digits and the grouping
+   and nothing else — the surrounding words belong to the language. */
+const AR_DIGITS = '٠١٢٣٤٥٦٧٨٩';
+function priceValue(s) {
+  if (s === undefined || s === null) return NaN;
+  const latin = String(s).replace(/[٠-٩]/g, (d) => AR_DIGITS.indexOf(d));
+  const m = latin.replace(/[\u0020\u00A0\u202F\u2009]/g, '').match(/\d+/);
+  return m ? Number(m[0]) : NaN;
+}
+
+LANGS.forEach((l) => {
+  // every card has to carry a figure; one that says "Quote" cannot be compared
+  for (let n = 1; n <= 8; n++) {
+    const k = 'p' + n + 'pr';
+    const s = (dict[l].pricing || {})[k];
+    if (s === undefined) priceBad.push(l + '.' + k + ' is missing');
+    else if (isNaN(priceValue(s))) priceBad.push(l + '.' + k + ' is not a price: ' + JSON.stringify(s));
+  }
+});
+
+const TYPES_RE = /\{\s*id:\s*'([a-z]+)'[^}]*?base:\s*(\d+)[^}]*?nameKey:\s*'(pricing\.p\dt)'/g;
+const types = [];
+let tm;
+while ((tm = TYPES_RE.exec(spec)) !== null) types.push({ id: tm[1], base: Number(tm[2]), nameKey: tm[3] });
+if (spec && !types.length) priceBad.push('no TYPES entry could be read out of assets/js/spec.js — the extractor has drifted from the file it reads');
+
+types.forEach((t) => {
+  const pk = t.nameKey.replace(/^pricing\./, '').replace(/t$/, 'pr');
+  LANGS.forEach((l) => {
+    const s = (dict[l].pricing || {})[pk];
+    if (s === undefined) { priceBad.push(t.id + ': ' + l + '.pricing.' + pk + ' is missing, so the card and the estimator cannot be compared'); return; }
+    const v = priceValue(s);
+    if (isNaN(v)) { priceBad.push(t.id + ': ' + l + '.pricing.' + pk + ' is not a number the estimator can be checked against: ' + JSON.stringify(s)); return; }
+    if (v !== t.base) priceBad.push(t.id + ': the estimator charges ' + t.base + ' but ' + l + '.' + pk + ' advertises ' + v);
+  });
+});
+
+/* the "domain + hosting" addon and the domain + hosting card are the same
+   service. they were 80 and 30. */
+const ADDON_RE = /\{\s*id:\s*'([a-z]+)',\s*pct:\s*[\d.]+,\s*flat:\s*(\d+)/g;
+const addons = {};
+let am;
+while ((am = ADDON_RE.exec(spec)) !== null) addons[am[1]] = Number(am[2]);
+if (spec && addons.host === undefined) priceBad.push('the host addon could not be read out of assets/js/spec.js');
+if (addons.host !== undefined) {
+  LANGS.forEach((l) => {
+    const v = priceValue((dict[l].pricing || {}).p7pr);
+    if (!isNaN(v) && v !== addons.host) priceBad.push('the estimator sells domain + hosting for ' + addons.host + ' while ' + l + '.pricing.p7pr sells it for ' + v);
+  });
+}
+
+/* the card markup carries an english fallback inside each <b data-i18n>:
+   that is what a no-js visitor and every crawler read before the json lands.
+   it is a second copy of the en price, and a second copy can drift — it did,
+   sitting at $150 while the json said $350. so it is checked against en too. */
+if (exists('index.html')) {
+  const html = read('index.html');
+  const en = dict.en && dict.en.pricing ? dict.en.pricing : {};
+  for (let n = 1; n <= 8; n++) {
+    const k = 'p' + n + 'pr';
+    const m = html.match(new RegExp('data-i18n="pricing\\.' + k + '">([^<]*)<'));
+    if (!m) { priceBad.push('index.html has no pricing.' + k + ' card fallback'); continue; }
+    if (en[k] !== undefined && m[1] !== en[k]) {
+      priceBad.push('index.html card fallback for ' + k + ' is ' + JSON.stringify(m[1]) +
+        ' but en.pricing.' + k + ' is ' + JSON.stringify(en[k]) + ' — no-js visitors and crawlers see the old number');
+    }
+  }
+}
+
+check('prices: the estimator and all twelve cards say the same number', priceBad,
+  types.length + ' services x ' + LANGS.length + ' languages');
+
+/* ── 17. the exchange rate carries the day it was read ──────── */
+
+/* a hardcoded rate is not wrong for being hardcoded — fetching one would put a
+   third party in the page load and force connect-src open for it. it is wrong
+   for going stale quietly, which is what happened: IQD sat at 1310 while the
+   Baghdad market moved to 1689, so every visitor who picked the dinar was
+   shown a figure ~29% under the truth, and nothing in the repo said when the
+   number had been true. the date beside it is what turns that into a failing
+   check.
+
+   the fuse is deliberately long. a short one reddens ci over a number nobody
+   was touching, which on a one-person project is a blocked deploy with no one
+   to unblock it. */
+const rateBad = [];
+let rateAge = '';
+const drm = spec.match(/RATE_DATE\s*=\s*'(\d{4}-\d{2}-\d{2})'/);
+if (!spec) rateBad.push('assets/js/spec.js is missing');
+else if (!drm) rateBad.push('assets/js/spec.js has no RATE_DATE — the rates cannot be dated, so they can go stale invisibly');
+else {
+  const at = Date.parse(drm[1] + 'T00:00:00Z');
+  if (isNaN(at)) rateBad.push('RATE_DATE is not a date: ' + drm[1]);
+  else {
+    const days = Math.floor((Date.now() - at) / 86400000);
+    if (days < 0) rateBad.push('RATE_DATE is in the future: ' + drm[1]);
+    else if (days > 180) rateBad.push('the exchange rates were read ' + days + ' days ago (' + drm[1] + ') — check the market rate and set RATE_DATE in assets/js/spec.js to today');
+    else rateAge = 'read ' + days + ' day(s) ago, ' + drm[1];
+  }
+}
+
+const RATES_HAVE = {};
+const rrm = spec.match(/var RATES\s*=\s*\{([^}]*)\}/);
+if (spec && !rrm) rateBad.push('no RATES table in assets/js/spec.js');
+if (rrm) {
+  rrm[1].split(',').forEach((pair) => {
+    const p = pair.split(':');
+    if (p.length === 2) RATES_HAVE[p[0].trim()] = Number(p[1].trim());
+  });
+  if (RATES_HAVE.USD !== 1) rateBad.push('RATES.USD must be 1 — every other rate is quoted per dollar');
+  Object.keys(RATES_HAVE).forEach((c) => {
+    if (!(RATES_HAVE[c] > 0)) rateBad.push('RATES.' + c + ' is not a positive number: ' + RATES_HAVE[c]);
+  });
+  /* money() falls back to 1 for a currency it does not know, so a name in the
+     selector without a rate shows the dollar figure with a lira sign on it */
+  const sm = spec.match(/\[((?:\s*'[A-Z]{3}'\s*,)+\s*'[A-Z]{3}'\s*)\]\.forEach/);
+  if (sm) {
+    (sm[1].match(/'([A-Z]{3})'/g) || []).map((x) => x.replace(/'/g, '')).forEach((c) => {
+      if (RATES_HAVE[c] === undefined) rateBad.push('the currency selector offers ' + c + ' but RATES has no entry — picking it would print the dollar figure with the wrong symbol');
+    });
+  } else {
+    rateBad.push('the currency selector list could not be read out of assets/js/spec.js');
+  }
+}
+
+check('rates: dated, positive, and one for every currency offered', rateBad, rateAge);
 
 /* ── report ───────────────────────────────────────────────── */
 

@@ -49,24 +49,21 @@ is written in 12 languages: every page takes `?lang=` with one of
 
 Every project gets a fixed written quote before work starts — no hourly surprises. These are honest starting points; the final price depends on scope.
 
-- Business Website — $150: 5–7 pages, Arabic + English, contact form, fast hosting, delivered in ~2 weeks.
-- Platform / E-commerce — $400: Accounts, payments, admin dashboards, full RTL — built like Mukallaf or Bookly.
-- Mobile App (Flutter) — $300: iOS + Android from one codebase, clean UI, store submission included.
-- Server & IT Setup — $100: Windows/Linux servers, office network, CCTV — installed, secured and documented.
-- Social Media Management — $50/mo: Monthly content plan, designs, posting and Meta ads management for your pages.
-- Logo & Brand Design — $75: Logo, color system and ready-to-use templates for print and social.
-- Domain & Hosting — $30: Domain purchase, DNS, business email addresses and first-year hosting setup.
-- Custom / ERP — Quote: Custom software and ERP modules — scoped and quoted after a short call.
+- Business Website — $350: 5–7 pages, Arabic + English, contact form, fast hosting, delivered in ~2 weeks.
+- Platform / E-commerce — $1100: Accounts, payments, admin dashboards, full RTL — built like Mukallaf or Bookly.
+- Mobile App (Flutter) — $850: iOS + Android from one codebase, clean UI, store submission included.
+- Server & IT Setup — $200: Windows/Linux servers, office network, CCTV — installed, secured and documented.
+- Social Media Management — $120/mo: Monthly content plan, designs, posting and Meta ads management for your pages.
+- Logo & Brand Design — $175: Logo, color system and ready-to-use templates for print and social.
+- Domain & Hosting — $60: Domain purchase, DNS, business email addresses and first-year hosting setup.
+- Custom / ERP — $2500: Custom software and ERP modules — scoped and quoted after a short call.
 
 ## Small projects
 
-5 of the 8 published prices are $150 or under — the same written fixed quote, the same preview link and the same handover as a full platform.
+2 of the 8 published prices are $150 or under — the same written fixed quote, the same preview link and the same handover as a full platform.
 
-- Business Website — $150: 5–7 pages, Arabic + English, contact form, fast hosting, delivered in ~2 weeks.
-- Server & IT Setup — $100: Windows/Linux servers, office network, CCTV — installed, secured and documented.
-- Social Media Management — $50/mo: Monthly content plan, designs, posting and Meta ads management for your pages.
-- Logo & Brand Design — $75: Logo, color system and ready-to-use templates for print and social.
-- Domain & Hosting — $30: Domain purchase, DNS, business email addresses and first-year hosting setup.
+- Social Media Management — $120/mo: Monthly content plan, designs, posting and Meta ads management for your pages.
+- Domain & Hosting — $60: Domain purchase, DNS, business email addresses and first-year hosting setup.
 
 ## Questions answered on the page
 

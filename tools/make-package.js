@@ -17,6 +17,7 @@ const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
 const zip = require('./zip');
+const { walk, gitJunk } = require('./shipset');
 
 const root = path.resolve(__dirname, '..');
 
@@ -39,48 +40,6 @@ const IGNORE = (firebase.hosting.ignore || []).slice();
 if (!IGNORE.includes('dist/**')) IGNORE.push('dist/**');
 if (!IGNORE.includes('.htaccess')) IGNORE.push('.htaccess');
 
-/* a small glob matcher: the ignore list only ever uses *, ** and literals,
-   and pulling in a dependency to match three patterns is not a trade worth
-   making on a project with no build step. */
-function toRegExp(pattern) {
-  let re = '';
-  for (let i = 0; i < pattern.length; i++) {
-    const c = pattern[i];
-    if (c === '*') {
-      if (pattern[i + 1] === '*') {
-        // ** swallows whole path segments, including nothing at all
-        if (pattern[i + 2] === '/') { re += '(?:.*/)?'; i += 2; } else { re += '.*'; i += 1; }
-      } else {
-        re += '[^/]*';
-      }
-    } else if ('.+^${}()|[]\\'.indexOf(c) > -1) {
-      re += '\\' + c;
-    } else if (c === '?') {
-      re += '[^/]';
-    } else {
-      re += c;
-    }
-  }
-  return new RegExp('^' + re + '$');
-}
-
-const RES = IGNORE.map(toRegExp);
-
-function ignored(rel) {
-  return RES.some((re) => re.test(rel));
-}
-
-function walk(dir, rel, out) {
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    const childRel = rel ? rel + '/' + entry.name : entry.name;
-    if (ignored(childRel)) continue;
-    const abs = path.join(dir, entry.name);
-    if (entry.isDirectory()) walk(abs, childRel, out);
-    else if (entry.isFile()) out.push({ abs: abs, rel: childRel });
-  }
-  return out;
-}
-
 /* the .htaccess is excluded from firebase's deploy but is the whole point
    of this package, so it comes back in here — and it is regenerated first,
    so a package can never ship a config older than the policy it renders. */
@@ -89,7 +48,19 @@ execFileSync(process.execPath, [path.join(root, 'tools', 'make-htaccess.js')], {
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(OUT, { recursive: true });
 
-const files = walk(root, '', []);
+const files = walk(root, IGNORE);
+
+/* the failure this guards against already happened: .gitignore hides a file
+   from every git command, firebase.json's ignore list never heard of it, and
+   a dev server's log went to production carrying the absolute path of the
+   machine it was written on. the two lists are separate and nothing but this
+   check makes them agree. */
+const junk = gitJunk(root, files);
+if (junk.length) {
+  console.error('refusing to package: ' + junk.length + ' file(s) are git junk that firebase.json would publish');
+  junk.forEach((j) => console.error('  ' + j + '   ← add a matching pattern to firebase.json "ignore"'));
+  process.exit(1);
+}
 files.push({ abs: path.join(root, '.htaccess'), rel: '.htaccess' });
 
 let bytes = 0;

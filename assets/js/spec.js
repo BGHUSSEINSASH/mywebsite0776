@@ -27,7 +27,16 @@
   // baghdad is utc+3 all year — no dst, so a fixed offset is exact
   function baghdad() { return new Date(Date.now() + 3 * 3600 * 1000); }
 
-  var RATES = { USD: 1, IQD: 1310, EUR: 0.92, TRY: 34 };
+  /* one rate per currency, plus the day it was read. a hardcoded rate goes
+     stale in silence and this one did — IQD sat at 1310 while the market
+     moved to 1689, so an Iraqi visitor was shown a figure ~29% under the
+     truth, and TRY sat at 34 against a real ~50. the date is what turns the
+     next occurrence into a failing check instead of a wrong number. */
+  var RATE_DATE = '2026-11-10';
+  /* IQD is the parallel-market rate, not the central bank's official 1510:
+     work is bought and settled at the market rate, so that is the only one a
+     visitor can act on. the gap between the two is ~12%. */
+  var RATES = { USD: 1, IQD: 1689, EUR: 0.892, TRY: 50 };
   var SYM = { USD: '$', IQD: 'IQD ', EUR: '€', TRY: '₺ ' };
 
   function money(usd, cur) {
@@ -36,15 +45,23 @@
   }
 
   /* ── model: one entry per orderable thing, priced at the published
-     "from" figures so the estimator can never undercut the price table */
+     "from" figures so the estimator can never undercut the price table.
+     that used to be a promise with nothing behind it — base here and
+     pricing.pNpr in the dictionary were two numbers in two files. the gate
+     in check-security.js now reads both and fails when they disagree, in
+     any of the twelve languages.
+
+     prices are the low end of the iraqi market, deliberately: published
+     ranges come from agencies with overheads, and a solo developer who
+     quotes agency rates loses the work without gaining the margin. */
 
   var TYPES = [
-    { id: 'website',  base: 150, per: 12, min: 3,  max: 25, step: 1, def: 5,  w0: 1, wp: 0.18, unitKey: 'est.uPages',     ufb: 'pages',     nameKey: 'pricing.p1t', nameFb: 'Business Website' },
-    { id: 'platform', base: 400, per: 35, min: 3,  max: 20, step: 1, def: 6,  w0: 2, wp: 0.30, unitKey: 'est.uFeatures',  ufb: 'modules',   nameKey: 'pricing.p2t', nameFb: 'Platform / E-commerce' },
-    { id: 'app',      base: 300, per: 60, min: 4,  max: 30, step: 1, def: 8,  w0: 2, wp: 0.22, unitKey: 'est.uScreens',   ufb: 'screens',   nameKey: 'pricing.p3t', nameFb: 'Mobile App (Flutter)' },
-    { id: 'server',   base: 100, per: 40, min: 1,  max: 25, step: 1, def: 4,  w0: 1, wp: 0.20, unitKey: 'est.uDevices',   ufb: 'devices',   nameKey: 'pricing.p4t', nameFb: 'Server & IT Setup' },
-    { id: 'design',   base: 75,  per: 25, min: 1,  max: 20, step: 1, def: 3,  w0: 1, wp: 0.12, unitKey: 'est.uCreatives', ufb: 'items',     nameKey: 'pricing.p6t', nameFb: 'Logo & Brand Design' },
-    { id: 'social',   base: 50,  per: 25, min: 1,  max: 6,  step: 1, def: 2,  w0: 1, wp: 0.00, unitKey: 'est.uPlatforms', ufb: 'platforms', nameKey: 'pricing.p5t', nameFb: 'Social Media Management', monthly: true }
+    { id: 'website',  base: 350,  per: 28,  min: 3,  max: 25, step: 1, def: 5,  w0: 1, wp: 0.18, unitKey: 'est.uPages',     ufb: 'pages',     nameKey: 'pricing.p1t', nameFb: 'Business Website' },
+    { id: 'platform', base: 1100, per: 95,  min: 3,  max: 20, step: 1, def: 6,  w0: 2, wp: 0.30, unitKey: 'est.uFeatures',  ufb: 'modules',   nameKey: 'pricing.p2t', nameFb: 'Platform / E-commerce' },
+    { id: 'app',      base: 850,  per: 170, min: 4,  max: 30, step: 1, def: 8,  w0: 2, wp: 0.22, unitKey: 'est.uScreens',   ufb: 'screens',   nameKey: 'pricing.p3t', nameFb: 'Mobile App (Flutter)' },
+    { id: 'server',   base: 200,  per: 80,  min: 1,  max: 25, step: 1, def: 4,  w0: 1, wp: 0.20, unitKey: 'est.uDevices',   ufb: 'devices',   nameKey: 'pricing.p4t', nameFb: 'Server & IT Setup' },
+    { id: 'design',   base: 175,  per: 60,  min: 1,  max: 20, step: 1, def: 3,  w0: 1, wp: 0.12, unitKey: 'est.uCreatives', ufb: 'items',     nameKey: 'pricing.p6t', nameFb: 'Logo & Brand Design' },
+    { id: 'social',   base: 120,  per: 60,  min: 1,  max: 6,  step: 1, def: 2,  w0: 1, wp: 0.00, unitKey: 'est.uPlatforms', ufb: 'platforms', nameKey: 'pricing.p5t', nameFb: 'Social Media Management', monthly: true }
   ];
 
   // chips borrow the price-table names so the estimator can never
@@ -57,14 +74,17 @@
     { id: 'prio', price: 1.5,  weeks: 0.65, key: 'est.prio', fb: 'Priority' }
   ];
 
+  /* scaled with the bases, except "host": it is the same thing the
+     domain + hosting card sells, so it carries the card's number and the
+     gate holds the two together. it was 80 against a card that said 30. */
   var ADDONS = [
     { id: 'i18n',   pct: 0.12, flat: 0,   key: 'est.aI18n',   fb: 'Arabic + English' },
-    { id: 'admin',  pct: 0,    flat: 120, key: 'est.aAdmin',  fb: 'Admin dashboard' },
-    { id: 'pay',    pct: 0,    flat: 150, key: 'est.aPay',    fb: 'Payments / escrow' },
-    { id: 'seo',    pct: 0,    flat: 90,  key: 'est.aSeo',    fb: 'SEO + analytics' },
-    { id: 'motion', pct: 0,    flat: 110, key: 'est.aMotion', fb: 'Motion design' },
-    { id: 'host',   pct: 0,    flat: 80,  key: 'est.aHost',   fb: 'Domain + hosting 1y' },
-    { id: 'care',   pct: 0,    flat: 150, key: 'est.aCare',   fb: '3-month support' }
+    { id: 'admin',  pct: 0,    flat: 300, key: 'est.aAdmin',  fb: 'Admin dashboard' },
+    { id: 'pay',    pct: 0,    flat: 380, key: 'est.aPay',    fb: 'Payments / escrow' },
+    { id: 'seo',    pct: 0,    flat: 225, key: 'est.aSeo',    fb: 'SEO + analytics' },
+    { id: 'motion', pct: 0,    flat: 275, key: 'est.aMotion', fb: 'Motion design' },
+    { id: 'host',   pct: 0,    flat: 60,  key: 'est.aHost',   fb: 'Domain + hosting 1y' },
+    { id: 'care',   pct: 0,    flat: 375, key: 'est.aCare',   fb: '3-month support' }
   ];
 
   function typeById(id) {

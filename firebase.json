@@ -10,8 +10,13 @@
       "supabase/**",
       ".git/**",
       ".github/**",
+      ".gitignore",
+      ".gitattributes",
       ".htaccess",
       "dist/**",
+      "**/*.log",
+      "**/.DS_Store",
+      "**/Thumbs.db",
       "README.md"
     ],
     "cleanUrls": true,

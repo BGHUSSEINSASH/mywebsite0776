@@ -1,7 +1,7 @@
 {
   "site": "https://mywebsite0776.web.app/",
   "generatedBy": "tools/build-cases.js",
-  "updated": "2026-11-10T17:56:25.057Z",
+  "updated": "2026-11-10T21:07:05.162Z",
   "identity": {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -335,69 +335,54 @@
     "tiers": [
       {
         "title": "Business Website",
-        "price": "$150",
+        "price": "$350",
         "desc": "5–7 pages, Arabic + English, contact form, fast hosting, delivered in ~2 weeks."
       },
       {
         "title": "Platform / E-commerce",
-        "price": "$400",
+        "price": "$1100",
         "desc": "Accounts, payments, admin dashboards, full RTL — built like Mukallaf or Bookly."
       },
       {
         "title": "Mobile App (Flutter)",
-        "price": "$300",
+        "price": "$850",
         "desc": "iOS + Android from one codebase, clean UI, store submission included."
       },
       {
         "title": "Server & IT Setup",
-        "price": "$100",
+        "price": "$200",
         "desc": "Windows/Linux servers, office network, CCTV — installed, secured and documented."
       },
       {
         "title": "Social Media Management",
-        "price": "$50/mo",
+        "price": "$120/mo",
         "desc": "Monthly content plan, designs, posting and Meta ads management for your pages."
       },
       {
         "title": "Logo & Brand Design",
-        "price": "$75",
+        "price": "$175",
         "desc": "Logo, color system and ready-to-use templates for print and social."
       },
       {
         "title": "Domain & Hosting",
-        "price": "$30",
+        "price": "$60",
         "desc": "Domain purchase, DNS, business email addresses and first-year hosting setup."
       },
       {
         "title": "Custom / ERP",
-        "price": "Quote",
+        "price": "$2500",
         "desc": "Custom software and ERP modules — scoped and quoted after a short call."
       }
     ],
     "smallProjects": [
       {
-        "title": "Business Website",
-        "price": "$150",
-        "desc": "5–7 pages, Arabic + English, contact form, fast hosting, delivered in ~2 weeks."
-      },
-      {
-        "title": "Server & IT Setup",
-        "price": "$100",
-        "desc": "Windows/Linux servers, office network, CCTV — installed, secured and documented."
-      },
-      {
         "title": "Social Media Management",
-        "price": "$50/mo",
+        "price": "$120/mo",
         "desc": "Monthly content plan, designs, posting and Meta ads management for your pages."
       },
       {
-        "title": "Logo & Brand Design",
-        "price": "$75",
-        "desc": "Logo, color system and ready-to-use templates for print and social."
-      },
-      {
         "title": "Domain & Hosting",
-        "price": "$30",
+        "price": "$60",
         "desc": "Domain purchase, DNS, business email addresses and first-year hosting setup."
       }
     ]

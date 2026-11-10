@@ -2,9 +2,12 @@
 // The visitor tally — the whole counter behind the numbers under the clock.
 //
 //   public call  POST { path, lang, ref }   -> writes one hit, returns
-//                { ok, views, visitors, today } for the homepage
+//                { ok, views, visitors, today, avail } for the homepage
 //   admin call   POST { password, days? }   -> totals + the full breakdown:
 //                day series, top pages, referrers, languages, devices, browsers
+//
+// `avail` is the availability pill: the desk sets it through update-request
+// and every page reads it back here, so one request carries both.
 //
 // Nothing leaves this project. There is no third-party endpoint in this
 // path, no cookie and no fingerprint: a visitor is stored as
@@ -30,6 +33,9 @@ const cors = {
 };
 
 const LANGS = ["en", "ar", "ku", "tr", "fr", "es", "de", "ru", "zh", "ja", "ko", "hi"];
+
+// the availability pill: 'auto' means the clock on the page decides
+const AVAILS = ["auto", "open", "closed"];
 
 // a page view is a person in a browser. crawlers, scripts and uptime
 // checks are not counted at all — an inflated counter is worse than a
@@ -145,6 +151,19 @@ function adminClient() {
   return createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
 }
 
+// one row, read on every call: the availability pill the page paints with.
+// a missing table or a bad value answers 'auto', which is what the page did
+// before the desk could set it — so the counter never depends on it.
+async function availOf(admin: ReturnType<typeof adminClient>) {
+  try {
+    const { data } = await admin.from("avail_state").select("state,note").eq("id", 1).maybeSingle();
+    const state = data && AVAILS.indexOf(String(data.state)) > -1 ? String(data.state) : "auto";
+    return { state, note: String(data?.note ?? "").slice(0, 120) };
+  } catch {
+    return { state: "auto", note: "" };
+  }
+}
+
 // read the numbers without writing — what a bot or a flooded ip gets
 async function readTotals(admin: ReturnType<typeof adminClient>, day: string) {
   const [t, d] = await Promise.all([
@@ -194,7 +213,7 @@ async function breakdown(admin: ReturnType<typeof adminClient>, body: any) {
     return extra ? extra(base) : base;
   };
 
-  const [totalsRow, series, paths, referrers, langs, devices, browsers, newest] = await Promise.all([
+  const [totalsRow, series, paths, referrers, langs, devices, browsers, newest, avail] = await Promise.all([
     admin.from("site_totals").select("views,visitors,updated_at").eq("id", 1).maybeSingle(),
     admin.from("site_days").select("day,views,visitors").gte("day", since).order("day", { ascending: false }).limit(want),
     grouped("path"),
@@ -203,6 +222,7 @@ async function breakdown(admin: ReturnType<typeof adminClient>, body: any) {
     grouped("device"),
     grouped("browser"),
     admin.from("site_visitors").select("first_day").order("first_day", { ascending: false }).limit(1).maybeSingle(),
+    availOf(admin),
   ]);
 
   return {
@@ -212,6 +232,7 @@ async function breakdown(admin: ReturnType<typeof adminClient>, body: any) {
     days: want,
     totals: totalsRow.data ?? { views: 0, visitors: 0 },
     lastSeen: newest.data?.first_day ?? null,
+    avail,
     series: series.data ?? [],
     paths: paths.data ?? [],
     referrers: referrers.data ?? [],
@@ -259,19 +280,26 @@ Deno.serve(async (req) => {
   const ua = req.headers.get("user-agent") ?? "";
 
   try {
+    // the pill travels with the counter: one call, both numbers and the
+    // availability state, so the page never asks twice
+    const avail = await availOf(admin);
+
     // a crawler or a flood is answered with the real numbers but writes
     // nothing, so neither of them can move the counter
-    if (BOT.test(ua) || !ua || tooMany(ip)) return json(await readTotals(admin, day));
+    if (BOT.test(ua) || !ua || tooMany(ip)) return json({ ...(await readTotals(admin, day)), avail });
 
     const host = (req.headers.get("origin") ?? "").replace(/^https?:\/\//, "").replace(/^www\./, "");
     const key = await visitorKey(ip, day);
-    return json(await record(admin, day, key, {
-      path: cleanPath(body.path),
-      lang: cleanLang(body.lang),
-      ref: cleanRef(body.ref, host),
-      device: deviceOf(ua),
-      browser: browserOf(ua),
-    }));
+    return json({
+      ...(await record(admin, day, key, {
+        path: cleanPath(body.path),
+        lang: cleanLang(body.lang),
+        ref: cleanRef(body.ref, host),
+        device: deviceOf(ua),
+        browser: browserOf(ua),
+      })),
+      avail,
+    });
   } catch {
     return json({ error: "server" }, 500);
   }

@@ -705,3 +705,58 @@ html[lang="hi"] .badge text { font-family: "IBM Plex Mono", monospace; }
   .work-pin { overflow-x: auto; }
   .track { transform: none !important; }
 }
+
+/* ---------- Contrast, forced colors ----------
+   a forced palette throws translucency and shadows away, and every hairline
+   here is drawn with a translucent token — so rather than redraw the sheet,
+   the tokens are handed the colours the os picked, at the same thicknesses.
+   nothing in these two blocks moves a box: they only decide what a line is
+   drawn with, and only for a visitor who asked the os for it. */
+@media (prefers-contrast: more) {
+  :root { --muted: #24252b; --line: rgba(16, 17, 19, .45); }
+  :root[data-theme="dark"] { --muted: #dedbd2; --line: rgba(236, 233, 223, .45); }
+  :focus-visible { outline-width: 3px; }
+}
+
+@media (forced-colors: active) {
+  :root, :root[data-theme="dark"] {
+    --bg: Canvas; --fg: CanvasText; --muted: CanvasText; --card: Canvas;
+    --line: CanvasText; --accent: LinkText; --accent-ink: Canvas; --accent-text: LinkText;
+  }
+  /* the timeline dot was lifted off the line by two box-shadows, which a
+     forced palette drops; a border of the same width keeps its place */
+  .exp-item::before { box-shadow: none; border: 1px solid CanvasText; }
+  /* the custom cursor follows the pointer and the page hides the real one
+     with cursor:none. a forced palette can turn that overlay's background
+     into Canvas — an invisible pointer — so the os cursor comes back and the
+     overlay goes away */
+  html.has-cursor .cursor { display: none; }
+  html.has-cursor a, html.has-cursor button, html.has-cursor .card,
+  html.has-cursor select { cursor: auto; }
+}
+
+/* ============================================================
+   A newer copy is ready
+   the service worker raises this bar instead of replacing the page
+   under the reader. nothing on the page moves for it: fixed, out of
+   the flow, and to the side so the centred toast keeps its spot.
+   ============================================================ */
+.sw-update {
+  position: fixed; inset-inline-end: 20px; bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  z-index: 140; display: flex; align-items: center; gap: 10px; max-width: min(86vw, 420px);
+  padding: 10px 14px; border: 1px solid var(--line); border-radius: 999px;
+  background: var(--card); color: var(--fg);
+  font-family: var(--f-mono); font-size: 12px; letter-spacing: .02em;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, .24);
+}
+.sw-update > span { min-width: 0; }
+.sw-update button {
+  flex: none; font-family: var(--f-mono); font-size: 11px; text-transform: uppercase;
+  letter-spacing: .06em; padding: 5px 11px; cursor: pointer;
+  border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--fg);
+}
+.sw-update button:hover, .sw-update button:focus-visible { border-color: var(--fg); }
+.sw-update .sw-x { padding: 5px 8px; border-color: transparent; color: var(--muted); }
+@media (max-width: 560px) {
+  .sw-update { inset-inline: 14px; justify-content: center; border-radius: 18px; }
+}

@@ -55,8 +55,7 @@ async function check(list, label) {
      pages shipped another project's screenshot for weeks. the rule that
      catches it is that the file has to be named after the page using it. */
   function shotOwnership() {
-    const pages = ['index.html', '404.html', 'admin.html']
-      .concat(fs.readdirSync(path.join(ROOT, 'work')).map((f) => 'work/' + f));
+    const pages = require('./pages').PAGES;
     const out = [];
     for (const rel of pages) {
       const html = fs.readFileSync(path.join(ROOT, rel), 'utf8');
@@ -87,6 +86,27 @@ async function check(list, label) {
 
   console.log(`\nmanifest  name=${mf.name}  icons=${(mf.icons || []).length}  shortcuts=${(mf.shortcuts || []).length}  screenshots=${(mf.screenshots || []).length}`);
   problems.forEach((p) => console.log('  BAD  ' + p));
+
+  /* the machine-readable layer is not in the offline shell — a feed is not a
+     page — but it is the only thing a crawler or a model reads without
+     running javascript, so it has to answer for real, with the content type
+     a parser expects rather than text/html. */
+  const MACHINE = ['/feed.xml', '/atom.xml', '/sitemap.xml', '/robots.txt', '/llms.txt', '/llms-full.txt', '/api/profile.json', '/.well-known/security.txt'];
+  const TYPES = { '.xml': 'xml', '.json': 'json', '.txt': 'plain' };
+  const rows = await Promise.all(MACHINE.map(async (u) => {
+    try {
+      const r = await fetch(BASE + u);
+      const type = r.headers.get('content-type') || '';
+      const want = TYPES[u.slice(u.lastIndexOf('.'))] || '';
+      const kind = want && !type.includes(want) ? '  wrong type: ' + type : '';
+      return [u, r.status, kind];
+    } catch (e) { return [u, 'ERR', '']; }
+  }));
+  console.log(`\nmachine-readable layer (${MACHINE.length})`);
+  rows.forEach(([u, c, kind]) => {
+    console.log('  ' + (c >= 200 && c < 400 && !kind ? 'ok ' : 'BAD') + '  ' + c + '  ' + u + kind);
+    if (!(c >= 200 && c < 400) || kind) problems.push('served: ' + u + ' ' + c + kind);
+  });
 
   console.log('\n' + (bad.length === 0 && problems.length === 0 ? 'PASS' : 'FAIL'));
   process.exitCode = bad.length === 0 && problems.length === 0 ? 0 : 1;

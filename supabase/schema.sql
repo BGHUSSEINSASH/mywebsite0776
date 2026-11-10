@@ -22,6 +22,18 @@ create table if not exists public.service_requests (
   notes       text                         -- admin-only notes
 );
 
+-- where the visitor came from, stored beside the request so the inbox can
+-- answer "did the instagram link or the google search bring him" without
+-- a second tracker anywhere on the site. the browser sends only the four
+-- fields below, the utm ones read off the url and the referrer reduced to
+-- its host — no path, no query, no cookie id.
+alter table public.service_requests add column if not exists source     text;   -- utm_source
+alter table public.service_requests add column if not exists medium     text;   -- utm_medium
+alter table public.service_requests add column if not exists campaign   text;   -- utm_campaign
+alter table public.service_requests add column if not exists referrer   text;   -- outside host only
+alter table public.service_requests add column if not exists updated_at timestamptz not null default now();
+create index if not exists service_requests_source_idx on public.service_requests (source, created_at desc);
+
 -- ── contact form messages ──────────────────────────────────
 create table if not exists public.contact_messages (
   id          uuid primary key default gen_random_uuid(),
@@ -33,6 +45,19 @@ create table if not exists public.contact_messages (
   status      text not null default 'new',
   ip_hash     text
 );
+
+-- ── availability, decided by him rather than by the clock ────
+-- the pill in the hero normally reads the Baghdad working hours. a state
+-- set here wins over the clock until it is put back to 'auto', so "fully
+-- booked this month" can be said without touching the code. one row, and
+-- the note is his own words (the function caps it at 120 characters).
+create table if not exists public.avail_state (
+  id         int primary key check (id = 1),
+  state      text not null default 'auto',          -- auto|open|closed
+  note       text,
+  updated_at timestamptz not null default now()
+);
+insert into public.avail_state (id, state) values (1, 'auto') on conflict (id) do nothing;
 
 -- ── rate limit: max 5 inserts per ip per hour ──────────────
 create table if not exists public.rate_log (
@@ -46,6 +71,9 @@ create index if not exists rate_log_ip_idx on public.rate_log (ip_hash, created_
 alter table public.service_requests enable row level security;
 alter table public.contact_messages  enable row level security;
 alter table public.rate_log          enable row level security;
+-- the availability row is read and written only through the edge
+-- functions with the service key; a browser has no policy here.
+alter table public.avail_state       enable row level security;
 
 -- anon may insert a request/message directly ONLY if the edge
 -- function approved it; the functions use the service role, so
@@ -188,3 +216,29 @@ returns void language sql as $$
   delete from public.site_hits where ts < now() - make_interval(days => keep_days);
 $$;
 
+
+-- ── the weekly digest ──────────────────────────────────────
+-- one row per day the digest letter went out. the function claims the day
+-- before it composes anything, so a cron that fires twice — and a manual
+-- retry on the same evening — send one letter and not three.
+create table if not exists public.digest_state (
+  day      date primary key,
+  sent_at  timestamptz not null default now()
+);
+alter table public.digest_state enable row level security;
+-- no policies: only the edge functions, signed with the service key,
+-- read or write this table.
+
+-- true for the caller that inserted the row, false for everyone after it
+create or replace function public.claim_digest(p_day date)
+returns boolean language plpgsql as $$
+declare v_rows int;
+begin
+  insert into public.digest_state (day) values (p_day)
+    on conflict (day) do nothing;
+  get diagnostics v_rows = row_count;
+  return v_rows > 0;
+end $$;
+
+revoke all on function public.claim_digest(date) from public, anon, authenticated;
+grant execute on function public.claim_digest(date) to service_role;

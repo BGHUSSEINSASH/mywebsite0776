@@ -9,8 +9,8 @@ const DIRECTIVES = [
   // no 'unsafe-inline': every script on the site is a file now
   "script-src 'self' https://cdnjs.cloudflare.com https://challenges.cloudflare.com",
   // gsap writes inline style attributes, so styles keep 'unsafe-inline'
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-  "font-src https://fonts.gstatic.com data:",
+  "style-src 'self' 'unsafe-inline'",
+  "font-src 'self' data:",
   "img-src 'self' data:",
   "connect-src 'self' https://api.github.com https://*.supabase.co https://challenges.cloudflare.com",
   "frame-src https://challenges.cloudflare.com",

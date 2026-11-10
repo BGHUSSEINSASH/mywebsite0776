@@ -8,5 +8,8 @@ Thumbs.db
 # generated pdf-extract temp work
 pdf-extract/
 
+# hosting packages built by tools/make-package.js
+dist/
+
 # scratch downloads from live checks
 live1*.*

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BG Hussein Sash — case studies</title>
+    <link>https://mywebsite0776.web.app/</link>
+    <description>Portfolio of Hussein Majed Aidan (BG Hussein Sash) — IT manager and software engineer in Baghdad, Iraq. ERP systems, full stack web, Flutter apps, servers and networks, with live links.</description>
+    <language>en</language>
+    <lastBuildDate>Tue, 10 Nov 2026 17:56:25 GMT</lastBuildDate>
+    <atom:link href="https://mywebsite0776.web.app/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>SmartMaid — Home Services</title>
+      <link>https://mywebsite0776.web.app/work/smartmaid</link>
+      <guid isPermaLink="true">https://mywebsite0776.web.app/work/smartmaid</guid>
+      <pubDate>Tue, 10 Nov 2026 17:56:25 GMT</pubDate>
+      <category>Full Stack Web Development</category>
+      <category>Escrow payments</category>
+      <category>Voice search</category>
+      <category>KYC verification</category>
+      <category>59 admin switches</category>
+      <description>Book verified cleaning workers and companies in a minute — Escrow payments, voice search and GPS booking.
+
+Problem: Hiring domestic help stays informal: no verification, no secure payment, and no accountability when something goes wrong.
+
+Solution: KYC-verified workers and companies, money held in Escrow until the job is done, Arabic voice search, GPS booking, and an admin panel with 59 control switches.
+
+Result: Book in a minute with price and rating up front — money only moves when both sides are satisfied.</description>
+    </item>
+    <item>
+      <title>Mukallaf — Iraqi Tax System</title>
+      <link>https://mywebsite0776.web.app/work/mukallaf</link>
+      <guid isPermaLink="true">https://mywebsite0776.web.app/work/mukallaf</guid>
+      <pubDate>Tue, 10 Nov 2026 17:56:25 GMT</pubDate>
+      <category>Full Stack Web Development</category>
+      <category>7 tax modules</category>
+      <category>Arabic RTL</category>
+      <category>PDF &amp; Excel export</category>
+      <description>Full Arabic tax platform for Iraqi companies, accountants and taxpayers — seven tax modules in one place.
+
+Problem: Tax work in Iraq was done by hand: wrong brackets, missed deadlines and avoidable fines.
+
+Solution: Seven modules (payroll, annual settlement, corporate, contracts, real estate, land, free professions) with brackets per Income Tax Law 113/1982, official form generation, deadlines, penalties, roles and Excel/PDF export.
+
+Result: One Arabic platform where every return is calculated, generated and tracked — from data entry to a printable official form.</description>
+    </item>
+    <item>
+      <title>Flossk — Iraqi Money Assistant</title>
+      <link>https://mywebsite0776.web.app/work/flossk</link>
+      <guid isPermaLink="true">https://mywebsite0776.web.app/work/flossk</guid>
+      <pubDate>Tue, 10 Nov 2026 17:56:25 GMT</pubDate>
+      <category>Mobile Apps — Flutter</category>
+      <category>Voice assistant (80+)</category>
+      <category>Offline-first</category>
+      <category>Web · Android · iOS</category>
+      <description>First Iraqi budget app with a voice assistant that understands your dialect — free, offline, no ads.
+
+Problem: Iraqi users manage money with paper or foreign apps that ignore the dinar, local habits and the Arabic language.
+
+Solution: Income, expenses and deductions with an 80+ command voice assistant, multi-wallet, debts, 11 currencies with IQD default and reports — all stored locally, working offline.
+
+Result: A 100% Arabic, offline-first money app: data stays on the device, everything runs by voice, free forever.</description>
+    </item>
+    <item>
+      <title>Bookly — Bookings &amp; Stays</title>
+      <link>https://mywebsite0776.web.app/work/bookly</link>
+      <guid isPermaLink="true">https://mywebsite0776.web.app/work/bookly</guid>
+      <pubDate>Tue, 10 Nov 2026 17:56:25 GMT</pubDate>
+      <category>Full Stack Web Development</category>
+      <category>Wallet &amp; refunds</category>
+      <category>Supplier dashboard</category>
+      <category>Arabic RTL</category>
+      <category>4-step booking</category>
+      <description>Arabic booking platform for farms, chalets, hotels, apartments, flights, cars and tours with instant refunds.
+
+Problem: Booking farms and chalets in Iraq runs on phone calls and DMs — no clear prices, no refunds, no trust.
+
+Solution: A four-step booking flow, a digital wallet with instant refunds, loyalty points, and a supplier dashboard for calendars, prices and payouts.
+
+Result: Guests book and pay with a clear summary and get refunds to the wallet instantly; suppliers run everything from one dashboard.</description>
+    </item>
+    <item>
+      <title>Ziona Passports — Servers &amp; CCTV</title>
+      <link>https://mywebsite0776.web.app/work/ziona-passports</link>
+      <guid isPermaLink="true">https://mywebsite0776.web.app/work/ziona-passports</guid>
+      <pubDate>Tue, 10 Nov 2026 17:56:25 GMT</pubDate>
+      <category>IT Infrastructure &amp; Networking</category>
+      <category>Windows Server</category>
+      <category>CCTV</category>
+      <category>Networking</category>
+      <description>IT operations for a passport office: servers, printers, cameras and the link to the central system.
+
+Problem: Passport-printing systems and cameras kept failing, blocking daily operations.
+
+Solution: Ran and maintained office servers, printers and camera systems, and wired the link to the central passports server.
+
+Result: Stable day-to-day operations with faster fault recovery across the office.</description>
+    </item>
+    <item>
+      <title>Hala Sat — Fiber Internet Support</title>
+      <link>https://mywebsite0776.web.app/work/hala-sat</link>
+      <guid isPermaLink="true">https://mywebsite0776.web.app/work/hala-sat</guid>
+      <pubDate>Tue, 10 Nov 2026 17:56:25 GMT</pubDate>
+      <category>IT Infrastructure &amp; Networking</category>
+      <category>Fiber Optic</category>
+      <category>CCNA</category>
+      <category>MikroTik</category>
+      <description>Field diagnostics and customer support for fiber subscribers across Baghdad.
+
+Problem: Subscribers across Baghdad hit outages and slow lines with no fast local response.
+
+Solution: Diagnosed fiber lines on site, resolved customer and infrastructure faults, and documented fixes for the team.
+
+Result: Quicker restoration times and a repeatable process for common fiber faults.</description>
+    </item>
+  </channel>
+</rss>

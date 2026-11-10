@@ -16,7 +16,7 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://mywebsite0776.web.app/?lang=ko"/>
     <xhtml:link rel="alternate" hreflang="hi" href="https://mywebsite0776.web.app/?lang=hi"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mywebsite0776.web.app/"/>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -35,7 +35,7 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://mywebsite0776.web.app/work/smartmaid?lang=ko"/>
     <xhtml:link rel="alternate" hreflang="hi" href="https://mywebsite0776.web.app/work/smartmaid?lang=hi"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mywebsite0776.web.app/work/smartmaid"/>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -54,7 +54,7 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://mywebsite0776.web.app/work/mukallaf?lang=ko"/>
     <xhtml:link rel="alternate" hreflang="hi" href="https://mywebsite0776.web.app/work/mukallaf?lang=hi"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mywebsite0776.web.app/work/mukallaf"/>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -73,7 +73,7 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://mywebsite0776.web.app/work/flossk?lang=ko"/>
     <xhtml:link rel="alternate" hreflang="hi" href="https://mywebsite0776.web.app/work/flossk?lang=hi"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mywebsite0776.web.app/work/flossk"/>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -92,7 +92,7 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://mywebsite0776.web.app/work/bookly?lang=ko"/>
     <xhtml:link rel="alternate" hreflang="hi" href="https://mywebsite0776.web.app/work/bookly?lang=hi"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mywebsite0776.web.app/work/bookly"/>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -111,7 +111,7 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://mywebsite0776.web.app/work/ziona-passports?lang=ko"/>
     <xhtml:link rel="alternate" hreflang="hi" href="https://mywebsite0776.web.app/work/ziona-passports?lang=hi"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mywebsite0776.web.app/work/ziona-passports"/>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -130,8 +130,46 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://mywebsite0776.web.app/work/hala-sat?lang=ko"/>
     <xhtml:link rel="alternate" hreflang="hi" href="https://mywebsite0776.web.app/work/hala-sat?lang=hi"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mywebsite0776.web.app/work/hala-sat"/>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mywebsite0776.web.app/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mywebsite0776.web.app/privacy?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mywebsite0776.web.app/privacy?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="ku" href="https://mywebsite0776.web.app/privacy?lang=ku"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mywebsite0776.web.app/privacy?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://mywebsite0776.web.app/privacy?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://mywebsite0776.web.app/privacy?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://mywebsite0776.web.app/privacy?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://mywebsite0776.web.app/privacy?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://mywebsite0776.web.app/privacy?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://mywebsite0776.web.app/privacy?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://mywebsite0776.web.app/privacy?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://mywebsite0776.web.app/privacy?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mywebsite0776.web.app/privacy"/>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://mywebsite0776.web.app/terms</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mywebsite0776.web.app/terms?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mywebsite0776.web.app/terms?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="ku" href="https://mywebsite0776.web.app/terms?lang=ku"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://mywebsite0776.web.app/terms?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://mywebsite0776.web.app/terms?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://mywebsite0776.web.app/terms?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://mywebsite0776.web.app/terms?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://mywebsite0776.web.app/terms?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://mywebsite0776.web.app/terms?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://mywebsite0776.web.app/terms?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://mywebsite0776.web.app/terms?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://mywebsite0776.web.app/terms?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mywebsite0776.web.app/terms"/>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

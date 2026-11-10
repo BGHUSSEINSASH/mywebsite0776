@@ -1,0 +1,12 @@
+# BG Hussein Sash — how to report a security problem.
+# this site is a portfolio, not a product: no accounts, no payment form and
+# no stored identity of a visitor. the visit counter keeps a salted hash of
+# an ip for one Baghdad day so one person cannot count twice, and nothing
+# that names a person. there is no bug bounty and nothing hidden to find —
+# the whole site, checks included, is the repository linked below.
+Contact: mailto:sash0750605070607@gmail.com
+Expires: 2027-12-31T00:00:00Z
+Policy: https://mywebsite0776.web.app/privacy
+Policy: https://mywebsite0776.web.app/terms
+Canonical: https://mywebsite0776.web.app/.well-known/security.txt
+Preferred-Languages: en, ar, ku

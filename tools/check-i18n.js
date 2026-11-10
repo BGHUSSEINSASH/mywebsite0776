@@ -1,11 +1,12 @@
 /* check-i18n.js — the language gate.
-   four questions about the twelve languages:
+   five questions about the twelve languages:
      1. does every key the site asks for exist in every language
      2. does any value still equal english when it should not
      3. does any value sit empty by accident rather than by choice
      4. is there visible text in the markup that no key can reach
+     5. do the per-language files the pages fetch still match the dictionary
    run:  node tools/check-i18n.js
-   exit: 0 only when 1 and 3 are clean; 2 and 4 are reported as lists
+   exit: 0 only when 1, 3 and 5 are clean; 2 and 4 are reported as lists
           because some of them are names we keep in latin on purpose.   */
 
 const fs = require('fs');
@@ -39,8 +40,7 @@ function harvest(src, re, file) {
   }
 }
 
-const HTML_FILES = ['index.html', '404.html', 'admin.html']
-  .concat(fs.readdirSync(path.join(ROOT, 'work')).filter((f) => f.endsWith('.html')).map((f) => 'work/' + f));
+const HTML_FILES = require('./pages').PAGES;
 
 const htmlSrc = {};
 for (const rel of HTML_FILES) {
@@ -216,9 +216,52 @@ for (const lang of LANGS) {
 }
 
 const blankCount = Object.keys(blank).reduce((n, l) => n + blank[l].length, 0);
-console.log('\nkeys:', keys.size, '| absent:', holes, '| english-left:', stale, '| untagged text:', leaks, '| empty-by-design:', blankCount);
+
+/* ── 5. the per-language files the pages actually fetch ───── */
+
+/* assets/i18n/<code>.json is what a visitor downloads; translations.json is
+   what gets authored. the two only agree as long as split-i18n.js runs, so
+   this is the gate that notices when it did not. */
+
+const RUNTIME = fs.readdirSync(path.join(ROOT, 'assets', 'js')).filter((f) => f.endsWith('.js'))
+  .map((f) => 'assets/js/' + f).concat(['service-worker.js']);
+const splitBad = [];
+const stable = (v) => {
+  if (Array.isArray(v)) return '[' + v.map(stable).join(',') + ']';
+  if (v && typeof v === 'object') return '{' + Object.keys(v).sort().map((k) => JSON.stringify(k) + ':' + stable(v[k])).join(',') + '}';
+  return JSON.stringify(v);
+};
+
+for (const lang of LANGS) {
+  const rel = path.join('assets', 'i18n', lang + '.json');
+  if (!fs.existsSync(path.join(ROOT, rel))) { splitBad.push(lang + '.json is missing — run node tools/split-i18n.js'); continue; }
+  let split;
+  try { split = JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8')); }
+  catch (e) { splitBad.push(lang + '.json does not parse: ' + e.message); continue; }
+  if (stable(split) !== stable(words[lang])) splitBad.push(lang + '.json no longer matches its branch of translations.json — run node tools/split-i18n.js');
+}
+
+for (const f of fs.readdirSync(path.join(ROOT, 'assets', 'i18n'))) {
+  if (!f.endsWith('.json') || f === 'translations.json') continue;
+  if (LANGS.indexOf(f.slice(0, -5)) < 0) splitBad.push('assets/i18n/' + f + ' is not one of the twelve languages');
+}
+
+// the whole dictionary is not allowed in a request path any more: it is every
+// language at once, and a page shows one
+for (const rel of HTML_FILES.concat(RUNTIME)) {
+  const p = path.join(ROOT, rel);
+  if (!fs.existsSync(p)) continue;
+  if (fs.readFileSync(p, 'utf8').indexOf('assets/i18n/translations.json') > -1)
+    splitBad.push(rel + ' still asks the browser to download all twelve languages');
+}
+
+console.log('\nper-language files:');
+if (!splitBad.length) console.log('  12 files, each identical to its branch of the dictionary');
+splitBad.forEach((m) => console.log('  ✗ ' + m));
+
+console.log('\nkeys:', keys.size, '| absent:', holes, '| english-left:', stale, '| untagged text:', leaks, '| empty-by-design:', blankCount, '| split problems:', splitBad.length);
 for (const lang of LANGS) {
   const b = blank[lang] || [];
   if (b.length) console.log('  ' + lang + ' empty:', b.join(', '));
 }
-process.exitCode = holes === 0 ? 0 : 1;
+process.exitCode = holes === 0 && splitBad.length === 0 ? 0 : 1;

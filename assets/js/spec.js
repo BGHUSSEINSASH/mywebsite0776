@@ -202,6 +202,21 @@
   function paintAvail() {
     var pill = q('.avail');
     if (!pill) return;
+
+    // the desk can say "fully booked" or "taking work" over the clock's
+    // answer. with no backend, or state 'auto', nothing is set and the
+    // hours below decide — the same behaviour as before the pill was
+    // editable. a note he typed is shown verbatim; it is his sentence.
+    var desk = window.BGSASH_AVAIL;
+    if (desk && (desk.state === 'open' || desk.state === 'closed')) {
+      pill.setAttribute('data-state', desk.state);
+      var said = q('.avail span', pill) || pill;
+      said.textContent = desk.note || (desk.state === 'open'
+        ? say('avail.open', 'Available · replies today')
+        : say('avail.closed', 'Outside working hours · Sat–Thu, 09:00–18:00 Baghdad'));
+      return;
+    }
+
     var t = baghdad();
     var day = t.getUTCDay();          // 0 sun … 6 sat
     var hour = t.getUTCHours() + t.getUTCMinutes() / 60;
@@ -235,6 +250,86 @@
   }
 
   /* ── 3. estimator ──────────────────────────────────────────── */
+
+  /* the estimator's chips and the github block are the two heaviest things
+     this file builds, and both live far below the first screen. a visitor
+     who leaves after the work section should not have paid for them, so
+     they arrive when the form comes into view — or the moment anything
+     asks for one of its inputs by name. */
+
+  var estBuilt = false;
+
+  function ensureEst() {
+    if (estBuilt) return;
+    estBuilt = true;
+    buildEstimator();
+    loadGh();
+    paintEstimate();
+    // the chips are the difference between this page's height before and
+    // after the build; the scroll-driven animations measured the old one
+    if (S && S.refresh) S.refresh();
+  }
+
+  /* the observer is the right listener, but it only reports while the
+     browser paints: a background tab, a machine that checks this page
+     without ever drawing it and a visitor who lands on the form by hash
+     would all wait for chips that are already on screen. the same question
+     asked of getBoundingClientRect answers it without needing a paint, and
+     the same answers come out the same way either path fires first. */
+
+  function armEst() {
+    var host = q('#est');
+    if (!host) { ensureEst(); return; }
+
+    var io = null;
+    var lastScroll = 0;
+
+    function off() {
+      if (io) io.disconnect();
+      removeEventListener('scroll', measure);
+      removeEventListener('resize', measure);
+      removeEventListener('beforeprint', measure);
+      ['pointerdown', 'focusin'].forEach(function (ev) {
+        host.removeEventListener(ev, measure);
+      });
+    }
+
+    function near() {
+      var vh = innerHeight || doc.documentElement.clientHeight;
+      var r = host.getBoundingClientRect();
+      return r.bottom > 0 && r.top < vh * 1.5;
+    }
+
+    function measure(e) {
+      if (estBuilt) return off();
+      // scrolling fires hundreds of times a screen; a rect read each time
+      // would cost more than the chips it is deciding whether to build
+      if (e && e.type === 'scroll') {
+        var now = Date.now();
+        if (now - lastScroll < 150) return;
+        lastScroll = now;
+      }
+      if (near()) {
+        off();
+        ensureEst();
+      }
+    }
+
+    if ('IntersectionObserver' in window) {
+      io = new IntersectionObserver(function (rows) {
+        if (!rows.some(function (r) { return r.isIntersecting; })) return;
+        measure();
+      }, { rootMargin: '400px 0px' });
+      io.observe(host);
+    }
+    addEventListener('scroll', measure, { passive: true });
+    addEventListener('resize', measure);
+    addEventListener('beforeprint', measure);
+    ['pointerdown', 'focusin'].forEach(function (ev) {
+      host.addEventListener(ev, measure);
+    });
+    measure();
+  }
 
   function buildEstimator() {
     var host = q('#est');
@@ -565,6 +660,7 @@
     out.push({ kind: 'action', title: say('pal.theme', 'Switch theme'), hint: 'light/dark', run: function () { var b = q('#themeBtn'); if (b) b.click(); } });
     out.push({ kind: 'action', title: say('pal.print', 'Print spec sheet'), hint: 'A4', run: function () { doc.defaultView.print(); } });
     out.push({ kind: 'action', title: say('pal.term', 'Open terminal'), hint: '>', run: function () { toggleTerm(true); } });
+    out.push({ kind: 'action', title: say('keys.title', 'Keyboard shortcuts'), hint: '?', run: function () { toggleKeys(true); } });
     out.push({ kind: 'action', title: say('pal.mail', 'Email'), hint: S ? S.mail : 'mailto', run: function () { location.href = 'mailto:' + (S ? S.mail : ''); } });
     out.push({ kind: 'action', title: say('pal.wa', 'WhatsApp'), hint: 'wa.me', run: function () { if (S) { var n = q('#palWa'); location.href = S.wa(n ? n.value : say('pal.waMsg', 'Hello — I found your site.')); } } });
     out.push({ kind: 'link', title: say('pal.gh', 'GitHub profile'), hint: '↗', run: function () { open('https://github.com/' + GH_USER); } });
@@ -742,6 +838,7 @@
   }
 
   function openPalette() {
+    ensureEst();      // one of its answers is the estimator's own number
     buildPalette();
     palLast = doc.activeElement;
     pal.root.hidden = false;
@@ -755,6 +852,73 @@
     if (!pal) return;
     pal.root.hidden = true;
     if (palLast && palLast.focus) palLast.focus();
+  }
+
+  /* ── 5b. the shortcut list — what ? says ───────────────────────
+
+     every row here is a key that already does something on this page,
+     and every word in it is a string the site already carries: the
+     palette and terminal rows reuse the hud buttons, the close button
+     reuses the palette's own "close". nothing is invented for the list,
+     and print is absent from it because the browser owns that key. */
+
+  var keysBox = null;
+  var keysLast = null;
+
+  function buildKeys() {
+    if (keysBox) return keysBox;
+    var title = say('keys.title', 'Keyboard shortcuts');
+
+    var root = mk('div', 'keys');
+    root.hidden = true;
+    root.setAttribute('role', 'dialog');
+    root.setAttribute('aria-modal', 'true');
+    root.setAttribute('aria-label', title);
+
+    var bg = mk('div', 'keys-bg');
+    var box = mk('div', 'keys-box');
+    box.appendChild(mk('h3', null, title));
+
+    var list = mk('ul');
+    [
+      ['/ · Ctrl K', say('hud.palette', 'Palette')],
+      ['`', say('hud.term', 'Terminal')],
+      ['← →', say('keys.tabs', 'Move between the stack tabs')],
+      ['Esc', say('keys.esc', 'Close what is open')],
+      ['?', title]
+    ].forEach(function (r) {
+      var li = mk('li');
+      li.appendChild(mk('kbd', null, r[0]));
+      li.appendChild(mk('span', null, r[1]));
+      list.appendChild(li);
+    });
+    box.appendChild(list);
+
+    var foot = mk('div', 'keys-foot');
+    var close = mk('button', null, say('pal.esc', 'close'));
+    close.type = 'button';
+    close.addEventListener('click', function () { toggleKeys(false); });
+    foot.appendChild(close);
+    box.appendChild(foot);
+
+    root.appendChild(bg); root.appendChild(box);
+    doc.body.appendChild(root);
+
+    bg.addEventListener('click', function () { toggleKeys(false); });
+    box.addEventListener('keydown', function (e) { if (e.key === 'Tab') trap(e, box); });
+
+    keysBox = { root: root, box: box };
+    return keysBox;
+  }
+
+  function toggleKeys(force) {
+    buildKeys();
+    var show = (force === undefined) ? keysBox.root.hidden : !!force;
+    if (show) keysLast = doc.activeElement;
+    keysBox.root.hidden = !show;
+    var close = q('button', keysBox.box);
+    if (show) { if (close) close.focus(); }
+    else if (keysLast && keysLast.focus) keysLast.focus();
   }
 
   /* ── 6. terminal — text in, text out. nothing is ever parsed as html */
@@ -898,6 +1062,7 @@
   };
 
   CMDS.estimate = function (arg) {
+    ensureEst();      // the question is about the form, so the form has to exist
     var f = readForm();
     if (arg && TYPES.some(function (t) { return t.id === arg; })) {
       var r = q('#estTypes input[value="' + arg + '"]');
@@ -977,10 +1142,12 @@
         return;
       }
       if ((e.ctrlKey || e.metaKey) && (e.key === 'p' || e.key === 'P')) return;   // leave print alone
+      if (e.key === '?' && !typing) { e.preventDefault(); toggleKeys(); return; }
       if (e.key === '/' && !typing) { e.preventDefault(); openPalette(); return; }
       if (e.key === '`' && !typing) { e.preventDefault(); toggleTerm(); return; }
       if (e.key === 'Escape') {
-        if (pal && !pal.root.hidden) closePalette();
+        if (keysBox && !keysBox.root.hidden) toggleKeys(false);
+        else if (pal && !pal.root.hidden) closePalette();
         else if (term && !term.root.hidden) toggleTerm(false);
       }
     });
@@ -996,6 +1163,14 @@
     if (ghLast) paintGh(ghLast.box, ghLast.data, ghLast.fromCache);
     if (hudRepaint) hudRepaint();
     if (pal && !pal.root.hidden) filterPal(pal.input.value);
+    // the shortcut list is made of words too: rebuilt in the new language
+    // rather than left behind in the old one
+    if (keysBox) {
+      var wasOpen = !keysBox.root.hidden;
+      if (keysBox.root.parentNode) keysBox.root.parentNode.removeChild(keysBox.root);
+      keysBox = null;
+      if (wasOpen) toggleKeys(true);
+    }
   }
 
   /* ── init ──────────────────────────────────────────────────── */
@@ -1007,8 +1182,8 @@
       buildHud();
       paintAvail();
       setInterval(paintAvail, 30000);
-      buildEstimator();
-      loadGh();
+      doc.addEventListener('bgsash:avail', paintAvail);   // the tally answers late
+      armEst();
       keys();
       doc.addEventListener('sash:lang', function () { setTimeout(repaint, 30); });
     } catch (e) {

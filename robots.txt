@@ -7,3 +7,9 @@ Disallow: /admin
 Disallow: /admin.html
 
 Sitemap: https://mywebsite0776.web.app/sitemap.xml
+# the same six case studies as a feed, for a reader that subscribes instead
+# of crawling; google accepts an rss sitemap, and it is the only list of the
+# case pages that carries their dates
+Sitemap: https://mywebsite0776.web.app/feed.xml
+# for a language model that would rather read one file than fetch pages:
+# https://mywebsite0776.web.app/llms.txt (index) and /llms-full.txt (text)

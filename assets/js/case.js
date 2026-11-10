@@ -37,6 +37,37 @@
 
   var aliases = { ckb: 'ku', kmr: 'ku', 'zh-cn': 'zh', 'zh-tw': 'zh', 'fa': 'ar', 'ur': 'ar' };
 
+  /* the <select> is the list of languages this page can actually show.
+     testing the fetched dictionary instead would make pick() answer 'en'
+     on a cold page, before any file has arrived. */
+  var carrying = null;
+  function carried() {
+    if (!carrying) {
+      var sel = doc.querySelector('#langSelect');
+      var list = sel ? Array.prototype.slice.call(sel.querySelectorAll('option')).map(function (o) { return o.value; }) : [];
+      carrying = list.length ? list : ['en'];
+    }
+    return carrying;
+  }
+  function carries(code) { return carried().indexOf(code) > -1; }
+
+  function loadLanguage(code) {
+    if (words[code]) return Promise.resolve(words[code]);
+    // root-absolute: a case page lives at /work/<name>, where a relative url
+    // would ask for /work/assets/... and get a 404
+    return fetch('/assets/i18n/' + code + '.json?v=r26')
+      .then(function (r) { return r.ok ? r.json() : {}; })
+      .catch(function (e) { console.warn('translation file missing:', code, e); return {}; })
+      .then(function (tree) { words[code] = tree || {}; return words[code]; });
+  }
+
+  /* english is the fallback inside say(), so it always has to be present */
+  function loadLanguages(code) {
+    return loadLanguage('en').then(function () {
+      return code === 'en' ? null : loadLanguage(code);
+    });
+  }
+
   /* uppercase turkish turns i into İ, which is right for türk words and
      wrong inside a name — the case titles are full of names. the list in
      main.js is the long version; this one carries what a case page says. */
@@ -76,16 +107,16 @@
     var candidates = [fromUrl, saved, browser, base];
     for (var i = 0; i < candidates.length; i++) {
       var c = candidates[i];
-      if (c && words[c]) return c;
-      if (c && words[c.split('-')[0]]) return c.split('-')[0];
-      if (c && aliases[c]) return aliases[c];
-      if (c && aliases[c.split('-')[0]]) return aliases[c.split('-')[0]];
+      if (c && carries(c)) return c;
+      if (c && carries(c.split('-')[0])) return c.split('-')[0];
+      if (c && aliases[c] && carries(aliases[c])) return aliases[c];
+      if (c && aliases[c.split('-')[0]] && carries(aliases[c.split('-')[0]])) return aliases[c.split('-')[0]];
     }
     return 'en';
   }
 
   function speak(code) {
-    if (!code || !words[code]) code = 'en';
+    if (!carries(code)) code = 'en';
     lang = code;
     try { localStorage.setItem('lang', code); } catch (e) {}
 
@@ -144,6 +175,12 @@
     var h1 = doc.querySelector('.cs-title[data-i18n]');
     var name = h1 ? say(h1.getAttribute('data-i18n'), null) : null;
     if (name) doc.title = name + ' — ' + (say('case.intro') || 'Case study') + ' · BG Hussein Sash';
+    // the legal pages have no project to name, so their own h1 is the title
+    var plain = doc.querySelector('[data-page-title][data-i18n]');
+    if (!name && plain) {
+      var t = say(plain.getAttribute('data-i18n'), null);
+      if (t) doc.title = t + ' · BG Hussein Sash';
+    }
 
     var sel = doc.querySelector('#langSelect');
     if (sel && sel.value !== code) sel.value = code;
@@ -170,19 +207,20 @@
 
   function start() {
     wireTheme();
-    fetch('/assets/i18n/translations.json?v=r24')
-      .then(function (r) { return r.json(); })
-      .then(function (json) {
-        words = json;
-        speak(pick());
-        var sel = doc.querySelector('#langSelect');
-        if (sel) sel.addEventListener('change', function () {
-          var run = function () { speak(sel.value); };
+    var sel = doc.querySelector('#langSelect');
+    var wanted = pick();
+    loadLanguages(wanted).then(function () {
+      speak(wanted);
+      if (sel) sel.addEventListener('change', function () {
+        // a reader can pick a language this page has never fetched
+        var code = sel.value;
+        loadLanguage(code).then(function () {
+          var run = function () { speak(code); };
           if (doc.startViewTransition && !calm) doc.startViewTransition(run);
           else run();
         });
-      })
-      .catch(function () { /* english markup is already in the page */ });
+      });
+    });
   }
 
   if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', start);

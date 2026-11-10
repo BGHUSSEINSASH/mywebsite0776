@@ -1,0 +1,478 @@
+{
+  "site": "https://mywebsite0776.web.app/",
+  "generatedBy": "tools/build-cases.js",
+  "updated": "2026-11-10T17:56:25.057Z",
+  "identity": {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Hussein Majed Aidan",
+    "alternateName": "BG Hussein Sash",
+    "jobTitle": "IT Manager & Software Engineer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Middle East Lawyers Company"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Baghdad",
+      "addressCountry": "IQ"
+    },
+    "email": "mailto:sash0750605070607@gmail.com",
+    "telephone": "+964-788-555-8556",
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "University of Diyala"
+    },
+    "knowsAbout": [
+      "ERP Systems",
+      "Full Stack Development",
+      "Flutter",
+      "IT Infrastructure",
+      "Networking",
+      "Windows Server",
+      "Linux",
+      "Graphic Design"
+    ],
+    "sameAs": [
+      "https://github.com/BGHUSSEINSASH"
+    ]
+  },
+  "roles": [
+    "IT manager",
+    "Full stack engineer",
+    "Flutter developer",
+    "Network engineer"
+  ],
+  "summary": "Portfolio of Hussein Majed Aidan (BG Hussein Sash) — IT manager and software engineer in Baghdad, Iraq. ERP systems, full stack web, Flutter apps, servers and networks, with live links.",
+  "badge": "ERP · Full stack · Flutter · Networks · Design · Arabic products ·",
+  "languages": [
+    {
+      "code": "en",
+      "dir": "ltr",
+      "title": "BG Hussein Sash — IT Manager & Software Engineer in Baghdad"
+    },
+    {
+      "code": "ar",
+      "dir": "rtl",
+      "title": "بي جي حسين ساش — مدير تقنية معلومات ومهندس برمجيات في بغداد"
+    },
+    {
+      "code": "ku",
+      "dir": "rtl",
+      "title": "بی جی حوسێن ساش — بەڕێوەبەری IT و ئەنجینێری سۆفتوێر لە بەغدا"
+    },
+    {
+      "code": "tr",
+      "dir": "ltr",
+      "title": "BG Hussein Sash — Bağdat'ta BT Müdürü ve Yazılım Mühendisi"
+    },
+    {
+      "code": "fr",
+      "dir": "ltr",
+      "title": "BG Hussein Sash — Responsable informatique & ingénieur logiciel à Bagdad"
+    },
+    {
+      "code": "es",
+      "dir": "ltr",
+      "title": "BG Hussein Sash — Gerente de TI e ingeniero de software en Bagdad"
+    },
+    {
+      "code": "de",
+      "dir": "ltr",
+      "title": "BG Hussein Sash — IT-Manager & Software Engineer in Bagdad"
+    },
+    {
+      "code": "ru",
+      "dir": "ltr",
+      "title": "BG Hussein Sash — IT-менеджер и инженер-программист в Багдаде"
+    },
+    {
+      "code": "zh",
+      "dir": "ltr",
+      "title": "BG Hussein Sash — 巴格达的IT经理与软件工程师"
+    },
+    {
+      "code": "ja",
+      "dir": "ltr",
+      "title": "BG Hussein Sash — バグダッドのITマネージャー・ソフトウェアエンジニア"
+    },
+    {
+      "code": "ko",
+      "dir": "ltr",
+      "title": "BG Hussein Sash — 바그다드의 IT 매니저 · 소프트웨어 엔지니어"
+    },
+    {
+      "code": "hi",
+      "dir": "ltr",
+      "title": "BG Hussein Sash — बग़दाद के आईटी मैनेजर और सॉफ़्टवेयर इंजीनियर"
+    }
+  ],
+  "feeds": {
+    "rss": "https://mywebsite0776.web.app/feed.xml",
+    "atom": "https://mywebsite0776.web.app/atom.xml",
+    "sitemap": "https://mywebsite0776.web.app/sitemap.xml",
+    "llms": "https://mywebsite0776.web.app/llms.txt",
+    "llmsFull": "https://mywebsite0776.web.app/llms-full.txt"
+  },
+  "policies": {
+    "privacy": "https://mywebsite0776.web.app/privacy",
+    "terms": "https://mywebsite0776.web.app/terms",
+    "updated": "Last updated 8 November 2026"
+  },
+  "contact": {
+    "email": "mailto:sash0750605070607@gmail.com",
+    "phones": [
+      "+9647885558556",
+      "+9647762425266"
+    ],
+    "whatsapp": "https://wa.me/9647762425266?text=Hello%20Hussein%20%E2%80%94%20I%20saw%20your%20portfolio%20and%20I%27d%20like%20to%20talk%20about%20a%20project.",
+    "github": "https://github.com/BGHUSSEINSASH",
+    "response": "Typical reply: within 24 hours · Sat–Thu, Baghdad (UTC+3)",
+    "cv": [
+      "https://mywebsite0776.web.app/assets/cv/CV-en.pdf",
+      "https://mywebsite0776.web.app/assets/cv/CV-ar.pdf"
+    ]
+  },
+  "services": [
+    {
+      "id": "s1",
+      "title": "Full Stack Web Development",
+      "desc": "Business websites, dashboards and internal tools — built responsive, fast, and shaped around how you actually work.",
+      "points": [
+        "Business sites & dashboards",
+        "Internal tools & forms",
+        "Arabic & English interfaces"
+      ]
+    },
+    {
+      "id": "s2",
+      "title": "Mobile Apps — Flutter",
+      "desc": "One Flutter codebase shipped to both iOS and Android, with clean UI and store-ready builds.",
+      "points": [
+        "One codebase, both stores",
+        "Clean, fast UI",
+        "Store-ready builds"
+      ]
+    },
+    {
+      "id": "s3",
+      "title": "IT Infrastructure & Networking",
+      "desc": "Servers, cabling, CCTV and network design for offices — CCNA-level diagnosis and MikroTik configuration.",
+      "points": [
+        "Servers, cabling & CCTV",
+        "CCNA-level diagnosis",
+        "MikroTik configuration"
+      ]
+    },
+    {
+      "id": "s4",
+      "title": "Linux & Windows Server Admin",
+      "desc": "Install, configure and keep servers running — file sharing, backups, users and hardening for small teams.",
+      "points": [
+        "Setup & hardening",
+        "Users & file services",
+        "Backups & recovery"
+      ]
+    },
+    {
+      "id": "s5",
+      "title": "Graphic & Brand Design",
+      "desc": "Logos, social creatives and promo material that look consistent everywhere your customers see you.",
+      "points": [
+        "Logos & brand identity",
+        "Social creatives",
+        "Promo campaigns"
+      ]
+    },
+    {
+      "id": "s6",
+      "title": "Social Media & Ads Management",
+      "desc": "Run the pages, plan the content, and spend the ad budget where it brings customers through the door.",
+      "points": [
+        "Content planning",
+        "Meta ads setup",
+        "Audience targeting"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "n": 1,
+      "slug": "smartmaid",
+      "page": "https://mywebsite0776.web.app/work/smartmaid",
+      "url": "https://smartmaid-website.vercel.app/ar",
+      "title": "SmartMaid — Home Services",
+      "tag": "Marketplace",
+      "when": "2026",
+      "updated": "2026-11-10",
+      "role": "Full Stack Web Development",
+      "stack": [
+        "Escrow payments",
+        "Voice search",
+        "KYC verification"
+      ],
+      "figure": "59 admin switches",
+      "desc": "Book verified cleaning workers and companies in a minute — Escrow payments, voice search and GPS booking.",
+      "problem": "Hiring domestic help stays informal: no verification, no secure payment, and no accountability when something goes wrong.",
+      "solution": "KYC-verified workers and companies, money held in Escrow until the job is done, Arabic voice search, GPS booking, and an admin panel with 59 control switches.",
+      "result": "Book in a minute with price and rating up front — money only moves when both sides are satisfied.",
+      "artwork": "live site screenshot"
+    },
+    {
+      "n": 2,
+      "slug": "mukallaf",
+      "page": "https://mywebsite0776.web.app/work/mukallaf",
+      "url": "https://bghusseinsash.github.io/iraqi-tax-system/",
+      "title": "Mukallaf — Iraqi Tax System",
+      "tag": "Tax platform",
+      "when": "2026",
+      "updated": "2026-11-10",
+      "role": "Full Stack Web Development",
+      "stack": [
+        "7 tax modules",
+        "Arabic RTL",
+        "PDF & Excel export"
+      ],
+      "figure": null,
+      "desc": "Full Arabic tax platform for Iraqi companies, accountants and taxpayers — seven tax modules in one place.",
+      "problem": "Tax work in Iraq was done by hand: wrong brackets, missed deadlines and avoidable fines.",
+      "solution": "Seven modules (payroll, annual settlement, corporate, contracts, real estate, land, free professions) with brackets per Income Tax Law 113/1982, official form generation, deadlines, penalties, roles and Excel/PDF export.",
+      "result": "One Arabic platform where every return is calculated, generated and tracked — from data entry to a printable official form.",
+      "artwork": "live site screenshot"
+    },
+    {
+      "n": 3,
+      "slug": "flossk",
+      "page": "https://mywebsite0776.web.app/work/flossk",
+      "url": "https://bghusseinsash.github.io/flossk-app/",
+      "title": "Flossk — Iraqi Money Assistant",
+      "tag": "Mobile app",
+      "when": "2025",
+      "updated": "2026-11-10",
+      "role": "Mobile Apps — Flutter",
+      "stack": [
+        "Voice assistant (80+)",
+        "Offline-first",
+        "Web · Android · iOS"
+      ],
+      "figure": null,
+      "desc": "First Iraqi budget app with a voice assistant that understands your dialect — free, offline, no ads.",
+      "problem": "Iraqi users manage money with paper or foreign apps that ignore the dinar, local habits and the Arabic language.",
+      "solution": "Income, expenses and deductions with an 80+ command voice assistant, multi-wallet, debts, 11 currencies with IQD default and reports — all stored locally, working offline.",
+      "result": "A 100% Arabic, offline-first money app: data stays on the device, everything runs by voice, free forever.",
+      "artwork": "live site screenshot"
+    },
+    {
+      "n": 4,
+      "slug": "bookly",
+      "page": "https://mywebsite0776.web.app/work/bookly",
+      "url": "https://taupe-paprenjak-258494.netlify.app/",
+      "title": "Bookly — Bookings & Stays",
+      "tag": "Marketplace",
+      "when": "2026",
+      "updated": "2026-11-10",
+      "role": "Full Stack Web Development",
+      "stack": [
+        "Wallet & refunds",
+        "Supplier dashboard",
+        "Arabic RTL"
+      ],
+      "figure": "4-step booking",
+      "desc": "Arabic booking platform for farms, chalets, hotels, apartments, flights, cars and tours with instant refunds.",
+      "problem": "Booking farms and chalets in Iraq runs on phone calls and DMs — no clear prices, no refunds, no trust.",
+      "solution": "A four-step booking flow, a digital wallet with instant refunds, loyalty points, and a supplier dashboard for calendars, prices and payouts.",
+      "result": "Guests book and pay with a clear summary and get refunds to the wallet instantly; suppliers run everything from one dashboard.",
+      "artwork": "live site screenshot"
+    },
+    {
+      "n": 5,
+      "slug": "ziona-passports",
+      "page": "https://mywebsite0776.web.app/work/ziona-passports",
+      "url": null,
+      "title": "Ziona Passports — Servers & CCTV",
+      "tag": "IT infrastructure",
+      "when": "Field work",
+      "updated": "2026-11-10",
+      "role": "IT Infrastructure & Networking",
+      "stack": [
+        "Windows Server",
+        "CCTV",
+        "Networking"
+      ],
+      "figure": null,
+      "desc": "IT operations for a passport office: servers, printers, cameras and the link to the central system.",
+      "problem": "Passport-printing systems and cameras kept failing, blocking daily operations.",
+      "solution": "Ran and maintained office servers, printers and camera systems, and wired the link to the central passports server.",
+      "result": "Stable day-to-day operations with faster fault recovery across the office.",
+      "artwork": "typographic case cover"
+    },
+    {
+      "n": 6,
+      "slug": "hala-sat",
+      "page": "https://mywebsite0776.web.app/work/hala-sat",
+      "url": null,
+      "title": "Hala Sat — Fiber Internet Support",
+      "tag": "Networks",
+      "when": "Field work",
+      "updated": "2026-11-10",
+      "role": "IT Infrastructure & Networking",
+      "stack": [
+        "Fiber Optic",
+        "CCNA",
+        "MikroTik"
+      ],
+      "figure": null,
+      "desc": "Field diagnostics and customer support for fiber subscribers across Baghdad.",
+      "problem": "Subscribers across Baghdad hit outages and slow lines with no fast local response.",
+      "solution": "Diagnosed fiber lines on site, resolved customer and infrastructure faults, and documented fixes for the team.",
+      "result": "Quicker restoration times and a repeatable process for common fiber faults.",
+      "artwork": "typographic case cover"
+    }
+  ],
+  "pricing": {
+    "note": "Every project gets a fixed written quote before work starts — no hourly surprises. These are honest starting points; the final price depends on scope.",
+    "currency": "USD",
+    "tiers": [
+      {
+        "title": "Business Website",
+        "price": "$150",
+        "desc": "5–7 pages, Arabic + English, contact form, fast hosting, delivered in ~2 weeks."
+      },
+      {
+        "title": "Platform / E-commerce",
+        "price": "$400",
+        "desc": "Accounts, payments, admin dashboards, full RTL — built like Mukallaf or Bookly."
+      },
+      {
+        "title": "Mobile App (Flutter)",
+        "price": "$300",
+        "desc": "iOS + Android from one codebase, clean UI, store submission included."
+      },
+      {
+        "title": "Server & IT Setup",
+        "price": "$100",
+        "desc": "Windows/Linux servers, office network, CCTV — installed, secured and documented."
+      },
+      {
+        "title": "Social Media Management",
+        "price": "$50/mo",
+        "desc": "Monthly content plan, designs, posting and Meta ads management for your pages."
+      },
+      {
+        "title": "Logo & Brand Design",
+        "price": "$75",
+        "desc": "Logo, color system and ready-to-use templates for print and social."
+      },
+      {
+        "title": "Domain & Hosting",
+        "price": "$30",
+        "desc": "Domain purchase, DNS, business email addresses and first-year hosting setup."
+      },
+      {
+        "title": "Custom / ERP",
+        "price": "Quote",
+        "desc": "Custom software and ERP modules — scoped and quoted after a short call."
+      }
+    ],
+    "smallProjects": [
+      {
+        "title": "Business Website",
+        "price": "$150",
+        "desc": "5–7 pages, Arabic + English, contact form, fast hosting, delivered in ~2 weeks."
+      },
+      {
+        "title": "Server & IT Setup",
+        "price": "$100",
+        "desc": "Windows/Linux servers, office network, CCTV — installed, secured and documented."
+      },
+      {
+        "title": "Social Media Management",
+        "price": "$50/mo",
+        "desc": "Monthly content plan, designs, posting and Meta ads management for your pages."
+      },
+      {
+        "title": "Logo & Brand Design",
+        "price": "$75",
+        "desc": "Logo, color system and ready-to-use templates for print and social."
+      },
+      {
+        "title": "Domain & Hosting",
+        "price": "$30",
+        "desc": "Domain purchase, DNS, business email addresses and first-year hosting setup."
+      }
+    ]
+  },
+  "process": {
+    "title": "How a job runs",
+    "stages": [
+      {
+        "stage": "Brief",
+        "scope": "what & why",
+        "detail": "You describe the problem in your own words. I repeat it back, add what you left out, and we agree the target before anything is priced."
+      },
+      {
+        "stage": "Plan & quote",
+        "scope": "scope, cost, dates",
+        "detail": "A written scope: pages or screens, features, what is excluded, one fixed price and real dates. The number in this document is the number on the invoice."
+      },
+      {
+        "stage": "Build",
+        "scope": "weekly preview link",
+        "detail": "Work happens in the open — a preview link you can click every week, built from the Arabic layout first rather than translated from English afterwards."
+      },
+      {
+        "stage": "Deliver",
+        "scope": "handover, not a black box",
+        "detail": "Deployed, tested on real devices, handed over with the accounts, keys and a short written guide. You own the repository, the domain, the hosting."
+      },
+      {
+        "stage": "Support",
+        "scope": "the desk stays open",
+        "detail": "The same desk that answered during the build answers after it — server faults, printer queues, camera records and the next feature."
+      }
+    ],
+    "note": "Every stage is one message away — ask at any point and you get the answer the sheet already shows."
+  },
+  "faq": [
+    {
+      "q": "What exactly do you build?",
+      "a": "Full stack websites and dashboards, Flutter apps for iOS and Android, network and server infrastructure, and the brand design around them — usually all four for the same client."
+    },
+    {
+      "q": "Do you work in Arabic and English?",
+      "a": "Yes. Every product I ship is designed in both — Arabic with full right-to-left support, English for international audiences."
+    },
+    {
+      "q": "How do projects start?",
+      "a": "Send a message or book a call. We talk about the problem, I send scope, price and timeline, and work starts once you approve. No surprise costs."
+    },
+    {
+      "q": "How long does a project take?",
+      "a": "A business site: 1–2 weeks. A full platform or app: 4–10 weeks depending on modules. Infrastructure and support work is scheduled around your hours."
+    },
+    {
+      "q": "Do you maintain what you build?",
+      "a": "Yes — updates, monitoring, backups and fixes after launch, as a monthly retainer or per request."
+    },
+    {
+      "q": "Where are you based?",
+      "a": "Baghdad, Iraq (UTC+3). I work remotely with clients anywhere and handle on-site work across Baghdad."
+    },
+    {
+      "q": "Does this site use cookies or analytics?",
+      "a": "No cookie is set here and no analytics vendor is in the path. The counter keeps one salted hash of an ip address per Baghdad day, so the same visit cannot count twice, and nothing that names anybody — the privacy page lists every piece of it."
+    },
+    {
+      "q": "Which languages can a product ship in?",
+      "a": "Arabic and English as standard, both with the full layout in their own direction. This site itself is written in twelve languages from one translation file, so adding yours to a product is an edit, not a rebuild."
+    },
+    {
+      "q": "What do you need from me to begin?",
+      "a": "What exists and what hurts: the pages, screens or systems involved, any logo and text you already have, and who approves the work. That is enough for a written scope, price and dates — and the work starts when you say so."
+    },
+    {
+      "q": "Do I see the work while it is still being built?",
+      "a": "Yes: a preview link every week rather than a reveal at the end. Every stage is one message away, and the answers are on this sheet before you have to ask."
+    }
+  ]
+}

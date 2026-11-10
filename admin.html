@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data:; connect-src 'self' https://api.github.com https://*.supabase.co https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto: https://wa.me; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; connect-src 'self' https://api.github.com https://*.supabase.co https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto: https://wa.me; upgrade-insecure-requests">
   <title>Requests — BG Sash admin</title>
   <meta name="robots" content="noindex, nofollow">
   <meta name="referrer" content="no-referrer">
@@ -35,6 +35,9 @@
     .bar { display:block; height:8px; background:rgba(255,255,255,.06); border-radius:2px; overflow:hidden; }
     .bar i { display:block; height:100%; background:var(--accent); opacity:.7; }
     td b { font-weight:600; }
+    textarea { background:var(--card); border:1px solid var(--line); color:var(--fg); padding:8px 10px; border-radius:6px; font:inherit; font-size:12px; width:100%; min-height:46px; resize:vertical; }
+    .row { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:0 0 26px; }
+    #availNote { flex:1 1 340px; width:auto; padding:8px 10px; font-size:12px; }
     @media (max-width:820px){ td,th{padding:8px 6px;font-size:12px} .hide-sm{display:none} }
   </style>
 </head>
@@ -100,18 +103,34 @@
         </table>
       </div>
     </div>
-    <h2>Build requests</h2>
+    <h2>Availability pill <span class="muted">— what the homepage says about working hours</span></h2>
+    <p class="row">
+      <select id="availState" class="status">
+        <option value="auto">auto — the Baghdad clock decides</option>
+        <option value="open">open — replies today</option>
+        <option value="closed">closed — not taking work</option>
+      </select>
+      <input type="text" id="availNote" maxlength="120" placeholder="optional words for the pill, in the visitor's language (120)">
+      <button type="button" id="availSave">Save</button>
+      <span class="muted" id="availNow"></span>
+    </p>
+    <h2>Build requests
+      <button type="button" id="csvBtn" class="lock">Export CSV</button>
+      <span class="muted" id="saveState"></span>
+    </h2>
     <table id="reqTable">
-      <thead><tr><th>When</th><th>Service</th><th>Budget</th><th>Name</th><th>Contact</th><th class="hide-sm">Details</th><th>Status</th></tr></thead>
+      <thead><tr><th>When</th><th>Service</th><th>Budget</th><th>Name</th><th>Contact</th><th class="hide-sm">Details</th><th class="hide-sm">Came from</th><th>Status</th><th>Notes</th></tr></thead>
       <tbody></tbody>
     </table>
-    <h2>Contact messages</h2>
+    <h2>Contact messages
+      <button type="button" id="csvMsgBtn" class="lock">Export CSV</button>
+    </h2>
     <table id="msgTable">
       <thead><tr><th>When</th><th>Name</th><th>Email</th><th>Message</th></tr></thead>
       <tbody></tbody>
     </table>
   </div>
 
-<script src="assets/js/admin.js?v=r24"></script>
+<script src="assets/js/admin.js?v=r26"></script>
 </body>
 </html>

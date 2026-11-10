@@ -1,4 +1,4 @@
-/* tally.js — the visitor count, and nothing else.
+/* tally.js — the visitor count, and the availability pill it answers with.
    loaded on every public page before main.js, so the tally covers the
    whole site and not just the homepage.
 
@@ -23,6 +23,18 @@
      edge function signs its own writes with the service key.  */
   var SUPABASE_URL = '';
   var STATS_FN = 'site-stats';
+
+  /* the box under the clock is worth seeing before the project url exists,
+     so on this machine — and only on this machine — the post goes to the
+     stand-in in tools/serve.js, which counts real visits to the local copy.
+     a deployed page never asks its own origin for a number: the branch is
+     keyed to the loopback host, and there is nothing there to answer it. */
+  var LOOPBACK = /^(localhost|127\.0\.0\.1|\[::1\])$/;
+  function statsUrl() {
+    if (SUPABASE_URL) return SUPABASE_URL + '/functions/v1/' + STATS_FN;
+    if (!LOOPBACK.test(win.location.hostname)) return '';
+    return win.location.origin + '/functions/v1/' + STATS_FN;
+  }
 
   /* main.js reads this back for the order form, so the url is
      written once and used by everything that talks to supabase. */
@@ -56,8 +68,19 @@
     box.classList.add('live');
   }
 
+  /* the availability pill rides back on the same response. 'auto' means
+     nobody overrode it and the Baghdad clock on the page decides, so the
+     site behaves exactly as it did before the desk could set it.  */
+  function applyAvail(a) {
+    var state = a && a.state;
+    if (state !== 'open' && state !== 'closed') return;
+    win.BGSASH_AVAIL = { state: state, note: String(a.note || '').slice(0, 120) };
+    try { doc.dispatchEvent(new CustomEvent('bgsash:avail', { detail: win.BGSASH_AVAIL })); } catch (e) {}
+  }
+
   function countVisits() {
-    if (!SUPABASE_URL) return;                  // unconfigured: stay hidden
+    var endpoint = statsUrl();
+    if (!endpoint) return;                      // unconfigured: stay hidden
     var box = q('#tally');
 
     var here = hostOf(win.location.href);
@@ -68,7 +91,7 @@
       ref: (from && from !== here) ? from : ''  // only outside hosts, and only the host
     };
 
-    fetch(SUPABASE_URL + '/functions/v1/' + STATS_FN, {
+    fetch(endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
@@ -79,6 +102,7 @@
       })
       .then(function (s) {
         if (!s || s.ok !== true) throw new Error('no tally');
+        if (s.avail) applyAvail(s.avail);
         if (box) { box.hidden = false; paint(box, s); }
       })
       .catch(function () { if (box) box.hidden = true; });

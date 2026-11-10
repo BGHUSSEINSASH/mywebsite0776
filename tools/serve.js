@@ -4,7 +4,9 @@
 // relative, so it is served with the same headers firebase would give it.
 const http = require('http');
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
+const crypto = require('crypto');
 const { RULES } = require('./security-config');
 
 // security-config writes its headers as a keyed map because that reads
@@ -51,7 +53,8 @@ const types = {
   '.ico': 'image/x-icon',
   '.txt': 'text/plain; charset=utf-8',
   '.xml': 'application/xml; charset=utf-8',
-  '.webmanifest': 'application/manifest+json; charset=utf-8'
+  '.webmanifest': 'application/manifest+json; charset=utf-8',
+  '.woff2': 'font/woff2'
 };
 
 http.createServer((req, res) => {
@@ -74,6 +77,51 @@ http.createServer((req, res) => {
       } catch (e) {
         res.writeHead(400, { 'Content-Type': 'application/json' }).end(JSON.stringify({ ok: false, error: e.message }));
       }
+    });
+    return;
+  }
+
+  /* dev-only stand-in for the supabase edge function, so the box under the
+     clock is visible and moves on this machine while SUPABASE_URL is still
+     empty. tally.js only takes this branch on a loopback host, so a deployed
+     page never asks localhost for a number. the counts live in the temp dir,
+     which means the figures survive a server restart and die with the disk. */
+  if (req.url.split('?')[0] === '/functions/v1/site-stats' && req.method === 'POST') {
+    let body = '';
+    req.on('data', (c) => { body += c; if (body.length > 4e3) req.destroy(); });
+    req.on('end', () => {
+      const store = path.join(os.tmpdir(), 'bgsash-dev-tally.json');
+      const BOT = /bot|crawl|spider|curl|wget|headless|lighthouse|node-fetch/i;
+      const day = new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Asia/Baghdad', year: 'numeric', month: '2-digit', day: '2-digit'
+      }).format(new Date());
+      let db = { totals: { views: 0, visitors: 0 }, days: {}, uniq: {} };
+      try { db = JSON.parse(fs.readFileSync(store, 'utf8')); } catch (e) {}
+
+      const ua = req.headers['user-agent'] || '';
+      const counted = !BOT.test(ua) && !!ua;
+      if (counted) {
+        const key = day + ':' + crypto.createHash('sha256')
+          .update('dev-salt|' + (req.socket.remoteAddress || 'local') + '|' + day).digest('hex').slice(0, 32);
+        const seen = !!db.uniq[key];
+        if (!seen) db.uniq[key] = 1;
+        db.days[day] = db.days[day] || { views: 0, visitors: 0 };
+        db.totals.views += 1;
+        db.days[day].views += 1;
+        if (!seen) { db.totals.visitors += 1; db.days[day].visitors += 1; }
+        fs.writeFileSync(store, JSON.stringify(db));
+      }
+
+      res.writeHead(200, withSecurity('/functions/v1/site-stats', { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }))
+        .end(JSON.stringify({
+          ok: true,
+          counted: counted,
+          views: db.totals.views,
+          visitors: db.totals.visitors,
+          today: (db.days[day] || {}).visitors || 0,
+          todayViews: (db.days[day] || {}).views || 0,
+          avail: { state: 'auto', note: '' }
+        }));
     });
     return;
   }

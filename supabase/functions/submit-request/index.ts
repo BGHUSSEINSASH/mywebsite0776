@@ -3,6 +3,9 @@
 // inserts the row with the service key and emails a notification.
 // Deploy:  supabase functions deploy submit-request
 // Secrets: supabase secrets set TURNSTILE_SECRET=... RESEND_API_KEY=... NOTIFY_EMAIL=...
+//          supabase secrets set MAIL_FROM="BG Sash <requests@yourdomain.com>"
+//          (only after that domain is verified at resend.com; without it the
+//          mail leaves the sandbox address and still delivers)
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
@@ -15,6 +18,21 @@ const SERVICES = new Set([
   "website", "platform", "app", "server", "social", "design", "domain", "custom", "other",
 ]);
 const BUDGETS = new Set(["b1", "b2", "b3", "b4"]);
+
+// a utm value is attacker-controlled text: the address bar belongs to
+// whoever sent the visitor. control characters and angle brackets are
+// dropped and the rest is clipped, so the desk column stays a column.
+function tag(v: unknown, max: number): string | null {
+  const s = String(v ?? "");
+  let out = "";
+  for (let i = 0; i < s.length; i++) {
+    const c = s.charCodeAt(i);
+    if (c < 32 || c === 127 || c === 60 || c === 62) continue;
+    out += s[i];
+  }
+  out = out.trim();
+  return out ? out.slice(0, max) : null;
+}
 
 function hashIp(ip: string): string {
   // salt comes from the function env; the raw ip is never stored
@@ -101,6 +119,10 @@ Deno.serve(async (req) => {
 
     const { error: insErr } = await admin.from("service_requests").insert({
       lang, service, budget, details, name, email, phone, ip_hash: ipHash,
+      source: tag(body.source, 60),
+      medium: tag(body.medium, 60),
+      campaign: tag(body.campaign, 60),
+      referrer: tag(body.referrer, 80),
     });
     if (insErr) throw insErr;
 
@@ -109,17 +131,24 @@ Deno.serve(async (req) => {
     // fire-and-forget email notification
     const notify = Deno.env.get("NOTIFY_EMAIL");
     const resend = Deno.env.get("RESEND_API_KEY");
+    // Resend refuses to send for a domain it has not verified, and its
+    // sandbox address is portfolio@resend.dev — so that stays the default
+    // and MAIL_FROM is the one line to change once his own domain is in.
+    const from = Deno.env.get("MAIL_FROM") || "portfolio@resend.dev";
     if (notify && resend) {
       fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: { "Authorization": "Bearer " + resend, "Content-Type": "application/json" },
         body: JSON.stringify({
-          from: "portfolio@resend.dev",
+          from: from,
           to: notify,
           subject: "New build request — " + service + " — " + name,
+          reply_to: email,
           text:
             "Service: " + service + "\nBudget: " + (budget ?? "-") + "\n" +
-            "Name: " + name + "\nEmail: " + email + "\nPhone: " + (phone || "-") + "\nLang: " + lang + "\n\n" +
+            "Name: " + name + "\nEmail: " + email + "\nPhone: " + (phone || "-") + "\nLang: " + lang + "\n" +
+            "Came from: " + ([tag(body.source, 60), tag(body.medium, 60), tag(body.campaign, 60), tag(body.referrer, 80)]
+              .filter(Boolean).join(" / ") || "-") + "\n\n" +
             details,
         }),
       }).catch(() => {});

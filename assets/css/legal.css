@@ -1,0 +1,208 @@
+/* ============================================================
+   legal.css — privacy and terms, the two pages that are pure
+   reading. same register-sheet language as the rest of the site
+   (mono annotations, hairlines, one signal colour), set as a
+   single column because nobody skims a policy in two.
+   the palette is repeated here rather than imported: these pages
+   ship with fonts.css + legal.css and nothing else, so a change
+   to the homepage stylesheet can never redden a legal document.
+   ============================================================ */
+
+:root {
+  --bg: #e9e6dd;
+  --fg: #101113;
+  --muted: #5b5a55;
+  --line: rgba(16, 17, 19, .16);
+  --card: #dcd8cd;
+  --accent: #ff4d1a;
+  --accent-ink: #fff;
+  --accent-text: #b53209;
+  --f-display: "Unbounded", "Noto Sans Arabic", "Arial Black", system-ui, sans-serif;
+  --f-serif: "Newsreader", "Noto Naskh Arabic", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --f-body: "Hanken Grotesk", "Noto Sans Arabic", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --bg: #0e0f11;
+  --fg: #ece9df;
+  --muted: #8e8c85;
+  --line: rgba(236, 233, 223, .16);
+  --card: #17181b;
+  --accent: #ff5a2a;
+  --accent-ink: #0e0f11;
+  --accent-text: #ff5a2a;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--f-body);
+  font-size: 16.5px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  padding: 0 max(18px, env(safe-area-inset-left, 0px)) 0 max(18px, env(safe-area-inset-right, 0px));
+}
+
+/* a policy is a document people may need to quote — the site's
+   no-copy rule deliberately does not reach these two pages */
+.lg, .lg * { -webkit-user-select: text; user-select: text; }
+
+.wrap { max-width: 760px; margin-inline: auto; }
+
+.skip {
+  position: absolute; inset-inline-start: -999px; top: 8px;
+  background: var(--fg); color: var(--bg); padding: 8px 12px; z-index: 100;
+}
+.skip:focus { inset-inline-start: 12px; }
+
+/* ── head ─────────────────────────────────────────────────── */
+
+.lg-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+  padding-block: 22px; border-bottom: 1px solid var(--line);
+}
+.lg-brand {
+  font-family: var(--f-display); font-size: 14px; font-weight: 500;
+  letter-spacing: -.01em; text-transform: uppercase; text-decoration: none; color: var(--fg);
+}
+.lg-brand em { font-family: var(--f-serif); font-style: italic; text-transform: none; color: var(--accent-text); }
+.lg-tools { display: flex; gap: 10px; align-items: center; }
+
+select {
+  font-family: var(--f-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em;
+  background: var(--card); color: var(--fg); border: 1px solid var(--line);
+  border-radius: 999px; padding: 8px 12px; cursor: pointer;
+}
+button.theme {
+  width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line);
+  background: transparent; color: var(--fg); cursor: pointer; display: grid; place-items: center;
+}
+button.theme i {
+  width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid currentColor;
+  background: linear-gradient(90deg, currentColor 50%, transparent 50%);
+}
+
+/* ── the sheet ────────────────────────────────────────────── */
+
+.lg {
+  position: relative;
+  padding-block: 46px 40px;
+}
+/* register ticks, the same marks the main sheet wears */
+.lg::before, .lg::after {
+  content: ""; position: absolute; width: 15px; height: 15px;
+  border: 1px solid var(--accent); pointer-events: none;
+}
+.lg::before { top: 26px; inset-inline-start: -30px; border-right: 0; border-bottom: 0; }
+.lg::after { bottom: 6px; inset-inline-end: -30px; border-left: 0; border-top: 0; }
+
+.updated {
+  font-family: var(--f-mono); font-size: 11.5px; text-transform: uppercase;
+  letter-spacing: .12em; color: var(--muted); margin: 0;
+}
+h1 {
+  font-family: var(--f-display); font-weight: 500;
+  font-size: clamp(34px, 6vw, 62px); line-height: 1.02; letter-spacing: -.03em;
+  text-transform: uppercase; margin: 14px 0 0;
+}
+.lead {
+  font-family: var(--f-serif); font-size: clamp(18px, 2.2vw, 22px); line-height: 1.5;
+  color: var(--muted); margin: 18px 0 0; max-width: 58ch;
+}
+
+/* privacy <-> terms, the only navigation these pages need */
+.tabs {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  margin: 30px 0 0; padding: 0; list-style: none;
+}
+.tabs a {
+  font-family: var(--f-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em;
+  text-decoration: none; color: var(--muted);
+  border: 1px solid var(--line); border-radius: 999px; padding: 9px 16px;
+}
+.tabs a:hover { border-color: var(--fg); color: var(--fg); }
+.tabs a[aria-current="page"] { border-color: var(--accent); color: var(--accent-text); }
+
+/* ── clauses ──────────────────────────────────────────────── */
+
+section { border-top: 1px solid var(--line); margin-top: 40px; padding-top: 26px; }
+section:first-of-type { border-top: 0; }
+
+h2 {
+  font-family: var(--f-mono); font-size: 12px; font-weight: 400;
+  text-transform: uppercase; letter-spacing: .1em; color: var(--accent-text);
+  margin: 0 0 10px;
+}
+h2::before { content: attr(data-num) " "; color: var(--muted); }
+
+section p { margin: 0 0 14px; max-width: 64ch; }
+section p:last-child { margin-bottom: 0; }
+
+ul.clauses { list-style: none; margin: 0; padding: 0; }
+ul.clauses li {
+  position: relative; padding-inline-start: 24px; margin-bottom: 10px; max-width: 62ch;
+}
+ul.clauses li:last-child { margin-bottom: 0; }
+ul.clauses li::before {
+  content: ""; position: absolute; inset-inline-start: 0; top: .72em;
+  width: 10px; height: 1px; background: var(--accent);
+}
+
+/* ── foot ─────────────────────────────────────────────────── */
+
+.lg-foot {
+  margin-top: 52px; padding-block: 26px 46px; border-top: 1px solid var(--line);
+  display: flex; gap: 18px; flex-wrap: wrap; align-items: center;
+  font-family: var(--f-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--muted);
+}
+.lg-foot a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 2px; }
+.lg-foot a:hover { color: var(--fg); border-color: var(--fg); }
+.lg-foot .mark { margin-inline-start: auto; }
+
+/* ── direction and small screens ──────────────────────────── */
+
+[dir="rtl"] h1, [dir="rtl"] .lg-brand { letter-spacing: 0; }
+[dir="rtl"] .lg::before { border-right: 1px solid var(--accent); border-bottom: 0; border-left: 0; border-top: 1px solid var(--accent); }
+[dir="rtl"] .lg::after { border-left: 1px solid var(--accent); border-top: 0; border-right: 0; border-bottom: 1px solid var(--accent); }
+
+@media (max-width: 720px) {
+  .lg::before, .lg::after { display: none; }
+  .lg-foot .mark { margin-inline-start: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}
+
+@media print {
+  :root { --bg: #fff; --fg: #000; --muted: #333; --line: #bbb; --accent: #000; --accent-text: #000; }
+  .lg-head, .lg-tools, .tabs, .lg-foot a, .skip { display: none !important; }
+  body { font-size: 11pt; }
+  section { break-inside: avoid; }
+}
+
+/* ── contrast, forced colours ─────────────────────────────── */
+/* a policy is the one document on this site somebody might have to read in a
+   forced palette, so the same tokens move here as on the homepage — and the
+   text stays selectable, which is the point of the file */
+
+@media (prefers-contrast: more) {
+  :root { --muted: #24252b; --line: rgba(16, 17, 19, .45); }
+  :root[data-theme="dark"] { --muted: #dedbd2; --line: rgba(236, 233, 223, .45); }
+  :focus-visible { outline-width: 3px; }
+}
+
+@media (forced-colors: active) {
+  :root, :root[data-theme="dark"] {
+    --bg: Canvas; --fg: CanvasText; --muted: CanvasText; --card: Canvas;
+    --line: CanvasText; --accent: LinkText; --accent-ink: Canvas; --accent-text: LinkText;
+  }
+}

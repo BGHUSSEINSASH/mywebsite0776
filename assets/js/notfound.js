@@ -76,13 +76,42 @@
     var saved = null;
     try { saved = localStorage.getItem('lang'); } catch (e) {}
     var browser = ((navigator.languages && navigator.languages[0]) || navigator.language || 'en').toLowerCase();
-    var codes = Object.keys(words);
     var cands = [fromUrl, saved, browser, browser.split('-')[0]];
     for (var i = 0; i < cands.length; i++) {
       var c = (cands[i] || '').split('-')[0];
-      if (c && codes.indexOf(c) > -1) return c;
+      if (c && carries(c)) return c;
     }
     return 'en';
+  }
+
+  /* one file per language (tools/split-i18n.js writes them out of
+     translations.json) plus english, which is where say() ends up for any
+     key this language does not carry — not all twelve at once. the <select>
+     is the list of languages this page can show, read before any of them
+     has been fetched. */
+  var carrying = null;
+  function carried() {
+    if (!carrying) {
+      var sel = doc.querySelector('#langSelect');
+      var list = sel ? Array.prototype.slice.call(sel.querySelectorAll('option')).map(function (o) { return o.value; }) : [];
+      carrying = list.length ? list : ['en'];
+    }
+    return carrying;
+  }
+  function carries(code) { return carried().indexOf(code) > -1; }
+
+  function loadLanguage(code) {
+    if (words[code]) return Promise.resolve(words[code]);
+    return fetch('/assets/i18n/' + code + '.json?v=r26')
+      .then(function (r) { return r.ok ? r.json() : {}; })
+      .catch(function (e) { console.warn('translation file missing:', code, e); return {}; })
+      .then(function (tree) { words[code] = tree || {}; return words[code]; });
+  }
+
+  function loadLanguages(code) {
+    return loadLanguage('en').then(function () {
+      return code === 'en' ? null : loadLanguage(code);
+    });
   }
 
   var btn = doc.querySelector('#themeBtn');
@@ -92,10 +121,10 @@
   });
 
   var sel = doc.querySelector('#langSelect');
-  if (sel) sel.addEventListener('change', function () { lang = sel.value; apply(); });
+  if (sel) sel.addEventListener('change', function () {
+    var code = sel.value;
+    loadLanguage(code).then(function () { lang = code; apply(); });
+  });
 
-  fetch('/assets/i18n/translations.json?v=r24')
-    .then(function (r) { return r.json(); })
-    .then(function (json) { words = json; lang = pick(); apply(); })
-    .catch(function () { /* english markup is already in the page */ });
+  loadLanguages(pick()).then(function () { lang = pick(); apply(); });
 })();

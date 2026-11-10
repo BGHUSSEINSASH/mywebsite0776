@@ -1,0 +1,88 @@
+name: checks
+
+# the gates that used to live only in my terminal, so a push that breaks one
+# of them stops being a silent mistake. this file checks; it never deploys —
+# publishing stays a human decision, made in the conversation.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: every shipped script parses
+        run: |
+          for f in assets/js/*.js service-worker.js tools/*.js; do
+            node --check "$f"
+          done
+
+      - name: the security config still generates the site
+        # apply-security is idempotent, so a diff here means somebody edited a
+        # csp meta tag or a header block by hand instead of editing the config
+        run: |
+          node tools/apply-security.js
+          git diff --exit-code -- index.html 404.html privacy.html terms.html admin.html firebase.json
+
+      - name: security layers
+        run: node tools/check-security.js
+
+      - name: twelve languages, every key
+        run: node tools/check-i18n.js
+
+      - name: the per-language files still match the dictionary
+        # the pages fetch assets/i18n/<code>.json, which tools/split-i18n.js
+        # writes out of translations.json. a translation added to the source
+        # and not re-split would silently never reach a visitor.
+        run: |
+          node tools/split-i18n.js
+          git diff --exit-code -- assets/i18n
+
+      - name: case pages and sitemap
+        run: node tools/build-cases.js
+
+      - name: offline shell
+        # the service worker promises to answer these urls with no network, so
+        # each one has to exist for real — verify-shell walks the shell list
+        run: |
+          node tools/serve.js 8080 > serve.log 2>&1 &
+          server=$!
+          trap 'kill "$server" 2>/dev/null || true' EXIT
+          ready=""
+          for i in $(seq 1 30); do
+            if curl -fsS -o /dev/null http://127.0.0.1:8080/; then ready=yes; break; fi
+            sleep 1
+          done
+          if [ -z "$ready" ]; then cat serve.log; exit 1; fi
+          node tools/verify-shell.js http://127.0.0.1:8080
+
+      - name: edge functions type-check
+        # supabase runs these in a deno isolate; there is no deno here and no
+        # reason to install one — the shim says what the isolate provides, and
+        # tsc catches the typos a runtime would only find under load
+        run: |
+          npx -y -p typescript tsc \
+            --noEmit --noResolve --skipLibCheck \
+            --target es2022 --lib es2022,dom --noImplicitAny false \
+            tools/deno-shim.d.ts \
+            supabase/functions/list-requests/index.ts \
+            supabase/functions/submit-request/index.ts \
+            supabase/functions/site-stats/index.ts \
+            supabase/functions/update-request/index.ts \
+            supabase/functions/weekly-digest/index.ts

@@ -24,12 +24,32 @@
   var letCopy = false;          // our own "copy" button bypasses the guard below
 
   /* ── translations ─────────────────────────────────────────
-     the json holds every language. en and ar are complete; the
-     rest carry translated chrome and fall back to english per
-     key, so a half-finished language never leaves holes.      */
+     one file per language (tools/split-i18n.js writes them out of
+     translations.json). a page fetches its own language plus english,
+     which is the fallback every say() ends at — not all twelve at once,
+     which is what the single dictionary used to cost on every visit.
+     the languages this page offers is read off its own <select>, so the
+     markup stays the one list a visitor can actually choose from.    */
 
   var words = {};
   var lang = 'en';
+  var carrying = null;
+
+  // the page itself lists what a visitor can choose, so that is the list
+  // the url, the saved choice and the browser hint are measured against —
+  // a language this page does not offer is not a language at all here.
+  function carried() {
+    if (!carrying) {
+      var sel = q('#langSelect');
+      var list = sel ? qa('option', sel).map(function (o) { return o.value; }) : [];
+      carrying = list.length ? list : ['en'];
+    }
+    return carrying;
+  }
+
+  function carries(code) {
+    return carried().indexOf(code) > -1;
+  }
 
   // ticker items are arrays; they're addressed as key.1, key.2 … (1-based)
   function dig(node, path) {
@@ -146,16 +166,16 @@
     var raw = (fromUrl || saved || browser || 'en').toLowerCase();
     var base = raw.split('-')[0];
 
-    if (words[raw]) return raw;
-    if (words[base]) return base;
-    if (aliases[raw]) return aliases[raw];
-    if (aliases[base]) return aliases[base];
+    if (carries(raw)) return raw;
+    if (carries(base)) return base;
+    if (aliases[raw] && carries(aliases[raw])) return aliases[raw];
+    if (aliases[base] && carries(aliases[base])) return aliases[base];
     return 'en';
   }
 
   function speak(code) {
     if (!code) code = 'en';
-    if (Object.keys(words).length && !words[code]) code = 'en';
+    if (!carries(code)) code = 'en';
     lang = code;
     try { localStorage.setItem('lang', code); } catch (e) {}
 
@@ -245,12 +265,23 @@
     doc.dispatchEvent(new CustomEvent('sash:lang', { detail: { lang: code } }));
   }
 
-  function loadLanguages() {
+  function loadLanguage(code) {
+    if (words[code]) return Promise.resolve(words[code]);
     // bust: the json changes with every release, the browser must not sit on it
-    return fetch('assets/i18n/translations.json?v=r24')
-      .then(function (r) { return r.json(); })
-      .catch(function (e) { console.warn('translations missing', e); return {}; })
-      .then(function (json) { words = json; });
+    // root-absolute, the same way every other asset url on this site is written
+    return fetch('/assets/i18n/' + code + '.json?v=r26')
+      .then(function (r) { return r.ok ? r.json() : {}; })
+      .catch(function (e) { console.warn('translation file missing:', code, e); return {}; })
+      .then(function (tree) { words[code] = tree || {}; return words[code]; });
+  }
+
+  // english travels with everybody: say() ends there for any key a language
+  // does not carry, and the turkish casing rule needs it to tell a borrowed
+  // name from a translated word. two files, not twelve.
+  function loadLanguages(code) {
+    return loadLanguage('en').then(function () {
+      return code === 'en' ? null : loadLanguage(code);
+    });
   }
 
   /* ── per-letter wrapping ──────────────────────────────────
@@ -755,6 +786,25 @@
     oOpener = null;
   }
 
+  /* where he came from. only the utm tags he was sent with and the host
+     that sent him — no path, no query, no id. the function clips each
+     value and strips control characters before it stores one, so nothing
+     typed into an address bar becomes markup or a control code. */
+  function utmTag(name) {
+    try {
+      var v = new URLSearchParams(location.search).get('utm_' + name) || '';
+      return v.slice(0, 60);
+    } catch (e) { return ''; }
+  }
+
+  function referrerHost() {
+    try {
+      var u = new URL(doc.referrer || '', location.href);
+      if (!u.hostname || u.hostname === location.hostname) return '';
+      return u.hostname.slice(0, 80);
+    } catch (e) { return ''; }
+  }
+
   function orderData() {
     var f = q('#orderForm');
     return {
@@ -766,7 +816,11 @@
       phone: (q('#oPhone') || {}).value || '',
       lang: lang,
       hp: (f.website && f.website.value) || '',
-      turnstile: turnstileToken()
+      turnstile: turnstileToken(),
+      source: utmTag('source'),
+      medium: utmTag('medium'),
+      campaign: utmTag('campaign'),
+      referrer: referrerHost()
     };
   }
 
@@ -957,6 +1011,77 @@
     el._t = setTimeout(function () { el.classList.remove('show'); }, 2200);
   }
 
+  /* ── a newer copy is ready ─────────────────────────────────
+     while this page is on screen, a newer service worker can finish
+     installing in the background. it waits, and this bar is the answer
+     to that wait: reload on the reader's click, never underneath them.
+     the strings carry data-i18n so switching language repaints the bar
+     along with the rest of the page.                              */
+
+  var swBar = null;
+  var swAsked = false;          // only a click on the bar may reload
+
+  function hideSwBar() {
+    if (swBar && swBar.parentNode) swBar.parentNode.removeChild(swBar);
+    swBar = null;
+  }
+
+  function showSwBar(worker) {
+    if (swBar || !worker) return;
+    // literal keys, so the language gate can see that all twelve carry them
+    var node = function (tag, key, fb) {
+      var n = doc.createElement(tag);
+      n.setAttribute('data-i18n', key);
+      n.textContent = say(key) || fb;
+      return n;
+    };
+    swBar = doc.createElement('div');
+    swBar.className = 'sw-update';
+    swBar.setAttribute('role', 'status');
+
+    var go = node('button', 'upd.go', 'Reload');
+    go.type = 'button';
+    go.addEventListener('click', function () {
+      swAsked = true;
+      try { worker.postMessage({ type: 'sash:apply' }); } catch (e) {}
+      // a copy that answers by taking control reloads through the event
+      // below; this one is only for a worker that never gets the message
+      setTimeout(function () { location.reload(); }, 1500);
+    });
+
+    var no = doc.createElement('button');
+    no.type = 'button';
+    no.className = 'sw-x';
+    no.setAttribute('data-i18n-aria', 'upd.later');
+    no.setAttribute('aria-label', say('upd.later') || 'Keep reading this copy');
+    no.textContent = '×';
+    no.addEventListener('click', hideSwBar);
+
+    swBar.appendChild(node('span', 'upd.body', 'A newer copy of this page is ready.'));
+    swBar.appendChild(go);
+    swBar.appendChild(no);
+    doc.body.appendChild(swBar);
+  }
+
+  function watchShell() {
+    navigator.serviceWorker.addEventListener('controllerchange', function () {
+      if (swAsked) location.reload();
+    });
+    navigator.serviceWorker.register('/service-worker.js').then(function (reg) {
+      if (reg.waiting) { showSwBar(reg.waiting); return; }
+      reg.addEventListener('updatefound', function () {
+        var w = reg.installing;
+        if (!w) return;
+        w.addEventListener('statechange', function () {
+          // navigator.serviceWorker.controller is null on a first visit, and
+          // a brand-new shell has no reader to notify
+          if (w.state !== 'installed' || !navigator.serviceWorker.controller) return;
+          showSwBar(reg.waiting || w);
+        });
+      });
+    }).catch(function () {});
+  }
+
   function wireCopy() {
     qa('[data-copy]').forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -1070,7 +1195,11 @@
     var sel = q('#langSelect');
     if (!sel) return;
     sel.value = lang;
-    sel.addEventListener('change', function () { redraw(function () { speak(sel.value); }); });
+    sel.addEventListener('change', function () {
+      // the language a visitor picks may be one this page never loaded
+      var code = sel.value;
+      loadLanguage(code).then(function () { redraw(function () { speak(code); }); });
+    });
   }
 
   /* ── everything that moves while scrolling ────────────────
@@ -1382,7 +1511,7 @@
     rtl: function () { return flipped.indexOf(lang) > -1; },
     calm: function () { return calm; },
     motion: function () { return motion; },
-    langs: function () { return Object.keys(words); },
+    langs: function () { return carried(); },
     toast: toast,
     mail: MAIL,
     phone: '9647762425266',
@@ -1396,6 +1525,12 @@
     setDetails: function (txt) {
       var t = q('#oDetails');
       if (t) t.value = txt;
+    },
+    // the estimator builds itself when it nears the screen, and the chips it
+    // adds change how far down the rest of the page is — the pinned
+    // animations were measured against the shorter version
+    refresh: function () {
+      if (scrub && window.ScrollTrigger) ScrollTrigger.refresh();
     },
     openOrder: orderShow
   };
@@ -1420,9 +1555,7 @@
 
     // install the offline shell — ignored silently where sw isn't allowed
     if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-      addEventListener('load', function () {
-        navigator.serviceWorker.register('/service-worker.js').catch(function () {});
-      });
+      addEventListener('load', watchShell);
     }
 
     qa('.split').forEach(slice);
@@ -1442,7 +1575,11 @@
     startFlow();
     runCounter();
 
-    loadLanguages().then(ready);
+    loadLanguages(pick()).then(function () {
+      // a slow json must not leave the page english forever: if the timeout
+      // already opened the door, paint now that the words are actually here
+      if (settled) speak(pick()); else ready();
+    });
     setTimeout(ready, 4000);                   // slow or failed json still opens the door
 
     if (doc.fonts && doc.fonts.ready) {

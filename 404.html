@@ -3,17 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data:; connect-src 'self' https://api.github.com https://*.supabase.co https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto: https://wa.me; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; connect-src 'self' https://api.github.com https://*.supabase.co https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto: https://wa.me; upgrade-insecure-requests">
   <title>404 — Page not found · BG Hussein Sash</title>
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#0e0f11">
-  <script src="/assets/js/theme.js?v=r24"></script>
+  <script src="/assets/js/theme.js?v=r26"></script>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
   <link rel="canonical" href="https://mywebsite0776.web.app/">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300..900&family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=IBM+Plex+Mono:wght@400;500&family=Hanken+Grotesk:wght@300..800&family=Noto+Sans+Arabic:wght@300..800&family=Noto+Naskh+Arabic:wght@400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=r26">
   <style>
     :root {
       --bg: #e9e6dd; --fg: #14151a; --muted: #5c5f66; --line: rgba(20,21,26,.16);
@@ -86,6 +84,23 @@
     button.theme i { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid currentColor; background: linear-gradient(90deg, currentColor 50%, transparent 50%); }
     @keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
     @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+
+    /* the two accessibility palettes, repeated here because this page carries
+       its own tokens instead of importing style.css. text colours darken, the
+       hairlines thicken; under forced colors everything becomes the user's
+       own canvas/text/link triplet. */
+    @media (prefers-contrast: more) {
+      :root { --muted: #24252b; --line: rgba(20,21,26,.45); }
+      :root[data-theme="dark"] { --muted: #dedbd2; --line: rgba(233,230,221,.45); }
+      :focus-visible { outline-width: 3px; }
+    }
+    @media (forced-colors: active) {
+      :root, :root[data-theme="dark"] {
+        --bg: Canvas; --fg: CanvasText; --muted: CanvasText; --card: Canvas;
+        --line: CanvasText; --accent: LinkText; --accent-ink: Canvas; --accent-text: LinkText;
+      }
+      a.btn { border-color: CanvasText; }
+    }
   </style>
 </head>
 <body>
@@ -108,7 +123,7 @@
     <div class="mark"><span data-i18n="notfound.mark">BG Hussein Sash · Baghdad, Iraq · UTC+3</span></div>
   </main>
 
-<script src="/assets/js/tally.js?v=r24"></script>
-<script src="/assets/js/notfound.js?v=r24"></script>
+<script src="/assets/js/tally.js?v=r26"></script>
+<script src="/assets/js/notfound.js?v=r26"></script>
 </body>
 </html>

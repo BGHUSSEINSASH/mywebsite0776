@@ -76,7 +76,8 @@
         "result": "Book in a minute with price and rating up front — money only moves when both sides are satisfied.",
         "c1": "Escrow payments",
         "c2": "Voice search",
-        "c3": "KYC verification"
+        "c3": "KYC verification",
+        "fig": "59 admin switches"
       },
       "2": {
         "tag": "Tax platform",
@@ -112,7 +113,8 @@
         "result": "Guests book and pay with a clear summary and get refunds to the wallet instantly; suppliers run everything from one dashboard.",
         "c1": "Wallet & refunds",
         "c2": "Supplier dashboard",
-        "c3": "Arabic RTL"
+        "c3": "Arabic RTL",
+        "fig": "4-step booking"
       },
       "5": {
         "tag": "IT infrastructure",
@@ -268,7 +270,9 @@
       "links": "Links",
       "connect": "Connect",
       "rights": "All rights reserved.",
-      "place": "Baghdad, Iraq · UTC+3"
+      "place": "Baghdad, Iraq · UTC+3",
+      "privacy": "Privacy",
+      "terms": "Terms"
     },
     "testimonials": {
       "label": "06 / Voices",
@@ -298,7 +302,15 @@
       "q5": "Do you maintain what you build?",
       "a5": "Yes — updates, monitoring, backups and fixes after launch, as a monthly retainer or per request.",
       "q6": "Where are you based?",
-      "a6": "Baghdad, Iraq (UTC+3). I work remotely with clients anywhere and handle on-site work across Baghdad."
+      "a6": "Baghdad, Iraq (UTC+3). I work remotely with clients anywhere and handle on-site work across Baghdad.",
+      "q7": "Does this site use cookies or analytics?",
+      "a7": "No cookie is set here and no analytics vendor is in the path. The counter keeps one salted hash of an ip address per Baghdad day, so the same visit cannot count twice, and nothing that names anybody — the privacy page lists every piece of it.",
+      "q8": "Which languages can a product ship in?",
+      "a8": "Arabic and English as standard, both with the full layout in their own direction. This site itself is written in twelve languages from one translation file, so adding yours to a product is an edit, not a rebuild.",
+      "q9": "What do you need from me to begin?",
+      "a9": "What exists and what hurts: the pages, screens or systems involved, any logo and text you already have, and who approves the work. That is enough for a written scope, price and dates — and the work starts when you say so.",
+      "q10": "Do I see the work while it is still being built?",
+      "a10": "Yes: a preview link every week rather than a reveal at the end. Every stage is one message away, and the answers are on this sheet before you have to ask."
     },
     "pricing": {
       "label": "08 / Pricing",
@@ -549,11 +561,60 @@
       "theme": "Switch light or dark theme",
       "close": "Close",
       "estCur": "Show price alongside in",
-      "tally": "Visitor tally"
+      "tally": "Visitor tally",
+      "legal": "Privacy and terms"
     },
     "alt": {
       "shot": "live site screenshot",
       "cover": "typographic case cover"
+    },
+    "legal": {
+      "updated": "Last updated 8 November 2026",
+      "p": {
+        "h1": "Privacy",
+        "lead": "This site counts its own visitors. No analytics vendor, no advertising cookie, no third-party font request — what a page learns about a visit, this page tells you.",
+        "countH": "What the counter keeps",
+        "countP": "Once per day, Baghdad time: a salted hash of your ip address, the page that sent you here, and the device family your browser reports. The salt changes, so the same person cannot be followed from one day to the next.",
+        "neverH": "What it never touches",
+        "never1": "No cookie is set by this site.",
+        "never2": "No advertising id, pixel or cross-site tracker.",
+        "never3": "No full ip address is stored, and nothing that names you.",
+        "never4": "No name, email or phone number unless you send the order form.",
+        "formH": "If you send a request",
+        "formP": "The order form carries your name, email, phone, the service, budget, deadline and message to this site’s own database and to the mailbox that answers you. It is used to reply and to prepare an estimate — not for marketing, not sold, not passed to anybody else.",
+        "hostH": "Where it runs",
+        "hostP": "Hosting, database, mail and the captcha each belong to one provider, and each receives only what its part needs. The captcha script is fetched only when a form reaches the step that asks for it, and not at all when that step is off.",
+        "askH": "Asking about your data",
+        "askP": "Write to the contact address on the homepage. If you sent a request, ask and you can see it, correct it, or have it deleted; a plain question gets a plain answer, not a form."
+      },
+      "t": {
+        "h1": "Terms of use",
+        "lead": "Using this site means agreeing to the rules below. They are short on purpose: written for the person reading them, not for a lawyer filing them.",
+        "workH": "What you are reading",
+        "workP": "The projects and case studies describe real work for real clients, with figures as they were measured or agreed at the time. Screenshots and artwork belong to the products they show, and nothing here is a promise about your project.",
+        "priceH": "Estimates and prices",
+        "priceP": "The estimator and any number in a reply are an indication in US dollars, valid for the period stated in that message. A price binds only in a written agreement between both sides.",
+        "reqH": "Sending a request",
+        "reqP": "Please give a correct email — a request with a wrong address cannot be answered. One request per project; the form is rate-limited and captcha-protected, so bulk or automated submissions are refused. Nothing sent creates an obligation until an agreement is signed.",
+        "useH": "Fair use of the site",
+        "useP": "You may read, link to and print these pages while you decide about the work. You may not scrape the site in bulk, replay its forms, probe its infrastructure, or present its text, artwork or case studies as your own.",
+        "yoursH": "Your words stay yours",
+        "yoursP": "What you send in a message remains yours. It carries no licence beyond what is needed to answer you, and your name or company appears only where you have agreed it.",
+        "outH": "Links that leave",
+        "outP": "GitHub, WhatsApp, mail and a few product pages lead off this site. Their behaviour and policies belong to them; the link is a courtesy, not an endorsement or a guarantee.",
+        "lawH": "Governing law",
+        "lawP": "These terms, and any work agreed after them, follow the law of the Republic of Iraq with Baghdad as the place of performance. Neither side answers for indirect or incidental loss, and responsibility for a project never exceeds what that project paid."
+      }
+    },
+    "upd": {
+      "body": "A newer copy of this page is ready.",
+      "go": "Reload",
+      "later": "Keep reading this copy"
+    },
+    "keys": {
+      "title": "Keyboard shortcuts",
+      "tabs": "Move between the stack tabs",
+      "esc": "Close what is open"
     }
   },
   "ar": {
@@ -633,7 +694,8 @@
         "result": "احجز خلال دقيقة والسعر والتقييم أمامك — والأموال تتحرك فقط عند رضا الطرفين.",
         "c1": "دفع ضماني",
         "c2": "بحث صوتي",
-        "c3": "توثيق KYC"
+        "c3": "توثيق KYC",
+        "fig": "59 مفتاح تحكم"
       },
       "2": {
         "tag": "منصة ضرائب",
@@ -669,7 +731,8 @@
         "result": "الضيف يحجز ويدفع بملخص واضح ويسترد إلى محفظته فوراً؛ والمورّد يدير كل شيء من لوحة واحدة.",
         "c1": "محفظة واسترداد",
         "c2": "لوحة المورّد",
-        "c3": "عربي RTL"
+        "c3": "عربي RTL",
+        "fig": "حجز بأربع خطوات"
       },
       "5": {
         "tag": "بنية تحتية",
@@ -837,7 +900,15 @@
       "q5": "هل تحافظ على ما تبنيه؟",
       "a5": "نعم — تحديثات ومراقبة ونسخ احتياطي وإصلاحات بعد الإطلاق، بعقد شهري أو عند الطلب.",
       "q6": "أين موقعك؟",
-      "a6": "بغداد، العراق (UTC+3). أعمل عن بُعد مع عملاء في أي مكان، وأغطي العمل الميداني في بغداد."
+      "a6": "بغداد، العراق (UTC+3). أعمل عن بُعد مع عملاء في أي مكان، وأغطي العمل الميداني في بغداد.",
+      "q7": "هل يستخدم هذا الموقع ملفات تعريف الارتباط أو أدوات التحليل؟",
+      "a7": "لا تُضبط أيّ ملف تعريف ارتباط هنا، ولا جهة تحليلات في الطريق. العدّاد يحفظ بصمةً مُملَّحة واحدة لعنوان ip لكل يوم بتوقيت بغداد، فلا تُحسب الزيارة مرتين، ولا شيء يُسمّي شخصًا — صفحة الخصوصية تُعدّد كل ذلك.",
+      "q8": "بأي لغات يخرج المنتج؟",
+      "a8": "العربية والإنجليزية قياسًا، مع اكتمال التركيب في اتجاه كلٍّ منهما. هذا الموقع نفسه مكتوب باثنتَي عشرة لغة من ملف ترجمة واحد، فإضافةُ لغتك إلى منتج تعديلاً لا إعادة بناء.",
+      "q9": "ماذا تحتاج منّي لتبدأ؟",
+      "a9": "ما الموجود وما المؤلم: الصفحات أو الشاشات أو الأنظمة المعنية، وأي شعار ونصوص لديك بالفعل، ومن يعتمد العمل. هذا يكفي لنطاقٍ وسعرٍ ومواعيد مكتوبة — ويبدأ العمل عندما تقول ذلك.",
+      "q10": "هل أرى العمل وهو لا يزال يُبنى؟",
+      "a10": "نعم: رابط معاينة كل أسبوع بدل كشفٍ في النهاية. كل مرحلة على بُعد رسالة واحدة، والأجوبة مكتوبة في هذه الورقة قبل أن تحتاج أن تسأل."
     },
     "pricing": {
       "label": "08 / الأسعار",
@@ -948,7 +1019,9 @@
       "links": "روابط",
       "connect": "تواصل",
       "rights": "جميع الحقوق محفوظة.",
-      "place": "بغداد، العراق · UTC+3"
+      "place": "بغداد، العراق · UTC+3",
+      "privacy": "الخصوصية",
+      "terms": "الشروط"
     },
     "toast": {
       "copied": "تم النسخ",
@@ -1106,11 +1179,60 @@
       "theme": "تبديل المظهر الفاتح أو الداكن",
       "close": "إغلاق",
       "estCur": "أظهر السعر أيضًا بـ",
-      "tally": "عدّاد الزوّار"
+      "tally": "عدّاد الزوّار",
+      "legal": "الخصوصية والشروط"
     },
     "alt": {
       "shot": "لقطة من الموقع الحيّ",
       "cover": "غلاف الحالة — تصميم نصّي"
+    },
+    "legal": {
+      "updated": "آخر تحديث في 8 نوفمبر 2026",
+      "p": {
+        "h1": "الخصوصية",
+        "lead": "هذا الموقع يَعُدّ زوّاره بنفسه. لا جهة تحليلات، لا ملف تعريف إعلاني، ولا طلب خط من خادم خارج: ما تعرفه صفحةٌ عن زيارة واحدة تقوله هذه الصفحة.",
+        "countH": "ما يحفظه العدّاد",
+        "countP": "مرة كل يوم بتوقيت بغداد: بصمة مُملَّحة من عنوان ip، والصفحة التي أرسَلتك إلى هنا، وفئة الجهاز التي يُعلنها متصفحك. الملح يتغيّر، فلا يمكن تتبّع الشخص نفسه من يوم إلى آخر.",
+        "neverH": "ما لا يلمسه أبداً",
+        "never1": "لا يضع هذا الموقع أي ملف تعريف ارتزاز.",
+        "never2": "لا معرّف إعلاني، ولا بكسل، ولا متتبّع عبر المواقع.",
+        "never3": "لا يُحفَظ عنوان ip كامل، ولا أي شيء يسمّيك.",
+        "never4": "لا اسم ولا بريد ولا رقم هاتف إلا إذا أرسلت نموذج الطلب.",
+        "formH": "إن أرسلت طلبًا",
+        "formP": "نموذج الطلب ينقل اسمك وبريدك وهاتفك والخدمة والميزانية والمهلة ورسالتك إلى قاعدة بيانات هذا الموقع وصندوق البريد الذي يجيبك. يُستخدم للرد وإعداد التقدير فقط — لا للتسويق، ولا يُباع، ولا يُسلَّم لأحد غيرهما.",
+        "hostH": "أين يعمل",
+        "hostP": "الاستضافة وقاعدة البيانات والبريد والتحقّق كلٌّ منها لدى مزوّد واحد، ولا يصل إلى أيٍّ منها إلا ما يحتاجه دوره. نصّ التحقّق يُحمَّل فقط عندما يصل النموذج إلى الخطوة التي تطلبه، ولا يُحمَّل إطلاقًا حين تكون تلك الخطوة مغلقة.",
+        "askH": "السؤال عن بياناتك",
+        "askP": "اكتب إلى بريد التواصل في الصفحة الرئيسية. إن أرسلت طلبًا فاسأل: يمكنك رؤيته أو تصحيحه أو حذفه؛ والسؤال البسيط يجيب عنه جواب بسيط، لا نموذج."
+      },
+      "t": {
+        "h1": "شروط الاستخدام",
+        "lead": "استخدام هذا الموقع يعني الموافقة على القواعد أدناه. وهي قصيرة عن قصد: كُتبت للشخص الذي يقرأها، لا للمحامي الذي يودعها.",
+        "workH": "ما تقرأه",
+        "workP": "تصف المشاريع ودراسات الحالة عملًا حقيقيًا لعملاء حقيقيين، والأرقام كما قِيست أو اتُّفق عليها آنذاك. الصور والأعمال الفنية ملك المنتجات التي تُظهرها، ولا شيء هنا وعدٌ بشأن مشروعك.",
+        "priceH": "التقديرات والأسعار",
+        "priceP": "الحاسب وأي رقم في ردٍّ هما مؤشّر بالدولار الأمريكي، صالحان للمدة المذكورة في تلك الرسالة. ولا تُلزم أيّ قيمة إلا في اتفاق مكتوب بين الطرفين.",
+        "reqH": "إرسال طلب",
+        "reqP": "ضع بريدًا صحيحًا: فالطلب الذي يحمل عنوانًا خاطئًا لا يمكن الرد عليه. طلب واحد لكل مشروع؛ والنموذج محدود المعدّل ومحمي بالتحقّق، لذا تُرفض الإرسالات الجماعية أو الآلية. ولا يولّد أي إرسال التزامًا قبل توقيع الاتفاق.",
+        "useH": "الاستخدام المشروع للموقع",
+        "useP": "يُسمح لك بالقراءة والربط والطباعة لهذه الصفحات أثناء تفكيرك في العمل. ولا يجوز جمع الموقع بالجملة، ولا إعادة إرسال نماذجه، ولا فحص بنيته التحتية، ولا تقديم نصوصه أو تصاميمه أو دراسات حالته على أنها ملكك.",
+        "yoursH": "كلماتك تبقى لك",
+        "yoursP": "ما ترسله في رسالة يبقى لك. ولا يمنح أي ترخيص سوى ما يلزم للرد عليك، ولا يظهر اسمك أو شركتك إلا حيث وافقت.",
+        "outH": "روابط تخرج من الموقع",
+        "outP": "تُخرج روابط GitHub وواتساب والبريد وبضع صفحات منتجات من هذا الموقع. سلوكها وسياساتها ملكها؛ والربط مجاملة لا تزكية ولا ضمان.",
+        "lawH": "القانون الواجب التطبيق",
+        "lawP": "تخضع هذه الشروط وأي عمل يُتفق بعده لقانون جمهورية العراق، وبغداد هي مكان التنفيذ. ولا يسأل أي طرف عن خسارة غير مباشرة أو عرضية، ولا تتجاوز المسؤولية عن مشروع ما دفعه ذلك المشروع."
+      }
+    },
+    "upd": {
+      "body": "نسخة أحدث من هذه الصفحة جاهزة.",
+      "go": "إعادة التحميل",
+      "later": "المتابعة على هذه النسخة"
+    },
+    "keys": {
+      "title": "اختصارات لوحة المفاتيح",
+      "tabs": "التنقل بين تبويبات التقنيات",
+      "esc": "إغلاق ما هو مفتوح"
     }
   },
   "ku": {
@@ -1190,7 +1312,8 @@
         "result": "لە چەند خولەکێکدا داوا بکە لەگەڵ نرخ و هەڵسەنگاندنی پێشکەشکراو — پارە تەنها دەجوڵێت کاتێک هەر دوو لایەن ڕازی بن.",
         "c1": "پارەدانی Escrow",
         "c2": "گەڕانی دەنگ",
-        "c3": "پشکنینی KYC"
+        "c3": "پشکنینی KYC",
+        "fig": "59 دوگمەی کۆنترۆڵ"
       },
       "2": {
         "tag": "پلاتفۆرمی باج",
@@ -1226,7 +1349,8 @@
         "result": "میوانەکان داوا و پارە دەدەن لەگەڵ کورتەی ڕوون و گەڕاندنەوەکان بەچەڵکە بەبێکاتوو کیفەوە دەبێنەوە؛ دابینکەکان هەموو شتێک لە یەک داشبۆردەوە بەڕێوەدەبەن.",
         "c1": "کیف و گەڕاندنەوە",
         "c2": "داشبۆردی دابینکەر",
-        "c3": "عەرەبی ڕاست بۆ چەپ"
+        "c3": "عەرەبی ڕاست بۆ چەپ",
+        "fig": "حجزکردن بە 4 هەنگاو"
       },
       "5": {
         "tag": "زەمینەی تەکنیۆلۆژیا",
@@ -1382,7 +1506,9 @@
       "links": "بەستەرەکان",
       "connect": "پەیوەندی",
       "rights": "هەموو مافەکان پارێزراون.",
-      "place": "بەغدا، عێراق · UTC+3"
+      "place": "بەغدا، عێراق · UTC+3",
+      "privacy": "پاراستنی کەسی",
+      "terms": "مەرجەکان"
     },
     "testimonials": {
       "label": "06 / دەنگەکان",
@@ -1412,7 +1538,15 @@
       "q5": "ئەوەی دروست دەکەیت پاراستن دەکەیت؟",
       "a5": "بەڵێ — نوێکردنەوە، چاودێری، پاشەکەوت و چارەسەری لە دوای بڵاوکردنەوە، وەک ئاگرمانی مانگانە یان بەپێی داواکاری.",
       "q6": "لە کوێی دایە؟",
-      "a6": "بەغدا، عێراق (UTC+3). بە دۆخی دوور لەگەڵ کڕیارەکان لە هەر شوێنێک کار دەکەم و کاری میدانی لە سەرانسەری بەغدا بەڕێوەدەبەم."
+      "a6": "بەغدا، عێراق (UTC+3). بە دۆخی دوور لەگەڵ کڕیارەکان لە هەر شوێنێک کار دەکەم و کاری میدانی لە سەرانسەری بەغدا بەڕێوەدەبەم.",
+      "q7": "ئەم ماڵپەڕە کووکی یان شیکردنەوەی داتای بەکاردەهێنێت؟",
+      "a7": "لێرە هیچ کووکی دانانرێت و هیچ لایەنی شیکردنەوە لە ڕێگاکە نییە. ژمێرەکە تەنها یەک کۆدی شێواوی ئای پی بۆ هەر ڕۆژێک بە کاتی بەغدا ڕادەگرێت، بۆیە هەمان سەردان دوو جار ناژمێردرێت، و هیچ شتێک کەسێک ناڵێت — هەمووی لە پەڕەی پاراستنی کەسیدا لیست کراوە.",
+      "q8": "بە چەند زمانێک بەرهەمەکە دەردەچێت؟",
+      "a8": "عەرەبی و ئینگلیزی وەک ستاندارد، هەردووکیان بە ڕێکخستنی تەواو لە ئاراستەی خۆیاندا. خۆی ئەم ماڵپەڕە لە یەک فایلی وەرگێڕان بە دوانزە زمان نووسراوە، بۆیە زیادکردنی زمانەکەت دەستکارییە نەک دووبارە دروستکردنەوە.",
+      "q9": "بۆ دەستپێکردن چی لە منەوە دەوێت؟",
+      "a9": "ئەوەی هەیە و ئەوەی ئازار دەدات: ئەو پەڕانە یان شاشانە یان سیستەمانەی پەیوەندییان هەیە، هەر لۆگۆ و دەقی هەایتە، و ئەو کەسەی ڕەزامەندی لەسەر کارەکە دەدات. ئەمە بەسێت بۆ دامەزراندنی چیرۆکی کار و نرخ و بەروار بە نووسراو — و کارەکە کاتێک دەستپێکات کە تۆ بڵێیت.",
+      "q10": "دەتوانم لە کاتی دروستکردنی کارەکەدا بیبینم؟",
+      "a10": "بەڵێ: هەر هەفتەیەک بەستەری پێشبینین، نەک دەرکەوتن لە کۆتاییدا. هەموو قۆناغەک لە پەیامێکەوە دوورە، وەڵامەکانیش پێش ئەوەی پێویستت بە پرسین بێت لەم پەڕەیەدا نووسراون."
     },
     "pricing": {
       "label": "08 / نرخەکان",
@@ -1663,11 +1797,60 @@
       "theme": "ڕووکاری ڕووناک یان تاریک بگۆڕە",
       "close": "داخستن",
       "estCur": "نرخ بە ئەم پارەش پیشان بدە",
-      "tally": "ژمارەی سەردانکەران"
+      "tally": "ژمارەی سەردانکەران",
+      "legal": "پاراستنی کەسی و مەرجەکان"
     },
     "alt": {
       "shot": "وێنەی ماڵپەڕی زیندوو",
       "cover": "بەرگی دۆخ — دیزاینی نووسین"
+    },
+    "legal": {
+      "updated": "دوایین نوێکردنەوە: 8ی نۆڤەمبەر 2026",
+      "p": {
+        "h1": "پاراستنی کەسی",
+        "lead": "ئەم ماڵپەڕە خۆی ژمارەی میوانەکانی دەکات. هیچ لایەنی شیکردنەوە، هیچ کووکی ڕیکلام، و هیچ داواکاری فۆنت لە سێ لایەنەوە — ئەوەی پەڕەیەک لەبارەی سەردانێکەوە دەیزانێت، ئەم پەڕەیە پێت دەڵێت.",
+        "countH": "ئەوەی ژمێرەکە ڕای دەگرێت",
+        "countP": "جارێک لە هەموو ڕۆژێکدا بە کاتی بەغدا: کۆدی شێواوی ئای پی لەگەڵ سووری، ئەو پەڕەیەی بۆ ئێرە هاتووە، و جۆری ئامێرەکە. سوورییەکە دەگۆڕێت، بۆیە کەسێک لە ڕۆژێکەوە بۆ ڕۆژی تر ناسراو نامێنێت.",
+        "neverH": "ئەوەی قەت دەستی پێناگات",
+        "never1": "ئەم ماڵپەڕەیە هیچ کووکی دانانێت.",
+        "never2": "هیچ ناسێری ڕیکلام، پیکسڵ یان شوێنکەوتەری نێوان ماڵپەڕ نییە.",
+        "never3": "هیچ ئای پییەکی تەواو هەڵناگیرێت، و هیچ شتێک کە ناوت هەبێت.",
+        "never4": "ناو، ئیمەیڵ یان ژمارەی تەلەفۆن نییە مەگەر فۆرمی داواکاری بنێریت.",
+        "formH": "ئەگەر داواکاری بنێریت",
+        "formP": "فۆرمی داواکاری ناو، ئیمەیڵ، تەلەفۆن، خزمەتگوزاری، بودجە، موڵەت و پەیامەکەت دەگوازێتەوە بۆ بنکەی داتای خۆی ئەم ماڵپەڕە و ئەو سندوقە نامەیەی وەڵامت دەداتەوە. تەنها بۆ وەڵام و ئامادەکردنی نرخ بەکاردێت — نەک بۆ بازاڕکردن، ناکرێت، و نادرێتە کەسێکی تر.",
+        "hostH": "لەکوێدا کار دەکات",
+        "hostP": "هۆست، بنکەی داتا، نامە و پشکنین هەریەکەیان لایەنێکی تایبەتی هەیە و تەنها ئەوەی بۆ بەشی خۆی پێویستە پێی دەگات. سکریپتی پشکنین تەنها کاتێک هاتووە کە فۆرم دەگاتە ئەو هەنگاوەی داوای دەکات، و ئەگەر ئەو هەنگاوە داخراوبێت قەت ناگات.",
+        "askH": "پرسیار لەبارەی داتاکانتەوە",
+        "askP": "بۆ ناونیشانی پەیوەندی پەڕەی سەرەکی بنووسە. ئەگەر داواکارییەک ناردووە بپرسە: دەتوانیت بیبینیت، ڕاستی بکەیتەوە یان بیسڕیتەوە؛ پرسیارێکی ئاسان وەڵامێکی ئاسان وەردەگرێت، نەک فۆرم."
+      },
+      "t": {
+        "h1": "مەرجەکانی بەکارهێنان",
+        "lead": "بەکارهێنانی ئەم ماڵپەڕە واتە ڕازی بوون بە ڕێسای خوارەوە. بە ئەنقەست کورتە: بۆ کەسێک کە دەیکوێنێت نەک بۆ پارێزەرێک کە تۆماری دەکات.",
+        "workH": "ئەوەی دەیکوێنیت",
+        "workP": "پڕۆژە و لێکۆڵینەوەکان کارێکی ڕاستەقینە بۆ کڕیارە ڕاستەقینەکان باس دەکەن، و ژمارەکان بەو شێوەیەن کە لەوکاتەدا پێوانە یان ڕێککەوتن بوون. وێنە و کارە هونەرییەکان هی ئەو بەرهەمانەن کە پیشانی دەدرێن، و هیچ شتێک لێرە بەڵێنێک نییە دەربارەی پڕۆژەی تۆ.",
+        "priceH": "نرخ و بەهاکان",
+        "priceP": "هێڵکاری و هەموو ژمارەیەک لە وەڵامدا ئاماژەیەک بە دۆلاری ئەمریکی، بەسەر ئەو ماوەیەی لە نامەکەدا هاتووە. هیچ نرخێک تەنها لە ڕێککەوتنێکی نووسراوی نێوان دوو لایەندا بەندەرە.",
+        "reqH": "ناردنی داواکاری",
+        "reqP": "تکایە ئیمەیڵێکی ڕاست بدە: داواکارییەک کە ناونیشانەی هەڵەی بێت وەڵام ناخرێتەوە. یەک داواکاری بۆ هەر پڕۆژەیەک؛ فۆرمەکە لە ڕووی ژمارەیەدا سنووردارە و بە پشکنین پارێزراوە، بۆیە ناردنی کۆمەڵی یان ئۆتۆماتیکی ڕەت دەکرێتەوە. پێش واژۆکردنی ڕێککەوتن هیچ شتێک بەرپرسیارێتی دروست ناکات.",
+        "useH": "بەکارهێنانی گونجاوی ماڵپەڕ",
+        "useP": "دەتوانیت لە کاتی بڕیاریدا ئەم پەڕانە بخوێنیتەوە، بەستەری پێ بدەیت و چاپی بکەیت. نابێت ماڵپەڕ بە کۆمەڵ کۆبکەیتەوە، فۆرمەکانی دووبارە بنێریت، ژێرخانی خۆی بپشکنیت، یان دەق و دیزاین و لێکۆڵینەوەکانی وەک هی خۆت پیشان بدەیت.",
+        "yoursH": "ڕستەکانت هی خۆت دەمێننەوە",
+        "yoursP": "ئەوەی لە نامەیەکدا دەینێریت هی خۆت دەمێنێتەوە. هیچ مۆڵەتێکی هەبەت نییە جگە لەوەی پێویستە بۆ وەڵامدانەوەت، و ناو یان کۆمپانیاکەت تەنها لەو شوێنەی دەردەکەوێت کە ڕازی بوویت.",
+        "outH": "بەستەرەکانی دەرەوە",
+        "outP": "بەستەرەکانی GitHub، WhatsApp، نامە و چەند پەڕەیەکی بەرهەم دەبنە دەرەوەی ئەم ماڵپەڕە. ڕەفتار و سیاسەتەکانیان هی خۆیانە؛ بەستن میواندارییەک، نەک پشتگیری یان گەرەنتی.",
+        "lawH": "یاسای حاکم",
+        "lawP": "ئەم مەرجانە و هەر کارێک کە دوای ئەوان ڕێکخرابێت بەپێی یاسای کۆماری عێراقە، و بەغدا شوێنی جێبەجێکردنە. هیچ لایەنێک بەرپرس نییە لە زیانی ناڕاستەوخۆ یان ڕێکەوتی، و بەرپرسیارێتی بۆ پڕۆژەیەک هەرگیز لەوەی کە ئەو پڕۆژەیە دابین کردووە زیاتر نییە."
+      }
+    },
+    "upd": {
+      "body": "وەشانێکی نوێتر لەم پەڕەیە ئامادەیە.",
+      "go": "دووبارە بارکردن",
+      "later": "بەم وشانە بەردەوامبە"
+    },
+    "keys": {
+      "title": "کورتەڕێکانی تەختەکلیل",
+      "tabs": "لەنێوان پەڕۆکەکانی تەکنەلۆژیا بجوڵێ",
+      "esc": "ئەوەی کراوەیە دابخرە"
     }
   },
   "tr": {
@@ -1747,7 +1930,8 @@
         "result": "Fiyat ve puan en baştan görünür şekilde bir dakikada ayırt edin — para yalnızca iki taraf da memnun olduğunda hareket eder.",
         "c1": "Escrow ödemeleri",
         "c2": "Sesli arama",
-        "c3": "KYC doğrulaması"
+        "c3": "KYC doğrulaması",
+        "fig": "59 kontrol anahtarı"
       },
       "2": {
         "tag": "Vergi platformu",
@@ -1783,7 +1967,8 @@
         "result": "Misafirler net bir özetle rezervasyon yapıp öder, iadeler anında cüzdana geçer; tedarikçiler her şeyi tek panelden yönetir.",
         "c1": "Cüzdan ve iadeler",
         "c2": "Tedarikçi paneli",
-        "c3": "Arapça (sağdan sola)"
+        "c3": "Arapça (sağdan sola)",
+        "fig": "4 adımda rezervasyon"
       },
       "5": {
         "tag": "BT altyapısı",
@@ -1939,7 +2124,9 @@
       "links": "Bağlantılar",
       "connect": "İletişim",
       "rights": "Tüm hakları saklıdır.",
-      "place": "Bağdat, Irak · UTC+3"
+      "place": "Bağdat, Irak · UTC+3",
+      "privacy": "Gizlilik",
+      "terms": "Koşullar"
     },
     "testimonials": {
       "label": "06 / Sesler",
@@ -1969,7 +2156,15 @@
       "q5": "İnşa ettiğiniz şeyin bakımını yapıyor musunuz?",
       "a5": "Evet — yayın sonrası güncellemeler, izleme, yedeklemeler ve düzeltmeler; aylık ücretle veya talep başına.",
       "q6": "Nerede bulunuyorsunuz?",
-      "a6": "Bağdat, Irak (UTC+3). Her yerden müşterilerle uzaktan çalışır, Bağdat genelindeki saha işlerini de üstlenirim."
+      "a6": "Bağdat, Irak (UTC+3). Her yerden müşterilerle uzaktan çalışır, Bağdat genelindeki saha işlerini de üstlenirim.",
+      "q7": "Bu site çerez veya analitik kullanıyor mu?",
+      "a7": "Burada hiçbir çerez kurulmaz, yolda hiçbir analitik firması yoktur. Sayaç, Bağdat saatiyle güne bir kez ip adresinin tuzlanmış özetini tutar; böylece aynı ziyaret iki kez sayılmaz ve hiç kimseyi adlandıran bir şey kalmaz — hepsi gizlilik sayfasında yazılı.",
+      "q8": "Ürün hangi dillerde çıkar?",
+      "a8": "Arapça ve İngilizce standart olarak, ikisi de kendi yönünde tam sayfayla. Bu sitenin kendisi tek bir çeviri dosyasından on iki dilde yazılıyor; ürününe dilini eklemek yeniden inşa değil, bir düzenleme.",
+      "q9": "Başlamak için benden neye ihtiyacın var?",
+      "a9": "Olan ve zorlayan şeyler: ilgili sayfalar, ekranlar veya sistemler, elinizde zaten bulunan logo ve metinler ve işi kimin onayladığı. Yazılı bir kapsam, fiyat ve tarih için bu yeter — ve iş siz öyle dediğinizde başlar.",
+      "q10": "İş hâlâ yapılırken görebilir miyim?",
+      "a10": "Evet: sonda gösterim yerine her hafta bir önizleme bağlantısı. Her aşama bir mesaj uzaklıkta; yanıtlar da sormadan önce bu sayfada yazılı."
     },
     "pricing": {
       "label": "08 / Fiyatlar",
@@ -2220,11 +2415,60 @@
       "theme": "Açık veya koyu temaya geç",
       "close": "Kapat",
       "estCur": "Fiyatı şu para biriminde de göster",
-      "tally": "Ziyaretçi sayacı"
+      "tally": "Ziyaretçi sayacı",
+      "legal": "Gizlilik ve koşullar"
     },
     "alt": {
       "shot": "canlı site ekran görüntüsü",
       "cover": "tipografik vaka kapağı"
+    },
+    "legal": {
+      "updated": "Son güncelleme 8 Kasım 2026",
+      "p": {
+        "h1": "Gizlilik",
+        "lead": "Bu site ziyaretçilerini kendisi sayar. Analitik firması yok, reklam çerezi yok, üçüncü taraftan font isteği yok — bir sayfa bir ziyaret hakkında ne öğreniyorsa bu sayfa söylüyor.",
+        "countH": "Sayaç ne tutuyor",
+        "countP": "Baghdad saatiyle günde bir kez: ip adresinin tuzlanmış özeti, seni buraya gönderen sayfa ve tarayıcının bildirdiği cihaz ailesi. Tuz değişir; aynı kişi bir günden diğerine izlenemez.",
+        "neverH": "Asla dokunmadığı şeyler",
+        "never1": "Bu site hiçbir çerez yerleştirmiyor.",
+        "never2": "Reklam kimliği, piksel ya da siteler arası izleyici yok.",
+        "never3": "Tam ip adresi saklanmaz; seni adınla anan hiçbir şey saklanmaz.",
+        "never4": "Sipariş formunu göndermedikçe ad, e-posta ya da telefon numarası yoktur.",
+        "formH": "Bir istek gönderirseniz",
+        "formP": "Sipariş formu adını, e-postanı, telefonunu, hizmeti, bütçeyi, teslim tarihini ve mesajını bu sitenin kendi veritabanına ve sana yanıt veren posta kutusuna taşır. Yanıtlamak ve teklif hazırlamak için kullanılır — pazarlama için değil, satılmaz, üçüncü bir kişiye verilmez.",
+        "hostH": "Nerede çalışıyor",
+        "hostP": "Hosting, veritabanı, posta ve doğrulama tek birer sağlayıcıya ait ve her biri yalnızca kendi görevi için gerekeni alır. Captcha betiği yalnızca form onu isteyen adıma ulaşınca getirilir; o adım kapalıysa hiç getirilmez.",
+        "askH": "Veriniz hakkında soru",
+        "askP": "Ana sayfadaki iletişim adresine yazın. Bir istek gönderdiyseniz sorun: görebilir, düzeltebilir ya da sildirebilirsiniz; düz bir soruya düz bir yanıt verilir, form değil."
+      },
+      "t": {
+        "h1": "Kullanım koşulları",
+        "lead": "Bu siteyi kullanmak aşağıdaki kuralları kabul etmek demektir. Kasıtlı olarak kısa: bunları okuyan kişi için yazıldı, dosyasına kaldıran avukat için değil.",
+        "workH": "Okuduğunuz şey",
+        "workP": "Projeler ve vaka çalışmaları gerçek müşteriler için yapılmış gerçek işi anlatır; rakamlar o dönemde ölçüldüğü ya da kararlaştırıldığı gibidir. Ekran görüntüleri ve görseller sundukları ürünlere aittir; burada hiçbir şey sizin projeniz için bir söz değildir.",
+        "priceH": "Teklifler ve fiyatlar",
+        "priceP": "Hesaplayıcı ve yanıttaki her sayı, ABD dolarıyla bir göstergedir ve o mesajda belirtilen süre için geçerlidir. Bir fiyat ancak iki tarafın yazılı anlaşmasıyla bağlayıcı olur.",
+        "reqH": "İstek göndermek",
+        "reqP": "Lütfen doğru bir e-posta verin; yanlış adresli isteğe yanıt verilemez. Proje başına bir istek: form hız sınırına ve captchaya sahip, dolayısıyla toplu ya da otomatik gönderimler reddedilir. Anlaşma imzalanana kadar gönderilen hiçbir şey yükümlülük doğurmaz.",
+        "useH": "Siteyin makul kullanımı",
+        "useP": "İş hakkında karar verirken bu sayfaları okuyabilir, bağlayabilir ve yazdırabilirsiniz. Siteden topluca veri çekmek, formlarını yeniden göndermek, altyapısını yoklamak ya da metin, görsel ve vaka çalışmalarını kendinizinmiş gibi sunmak olmaz.",
+        "yoursH": "Sizin sözleriniz sizin kalır",
+        "yoursP": "Mesajla gönderdiğiniz şey sizin kalır. Size yanıt vermek için gerekenin ötesinde bir lisans taşımaz; adınız ya da şirketiniz ancak onay verdiğiniz yerde görünür.",
+        "outH": "Dışarı giden bağlantılar",
+        "outP": "GitHub, WhatsApp, posta ve birkaç ürün sayfası bu siteden dışarı çıkar. O sitelerin tutumu ve politikası kendilerine aittir; bağlantı bir nezaket, onay ya da garanti değil.",
+        "lawH": "Geçerli hukuk",
+        "lawP": "Bu koşullar ve ardından kararlaştırılacak iş, Irak Cumhuriyeti hukukuna tabidir; yerine getirme yeri Bağdat’tır. Tarafların hiçbiri dolaylı ya da arızi kayıptan sorumlu değildir ve bir projedeki sorumluluk o projenin ödediğini aşmaz."
+      }
+    },
+    "upd": {
+      "body": "Bu sayfanın daha yeni bir sürümü hazır.",
+      "go": "Yenile",
+      "later": "Bu sürümü okumaya devam et"
+    },
+    "keys": {
+      "title": "Klavye kısayolları",
+      "tabs": "Teknoloji sekmeleri arasında geç",
+      "esc": "Açık olanı kapat"
     }
   },
   "fr": {
@@ -2304,7 +2548,8 @@
         "result": "Réservez en une minute, prix et note affichés d'emblée — l'argent ne bouge que lorsque les deux parties sont satisfaites.",
         "c1": "Paiements sous séquestre",
         "c2": "Recherche vocale",
-        "c3": "Vérification KYC"
+        "c3": "Vérification KYC",
+        "fig": "59 commutateurs d’administration"
       },
       "2": {
         "tag": "Plateforme fiscale",
@@ -2340,7 +2585,8 @@
         "result": "Les clients réservent et paient avec un récapitulatif clair et reçoivent leur remboursement sur le portefeuille instantanément ; les fournisseurs gèrent tout depuis un seul tableau de bord.",
         "c1": "Portefeuille et remboursements",
         "c2": "Tableau de bord fournisseur",
-        "c3": "Arabe RTL"
+        "c3": "Arabe RTL",
+        "fig": "Réservation en 4 étapes"
       },
       "5": {
         "tag": "Infrastructure informatique",
@@ -2496,7 +2742,9 @@
       "links": "Liens",
       "connect": "Réseaux",
       "rights": "Tous droits réservés.",
-      "place": "Bagdad, Irak · UTC+3"
+      "place": "Bagdad, Irak · UTC+3",
+      "privacy": "Confidentialité",
+      "terms": "Conditions"
     },
     "testimonials": {
       "label": "06 / Témoignages",
@@ -2526,7 +2774,15 @@
       "q5": "Assurez-vous la maintenance de ce que vous construisez ?",
       "a5": "Oui — mises à jour, surveillance, sauvegardes et correctifs après le lancement, sous forme d'abonnement mensuel ou à la demande.",
       "q6": "Où êtes-vous basé ?",
-      "a6": "Bagdad, Irak (UTC+3). Je travaille à distance avec des clients partout et j'assure les interventions sur site à Bagdad."
+      "a6": "Bagdad, Irak (UTC+3). Je travaille à distance avec des clients partout et j'assure les interventions sur site à Bagdad.",
+      "q7": "Ce site utilise-t-il des cookies ou de l’analyse ?",
+      "a7": "Aucun cookie n’est déposé ici et aucun prestataire d’analyse n’est sur le chemin. Le compteur garde un seul condensat salé de l’adresse ip par jour à l’heure de Bagdad — une visite ne compte donc pas deux fois — et rien qui nomme qui que ce soit : la page Confidentialité énumère tout.",
+      "q8": "En quelles langues un produit est-il livré ?",
+      "a8": "L’arabe et l’anglais par défaut, avec une mise en page complète dans leur sens à chacun. Ce site lui-même est écrit en douze langues depuis un seul fichier de traduction : y ajouter la vôtre est une modification, pas une reconstruction.",
+      "q9": "De quoi avez-vous besoin de moi pour commencer ?",
+      "a9": "Ce qui existe et ce qui coince : les pages, écrans ou systèmes concernés, les logos et textes dont vous disposez déjà, et qui approuve. C’est suffisant pour une portée, un prix et des dates écrits — et le travail commence quand vous le dites.",
+      "q10": "Vais-je voir le travail pendant qu’il se fait ?",
+      "a10": "Oui : un lien d’aperçu chaque semaine plutôt qu’une révélation à la fin. Chaque étape est à un message de distance, et les réponses sont sur cette fiche avant qu’il faille les demander."
     },
     "pricing": {
       "label": "08 / Tarifs",
@@ -2777,11 +3033,60 @@
       "theme": "Basculer entre thème clair et sombre",
       "close": "Fermer",
       "estCur": "Afficher aussi le prix en",
-      "tally": "Compteur de visiteurs"
+      "tally": "Compteur de visiteurs",
+      "legal": "Confidentialité et conditions"
     },
     "alt": {
       "shot": "capture du site en ligne",
       "cover": "couverture typographique de l’étude de cas"
+    },
+    "legal": {
+      "updated": "Dernière mise à jour le 8 novembre 2026",
+      "p": {
+        "h1": "Confidentialité",
+        "lead": "Ce site compte ses visiteurs lui-même. Aucun prestataire d’analyse, aucun cookie publicitaire, aucune demande de police à un tiers — ce qu’une page apprend d’une visite, cette page vous le dit.",
+        "countH": "Ce que le compteur conserve",
+        "countP": "Une fois par jour, heure de Bagdad : un condensat salé de votre adresse ip, la page qui vous a mené ici et la famille d’appareils indiquée par votre navigateur. Le sel change : une même personne ne peut pas être suivie d’un jour à l’autre.",
+        "neverH": "Ce sur quoi il ne touche jamais",
+        "never1": "Ce site ne dépose aucun cookie.",
+        "never2": "Identifiant publicitaire, pixel ou traceur inter-sites : aucun.",
+        "never3": "Aucune adresse ip complète n’est stockée, et rien qui vous nomme.",
+        "never4": "Pas de nom, d’email ni de téléphone tant que vous n’envoyez pas le formulaire de commande.",
+        "formH": "Si vous envoyez une demande",
+        "formP": "Le formulaire de commande transmet votre nom, email, téléphone, le service, le budget, l’échéance et votre message à la base de données du site et à la boîte qui vous répond. Il sert à répondre et à préparer un devis — pas à du marketing ; il n’est pas vendu, pas transmis.",
+        "hostH": "Où cela tourne",
+        "hostP": "L’hébergement, la base de données, le courriel et le captcha appartiennent chacun à un fournisseur unique, et chacun ne reçoit que ce que son rôle exige. Le script du captcha n’est chargé que lorsqu’un formulaire atteint l’étape qui le demande, et jamais si cette étape est désactivée.",
+        "askH": "Demander au sujet de vos données",
+        "askP": "Écrivez à l’adresse de contact de la page d’accueil. Si vous avez envoyé une demande, demandez : vous pouvez la voir, la corriger ou la supprimer ; une question simple reçoit une réponse simple, pas un formulaire."
+      },
+      "t": {
+        "h1": "Conditions d’utilisation",
+        "lead": "Utiliser ce site, c’est accepter les règles ci-dessous. Elles sont courtes à dessein : écrites pour la personne qui les lit, pas pour l’avocat qui les classe.",
+        "workH": "Ce que vous lisez",
+        "workP": "Les projets et études de cas décrivent un travail réel pour des clients réels, avec les chiffres tels qu’ils ont été mesurés ou convenus sur le moment. Les captures et les visuels appartiennent aux produits montrés, et rien ici n’est une promesse pour votre projet.",
+        "priceH": "Devis et prix",
+        "priceP": "L’estimateur et tout chiffre dans une réponse sont une indication en dollars américains, valable pour la période indiquée dans ce message. Un prix ne lie qu’un accord écrit des deux parties.",
+        "reqH": "Envoyer une demande",
+        "reqP": "Merci de donner un email exact — une demande avec une adresse fausse ne peut pas avoir de réponse. Une demande par projet ; le formulaire est limité en débit et protégé par captcha, donc les envois en masse ou automatisés sont refusés. Rien d’envoyé ne crée d’obligation tant qu’un accord n’est pas signé.",
+        "useH": "Usage loyal du site",
+        "useP": "Vous pouvez lire ces pages, y faire un lien et les imprimer pendant que vous décidez du travail. Extraire le site en masse, rejouer ses formulaires, sonder son infrastructure ou présenter ses textes, visuels ou études de cas comme vôtres : non.",
+        "yoursH": "Vos mots restent les vôtres",
+        "yoursP": "Ce que vous envoyez dans un message reste à vous. Cela n’emporte aucune licence au-delà de ce qu’il faut pour vous répondre, et votre nom ou votre entreprise n’apparaît qu’où vous l’avez accepté.",
+        "outH": "Liens qui sortent",
+        "outP": "GitHub, WhatsApp, le courriel et quelques pages de produits mènent hors de ce site. Leur comportement et leurs politiques leur appartiennent ; le lien est une courtoisie, non un adoubement ni une garantie.",
+        "lawH": "Droit applicable",
+        "lawP": "Ces conditions et tout travail convenu ensuite suivent la loi de la République d’Irak, Bagdad étant le lieu d’exécution. Aucune partie ne répond d’une perte indirecte ou occasionnelle, et la responsabilité pour un projet ne dépasse jamais ce que ce projet a payé."
+      }
+    },
+    "upd": {
+      "body": "Une version plus récente de cette page est prête.",
+      "go": "Recharger",
+      "later": "Continuer avec cette version"
+    },
+    "keys": {
+      "title": "Raccourcis clavier",
+      "tabs": "Se déplacer entre les onglets de stack",
+      "esc": "Fermer ce qui est ouvert"
     }
   },
   "es": {
@@ -2861,7 +3166,8 @@
         "result": "Reserva en un minuto con precio y valoración a la vista — el dinero solo se mueve cuando ambas partes quedan satisfechas.",
         "c1": "Pagos con depósito",
         "c2": "Búsqueda por voz",
-        "c3": "Verificación KYC"
+        "c3": "Verificación KYC",
+        "fig": "59 controles de administración"
       },
       "2": {
         "tag": "Plataforma fiscal",
@@ -2897,7 +3203,8 @@
         "result": "Los huéspedes reservan y pagan con un resumen claro y reciben el reembolso en el monedero al instante; los proveedores gestionan todo desde un solo panel.",
         "c1": "Monedero y reembolsos",
         "c2": "Panel de proveedores",
-        "c3": "Árabe RTL"
+        "c3": "Árabe RTL",
+        "fig": "Reserva en 4 pasos"
       },
       "5": {
         "tag": "Infraestructura informática",
@@ -3053,7 +3360,9 @@
       "links": "Enlaces",
       "connect": "Conectemos",
       "rights": "Todos los derechos reservados.",
-      "place": "Bagdad, Irak · UTC+3"
+      "place": "Bagdad, Irak · UTC+3",
+      "privacy": "Privacidad",
+      "terms": "Términos"
     },
     "testimonials": {
       "label": "06 / Voces",
@@ -3083,7 +3392,15 @@
       "q5": "¿Mantienes lo que construyes?",
       "a5": "Sí — actualizaciones, monitoreo, copias de seguridad y arreglos después del lanzamiento, mediante una mensualidad o por petición.",
       "q6": "¿Dónde estás ubicado?",
-      "a6": "Bagdad, Irak (UTC+3). Trabajo en remoto con clientes de cualquier lugar y atiendo trabajos presenciales en todo Bagdad."
+      "a6": "Bagdad, Irak (UTC+3). Trabajo en remoto con clientes de cualquier lugar y atiendo trabajos presenciales en todo Bagdad.",
+      "q7": "¿Usa este sitio cookies o analítica?",
+      "a7": "Aquí no se instala ninguna cookie y no hay ninguna analítica externa en el camino. El contador guarda un único resumen con sal de la dirección ip por día en hora de Bagdad, así que una visita no puede contar dos veces, y nada que nombre a nadie: la página de privacidad lo enumera todo.",
+      "q8": "¿En qué idiomas puede salir un producto?",
+      "a8": "Árabe e inglés de forma estándar, con la maquetación completa en su propio sentido. Este sitio está escrito en doce idiomas desde un solo archivo de traducciones: añadir el tuyo a un producto es editar, no volver a construir.",
+      "q9": "¿Qué necesitas de mí para empezar?",
+      "a9": "Lo que existe y lo que duele: las páginas, pantallas o sistemas implicados, el logo y los textos que ya tienes, y quién aprueba. Con eso alcanza para un alcance, un precio y unas fechas por escrito — y el trabajo empieza cuando tú lo dices.",
+      "q10": "¿Veré el trabajo mientras se construye?",
+      "a10": "Sí: un enlace de vista previa cada semana en lugar de una revelación al final. Cada etapa está a un mensaje de distancia, y las respuestas ya están en esta hoja antes de que haya que pedirlas."
     },
     "pricing": {
       "label": "08 / Precios",
@@ -3334,11 +3651,60 @@
       "theme": "Cambiar entre tema claro u oscuro",
       "close": "Cerrar",
       "estCur": "Mostrar el precio también en",
-      "tally": "Contador de visitantes"
+      "tally": "Contador de visitantes",
+      "legal": "Privacidad y términos"
     },
     "alt": {
       "shot": "captura del sitio en línea",
       "cover": "portada tipográfica del caso"
+    },
+    "legal": {
+      "updated": "Última actualización: 8 de noviembre de 2026",
+      "p": {
+        "h1": "Privacidad",
+        "lead": "Este sitio cuenta a sus visitantes por sí mismo. Sin analítica externa, sin cookies publicitarias, sin peticiones de fuentes a terceros: lo que una página aprende de una visita, esta página te lo cuenta.",
+        "countH": "Lo que el contador guarda",
+        "countP": "Una vez al día, hora de Bagdad: un resumen con sal de tu dirección ip, la página que te trajo aquí y la familia de dispositivos que indica tu navegador. La sal cambia, así que una misma persona no puede seguirse de un día para otro.",
+        "neverH": "Lo que nunca toca",
+        "never1": "Este sitio no instala ninguna cookie.",
+        "never2": "Sin identificador publicitario, píxel ni rastreadores entre sitios.",
+        "never3": "No se guarda ninguna ip completa, ni nada que te nombre.",
+        "never4": "Sin nombre, correo ni teléfono salvo que envíes el formulario de pedido.",
+        "formH": "Si envías una solicitud",
+        "formP": "El formulario lleva tu nombre, correo, teléfono, el servicio, el presupuesto, la fecha límite y el mensaje a la base de datos de este sitio y al buzón que te responde. Se usa para contestar y preparar un presupuesto — no para marketing, no se vende, no se pasa a nadie más.",
+        "hostH": "Dónde corre",
+        "hostP": "Alojamiento, base de datos, correo y captcha pertenecen cada uno a un proveedor, y cada uno recibe solo lo que su parte necesita. El script del captcha se descarga únicamente cuando el formulario llega al paso que lo pide, y nada si ese paso está apagado.",
+        "askH": "Preguntar por tus datos",
+        "askP": "Escribe a la dirección de contacto de la página principal. Si enviaste una solicitud, pídelo: puedes verla, corregirla o borrarla; una pregunta simple recibe una respuesta simple, no un formulario."
+      },
+      "t": {
+        "h1": "Condiciones de uso",
+        "lead": "Usar este sitio significa aceptar las reglas de abajo. Son cortas a propósito: escritas para quien las lee, no para el abogado que las archiva.",
+        "workH": "Lo que estás leyendo",
+        "workP": "Los proyectos y estudios de caso describen trabajo real para clientes reales, con cifras tal como se midieron o acordaron en su momento. Las capturas y las piezas gráficas pertenecen a los productos que muestran, y nada aquí es una promesa sobre tu proyecto.",
+        "priceH": "Presupuestos y precios",
+        "priceP": "El estimador y cualquier número en una respuesta son una indicación en dólares estadounidenses, válida durante el periodo indicado en ese mensaje. Un precio solo vincula en un acuerdo escrito entre ambas partes.",
+        "reqH": "Enviar una solicitud",
+        "reqP": "Por favor, da un correo correcto: una solicitud con una dirección errónea no puede recibir respuesta. Una solicitud por proyecto; el formulario tiene límite de envíos y captcha, así que se rechazan los envíos masivos o automatizados. Nada enviado crea una obligación hasta que se firma un acuerdo.",
+        "useH": "Uso leal del sitio",
+        "useP": "Puedes leer, enlazar e imprimir estas páginas mientras decides sobre el trabajo. No puedes extraer datos del sitio en masa, reenviar sus formularios, sondear su infraestructura ni presentar sus textos, gráficos o casos de estudio como propios.",
+        "yoursH": "Tus palabras siguen siendo tuyas",
+        "yoursP": "Lo que envías en un mensaje sigue siendo tuyo. No implica ninguna licencia más allá de lo necesario para responderte, y tu nombre o tu empresa aparecen solo donde tú lo has aceptado.",
+        "outH": "Enlaces que salen",
+        "outP": "GitHub, WhatsApp, el correo y algunas páginas de producto sacan de este sitio. Su comportamiento y sus políticas son suyos; el enlace es una cortesía, no un respaldo ni una garantía.",
+        "lawH": "Legislación aplicable",
+        "lawP": "Estas condiciones y cualquier trabajo acordado después siguen la ley de la República de Irak, con Bagdad como lugar de ejecución. Ninguna parte responde de pérdidas indirectas o consecuenciales, y la responsabilidad por un proyecto nunca supera lo que ese proyecto pagó."
+      }
+    },
+    "upd": {
+      "body": "Hay lista una versión más reciente de esta página.",
+      "go": "Recargar",
+      "later": "Seguir leyendo esta versión"
+    },
+    "keys": {
+      "title": "Atajos de teclado",
+      "tabs": "Moverse entre las pestañas de stack",
+      "esc": "Cerrar lo que esté abierto"
     }
   },
   "de": {
@@ -3418,7 +3784,8 @@
         "result": "In einer Minute buchen — mit Preis und Bewertung auf einen Blick; Geld fließt erst, wenn beide Seiten zufrieden sind.",
         "c1": "Escrow-Zahlungen",
         "c2": "Sprachsuche",
-        "c3": "KYC-Verifizierung"
+        "c3": "KYC-Verifizierung",
+        "fig": "59 Kontroll-Schalter"
       },
       "2": {
         "tag": "Steuerplattform",
@@ -3454,7 +3821,8 @@
         "result": "Gäste buchen und zahlen mit klarem Überblick und erhalten Rückerstattungen sofort auf das Wallet; Anbieter steuern alles über ein Dashboard.",
         "c1": "Wallet & Rückerstattungen",
         "c2": "Anbieter-Dashboard",
-        "c3": "Arabisch (RTL)"
+        "c3": "Arabisch (RTL)",
+        "fig": "Buchung in 4 Schritten"
       },
       "5": {
         "tag": "IT-Infrastruktur",
@@ -3610,7 +3978,9 @@
       "links": "Links",
       "connect": "Kontakt",
       "rights": "Alle Rechte vorbehalten.",
-      "place": "Bagdad, Irak · UTC+3"
+      "place": "Bagdad, Irak · UTC+3",
+      "privacy": "Datenschutz",
+      "terms": "Bedingungen"
     },
     "testimonials": {
       "label": "06 / Stimmen",
@@ -3640,7 +4010,15 @@
       "q5": "Pflegen Sie, was Sie bauen?",
       "a5": "Ja — Updates, Monitoring, Backups und Fehlerbehebung nach dem Launch, als monatliche Pauschale oder auf Anfrage.",
       "q6": "Wo sind Sie ansässig?",
-      "a6": "Bagdad, Irak (UTC+3). Ich arbeite remote mit Kunden überall und erledige Vor-Ort-Arbeiten in ganz Bagdad."
+      "a6": "Bagdad, Irak (UTC+3). Ich arbeite remote mit Kunden überall und erledige Vor-Ort-Arbeiten in ganz Bagdad.",
+      "q7": "Nutzt diese Seite Cookies oder Analyse-Tools?",
+      "a7": "Hier wird kein Cookie gesetzt, und kein Analyse-Dienst liegt auf dem Weg. Der Zähler behält pro Tag nach Bagdader Zeit genau einen Hash deiner ip-Adresse mit Salt — derselbe Besuch zählt also nicht zweimal — und nichts, das dich benennt; die Datenschutzseite listet alles auf.",
+      "q8": "In welchen Sprachen erscheint ein Produkt?",
+      "a8": "Arabisch und Englisch als Standard, beide mit vollständigem Layout in ihrer eigenen Leserichtung. Diese Seite selbst steht in zwölf Sprachen aus einer Übersetzungsdatei: deine Sprache dazuzunehmen ist ein Edit, kein Neuaufbau.",
+      "q9": "Was brauchst du von mir, um anzufangen?",
+      "a9": "Was existiert und was klemmt: die betroffenen Seiten, Screens oder Systeme, Logos und Texte, die schon da sind, und wer absegnet. Das reicht für Scope, Preis und Termine schriftlich — und die Arbeit beginnt, wenn du sagst.",
+      "q10": "Sehe ich die Arbeit, während sie entsteht?",
+      "a10": "Ja: jede Woche einen Vorschaulink statt einer Enthüllung am Ende. Jede Stufe ist eine Nachricht entfernt, und die Antworten stehen auf diesem Blatt, bevor man sie fragen muss."
     },
     "pricing": {
       "label": "08 / Preise",
@@ -3891,11 +4269,60 @@
       "theme": "Zwischen hellem und dunklem Theme wechseln",
       "close": "Schließen",
       "estCur": "Preis zusätzlich anzeigen in",
-      "tally": "Besucherzähler"
+      "tally": "Besucherzähler",
+      "legal": "Datenschutz und Bedingungen"
     },
     "alt": {
       "shot": "Screenshot der Live-Site",
       "cover": "typografisches Case-Study-Cover"
+    },
+    "legal": {
+      "updated": "Zuletzt aktualisiert am 8. November 2026",
+      "p": {
+        "h1": "Datenschutz",
+        "lead": "Diese Seite zählt ihre Besucher selbst. Kein Analyse-Dienst, kein Werbe-Cookie, keine Schrift-Anfrage an Dritte — was eine Seite über einen Besuch erfährt, steht auf dieser Seite.",
+        "countH": "Was der Zähler speichert",
+        "countP": "Einmal pro Tag, Bagdader Zeit: ein Hash deines ip mit Salt, die Seite, die dich hierhergebracht hat, und die Gerätefamilie laut Browser. Das Salt wechselt, sodass dieselbe Person nicht von einem Tag zum nächsten verfolgt werden kann.",
+        "neverH": "Womit es nichts zu tun hat",
+        "never1": "Diese Seite setzt keine Cookies.",
+        "never2": "Keine Werbe-ID, kein Pixel, kein seitenübergreifender Tracker.",
+        "never3": "Es wird keine vollständige ip-Adresse gespeichert und nichts, was Sie benennt.",
+        "never4": "Kein Name, keine E-Mail, keine Telefonnummer, solange Sie das Bestellformular nicht absenden.",
+        "formH": "Wenn Sie eine Anfrage senden",
+        "formP": "Das Bestellformular überträgt Name, E-Mail, Telefon, Service, Budget, Frist und Nachricht an die Datenbank dieser Seite und an das Postfach, das Ihnen antwortet. Es dient der Antwort und der Angebotserstellung — nicht der Werbung, es wird nicht verkauft und nicht weitergegeben.",
+        "hostH": "Wo es läuft",
+        "hostP": "Hosting, Datenbank, Mail und Captcha gehören jeweils einem Anbieter, und jeder bekommt nur, was sein Teil braucht. Das Captcha-Skript wird erst geladen, wenn ein Formular den Schritt erreicht, der es verlangt — und gar nicht, wenn dieser Schritt ausgeschaltet ist.",
+        "askH": "Fragen zu Ihren Daten",
+        "askP": "Schreiben Sie an die Kontaktadresse auf der Startseite. Wenn Sie eine Anfrage gesendet haben, fragen Sie: Sie können sie einsehen, berichtigen oder löschen lassen; auf eine schlichte Frage kommt eine schlichte Antwort, kein Formular."
+      },
+      "t": {
+        "h1": "Nutzungsbedingungen",
+        "lead": "Diese Nutzung bedeutet, dass Sie die folgenden Regeln annehmen. Sie sind bewusst kurz: geschrieben für die Person, die sie liest, nicht für den Anwalt, der sie ablegt.",
+        "workH": "Was Sie lesen",
+        "workP": "Die Projekte und Fallstudien beschreiben echte Arbeit für echte Kunden, mit Zahlen so, wie sie damals gemessen oder vereinbart wurden. Screenshots und Grafiken gehören den dargestellten Produkten; nichts hier ist ein Versprechen für Ihr Projekt.",
+        "priceH": "Angebote und Preise",
+        "priceP": "Der Rechner und jede Zahl in einer Antwort sind eine Angabe in US-Dollar, gültig für den in der Nachricht genannten Zeitraum. Verbindlich ist ein Preis nur in einer schriftlichen Vereinbarung beider Seiten.",
+        "reqH": "Eine Anfrage senden",
+        "reqP": "Bitte eine richtige E-Mail angeben — eine Anfrage mit falscher Adresse kann nicht beantwortet werden. Eine Anfrage pro Projekt; das Formular ist ratenbegrenzt und captcha-geschützt, Massen- oder Automatik-Einreichungen werden abgelehnt. Nichts Gesendetes begründet eine Verpflichtung, bevor eine Vereinbarung unterzeichnet ist.",
+        "useH": "Zulässige Nutzung der Seite",
+        "useP": "Sie dürfen diese Seiten lesen, verlinken und ausdrucken, während Sie sich wegen der Arbeit entscheiden. Die Seite massenweise auszulesen, ihre Formulare nachzuspielen, ihre Infrastruktur zu sondieren oder Texte, Grafiken und Fallstudien als eigene auszugeben, dürfen Sie nicht.",
+        "yoursH": "Ihre Worte bleiben Ihre",
+        "yoursP": "Was Sie in einer Nachricht senden, bleibt Ihres. Es enthält keine Lizenz über das für die Antwort Notwendige hinaus, und Ihr Name oder Ihre Firma erscheint nur, wo Sie zugestimmt haben.",
+        "outH": "Links, die hinausführen",
+        "outP": "GitHub, WhatsApp, Mail und einige Produktseiten führen von dieser Seite hinaus. Ihr Verhalten und ihre Richtlinien gehören ihnen; der Link ist eine Höflichkeit, kein Gütesiegel und keine Garantie.",
+        "lawH": "Anwendbares Recht",
+        "lawP": "Diese Bedingungen und jede danach vereinbarte Arbeit folgen dem Recht der Republik Irak, mit Bagdad als Erfüllungsort. Keine Partei haftet für mittelbare oder zufällige Verluste, und die Haftung für ein Projekt übersteigt nie, was dieses Projekt gezahlt hat."
+      }
+    },
+    "upd": {
+      "body": "Eine neuere Version dieser Seite ist bereit.",
+      "go": "Neu laden",
+      "later": "Diese Version weiter lesen"
+    },
+    "keys": {
+      "title": "Tastenkürzel",
+      "tabs": "Zwischen den Stack-Tabs wechseln",
+      "esc": "Offenes schließen"
     }
   },
   "ru": {
@@ -3975,7 +4402,8 @@
         "result": "Бронирование за минуту — с ценой и рейтингом сразу; деньги переходят, только когда обе стороны довольны.",
         "c1": "Платежи через эскроу",
         "c2": "Голосовой поиск",
-        "c3": "Проверка KYC"
+        "c3": "Проверка KYC",
+        "fig": "59 переключателей в админке"
       },
       "2": {
         "tag": "Налоговая платформа",
@@ -4011,7 +4439,8 @@
         "result": "Гости бронируют и платят с понятной сводкой и получают возврат на кошелёк мгновенно; поставщики управляют всем из одной панели.",
         "c1": "Кошелёк и возвраты",
         "c2": "Панель поставщика",
-        "c3": "Арабский (RTL)"
+        "c3": "Арабский (RTL)",
+        "fig": "Бронирование в 4 шага"
       },
       "5": {
         "tag": "ИТ-инфраструктура",
@@ -4167,7 +4596,9 @@
       "links": "Ссылки",
       "connect": "Контакты",
       "rights": "Все права защищены.",
-      "place": "Багдад, Ирак · UTC+3"
+      "place": "Багдад, Ирак · UTC+3",
+      "privacy": "Конфиденциальность",
+      "terms": "Условия"
     },
     "testimonials": {
       "label": "06 / Отзывы",
@@ -4197,7 +4628,15 @@
       "q5": "Вы обслуживаете то, что построили?",
       "a5": "Да — обновления, мониторинг, резервные копии и исправления после запуска, по месячной подписке или по запросу.",
       "q6": "Где вы находитесь?",
-      "a6": "Багдад, Ирак (UTC+3). Я работаю удалённо с клиентами из любой точки и выполняю работы на месте по всему Багдаду."
+      "a6": "Багдад, Ирак (UTC+3). Я работаю удалённо с клиентами из любой точки и выполняю работы на месте по всему Багдаду.",
+      "q7": "Использует ли этот сайт cookie или аналитику?",
+      "a7": "Здесь не устанавливается ни один cookie, и аналитических сервисов на пути нет. Счётчик хранит ровно один хеш ip-адреса с солью на багдадский день, так что один визит не может посчитаться дважды, и ничего, что называло бы вас; всё перечислено на странице конфиденциальности.",
+      "q8": "На каких языках продукт выходит?",
+      "a8": "Арабский и английский по умолчанию, с полноценной вёрсткой в каждом направлении. Сам этот сайт написан на двенадцати языках из одного файла переводов: добавить ваш язык — это правка, а не перестройка.",
+      "q9": "Что вам нужно от меня, чтобы начать?",
+      "a9": "Что есть и что болит: затронутые страницы, экраны или системы, имеющиеся у вас логотипы и тексты, и кто согласует работу. Этого достаточно, чтобы письменно дать объём, цену и сроки — а работа начинается, когда вы скажете.",
+      "q10": "Я буду видеть работу, пока она ещё делается?",
+      "a10": "Да: ссылку на превью каждую неделю, а не раз в конце. Любой этап — на расстоянии одного сообщения, и ответы на этом листе есть раньше, чем их приходится спрашивать."
     },
     "pricing": {
       "label": "08 / Цены",
@@ -4448,11 +4887,60 @@
       "theme": "Переключить светлую или тёмную тему",
       "close": "Закрыть",
       "estCur": "Показывать цену также в",
-      "tally": "Счётчик посетителей"
+      "tally": "Счётчик посетителей",
+      "legal": "Конфиденциальность и условия"
     },
     "alt": {
       "shot": "скриншот живого сайта",
       "cover": "типографская обложка кейса"
+    },
+    "legal": {
+      "updated": "Последнее обновление — 8 ноября 2026 г.",
+      "p": {
+        "h1": "Конфиденциальность",
+        "lead": "Этот сайт считает посетителей сам. Без аналитических сервисов, без рекламных cookie, без запросов шрифтов к третьим сторонам — то, что страница узнаёт о посещении, написано на этой странице.",
+        "countH": "Что хранит счётчик",
+        "countP": "Один раз в день по багдадскому времени: хеш вашего ip-адреса с солью, страница, с которой вы пришли, и семейство устройств из браузера. Соль меняется — одного и того же человека нельзя проследить с одного дня на другой.",
+        "neverH": "К чему он никогда не прикасается",
+        "never1": "Этот сайт не устанавливает cookie.",
+        "never2": "Никаких рекламных идентификаторов, пикселей и межсайтовых трекеров.",
+        "never3": "Полный ip-адрес не сохраняется, как и всё, что называет вас по имени.",
+        "never4": "Ни имени, ни почты, ни номера телефона, пока вы не отправите форму заказа.",
+        "formH": "Если вы отправите запрос",
+        "formP": "Форма заказа передаёт имя, почту, телефон, услугу, бюджет, срок и сообщение в базу данных этого сайта и в ящик, который вам отвечает. Используется для ответа и подготовки сметы — не для маркетинга, не продаётся и не передаётся третьим лицам.",
+        "hostH": "Где это работает",
+        "hostP": "Хостинг, база данных, почта и капча относятся каждому своему поставщику, и каждый получает только нужное для своей части. Скрипт капчи загружается только когда форма доходит до шага, который её требует, и не загружается вовсе, если этот шаг выключен.",
+        "askH": "Вопрос о ваших данных",
+        "askP": "Напишите на контактный адрес на главной странице. Если вы отправляли запрос — попросите: его можно увидеть, исправить или удалить; на простой вопрос приходит простой ответ, а не форма."
+      },
+      "t": {
+        "h1": "Условия использования",
+        "lead": "Пользуясь этим сайтом, вы принимаете приведённые ниже правила. Они намеренно короткие: написаны для человека, который их читает, а не для юриста, который их подшивает.",
+        "workH": "То, что вы читаете",
+        "workP": "Проекты и кейсы описывают реальную работу для реальных клиентов, с цифрами такими, какими их измерили или согласовали тогда. Скриншоты и графика принадлежат показанным продуктам, и ничего здесь не является обещанием насчёт вашего проекта.",
+        "priceH": "Сметы и цены",
+        "priceP": "Калькулятор и любая цифра в ответе — ориентир в долларах США, действующий в течение периода, указанного в письме. Цена обязывает только в письменном соглашении обеих сторон.",
+        "reqH": "Отправка запроса",
+        "reqP": "Пожалуйста, укажите корректную почту — на запрос с неверным адресом ответить невозможно. Один запрос на проект; форма ограничена по частоте и защищена капчей, поэтому массовые или автоматические отправки отклоняются. Ничто отправленное не создаёт обязательств, пока соглашение не подписано.",
+        "useH": "Добросовестное использование сайта",
+        "useP": "Вы можете читать, ссылаться и распечатывать эти страницы, пока решаете вопрос о работе. Нельзя собирать данные с сайта массово, воспроизводить его формы, зондировать его инфраструктуру или выдавать его тексты, графику и кейсы за свои.",
+        "yoursH": "Ваши слова остаются вашими",
+        "yoursP": "Отправленное вами в сообщении остаётся вашим. Оно не даёт никакой лицензии сверх необходимой для ответа, и ваше имя или компания появляются только там, где вы согласились.",
+        "outH": "Ссылки наружу",
+        "outP": "GitHub, WhatsApp, почта и несколько страниц продуктов уводят с этого сайта. Их поведение и политика принадлежат им; ссылка — это вежливость, а не рекомендация и не гарантия.",
+        "lawH": "Применимое право",
+        "lawP": "Настоящие условия и любая согласованная после них работа подчиняются закону Республики Ирак, местом исполнения считается Багдад. Ни одна сторона не отвечает за косвенные или случайные потери, а ответственность по проекту никогда не превышает того, что этот проект заплатил."
+      }
+    },
+    "upd": {
+      "body": "Доступна новая версия этой страницы.",
+      "go": "Обновить",
+      "later": "Остаться на этой версии"
+    },
+    "keys": {
+      "title": "Горячие клавиши",
+      "tabs": "Переключение между вкладками стека",
+      "esc": "Закрыть то, что открыто"
     }
   },
   "zh": {
@@ -4532,7 +5020,8 @@
         "result": "一分钟即可下单，价格与评分一目了然——只有双方都满意时，资金才会划转。",
         "c1": "Escrow 托管支付",
         "c2": "语音搜索",
-        "c3": "KYC 实名核验"
+        "c3": "KYC 实名核验",
+        "fig": "59 个后台开关"
       },
       "2": {
         "tag": "税务平台",
@@ -4568,7 +5057,8 @@
         "result": "客人下单支付时一目了然，退款即时到账至钱包；供应商在一个后台管理全部事务。",
         "c1": "钱包与退款",
         "c2": "供应商后台",
-        "c3": "阿拉伯语 RTL"
+        "c3": "阿拉伯语 RTL",
+        "fig": "4 步完成预订"
       },
       "5": {
         "tag": "IT 基础设施",
@@ -4724,7 +5214,9 @@
       "links": "链接",
       "connect": "联系方式",
       "rights": "保留所有权利。",
-      "place": "伊拉克巴格达 · UTC+3"
+      "place": "伊拉克巴格达 · UTC+3",
+      "privacy": "隐私",
+      "terms": "条款"
     },
     "testimonials": {
       "label": "06 / 客户评价",
@@ -4754,7 +5246,15 @@
       "q5": "交付之后还负责维护吗？",
       "a5": "负责——上线后的更新、监控、备份与修复，可按月订阅或按需付费。",
       "q6": "你在哪里？",
-      "a6": "伊拉克巴格达（UTC+3）。我与各地客户远程合作，也可上门服务整个巴格达地区。"
+      "a6": "伊拉克巴格达（UTC+3）。我与各地客户远程合作，也可上门服务整个巴格达地区。",
+      "q7": "这个网站使用 Cookie 或分析工具吗？",
+      "a7": "这里不下发任何 Cookie，路径上也没有分析服务商。计数器每个巴格达日只保留一条加盐的 IP 哈希，同一次访问不会被数两遍，也不保留任何能指认他人的信息——隐私页已逐项写明。",
+      "q8": "产品能以哪些语言交付？",
+      "a8": "标配阿拉伯语和英语，两者的排版都按其书写方向完整呈现。这个站点本身就从一份翻译文件输出十二种语言：为你的产品加一门语言是改文件，不是重做。",
+      "q9": "开始之前你需要我提供什么？",
+      "a9": "现有的和卡住的地方：涉及的页面、界面或系统，你已经有的标志和文字，以及由谁拍板。这些足够我书面给出范围、价格和工期——工作什么时候开始由你说了算。",
+      "q10": "开发过程中我能看到进度吗？",
+      "a10": "能：每周一个预览链接，而不是最后才揭晓。每个阶段都只隔一条消息，答案在你问之前就已经写在这张表上。"
     },
     "pricing": {
       "label": "08 / 价格",
@@ -5005,11 +5505,60 @@
       "theme": "切换浅色或深色主题",
       "close": "关闭",
       "estCur": "同时以下列货币显示价格",
-      "tally": "访客计数"
+      "tally": "访客计数",
+      "legal": "隐私与条款"
     },
     "alt": {
       "shot": "网站实际截图",
       "cover": "文字排版案例封面"
+    },
+    "legal": {
+      "updated": "最后更新于 2026 年 11 月 8 日",
+      "p": {
+        "h1": "隐私政策",
+        "lead": "本站自己统计访客：没有第三方分析、没有广告 Cookie、不向外部请求字体。一次访问被记录了什么，这页就写什么。",
+        "countH": "计数器保留哪些数据",
+        "countP": "每天记录一次（巴格达时间）：带随机盐的 IP 哈希、把你送到本页的来源页面，以及浏览器报告的设备类别。盐值会变，同一个人无法从这一天被追到第二天。",
+        "neverH": "它从不碰的东西",
+        "never1": "本站不设置 Cookie。",
+        "never2": "没有广告 ID、像素，也没有跨站跟踪器。",
+        "never3": "不保存完整 IP 地址，也不保存任何能指名你的内容。",
+        "never4": "除非你提交询价表单，否则不会留下姓名、邮箱或电话。",
+        "formH": "如果你提交请求",
+        "formP": "询价表单会把你的姓名、邮箱、电话、所选服务、预算、期限和留言送到本站自己的数据库，以及回复你的那个邮箱。它只用于回复和编制报价——不做营销，不出售，也不转给其他人。",
+        "hostH": "它在哪里运行",
+        "hostP": "托管、数据库、邮件和验证码各自属于一个服务商，每家只拿到自己那部分需要的数据。验证码脚本只在表单走到需要它的步骤时才加载；该步骤关闭时完全不加载。",
+        "askH": "关于你的数据提问",
+        "askP": "请写到首页上的联系邮箱。如果你发过请求，开口即可：你可以查看它、更正它或要求删除它；简单的问题得到简单的回答，而不是一张表单。"
+      },
+      "t": {
+        "h1": "使用条款",
+        "lead": "使用本站即表示同意以下规则。它们刻意写得简短：是给读它的人写的，不是给归档它的律师写的。",
+        "workH": "你正在读的内容",
+        "workP": "项目与案例研究描述的是为真实客户完成的真实工作，其中的数字按当时的测量或约定呈现。截图和美术属于它们所展示的产品，本页内容不构成对你项目的承诺。",
+        "priceH": "估算与价格",
+        "priceP": "估算器以及回复中的任何数字都是以美元表示的参考值，仅在该信息所述期限内有效。价格只有在双方书面协议中才具有约束力。",
+        "reqH": "提交请求",
+        "reqP": "请填写正确的邮箱——地址错误的请求无法回复。每个项目请发一条请求；表单有频率限制并受验证码保护，批量或自动提交会被拒绝。在签署协议之前，任何提交都不构成义务。",
+        "useH": "对本站的正当使用",
+        "useP": "在你考虑是否合作期间，你可以阅读、链接并打印这些页面。但你不得批量抓取本站、重放其表单、探测其基础设施，或把它的文字、美术或案例研究当作自己的成果。",
+        "yoursH": "你的内容始终属于你",
+        "yoursP": "你在留言中发送的内容仍归你所有。它不附带任何超出回复你所必需的许可；你的姓名或公司只出现在你同意的地方。",
+        "outH": "离站的链接",
+        "outP": "GitHub、WhatsApp、邮件和一些产品页面会离开本站。它们的行为和政策归它们所有；链接只是一种礼貌，不是背书，也不是保证。",
+        "lawH": "适用法律",
+        "lawP": "本条款及其后约定的任何工作均适用伊拉克共和国法律，履行地为巴格达。任何一方均不对间接或附带损失负责，且就某一项目的责任绝不超过该项目所支付的金额。"
+      }
+    },
+    "upd": {
+      "body": "此页面的新版本已就绪。",
+      "go": "重新加载",
+      "later": "继续查看当前版本"
+    },
+    "keys": {
+      "title": "键盘快捷键",
+      "tabs": "在技术栈标签间切换",
+      "esc": "关闭当前打开的内容"
     }
   },
   "ja": {
@@ -5089,7 +5638,8 @@
         "result": "料金と評価を最初から確認して1分で予約——双方が納得したときにだけ、お金が動きます。",
         "c1": "Escrow決済",
         "c2": "音声検索",
-        "c3": "KYC本人確認"
+        "c3": "KYC本人確認",
+        "fig": "管理画面のスイッチ59個"
       },
       "2": {
         "tag": "税務プラットフォーム",
@@ -5125,7 +5675,8 @@
         "result": "ゲストは明確な内訳を確認して予約・決済でき、返金は即時に入金。サプライヤーはひとつのダッシュボードで全てを管理できます。",
         "c1": "ウォレット＆返金",
         "c2": "サプライヤーダッシュボード",
-        "c3": "アラビア語RTL"
+        "c3": "アラビア語RTL",
+        "fig": "4ステップの予約"
       },
       "5": {
         "tag": "ITインフラ",
@@ -5281,7 +5832,9 @@
       "links": "リンク",
       "connect": "つながる",
       "rights": "無断転載を禁じます。",
-      "place": "バグダッド、イラク · UTC+3"
+      "place": "バグダッド、イラク · UTC+3",
+      "privacy": "プライバシー",
+      "terms": "規約"
     },
     "testimonials": {
       "label": "06 / お客様の声",
@@ -5311,7 +5864,15 @@
       "q5": "納品後の保守もお願いできますか？",
       "a5": "はい——リリース後のアップデート、監視、バックアップ、修正まで、月額契約または都度依頼で対応します。",
       "q6": "拠点はどこですか？",
-      "a6": "イラク・バグダッド（UTC+3）です。世界各地のお客様とリモートで協力し、バグダッド市内は現地対応も行います。"
+      "a6": "イラク・バグダッド（UTC+3）です。世界各地のお客様とリモートで協力し、バグダッド市内は現地対応も行います。",
+      "q7": "このサイトはCookieやアナリティクスを使っていますか？",
+      "a7": "ここではCookieを設定せず、経路に解析ベンダーもありません。カウンターが持つのはバグダッド時間で1日1回分のIPソルト付きハッシュのみで、同じ訪問が2回数えられることはありません。あなたを特定する情報も持たず、そのすべてはプライバシーページに書いてあります。",
+      "q8": "製品は何言語で納品できますか？",
+      "a8": "標準はアラビア語と英語で、どちらもその表示方向に合わせた完全なレイアウトになります。このサイト自体が1つの翻訳ファイルから12言語で書かれているので、あなたの言語を加えるのは作り直しではなく編集です。",
+      "q9": "始めるために私から何が必要ですか？",
+      "a9": "今あるものと、困っている場所です：関係するページ・画面・システム、お持ちのロゴと文章、そして誰が承認するか。それがあれば範囲・費用・日程を書面で出せます。作業を開始するのはあなたの合図です。",
+      "q10": "作りしている間の進み方は見えますか？",
+      "a10": "見えます。最後に見せるのではなく、毎週プレビュー用のリンクをお出しします。どの段階もメッセージ一通の距離にあり、答えは聞く前にこのシートに書いてあります。"
     },
     "pricing": {
       "label": "08 / 料金",
@@ -5562,11 +6123,60 @@
       "theme": "ライト／ダークテーマを切り替え",
       "close": "閉じる",
       "estCur": "価格をこの通貨でも表示",
-      "tally": "訪問者カウント"
+      "tally": "訪問者カウント",
+      "legal": "プライバシーと規約"
     },
     "alt": {
       "shot": "公開中のサイトのスクリーンショット",
       "cover": "タイポグラフィのケース表紙"
+    },
+    "legal": {
+      "updated": "最終更新：2026年11月8日",
+      "p": {
+        "h1": "プライバシー",
+        "lead": "このサイトは訪問者を自身で数えます。解析ベンダーも、広告クッキーも、外部フォントへのリクエストもありません。1回の訪問について何が分かるかは、このページに書いてあります。",
+        "countH": "カウンターが保存するもの",
+        "countP": "バグダッド時間で1日1回だけ記録します。IPアドレスのソルト付きハッシュ、あなたが来たページ、ブラウザが伝える端末ファミリーです。ソルトは毎日変わるため、同じ人物を日またぎで追跡することはできません。",
+        "neverH": "決して扱わないもの",
+        "never1": "このサイトはクッキーを設定しません。",
+        "never2": "広告ID、ピクセル、サイト横断のトラッカーはありません。",
+        "never3": "完全なIPアドレスは保存しません。あなたを名前で示すものも保存しません。",
+        "never4": "注文フォームを送信しない限り、名前もメールも電話番号も残りません。",
+        "formH": "リクエストを送る場合",
+        "formP": "注文フォームは、名前・メール・電話・サービス・予算・期限・メッセージを、このサイト自身のデータベースと、あなたに返信する受信箱に届けます。返信と見積もり作成にのみ使い、マーケティングには使いません。売却も第三者への提供もしません。",
+        "hostH": "どこで動いているか",
+        "hostP": "ホスティング、データベース、メール、認証は、いずれも一つの提供者に属し、それぞれ自分の役割に必要な分だけ受け取ります。認証スクリプトは、フォームがそれを求める手順に到達したときだけ読み込まれ、その手順がオフなら一切読み込まれません。",
+        "askH": "自分のデータについての問い合わせ",
+        "askP": "トップページの連絡先に書き送ってください。リクエストを送った方は申し出てください。閲覧も訂正も削除もできます。素朴な問いには素朴な回答を返します。フォームではありません。"
+      },
+      "t": {
+        "h1": "利用規約",
+        "lead": "本サイトの利用は、以下の規約に同意することです。意図的に短くしています。読む人のためのもので、書類に保管する弁護士のためのものではありません。",
+        "workH": "読まれているものについて",
+        "workP": "プロジェクトとケーススタディは、実在の顧客のための実作業を、当時測定または合意された数値のまま伝えます。スクリーンショットとビジュアルは表示されている製品に帰属し、ここにあるものはあなたのプロジェクトに対する約束ではありません。",
+        "priceH": "見積りと価格",
+        "priceP": "見積もりツールと返信中のあらゆる数値は米ドルによる目安であり、そのメッセージに記した期間に限り有効です。価格に拘束力があるのは、双方の書面による合意の場合のみです。",
+        "reqH": "リクエストの送信",
+        "reqP": "正しいメールアドレスをご記入ください。アドレスが誤ったリクエストには返信できません。プロジェクトごとに1件。フォームは回数制限と認証で保護されているため、一括または自動の送信は拒否されます。契約に署名するまで、送信によって義務は発生しません。",
+        "useH": "サイトの適正な利用",
+        "useP": "お仕事の判断中は、これらのページを読み、リンクし、印刷していただけます。ただし、サイトの大量スクレイピング、フォームの再送、インフラの探査、文章・グラフィック・ケーススタディを自身のものとして提示することはできません。",
+        "yoursH": "あなたの言葉はあなたのまま",
+        "yoursP": "メッセージでお送りいただいたものはあなたのままであり、返信に必要な範囲を超えるライセンスを含むものではありません。あなたのお名前や会社名は、ご同意いただいた場所にのみ記載します。",
+        "outH": "外へ出るリンク",
+        "outP": "GitHub、WhatsApp、メール、いくつかの製品ページはこのサイトから外へつながります。それらの挙動とポリシーは相手側のものです。リンクは礼儀であって、推奨でも保証でもありません。",
+        "lawH": "準拠法",
+        "lawP": "本規約およびその後に合意する業務はイラク共和国の法律に従い、履行地はバグダッドとします。いずれの側も間接損害および付随的損害について責任を負わず、あるプロジェクトに関する責任は、そのプロジェクトが支払った額を超えることはありません。"
+      }
+    },
+    "upd": {
+      "body": "このページの新しい版が準備できました。",
+      "go": "再読み込み",
+      "later": "この版のまま読む"
+    },
+    "keys": {
+      "title": "キーボードショートカット",
+      "tabs": "スタックのタブを切り替える",
+      "esc": "開いているものを閉じる"
     }
   },
   "ko": {
@@ -5646,7 +6256,8 @@
         "result": "가격과 평점을 먼저 확인하고 1분 만에 예약하세요. 양쪽이 만족할 때만 결제가 진행됩니다.",
         "c1": "에스크로 결제",
         "c2": "음성 검색",
-        "c3": "KYC 본인 인증"
+        "c3": "KYC 본인 인증",
+        "fig": "관리자 스위치 59개"
       },
       "2": {
         "tag": "세무 플랫폼",
@@ -5682,7 +6293,8 @@
         "result": "게스트는 명확한 내역을 보고 예약하고 결제하며, 환불은 지갑으로 즉시 들어옵니다. 공급자는 모든 것을 하나의 대시보드에서 운영합니다.",
         "c1": "지갑 및 환불",
         "c2": "공급자 대시보드",
-        "c3": "아랍어 RTL"
+        "c3": "아랍어 RTL",
+        "fig": "4단계 예약"
       },
       "5": {
         "tag": "IT 인프라",
@@ -5838,7 +6450,9 @@
       "links": "링크",
       "connect": "연결",
       "rights": "모든 권리 보유.",
-      "place": "이라크 바그다드 · UTC+3"
+      "place": "이라크 바그다드 · UTC+3",
+      "privacy": "개인정보",
+      "terms": "약관"
     },
     "testimonials": {
       "label": "06 / 고객의 목소리",
@@ -5868,7 +6482,15 @@
       "q5": "만든 것의 유지보수도 해주시나요?",
       "a5": "네 — 출시 후 업데이트, 모니터링, 백업, 수정을 월간 리테이너 또는 요청 단위로 제공합니다.",
       "q6": "어디에 계신가요?",
-      "a6": "이라크 바그다드(UTC+3)입니다. 어디에 있는 클라이언트와도 원격으로 일하며, 바그다드 전역의 현장 작업도 처리합니다."
+      "a6": "이라크 바그다드(UTC+3)입니다. 어디에 있는 클라이언트와도 원격으로 일하며, 바그다드 전역의 현장 작업도 처리합니다.",
+      "q7": "이 사이트는 쿠키나 분석을 쓰나요?",
+      "a7": "여기서는 어떤 쿠키도 심지 않고 분석 업체도 경로에 없습니다. 카운터는 바그다드 시간으로 하루에 한 번, 아이피 주소의 솔트 해시만 남깁니다. 같은 방문이 두 번 셀리는 일이 없고, 누군가를 지칭하는 정보도 전혀 없습니다 — 전부 개인정보 페이지에 적혀 있습니다.",
+      "q8": "제품은 몇 개 언어로 출시되나요?",
+      "a8": "기본은 아랍어와 영어이고, 두 언어 모두 방향에 맞춘 완전한 레이아웃을 제공합니다. 이 사이트 자체가 하나의 번역 파일로 열두 개 언어를 씁니다. 따라서 언어를 추가하는 일은 다시 만드는 것이 아니라 편집입니다.",
+      "q9": "시작하려면 저에게서 무엇이 필요한가요?",
+      "a9": "이미 있는 것과 막혀 있는 부분입니다: 관련된 페이지·화면·시스템, 이미 가지고 계신 로고와 문구, 그리고 승인자가 누구인지. 이 정도면 범위·가격·일정을 문서로 드릴 수 있고, 작업은 당신이 시작한다고 할 때 시작됩니다.",
+      "q10": "만드는 동안 진행을 볼 수 있나요?",
+      "a10": "볼 수 있습니다. 마지막에 공개하는 대신 매주 미리보기 링크를 드립니다. 모든 단계는 메시지 하나 거리이고, 답은 묻기 전에 이미 이 시트에 적혀 있습니다."
     },
     "pricing": {
       "label": "08 / 가격",
@@ -6119,11 +6741,60 @@
       "theme": "라이트 또는 다크 테마로 전환",
       "close": "닫기",
       "estCur": "다음 통화로도 가격 표시",
-      "tally": "방문자 수"
+      "tally": "방문자 수",
+      "legal": "개인정보 및 약관"
     },
     "alt": {
       "shot": "실제 사이트 스크린샷",
       "cover": "타이포그래피 케이스 표지"
+    },
+    "legal": {
+      "updated": "마지막 업데이트 2026년 11월 8일",
+      "p": {
+        "h1": "개인정보",
+        "lead": "이 사이트는 방문자를 직접 셉니다. 분석 업체도, 광고 쿠키도, 외부 폰트 요청도 없습니다. 한 방문에 대해 아는 내용은 이 페이지에 적혀 있습니다.",
+        "countH": "카운터가 저장하는 것",
+        "countP": "바그다드 시간으로 하루에 한 번: 아이피 주소의 솔트 해시, 이곳으로 보낸 페이지, 브라우저가 알리는 기기 종류. 솔트는 바뀌므로 같은 사람이 하루에서 다음 하루로 추적될 수 없습니다.",
+        "neverH": "절대 손대지 않는 것",
+        "never1": "이 사이트는 쿠키를 심지 않습니다.",
+        "never2": "광고 ID, 픽셀, 사이트 간 추적자가 없습니다.",
+        "never3": "전체 아이피 주소는 저장하지 않으며, 당신을 지칭하는 어떤 것도 저장하지 않습니다.",
+        "never4": "주문 양식을 보내지 않는 한 이름, 이메일, 전화번호가 남지 않습니다.",
+        "formH": "요청을 보내는 경우",
+        "formP": "주문 양식은 이름, 이메일, 전화, 서비스, 예산, 기한, 메시지를 이 사이트의 데이터베이스와 답신을 보내는 메일함으로 전달합니다. 답변과 견적 준비에만 쓰이며, 마케팅용이 아니고 팔거나 제3자에게 넘기지 않습니다.",
+        "hostH": "어디에서 동작하는가",
+        "hostP": "호스팅, 데이터베이스, 메일, 캡차는 각각 한 제공자에 속하며, 각자 자기 부분에 필요한 것만 받습니다. 캡차 스크립트는 양식이 그것을 요구하는 단계에 도달했을 때만 불러오고, 그 단계가 꺼져 있으면 아예 불러오지 않습니다.",
+        "askH": "내 데이터에 대해 묻기",
+        "askP": "홈페이지의 연락처로 글을 보내 주세요. 요청을 보냈으시면 말씀해 주세요. 열람하거나 고치거나 삭제하게 할 수 있습니다. 소박한 질문에는 소박한 답이 돌아오지 양식이 아닙니다."
+      },
+      "t": {
+        "h1": "이용약관",
+        "lead": "이 사이트를 이용하는 것은 아래 규정에 동의하는 것입니다. 일부러 짧게 썼습니다. 읽는 사람을 위한 것이지, 서류에 보관하는 변호사를 위한 것이 아닙니다.",
+        "workH": "읽고 계신 내용",
+        "workP": "프로젝트와 사례 연구는 실제 고객을 위해 한 실제 작업을 당시 측정하거나 합의한 수치 그대로 설명합니다. 스크린샷과 그래픽은 보이는 제품의 것이며, 여기에 있는 무엇도 귀하의 프로젝트에 대한 약속이 아닙니다.",
+        "priceH": "견적과 가격",
+        "priceP": "추정기와 답신 속 모든 숫자는 미국 달러 기준의 참고치이며 그 메시지에 적은 기간 동안만 유효합니다. 가격이 구속력을 갖는 것은 쌍방 간 서면 합의에서입니다.",
+        "reqH": "요청 보내기",
+        "reqP": "올바른 이메일을 적어 주세요. 주소가 잘못된 요청에는 답할 수 없습니다. 프로젝트당 한 건. 양식은 횟수 제한과 캡차로 보호되므로 대량이나 자동 제출은 거절됩니다. 계약서에 서명하기까지 제출로 의무가 생기지 않습니다.",
+        "useH": "사이트의 정당한 이용",
+        "useP": "작업을 결정하는 동안 이 페이지를 읽고, 링크하고, 인쇄할 수 있습니다. 다만 사이트를 대량으로 수집하거나, 양식을 재전송하거나, 인프라를 탐사하거나, 글과 그래픽과 사례 연구를 자기 것처럼 내세우는 것은 되지 않습니다.",
+        "yoursH": "보내신 내용은 귀하의 것입니다",
+        "yoursP": "보내신 내용은 계속 귀하의 것이며, 답변에 필요한 범위를 넘는 라이선스를 포함하지 않습니다. 성함이나 회사명은 허락하신 곳에 표시합니다.",
+        "outH": "외부로 나가는 링크",
+        "outP": "GitHub, 왓츠앱, 메일, 몇몇 제품 페이지는 이 사이트 밖으로 나갑니다. 그 동작과 정책은 상대의 것이며, 링크는 예의일 뿐 추천이나 보장이 아닙니다.",
+        "lawH": "준거법",
+        "lawP": "이 약관과 그 이후 합의하는 작업은 이라크 공화국 법률을 따르며 이행지는 바그다드입니다. 어느 쪽도 간접 또는 부수적 손실에 대해 책임을 지지 않고, 한 프로젝트에 대한 책임은 그 프로젝트가 지불한 금액을 넘지 않습니다."
+      }
+    },
+    "upd": {
+      "body": "이 페이지의 새 버전이 준비되었습니다.",
+      "go": "새로 고침",
+      "later": "이 버전을 계속 보기"
+    },
+    "keys": {
+      "title": "키보드 단축키",
+      "tabs": "기술 스택 탭 사이 이동",
+      "esc": "열린 것 닫기"
     }
   },
   "hi": {
@@ -6203,7 +6874,8 @@
         "result": "क़ीमत और रेटिंग पहले से देखकर एक मिनट में बुकिंग — पैसे तभी चलते हैं जब दोनों पक्ष संतुष्ट हों।",
         "c1": "एस्क्रो पेमेंट",
         "c2": "वॉइस सर्च",
-        "c3": "KYC सत्यापन"
+        "c3": "KYC सत्यापन",
+        "fig": "59 एडमिन स्विच"
       },
       "2": {
         "tag": "टैक्स प्लेटफ़ॉर्म",
@@ -6239,7 +6911,8 @@
         "result": "मेहमान साफ़ सारांश देखकर बुक और पेमेंट करते हैं और रिफ़ंड तुरंत वॉलेट में पहुँचता है; सप्लायर सब कुछ एक ही डैशबोर्ड से चलाते हैं।",
         "c1": "वॉलेट व रिफ़ंड",
         "c2": "सप्लायर डैशबोर्ड",
-        "c3": "अरबी RTL"
+        "c3": "अरबी RTL",
+        "fig": "4 चरण की बुकिंग"
       },
       "5": {
         "tag": "IT इंफ़्रास्ट्रक्चर",
@@ -6395,7 +7068,9 @@
       "links": "लिंक",
       "connect": "जुड़ें",
       "rights": "सर्वाधिकार सुरक्षित।",
-      "place": "बग़दाद, इराक़ · UTC+3"
+      "place": "बग़दाद, इराक़ · UTC+3",
+      "privacy": "गोपनीयता",
+      "terms": "शर्तें"
     },
     "testimonials": {
       "label": "06 / ग्राहकों की आवाज़ें",
@@ -6425,7 +7100,15 @@
       "q5": "क्या आप जो बनाते हैं उसका रखरखाव भी करते हैं?",
       "a5": "हाँ — लॉन्च के बाद अपडेट, मॉनिटरिंग, बैकअप और फ़िक्स, मासिक रिटेनर या माँग के अनुसार।",
       "q6": "आप कहाँ आधारित हैं?",
-      "a6": "बग़दाद, इराक़ (UTC+3)। मैं कहीं भी क्लाइंट्स के साथ रिमोट काम करता हूँ और बग़दाद भर में ऑन-साइट काम संभालता हूँ।"
+      "a6": "बग़दाद, इराक़ (UTC+3)। मैं कहीं भी क्लाइंट्स के साथ रिमोट काम करता हूँ और बग़दाद भर में ऑन-साइट काम संभालता हूँ।",
+      "q7": "क्या यह साइट कुकी या एनालिटिक्स इस्तेमाल करता है?",
+      "a7": "यहाँ कोई कुकी सेट नहीं होती, और रास्ते में कोई एनालिटिक्स सेवा नहीं है। काउंटर बग़दाद समय में प्रति दिन एक ही बार ip पते का सॉल्ट वाला हैश रखता है, इसलिए एक ही विज़िट दो बार नहीं गिनी जाती; और कोई चीज़ नहीं जो किसी को नाम से पहचाने — पूरा ब्यौरा गोपनीयता पृष्ठ पर है।",
+      "q8": "उत्पाद किन भाषाओं में रिलीज़ होता है?",
+      "a8": "मानक रूप से अरबी और अंग्रेज़ी, दोनों में उनके अपनी दिशा का पूरा लेआउट। यह साइट ख़ुद एक ही फ़ाइल से बारह भाषाओं में लिखी है, इसलिए आपकी भाषा जोड़ना दोबारा बनाना नहीं, संपादन है।",
+      "q9": "शुरू करने के लिए मुझसे क्या चाहिए?",
+      "a9": "जो मौजूद है और जो दिक्कत दे रहा है: संबंधित पृष्ठ, स्क्रीन या सिस्टम, आपके पास पहले से जो लोगो और टेक्स्ट हैं, और मंज़ूरी कौन देता है। लिखित दायरा, कीमत और समय के लिए यह काफ़ी है — और काम आपके कहने पर शुरू होता है।",
+      "q10": "काम बनते हुए मैं उसे देख पाऊँगा?",
+      "a10": "हाँ — आख़िर में दिखा देने के बजाय हर हफ़्ते एक प्रीव्यू लिंक। हर चरण एक संदेश की दूरी पर है, और जवाब आपको पूछने से पहले ही इस शीट पर लिखे हैं।"
     },
     "pricing": {
       "label": "08 / मूल्य",
@@ -6676,11 +7359,60 @@
       "theme": "लाइट या डार्क थीम पर करें",
       "close": "बंद करें",
       "estCur": "इस सिक्के में मूल्य भी दिखाएँ",
-      "tally": "आगंतुक गणक"
+      "tally": "आगंतुक गणक",
+      "legal": "गोपनीयता और शर्तें"
     },
     "alt": {
       "shot": "लाइव साइट का स्क्रीनशॉट",
       "cover": "टाइपोग्राफिक केस कवर"
+    },
+    "legal": {
+      "updated": "अंतिम अद्यतन: 8 नवंबर 2026",
+      "p": {
+        "h1": "गोपनीयता",
+        "lead": "यह साइट अपने आगंतुकों को खुद गिनती है — न कोई एनालिटिक्स सेवा, न विज्ञापन कुकी, न किसी तीसरे पक्ष से फ़ॉन्ट अनुरोध। एक विज़िट के बारे में जो पता चलता है, यह पृष्ठ वही बताता है।",
+        "countH": "गिनती क्या सहेजती है",
+        "countP": "बग़दाद समय के अनुसार दिन में एक बार: आपके ip पते का लवण-मिलाया हैश, वह पृष्ठ जिससे आप यहाँ आए, और आपके ब्राउज़र का बताया उपकरण परिवार। लवण बदलता है, इसलिए एक ही व्यक्ति एक दिन से अगले दिन तक पीछा नहीं किया जा सकता।",
+        "neverH": "जो कभी नहीं छुआ जाता",
+        "never1": "यह साइट कोई कुकी सेट नहीं करती।",
+        "never2": "कोई विज्ञापन आईडी, पिक्सेल या साइट-पार ट्रैकर नहीं।",
+        "never3": "पूरा ip पता संग्रहित नहीं होता, और न ही कोई ऐसी चीज़ जो आपको नाम से पहचाने।",
+        "never4": "जब तक आप ऑर्डर फ़ॉर्म नहीं भेजते, कोई नाम, ईमेल या फ़ोन नंबर नहीं।",
+        "formH": "अगर आप अनुरोध भेजते हैं",
+        "formP": "ऑर्डर फ़ॉर्म आपका नाम, ईमेल, फ़ोन, सेवा, बजट, अवधि और संदेश इस साइट के अपने डेटाबेस और उस मेलबॉक्स तक ले जाता है जो आपको जवाब देता है। इसका उपयोग जवाब देने और अनुमान बनाने के लिए होता है — विपणन के लिए नहीं, बेचा नहीं जाता, किसी और को नहीं दिया जाता।",
+        "hostH": "यह कहाँ चलता है",
+        "hostP": "होस्टिंग, डेटाबेस, मेल और कैप्चा प्रत्येक एक-एक प्रदाता से संबंधित हैं, और प्रत्येक को केवल उसके हिस्से जितनी ज़रूरत है मिलती है। कैप्चा स्क्रिप्ट तभी लाई होती है जब फ़ॉर्म उस कदम पर पहुँचे जो उसे माँगता है, और कदम बंद हो तो बिल्कुल नहीं।",
+        "askH": "अपने डेटा के बारे में पूछना",
+        "askP": "होम पृष्ठ के संपर्क पते पर लिखें। यदि आपने अनुरोध भेजा है तो कहिए: आप उसे देख सकते हैं, सुधार सकते हैं या हटवा सकते हैं; सीधे प्रश्न पर सीधा जवाब मिलता है, फ़ॉर्म नहीं।"
+      },
+      "t": {
+        "h1": "उपयोग की शर्तें",
+        "lead": "इस साइट का उपयोग करना नीचे दिए नियमों से सहमत होना है। ये जान‑बूझकर छोटे हैं: इसे पढ़ने वाले व्यक्ति के लिए लिखे गए, न कि फ़ाइल में लगाने वाले वकील के लिए।",
+        "workH": "आप जो पढ़ रहे हैं",
+        "workP": "प्रोजेक्ट और केस स्टडी वास्तविक ग्राहकों के लिए किए गए असली काम का वर्णन करती हैं, और आँकड़े वैसे ही हैं जैसे उस समय मापे या तय किए गए। स्क्रीनशॉट और ग्राफ़िक दिखे उत्पादों के हैं, और यहाँ कुछ भी आपके प्रोजेक्ट के बारे में वादा नहीं है।",
+        "priceH": "अनुमान और कीमतें",
+        "priceP": "अनुमानक और जवाब में कोई भी संख्या अमेरिकी डॉलर में एक संकेत है, और उस संदेश में बताई अवधि तक मान्य है। कीमत तभी बाध्यकारी होती है जब दोनों पक्षों का लिखित समझौता हो।",
+        "reqH": "अनुरोध भेजना",
+        "reqP": "कृपया सही ईमेल दें — ग़लत पते वाले अनुरोध का जवाब नहीं दिया जा सकता। परियोजना के लिए एक अनुरोध; फ़ॉर्म दर-सीमित और कैप्चा-सुरक्षित है, इसलिए थोक या स्वचालित भेजना अस्वीकृत होता है। समझौते पर हस्ताक्षर तक भेजी गई कोई चीज़ दायित्व नहीं बनाती।",
+        "useH": "साइट का उचित उपयोग",
+        "useP": "काम के बारे में सोचते समय आप ये पृष्ठ पढ़ सकते हैं, इनकी कड़ी दे सकते हैं और छाप सकते हैं। आप साइट को थोक में नहीं खींच सकते, उसके फ़ॉर्म दोबारा नहीं भेज सकते, उसके बुनियादी ढाँचे की जाँच नहीं कर सकते, और न ही उसके लेख, ग्राफ़िक या केस स्टडी अपनी तरह पेश कर सकते हैं।",
+        "yoursH": "आपके शब्द आपके ही रहते हैं",
+        "yoursP": "आपके संदेश में भेजी गई चीज़ आपके ही रहती है। उससे जवाब देने के लिए ज़रूरी के अलावा कोई लाइसेंस नहीं मिलता, और आपका नाम या कंपनी केवल वहीं दिखती है जहाँ आपने सहमति दी।",
+        "outH": "बाहर ले जाने वाली कड़ियाँ",
+        "outP": "GitHub, WhatsApp, मेल और कुछ उत्पाद पृष्ठ इस साइट से बाहर ले जाते हैं। उनका व्यवहार और नीतियाँ उनकी हैं; कड़ी एक शिष्टता है, अनुशंसा या गारंटी नहीं।",
+        "lawH": "लागू कानून",
+        "lawP": "ये शर्तें और उनके बाद तय हुआ कोई भी काम गणतंत्र इराक़ के क़ानून के अधीन है, और बग़दाद निष्पादन स्थल है। कोई भी पक्ष अप्रत्यक्ष या आकस्मिक हानि के लिए ज़िम्मेदार नहीं होता, और किसी परियोजना के लिए दायित्व उस परियोजना द्वारा दिए भुगतान से अधिक कभी नहीं होता।"
+      }
+    },
+    "upd": {
+      "body": "इस पेज का नया संस्करण तैयार है।",
+      "go": "फिर से लोड करें",
+      "later": "इसी संस्करण को पढ़ते रहें"
+    },
+    "keys": {
+      "title": "कीबोर्ड शॉर्टकट",
+      "tabs": "स्टैक टैब के बीच जाएँ",
+      "esc": "जो खुला है उसे बंद करें"
     }
   }
 }

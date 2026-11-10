@@ -14,11 +14,19 @@
      7  no window.open/target=_blank without noopener
      8  nothing that looks like a secret is committed
      9  the service worker shell holds no admin page and no cv
-    10 the ?v=rNN / bgsash-vNN ritual moved together                   */
+    10 the ?v=rNN / bgsash-vNN ritual moved together
+    11 the fonts are this origin's, each url hashed to its own file
+    12 the machine-readable layer: feeds, llms files, profile.json, security.txt
+    13 the faq counts the same in the page, the json-ld, the twelve languages
+       and the generated layer                                              */
 
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
+const crypto = require('crypto');
+const { execFileSync } = require('child_process');
 const { CSP, CSP_META, HEADERS, ADMIN_HEADERS } = require('./security-config');
+const PAGES = require('./pages').PAGES;
 
 const ROOT = path.join(__dirname, '..');
 const read = (rel) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
@@ -31,8 +39,6 @@ function check(label, bad, detail) {
   else ok.push(label);
 }
 
-const PAGES = ['index.html', '404.html', 'admin.html']
-  .concat(fs.readdirSync(path.join(ROOT, 'work')).filter((f) => f.endsWith('.html')).map((f) => 'work/' + f));
 const JS = fs.readdirSync(path.join(ROOT, 'assets', 'js')).filter((f) => f.endsWith('.js')).map((f) => 'assets/js/' + f);
 
 /* ── 1. one csp string everywhere ─────────────────────────── */
@@ -190,7 +196,11 @@ const secretHunt = [];
 // postgres role in a grant (schema.sql) is ddl, not a credential
 const SECRET_RE = /(service_role["']?\s*[:=]\s*["'][A-Za-z0-9._-]{12,}|eyJ[A-Za-z0-9_-]{20,}|sk_live_|sk-proj-|xoxb-|AKIA[0-9A-Z]{16}|ghp_[A-Za-z0-9]{20,}|bearer\s+[a-z0-9._-]{30,})/i;
 const LONG_SECRET = /(secret|password|apikey|api_key|token)\s*[:=]\s*["'][^"']{16,}["']/i;
-const SCAN = PAGES.concat(JS, ['firebase.json', 'manifest.webmanifest', 'tools/security-config.js', 'tools/serve.js'])
+const SCAN = PAGES.concat(JS, ['firebase.json', 'manifest.webmanifest', 'tools/security-config.js', 'tools/serve.js',
+  // the apache rendering carries the same policy to a different host
+  '.htaccess', 'tools/make-htaccess.js',
+  // the generated layer repeats the contact details, so it is scanned too
+  'feed.xml', 'atom.xml', 'llms.txt', 'llms-full.txt', 'api/profile.json', '.well-known/security.txt'])
   .filter(exists)
   .concat(exists('supabase/schema.sql') ? ['supabase/schema.sql'] : []);
 const fnDir = path.join(ROOT, 'supabase', 'functions');
@@ -232,6 +242,28 @@ if (!/admin/.test(sw.replace(/var SHELL[\s\S]*?\];/, ''))) swBad.push('fetch han
 if (!/url\.pathname/.test(sw)) swBad.push('cache key is not url.pathname (query strings would split the cache)');
 check('service worker + cv: no admin cached, every cv link resolves and ships', swBad);
 
+/* ── 9b. the update offer ─────────────────────────────────── */
+
+// a new copy of the site must not land on top of a reader. the worker holds
+// back, the page asks, the click is the only thing that lets it through —
+// and the two halves name each other with one string. a typo on either side
+// is invisible until the one visit where it matters, so it is checked here.
+
+const mainJs = read('assets/js/main.js');
+const css = read('assets/css/style.css');
+const offer = [];
+const installBody = (sw.match(/addEventListener\('install'[\s\S]*?\n\}\);/) || [''])[0];
+const msgBody = (sw.match(/addEventListener\('message'[\s\S]*?\n\}\);/) || [''])[0];
+if (!/skipWaiting\s*\(\s*\)/.test(installBody)) offer.push('install never calls skipWaiting — a first visit would sit uncontrolled');
+if (/skipWaiting\s*\(\s*\)/.test(installBody.replace(/if\s*\(\s*!self\.registration\s*\|\|[^)]*\)\s*\{?\s*return\s*self\.skipWaiting\s*\(\s*\)\s*;?/, ''))) offer.push('install takes over unconditionally — it would cut a reader off mid-page');
+if (!/'sash:apply'/.test(msgBody)) offer.push("the message listener does not answer 'sash:apply' — the Reload button would do nothing");
+if (!/type:\s*'sash:apply'/.test(mainJs)) offer.push("main.js does not post {type:'sash:apply'} — the two halves disagree");
+if (!/showSwBar/.test(mainJs) || !/class(Name)?\s*=\s*'sw-update'|className = 'sw-update'/.test(mainJs)) offer.push('main.js has no update offer to show');
+if (/skipWaiting/.test(mainJs) || !/if \(swAsked\) location\.reload\(\)/.test(mainJs)) offer.push('the page reloads without waiting for the reader to click');
+if (!/\.sw-update\s*\{/.test(css)) offer.push('.sw-update has no rules in style.css — the offer would render unstyled');
+if (!/\[data-i18n="upd\./.test(mainJs) && !/setAttribute\('data-i18n', key\)/.test(mainJs)) offer.push('the offer is not wired to the translation layer');
+check('update offer: the worker waits, the page asks, the click alone answers', offer);
+
 /* ── 10. the version ritual ───────────────────────────────── */
 
 const verIn = (s) => [...new Set((s.match(/[?&]v=r(\d+)/g) || []).map((x) => Number(x.match(/r(\d+)/)[1])))];
@@ -250,6 +282,256 @@ tokens.forEach((t) => {
   if (t.v.length > 1) ritual.push(t.rel + ' mixes tokens: ' + t.v.join(', '));
 });
 check('cache ritual: one rNN token, service worker agrees', ritual);
+
+/* ── 11. the fonts belong to this origin ──────────────────── */
+
+// the counter and the fonts make the same promise together: a visit does
+// not introduce the visitor to anybody. one css2 link creeping back into a
+// page breaks that silently — the page still looks and reads identical — so
+// it is a gate, not a review note.
+const fontBad = [];
+PAGES.forEach((rel) => {
+  if (/fonts\.(googleapis|gstatic)\.com/.test(read(rel))) fontBad.push(rel + ' still asks google for a font');
+});
+if (!exists('assets/css/fonts.css')) fontBad.push('assets/css/fonts.css is missing — run node tools/fetch-fonts.js');
+else {
+  // no regex here on purpose: the urls carry a query, and splitting on the
+  // quote that closes url(" keeps the token attached to its own file
+  const urls = [...new Set(read('assets/css/fonts.css').split('url("').slice(1)
+    .map((chunk) => chunk.slice(0, chunk.indexOf('"'))))]
+    .filter((u) => u.startsWith('/assets/fonts/'));
+  if (!urls.length) fontBad.push('fonts.css declares no faces');
+  const names = [];
+  urls.forEach((u) => {
+    const rel = u.split('?')[0];
+    names.push(rel);
+    if (!exists(rel)) { fontBad.push('fonts.css points at a file that is not on disk: ' + rel); return; }
+    // assets/** ships immutable, so a font url carries its own sha256 instead
+    // of the release token — a swapped file has to move its own cache key or
+    // every returning visitor keeps the old face forever
+    const promised = u.split('?v=')[1] || '';
+    const real = crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT, rel))).digest('hex').slice(0, 10);
+    if (promised !== real) {
+      fontBad.push(rel + ' is ' + real + ' on disk but fonts.css promises v=' + (promised || 'nothing'));
+    }
+  });
+  const onDisk = fs.readdirSync(path.join(ROOT, 'assets', 'fonts')).filter((f) => f.endsWith('.woff2'));
+  onDisk.forEach((f) => {
+    if (!names.some((n) => n.endsWith('/' + f))) fontBad.push('assets/fonts/' + f + ' is orphaned (not declared in fonts.css)');
+  });
+}
+check('the fonts ship from this origin, each hashed to its file, none orphaned', fontBad);
+
+/* ── 12. the machine-readable layer ─────────────────────── */
+
+// the feeds, the llms files and /api/profile.json are what a crawler, a
+// reader and a language model get when they do not run javascript. they are
+// generated, so the gate's job is the two things a generator can still get
+// wrong: an entry that points at a page that is not there, and a file that
+// quietly stopped matching the case list.
+const CASES = require('./pages').CASES;
+const slugs = CASES.map((rel) => rel.replace(/^work\//, '').replace(/\.html$/, ''));
+// the canonical on the homepage is the origin everything else must agree with
+const ORIGIN = (read('index.html').match(/rel="canonical" href="([^"]+)"/) || ['', ''])[1].replace(/\/$/, '');
+const GEN = ['feed.xml', 'atom.xml', 'llms.txt', 'llms-full.txt', 'api/profile.json', '.well-known/security.txt'];
+
+// /work/smartmaid -> work/smartmaid.html, /privacy -> privacy.html, / -> index.html
+const served = (u) => {
+  if (!u.startsWith(ORIGIN)) return null;
+  let p = decodeURIComponent(u.slice(ORIGIN.length).split('?')[0].split('#')[0]).replace(/^\//, '');
+  if (!p) return 'index.html';
+  if (path.extname(p)) return exists(p) ? p : null;
+  return exists(p + '.html') ? p + '.html' : (exists(path.join(p, 'index.html')) ? path.join(p, 'index.html') : null);
+};
+
+const genMissing = GEN.filter((f) => !exists(f));
+const genBad = [];
+if (!genMissing.length) {
+  const rss = read('feed.xml'), atom = read('atom.xml');
+  // an unescaped & is the one xml mistake that reads fine until a parser rejects the file
+  [rss, atom, read('sitemap.xml')].forEach((x, i) => {
+    const raw = x.match(/&(?!amp;|lt;|gt;|quot;|apos;|#)/);
+    if (raw) genBad.push(['feed.xml', 'atom.xml', 'sitemap.xml'][i] + ': unescaped & at ' + raw.index);
+  });
+  if ((rss.match(/<item>/g) || []).length !== slugs.length) genBad.push('feed.xml has ' + (rss.match(/<item>/g) || []).length + ' items, there are ' + slugs.length + ' case pages');
+  if ((atom.match(/<entry>/g) || []).length !== slugs.length) genBad.push('atom.xml has ' + (atom.match(/<entry>/g) || []).length + ' entries, there are ' + slugs.length + ' case pages');
+  slugs.forEach((s) => {
+    if (!rss.includes(ORIGIN + '/work/' + s)) genBad.push('feed.xml does not carry /work/' + s);
+    if (!atom.includes(ORIGIN + '/work/' + s)) genBad.push('atom.xml does not carry /work/' + s);
+  });
+  // every url the layer advertises has to answer, in either direction
+  const advertised = [...new Set([rss, atom, read('llms.txt'), read('llms-full.txt'), read('.well-known/security.txt')]
+    .reduce((a, s) => a.concat(s.match(/https:\/\/[^\s"'<>()]+/g) || []), []))];
+  advertised.filter((u) => u.startsWith(ORIGIN)).forEach((u) => {
+    if (!served(u)) genBad.push('advertised url has no file behind it: ' + u);
+  });
+  if (!CASES.every((rel) => advertised.some((u) => served(u) === rel))) {
+    genBad.push('a case page is advertised nowhere in the machine-readable layer');
+  }
+
+  let profile = null;
+  try { profile = JSON.parse(read('api/profile.json')); } catch (e) { genBad.push('api/profile.json is not json: ' + e.message); }
+  if (profile) {
+    const ps = (profile.projects || []).map((p) => p.slug).sort().join(',');
+    if (ps !== slugs.slice().sort().join(',')) genBad.push('api/profile.json projects are [' + ps + '], the case pages are [' + slugs.join(',') + ']');
+    if (profile.site && !served(profile.site)) genBad.push('api/profile.json site url does not resolve: ' + profile.site);
+    if ((profile.languages || []).length !== Object.keys(JSON.parse(read('assets/i18n/translations.json'))).length)
+      genBad.push('api/profile.json lists ' + (profile.languages || []).length + ' languages, translations.json has ' + Object.keys(JSON.parse(read('assets/i18n/translations.json'))).length);
+    // the identity block is read out of the homepage — if it moved, this fails
+    const email = ((profile.identity || {}).email || '').replace(/^mailto:/, '');
+    if (!email || !read('index.html').includes('mailto:' + email)) genBad.push('api/profile.json email is not the one index.html shows');
+    (profile.contact.cv || []).forEach((u) => { if (!served(u)) genBad.push('api/profile.json advertises a cv that is not on disk: ' + u); });
+  }
+
+  const sec = read('.well-known/security.txt');
+  const contact = (sec.match(/^Contact:\s*(\S+)/im) || [])[1] || '';
+  if (!/^(https?:|mailto:)/.test(contact)) genBad.push('.well-known/security.txt has no Contact: url or mailto');
+  else if (contact.startsWith('mailto:') && !read('index.html').includes(contact)) genBad.push('.well-known/security.txt contact is not an address the site publishes');
+  const exp = (sec.match(/^Expires:\s*(\S+)/im) || [])[1] || '';
+  const expMs = Date.parse(exp);
+  if (!exp) genBad.push('.well-known/security.txt has no Expires: (RFC 9116 requires one)');
+  else if (!Number.isFinite(expMs)) genBad.push('.well-known/security.txt Expires: is not a date: ' + exp);
+  else if (expMs < Date.now()) genBad.push('.well-known/security.txt expired on ' + exp + ' — a reported problem has no address to go to');
+  if (!/^Preferred-Languages:/im.test(sec)) genBad.push('.well-known/security.txt has no Preferred-Languages');
+  if (!/Sitemap: \S+sitemap\.xml/.test(read('robots.txt'))) genBad.push('robots.txt stopped advertising the sitemap');
+  if (!/Sitemap: \S+feed\.xml/.test(read('robots.txt'))) genBad.push('robots.txt stopped advertising the case-study feed');
+}
+check('machine-readable layer: feeds, llms, profile and security.txt all hold', genMissing.concat(genBad));
+
+/* ── 13. the questions agree with themselves ──────────────── */
+
+/* one faq entry exists in four places at once: the details row, the
+   FAQPage json-ld, the translation file and the generated layer. adding a
+   question to only one of them is the kind of edit that passes every other
+   check — a page that promises a rich result and does not render it, or a
+   row that renders in english forever. so the four counts are compared. */
+const faqBad = [];
+// a markdown section: the text under one heading, stopping at the next one
+const section = (text, heading) => {
+  const after = text.split(heading)[1];
+  if (!after) return '';
+  return after.split('\n## ')[0];
+};
+{
+  const words = JSON.parse(read('assets/i18n/translations.json'));
+  const home = read('index.html');
+  const rows = (home.match(/<details class="faq-item">/g) || []).length;
+  const ld = (home.match(/"@type":\s*"Question"/g) || []).length;
+  const jsonld = (home.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g) || [])
+    .map((b) => JSON.parse(b.replace(/^<script[^>]*>/, '').replace(/<\/script>\s*$/, '')))
+    .filter((o) => o['@type'] === 'FAQPage');
+  const inLd = jsonld.reduce((a, o) => a + ((o.mainEntity || []).length), 0);
+  const en = words.en.faq || {};
+  const keys = Object.keys(en).filter((k) => /^q\d+$/.test(k)).length;
+  const answers = Object.keys(en).filter((k) => /^a\d+$/.test(k)).length;
+  const langGaps = [];
+  for (const lang of Object.keys(words)) {
+    const f = words[lang].faq || {};
+    for (let i = 1; i <= keys; i++) if (!f['q' + i] || !f['a' + i]) langGaps.push(lang + ' faq.q' + i + '/a' + i);
+  }
+  const listed = (read('llms-full.txt').match(/^Q: /gm) || []).length;
+  const prof = (() => { try { return (JSON.parse(read('api/profile.json')).faq || []).length; } catch (e) { return -1; } })();
+  const llmsQuestions = section(read('llms.txt'), '## Questions answered on the page').split('\n').filter((l) => /^- /.test(l)).length;
+
+  if (!jsonld.length) faqBad.push('index.html has no FAQPage json-ld at all');
+  if (rows !== ld) faqBad.push(`the page renders ${rows} questions but declares ${ld} to search: a rich result promised and not delivered`);
+  if (inLd !== rows) faqBad.push(`FAQPage json-ld carries ${inLd} mainEntity entries, the page renders ${rows}`);
+  if (keys !== answers) faqBad.push(`faq has ${keys} questions and ${answers} answers`);
+  if (keys !== rows) faqBad.push(`translations.faq has ${keys} questions, index.html renders ${rows}`);
+  if (langGaps.length) faqBad.push('a language is missing a question or answer: ' + langGaps.slice(0, 6).join(', '));
+  if (listed !== rows) faqBad.push(`llms-full.txt answers ${listed} questions, the page asks ${rows}`);
+  if (llmsQuestions !== rows) faqBad.push(`llms.txt lists ${llmsQuestions} questions, the page asks ${rows}`);
+  if (prof !== rows) faqBad.push(`api/profile.json carries ${prof} questions, the page asks ${rows}`);
+}
+check('faq: page, json-ld, twelve languages and the generated layer all count the same', faqBad);
+
+/* ── 12. the apache rendering ─────────────────────────────── */
+
+/* firebase.json is not the only host this site is published from. an Apache
+   box — InfinityFree, a cPanel account, a VPS — gets the same policy from
+   .htaccess, rendered by tools/make-htaccess.js from the same
+   security-config.js. two renderings of one policy is exactly where drift
+   lives, so the committed file is regenerated here and compared byte for
+   byte: editing security-config.js without regenerating fails the build.
+
+   the <IfModule> guards are checked as carefully as the values, because
+   they are what stands between a header change and a 500 on every page of
+   the site. a directive Apache cannot resolve is fatal, not ignorable. */
+const htBad = [];
+if (!exists('.htaccess')) {
+  htBad.push('.htaccess is missing — an Apache host would 404 on every clean url');
+} else {
+  const ht = read('.htaccess');
+  const tmp = path.join(os.tmpdir(), 'bgsash-htaccess-check-' + process.pid);
+  try {
+    execFileSync(process.execPath, [path.join(ROOT, 'tools', 'make-htaccess.js'), '--out', tmp], { cwd: ROOT, stdio: 'pipe' });
+    const fresh = fs.readFileSync(tmp, 'utf8');
+    /* compared with the line endings folded, because this repo is edited on
+       windows and checked in CI on linux: core.autocrlf would hand a fresh
+       clone a CRLF copy of a file the generator always writes with LF, and
+       that difference is not drift. */
+    const nl = (s) => s.replace(/\r\n/g, '\n');
+    if (nl(fresh) !== nl(ht)) htBad.push('.htaccess does not match what make-htaccess.js generates — run: node tools/make-htaccess.js');
+  } catch (e) {
+    htBad.push('make-htaccess.js failed: ' + String(e.message).split('\n')[0]);
+  } finally {
+    try { fs.rmSync(tmp, { force: true }); } catch (e) {}
+  }
+
+  // every policy value has to survive the trip into Apache syntax verbatim
+  const quote = (v) => '"' + String(v).replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"';
+  Object.keys(HEADERS).forEach((k) => {
+    if (!ht.includes('Header always set ' + k + ' ' + quote(HEADERS[k]))) htBad.push('header not set verbatim for every response: ' + k);
+  });
+  Object.keys(ADMIN_HEADERS).forEach((k) => {
+    if (ADMIN_HEADERS[k] === HEADERS[k]) return;
+    if (!ht.includes('Header always set ' + k + ' ' + quote(ADMIN_HEADERS[k]))) htBad.push('admin override missing: ' + k);
+  });
+
+  // the admin block has to be scoped. a header the desk owns alone — today
+  // that is X-Robots-Tag — leaking site-wide would noindex the whole site;
+  // one that merely differs, like Referrer-Policy, is set in both places by
+  // design and the later block wins.
+  const adminBlock = (ht.match(/<FilesMatch "\^admin\\\.html\$">([\s\S]*?)<\/FilesMatch>/) || [])[1] || '';
+  if (!adminBlock) htBad.push('the admin headers are not inside a <FilesMatch "^admin\\.html$"> block');
+  else {
+    const outside = ht.replace(/<FilesMatch "\^admin\\\.html\$">[\s\S]*?<\/FilesMatch>/, '');
+    Object.keys(ADMIN_HEADERS).filter((k) => !(k in HEADERS)).forEach((k) => {
+      if (new RegExp('^\\s*Header always set ' + k + '\\b', 'm').test(outside)) htBad.push(k + ' belongs to the admin desk alone but is also set site-wide');
+    });
+  }
+
+  /* anything module-dependent has to sit inside its <IfModule>, and the
+     guard has to name the module the directive actually belongs to. */
+  const NEEDS = [
+    ['mod_rewrite.c', /^\s*(RewriteEngine|RewriteRule|RewriteCond)\b/],
+    ['mod_headers.c', /^\s*(Header|RequestHeader)\b/],
+    ['mod_mime.c', /^\s*AddType\b/]
+  ];
+  // strip the guarded regions; whatever is left must not name a directive
+  let bare = ht;
+  NEEDS.forEach(([mod]) => {
+    const re = new RegExp('<IfModule ' + mod.replace('.', '\\.') + '>[\\s\\S]*?</IfModule>', 'g');
+    bare = bare.replace(re, '');
+  });
+  NEEDS.forEach(([mod, re]) => {
+    if (bare.split('\n').some((l) => re.test(l))) htBad.push('a ' + mod + ' directive sits outside its <IfModule> — a host without that module would 500 on every page');
+  });
+  ['mod_rewrite.c', 'mod_headers.c', 'mod_mime.c'].forEach((mod) => {
+    if (!ht.includes('<IfModule ' + mod + '>')) htBad.push('nothing is guarded by <IfModule ' + mod + '>');
+  });
+
+  if (!/^\s*ErrorDocument 404 \/404\.html\s*$/m.test(ht)) htBad.push('no ErrorDocument 404 — a miss would be a bare Apache error page');
+  // a pinned hostname would break the site on every other origin it is deployed to
+  if (/RewriteCond %\{HTTP_HOST\}/.test(ht)) htBad.push('.htaccess pins one hostname — the committed copy has to work on any origin (--host is for a local build)');
+  if (!/RewriteRule \^\(\.\+\?\)\/\?\$ \$1\.html \[L\]/.test(ht)) htBad.push('the clean-url rewrite is gone: /privacy and /work/bookly would 404');
+  if (!/RewriteRule \^assets\/ - \[E=BGSASH_IMMUTABLE:1\]/.test(ht)) htBad.push('assets are not marked immutable — a release would be invisible to a warm cache');
+
+  const ig = firebase.hosting.ignore || [];
+  if (!ig.includes('.htaccess')) htBad.push('firebase.json does not ignore .htaccess — the Apache config would be published to Firebase');
+  if (!ig.includes('dist/**')) htBad.push('firebase.json does not ignore dist/** — a built package would deploy as a second copy of the site');
+}
+check('apache: .htaccess is the same policy as firebase.json, and cannot 500 a host', htBad);
 
 /* ── report ───────────────────────────────────────────────── */
 

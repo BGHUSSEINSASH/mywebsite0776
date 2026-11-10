@@ -30,6 +30,20 @@
     board.hidden = true;
     gate.hidden = false;
     if (timer) { clearInterval(timer); timer = null; }
+
+    // locking also empties the desk: hiding it is not hiding it, the rows
+    // stay in the document for anyone who opens devtools on the machine —
+    // and since the desk now holds private notes, that is not a secret to
+    // leave sitting in the dom of a shared computer
+    ['reqTable', 'msgTable', 'vSeries', 'vPaths', 'vRefs', 'vLangs', 'vDevices', 'vBrowsers']
+      .forEach(function (id) { wipe(body(id)); });
+    lastData = { requests: [], messages: [] };
+    badge(0);
+    var sum = doc.getElementById('vSummary');
+    if (sum) sum.textContent = '';
+    var av = doc.getElementById('availNote');
+    if (av) av.value = '';
+    availDirty = false;
   }
 
   function stamp() {
@@ -50,6 +64,200 @@
       ? ENDPOINT.replace('list-requests', 'site-stats')
       : ENDPOINT.replace(/\/functions\/v1\/.*$/, '/functions/v1/site-stats');
   }
+
+  function updateUrl() {
+    return ENDPOINT.replace(/\/functions\/v1\/.*$/, '/functions/v1/update-request');
+  }
+
+  /* ── writing back ─────────────────────────────────────────
+     the desk is read-only until the password is in the closure, and
+     every edit is one small post: { password, id, status } or
+     { password, id, notes } or { password, avail, availNote }. the
+     function answers 400 for anything outside its whitelists, so a
+     tampered request body cannot name a column or a table.        */
+
+  var lastData = { requests: [], messages: [] };
+  var STATUS_ORDER = ['new', 'contacted', 'quoted', 'won', 'closed'];
+
+  /* ── the tab icon carries the news ──────────────────────────
+     the desk sits behind whatever else is open, and a red count on its
+     own icon is how it says "there is something to answer" — without a
+     notification the browser would have to ask permission for. the icon
+     is an svg, so the badge is written as an svg too and handed over as
+     a data url (img-src already allows data:). safari ignores svg icons,
+     so the number travels in the title as well.                  */
+
+  var FAV_OPEN = '<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">' +
+    '<rect width="256" height="256" rx="40" fill="#0e0f11"/>' +
+    '<rect x="14" y="14" width="228" height="228" rx="30" fill="none" stroke="rgba(236,233,223,.18)" stroke-width="2"/>' +
+    '<text x="128" y="142" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" ' +
+    'font-weight="700" font-size="104" fill="#ece9df">BG</text>';
+  var FAV_DOT = '<circle cx="196" cy="176" r="14" fill="#ff5a2a"/>';   // the mark the icon always had
+  var favLink = doc.querySelector('link[rel="icon"]');
+  var baseTitle = doc.title;
+
+  function pendingNew() {
+    return lastData.requests.reduce(function (n, r) {
+      return n + (!r.status || r.status === 'new' ? 1 : 0);
+    }, 0);
+  }
+
+  function badge(n) {
+    doc.title = n > 0 ? '(' + n + ') ' + baseTitle : baseTitle;
+    if (!favLink) {
+      favLink = doc.createElement('link');
+      favLink.rel = 'icon';
+      favLink.type = 'image/svg+xml';
+      doc.head.appendChild(favLink);
+    }
+    var mark = FAV_DOT;
+    if (n > 0) {
+      var said = n > 99 ? '99+' : String(n);
+      mark = '<circle cx="174" cy="174" r="64" fill="#ff5a2a" stroke="#0e0f11" stroke-width="10"/>' +
+        '<text x="174" y="176" text-anchor="middle" dominant-baseline="central" ' +
+        'font-family="Arial Black, Arial, sans-serif" font-weight="700" ' +
+        'font-size="' + (said.length > 1 ? 54 : 74) + '" fill="#0e0f11">' + said + '</text>';
+    }
+    try { favLink.href = 'data:image/svg+xml,' + encodeURIComponent(FAV_OPEN + mark + '</svg>'); } catch (e) {}
+  }
+
+  function saved(msg, bad) {
+    var el = doc.getElementById('saveState');
+    if (!el) return;
+    el.textContent = msg;
+    el.className = bad ? 'err' : 'muted';
+  }
+
+  function patch(fields, label) {
+    if (!password) { saved('the desk is locked — open it again', true); return; }
+    saved('saving ' + label + '…');
+    var payload = { password: password };
+    for (var k in fields) payload[k] = fields[k];
+
+    fetch(updateUrl(), {
+      method: 'POST',
+      credentials: 'omit',
+      mode: 'cors',
+      cache: 'no-store',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function (r) {
+      if (r.status === 401) throw new Error('wrong password');
+      if (r.status === 429) throw new Error('too many saves — wait ten minutes');
+      if (r.status === 400) throw new Error('the server refused that value');
+      if (!r.ok) throw new Error('http ' + r.status);
+      return r.json();
+    }).then(function (out) {
+      saved(label + ' saved · ' + new Date().toLocaleTimeString());
+      if (label === 'availability') availDirty = false;
+      if (out && out.avail) paintAvail(out.avail);
+    }).catch(function (e) {
+      saved(label + ' NOT saved — ' + (e.message || String(e)), true);
+    });
+  }
+
+  function statusPicker(row) {
+    var sel = doc.createElement('select');
+    // the pill look the desk always had, kept: a select wearing the same
+    // classes is still the same coloured oval in the same column
+    sel.className = 'status pill ' + (STATUSES[row.status] ? row.status : 'new');
+    STATUS_ORDER.forEach(function (s) {
+      var o = doc.createElement('option');
+      o.value = s;
+      o.textContent = s;
+      if (s === (STATUSES[row.status] ? row.status : 'new')) o.selected = true;
+      sel.appendChild(o);
+    });
+    sel.addEventListener('change', function () {
+      row.status = sel.value;
+      sel.className = 'status pill ' + sel.value;      // the colour follows the state
+      badge(pendingNew());                              // answering one takes the dot off
+      patch({ id: row.id, status: sel.value }, 'status of ' + (row.name || 'this request'));
+    });
+    return sel;
+  }
+
+  function notesField(row) {
+    var ta = doc.createElement('textarea');
+    ta.value = row.notes || '';
+    ta.maxLength = 4000;
+    ta.placeholder = 'private — never shown to a visitor';
+    function commit() {
+      if (ta.value === (row.notes || '')) return;
+      row.notes = ta.value;
+      patch({ id: row.id, notes: ta.value }, 'notes');
+    }
+    ta.addEventListener('blur', commit);
+    ta.addEventListener('keydown', function (e) {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); ta.blur(); }
+    });
+    return ta;
+  }
+
+  function cameFrom(row) {
+    var bits = [row.source, row.medium, row.campaign, row.referrer].filter(function (v) { return v; });
+    var td = cell(bits.length ? bits.join(' / ') : '—');
+    td.className = 'hide-sm';
+    return td;
+  }
+
+  /* csv, built here from the rows already on screen. a spreadsheet runs a
+     cell that starts with = + - @ or a tab, and every one of these cells is
+     text a stranger typed — so those get a leading apostrophe and stay text. */
+  var CSV_COLS = ['when', 'service', 'budget', 'name', 'email', 'phone', 'lang',
+                  'status', 'source', 'medium', 'campaign', 'referrer', 'details', 'notes'];
+  var MSG_COLS = ['when', 'name', 'email', 'lang', 'status', 'message'];
+
+  function csvCell(v) {
+    var s = v == null ? '' : String(v);
+    // =, @ and a tab are never anything but a formula attempt. a value that
+    // starts with + or - is escaped only when it is not a plain number, so
+    // a phone (+964770…) and a negative amount stay readable in the sheet.
+    if (/^[=@\t]/.test(s) || (/^[-+]/.test(s) && !/^[-+][\d.,\/ ]+$/.test(s))) s = "'" + s;
+    return '"' + s.replace(/"/g, '""').replace(/[\r\n]+/g, ' ') + '"';
+  }
+
+  function downloadCsv(rows, cols, kind) {
+    if (!rows.length) { saved('no ' + kind + ' to export yet', true); return; }
+    var lines = [cols.join(',')];
+    rows.forEach(function (r) {
+      lines.push(cols.map(function (c) {
+        return csvCell(c === 'when' ? new Date(r.created_at).toISOString() : r[c]);
+      }).join(','));
+    });
+    var blob = new Blob(['' + lines.join('\r\n') + '\r\n'], { type: 'text/csv;charset=utf-8' });
+    var a = doc.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'bgsash-' + kind + '-' + baghdadToday() + '.csv';
+    doc.body.appendChild(a);
+    a.click();
+    doc.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 5000);
+    saved('csv written · ' + rows.length + ' rows');
+  }
+
+  // an unsaved choice in the pill controls is never overwritten by a slow
+  // stats response arriving after he already picked something
+  var availDirty = false;
+
+  function paintAvail(a) {
+    var sel = doc.getElementById('availState');
+    var note = doc.getElementById('availNote');
+    var now = doc.getElementById('availNow');
+    if (!sel || availDirty) return;
+    var state = a && a.state;
+    if (state !== 'open' && state !== 'closed') state = 'auto';
+    sel.value = state;
+    if (note) note.value = (a && a.note) || '';
+    if (now) now.textContent = (a && a.updated_at)
+      ? 'set ' + new Date(a.updated_at).toLocaleString()
+      : 'the clock decides';
+  }
+
+  ['availState', 'availNote'].forEach(function (id) {
+    var el = doc.getElementById(id);
+    if (el) el.addEventListener('change', function () { availDirty = true; });
+  });
 
   function baghdadToday() {
     return new Intl.DateTimeFormat('en-CA', {
@@ -82,6 +290,7 @@
 
   function renderStats(d) {
     if (board.hidden) return;          // locked while the request was in flight
+    paintAvail(d.avail);               // the pill controls read the same row
     var sum = doc.getElementById('vSummary');
     var series = d.series || [];
     var today = baghdadToday();
@@ -167,6 +376,22 @@
   var rangeSel = doc.getElementById('vRange');
   if (rangeSel) rangeSel.addEventListener('change', loadStats);
 
+  var csvBtn = doc.getElementById('csvBtn');
+  if (csvBtn) csvBtn.addEventListener('click', function () {
+    downloadCsv(lastData.requests, CSV_COLS, 'requests');
+  });
+  var csvMsgBtn = doc.getElementById('csvMsgBtn');
+  if (csvMsgBtn) csvMsgBtn.addEventListener('click', function () {
+    downloadCsv(lastData.messages, MSG_COLS, 'messages');
+  });
+
+  var availSave = doc.getElementById('availSave');
+  if (availSave) availSave.addEventListener('click', function () {
+    var sel = doc.getElementById('availState');
+    var note = doc.getElementById('availNote');
+    patch({ avail: sel ? sel.value : 'auto', availNote: note ? note.value : '' }, 'availability');
+  });
+
   function load() {
     if (!ENDPOINT) { err.textContent = 'Set ENDPOINT to your supabase function URL first.'; return; }
     if (!password) { err.textContent = 'Enter the admin password.'; return; }
@@ -198,7 +423,9 @@
       var msgBody = doc.querySelector('#msgTable tbody');
       [reqBody, msgBody].forEach(function (b) { while (b.firstChild) b.removeChild(b.firstChild); });
 
-      (data.requests || []).forEach(function (r) {
+      lastData = { requests: data.requests || [], messages: data.messages || [] };
+
+      lastData.requests.forEach(function (r) {
         var tr = doc.createElement('tr');
         tr.appendChild(cell(new Date(r.created_at).toLocaleString()));
         tr.appendChild(cell(r.service));
@@ -208,17 +435,18 @@
         var det = cell(r.details || '');
         det.className = 'hide-sm';
         tr.appendChild(det);
-        var pill = doc.createElement('span');
-        pill.className = 'pill ' + (STATUSES[r.status] ? r.status : 'new');
-        pill.textContent = STATUSES[r.status] ? r.status : 'new';
+        tr.appendChild(cameFrom(r));
         var td = doc.createElement('td');
-        td.appendChild(pill);
+        td.appendChild(statusPicker(r));
         tr.appendChild(td);
+        var tn = doc.createElement('td');
+        tn.appendChild(notesField(r));
+        tr.appendChild(tn);
         reqBody.appendChild(tr);
       });
       if (!reqBody.firstChild) {
         var tr0 = doc.createElement('tr');
-        var td0 = cell('empty'); td0.colSpan = 7; td0.className = 'muted';
+        var td0 = cell('empty'); td0.colSpan = 9; td0.className = 'muted';
         tr0.appendChild(td0); reqBody.appendChild(tr0);
       }
 
@@ -235,6 +463,8 @@
         var tmk = cell('empty'); tmk.colSpan = 4; tmk.className = 'muted';
         tm.appendChild(tmk); msgBody.appendChild(tm);
       }
+
+      badge(pendingNew());
 
       if (timer) clearInterval(timer);
       timer = setInterval(function () {

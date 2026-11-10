@@ -181,6 +181,35 @@
 .pal-foot { display: flex; gap: 16px; padding: 10px 16px; border-top: 1px solid var(--line); font-family: var(--f-mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); flex-wrap: wrap; }
 .pal-foot kbd { border: 1px solid var(--line); border-radius: 3px; padding: 1px 5px; color: var(--fg); }
 
+/* ── the shortcut list (key: ?) ─────────────────────────────── */
+
+.keys { position: fixed; inset: 0; z-index: 142; display: grid; place-items: center; padding: 24px; }
+.keys[hidden] { display: none; }
+.keys-bg { position: absolute; inset: 0; background: color-mix(in srgb, var(--bg) 66%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.keys-box {
+  position: relative; width: min(460px, 100%); background: var(--bg);
+  border: 1px solid var(--fg); border-radius: 8px; padding: 16px 18px 14px;
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, .5);
+}
+.keys-box h3 {
+  margin: 0 0 12px; font-family: var(--f-mono); font-size: 10.5px; font-weight: 400;
+  text-transform: uppercase; letter-spacing: .07em; color: var(--muted);
+}
+.keys-box ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.keys-box li { display: flex; align-items: baseline; gap: 12px; font-size: 14px; color: var(--fg); }
+.keys-box kbd {
+  flex: 0 0 auto; min-width: 96px; text-align: center; font-family: var(--f-mono); font-size: 11px;
+  color: var(--fg); background: var(--card); border: 1px solid var(--line); border-bottom-width: 2px;
+  border-radius: 4px; padding: 3px 7px;
+}
+.keys-foot { display: flex; justify-content: flex-end; margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--line); }
+.keys-foot button {
+  font-family: var(--f-mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--muted); background: none; border: 1px solid var(--line); border-radius: 4px;
+  padding: 4px 10px; cursor: pointer;
+}
+.keys-foot button:hover, .keys-foot button:focus-visible { color: var(--fg); border-color: var(--fg); }
+
 /* ── terminal ─────────────────────────────────────────────── */
 
 .term { position: fixed; z-index: 135; inset-inline: 0; bottom: 0; margin-inline: auto; width: min(860px, calc(100% - 24px)); }
@@ -231,7 +260,7 @@
     --accent: #111; --accent-ink: #fff; --accent-text: #111;
   }
   .loader, .progress, .cursor, .nav, .ticker, .hud, .flow, .badge, .crosshair,
-  .modal, .pal, .term, .toast, .foot-mark, .shot, .cta-row, .est-cta, .est,
+  .modal, .pal, .term, .keys, .sw-update, .toast, .foot-mark, .shot, .cta-row, .est-cta, .est,
   .p-order, .contact-actions, #contactForm, .avail, .skip,
   .gh, .svc-card li::after { display: none !important; }
 

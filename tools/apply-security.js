@@ -29,7 +29,7 @@ console.log('firebase.json: header rules written for **, /admin, /admin.html');
 
 // ── meta tags ───────────────────────────────────────────────
 const META = '  <meta http-equiv="Content-Security-Policy" content="' + CSP_META + '">';
-const PAGES = ['index.html', '404.html', 'admin.html'];
+const PAGES = require('./pages').SHARED;
 const ANCHORS = [
   /(\n[ \t]*<meta name="viewport"[^\n]*\n)/,
   /(\n[ \t]*<title>[^\n]*<\/title>\n)/

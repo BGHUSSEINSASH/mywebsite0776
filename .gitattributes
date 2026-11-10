@@ -1,0 +1,5 @@
+# .htaccess is generated with LF by tools/make-htaccess.js and read by Apache
+# on a Linux host. core.autocrlf would check it out with CRLF on windows, so
+# the bytes on disk would differ from the bytes the gate compares — and a
+# config file whose line endings depend on who cloned it is not a config file.
+.htaccess text eol=lf

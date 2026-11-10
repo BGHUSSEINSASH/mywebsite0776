@@ -100,6 +100,21 @@
     "inLanguage": ["en", "ar", "ku", "tr", "fr", "es", "de", "ru", "zh", "ja", "ko", "hi"]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Selected work",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "SmartMaid — Home Services", "url": "https://mywebsite0776.web.app/work/smartmaid" },
+      { "@type": "ListItem", "position": 2, "name": "Mukallaf — Iraqi Tax System", "url": "https://mywebsite0776.web.app/work/mukallaf" },
+      { "@type": "ListItem", "position": 3, "name": "Flossk — Iraqi Money Assistant", "url": "https://mywebsite0776.web.app/work/flossk" },
+      { "@type": "ListItem", "position": 4, "name": "Bookly — Bookings & Stays", "url": "https://mywebsite0776.web.app/work/bookly" },
+      { "@type": "ListItem", "position": 5, "name": "Ziona Passports — Servers & CCTV", "url": "https://mywebsite0776.web.app/work/ziona-passports" },
+      { "@type": "ListItem", "position": 6, "name": "Hala Sat — Fiber Internet Support", "url": "https://mywebsite0776.web.app/work/hala-sat" }
+    ]
+  }
+  </script>
   <link rel="stylesheet" href="assets/css/style.css?v=r28">
   <link rel="stylesheet" href="assets/css/spec.css?v=r28">
   <noscript><style>.loader{display:none!important}</style></noscript></head>
@@ -516,9 +531,9 @@
       </div>
       <form id="contactForm" novalidate>
         <div class="hp" aria-hidden="true"><input type="text" name="company" tabindex="-1" autocomplete="off"></div>
-        <div class="field"><label for="name" data-i18n="form.name">Name</label><input id="name" name="name" type="text" autocomplete="name"><span class="err" id="nameErr"></span></div>
-        <div class="field"><label for="email" data-i18n="form.email">Email</label><input id="email" name="email" type="email" autocomplete="email"><span class="err" id="emailErr"></span></div>
-        <div class="field"><label for="message" data-i18n="form.message">Message</label><textarea id="message" name="message"></textarea><span class="err" id="msgErr"></span></div>
+        <div class="field"><label for="name" data-i18n="form.name">Name</label><input id="name" name="name" type="text" autocomplete="name" aria-describedby="nameErr"><span class="err" id="nameErr" aria-live="polite"></span></div>
+        <div class="field"><label for="email" data-i18n="form.email">Email</label><input id="email" name="email" type="email" autocomplete="email" aria-describedby="emailErr"><span class="err" id="emailErr" aria-live="polite"></span></div>
+        <div class="field"><label for="message" data-i18n="form.message">Message</label><textarea id="message" name="message" aria-describedby="msgErr"></textarea><span class="err" id="msgErr" aria-live="polite"></span></div>
         <p class="form-status" id="formStatus" role="status"></p>
         <div><button class="btn" type="submit"><span data-i18n="form.submit">Send message</span><span class="arrow">&rarr;</span></button></div>
       </form>
@@ -589,7 +604,7 @@
 
       <fieldset class="o-step" data-step="2" hidden>
         <legend data-i18n="order.s2h">Tell me about it</legend>
-        <div class="field"><label for="oDetails" data-i18n="order.details">Project details</label><textarea id="oDetails" name="details" required></textarea><span class="err" id="oDetailsErr"></span></div>
+        <div class="field"><label for="oDetails" data-i18n="order.details">Project details</label><textarea id="oDetails" name="details" required aria-describedby="oDetailsErr"></textarea><span class="err" id="oDetailsErr" aria-live="polite"></span></div>
         <div class="field"><label for="oBudget" data-i18n="order.budget">Budget</label>
           <select id="oBudget" name="budget">
             <option value="b1" data-i18n="order.b1">Under $200</option>
@@ -602,8 +617,8 @@
 
       <fieldset class="o-step" data-step="3" hidden>
         <legend data-i18n="order.s3h">How do I reach you?</legend>
-        <div class="field"><label for="oName" data-i18n="order.name">Name</label><input id="oName" name="name" type="text" autocomplete="name"><span class="err" id="oNameErr"></span></div>
-        <div class="field"><label for="oEmail" data-i18n="order.email">Email</label><input id="oEmail" name="email" type="email" autocomplete="email"><span class="err" id="oEmailErr"></span></div>
+        <div class="field"><label for="oName" data-i18n="order.name">Name</label><input id="oName" name="name" type="text" autocomplete="name" aria-describedby="oNameErr"><span class="err" id="oNameErr" aria-live="polite"></span></div>
+        <div class="field"><label for="oEmail" data-i18n="order.email">Email</label><input id="oEmail" name="email" type="email" autocomplete="email" aria-describedby="oEmailErr"><span class="err" id="oEmailErr" aria-live="polite"></span></div>
         <div class="field"><label for="oPhone" data-i18n="order.phone">Phone (optional)</label><input id="oPhone" name="phone" type="tel" autocomplete="tel"></div>
         <div class="cf-turnstile" id="oTurnstile" data-sitekey=""></div>
         <p class="o-privacy" data-i18n="order.privacy">No spam — your details are only used to answer you.</p>

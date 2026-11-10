@@ -38,7 +38,7 @@ jobs:
         # csp meta tag or a header block by hand instead of editing the config
         run: |
           node tools/apply-security.js
-          git diff --exit-code -- index.html 404.html privacy.html terms.html admin.html firebase.json
+          git diff --exit-code -- index.html 404.html privacy.html terms.html stats.html admin.html firebase.json
 
       - name: security layers
         run: node tools/check-security.js

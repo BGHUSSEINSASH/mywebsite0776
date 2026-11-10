@@ -423,8 +423,8 @@ const section = (text, heading) => {
   const rows = (home.match(/<details class="faq-item">/g) || []).length;
   const ld = (home.match(/"@type":\s*"Question"/g) || []).length;
   const jsonld = (home.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g) || [])
-    .map((b) => JSON.parse(b.replace(/^<script[^>]*>/, '').replace(/<\/script>\s*$/, '')))
-    .filter((o) => o['@type'] === 'FAQPage');
+    .map((b) => { try { return JSON.parse(b.replace(/^<script[^>]*>/, '').replace(/<\/script>\s*$/, '')); } catch (e) { return null; } })
+    .filter((o) => o && o['@type'] === 'FAQPage');
   const inLd = jsonld.reduce((a, o) => a + ((o.mainEntity || []).length), 0);
   const en = words.en.faq || {};
   const keys = Object.keys(en).filter((k) => /^q\d+$/.test(k)).length;
@@ -705,6 +705,40 @@ if (rrm) {
 }
 
 check('rates: dated, positive, and one for every currency offered', rateBad, rateAge);
+
+/* ── 18. the structured data parses and tells the truth ─────── */
+/* a crawler reads the JSON-LD before it reads one word of the page, so a
+   block that does not parse is worse than no block at all. and the project
+   list on the homepage has to be the projects that really have pages: one
+   that names a case study which does not exist, or forgets one that does,
+   is exactly the quiet drift every other gate here exists to catch. the
+   origin is read out of the canonical, so the day the site moves to a real
+   domain this check fails until the list is moved with it. */
+const jsonLdBad = [];
+const itemListBad = [];
+let sawItemList = false;
+PAGES.forEach((rel) => {
+  const s = read(rel);
+  const re = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g;
+  let m;
+  while ((m = re.exec(s))) {
+    let data;
+    try { data = JSON.parse(m[1].trim()); }
+    catch (e) { jsonLdBad.push(rel + ': a JSON-LD block does not parse — ' + e.message); continue; }
+    if (rel === 'index.html' && data && data['@type'] === 'ItemList') {
+      sawItemList = true;
+      const want = CASES.map((c) => ORIGIN + '/' + c.replace(/\.html$/, '')).sort();
+      const items = data.itemListElement || [];
+      const got = items.map((it) => it.url).filter(Boolean).sort();
+      want.filter((u) => got.indexOf(u) < 0).forEach((u) => itemListBad.push('a case page exists but the ItemList omits it: ' + u));
+      got.filter((u) => want.indexOf(u) < 0).forEach((u) => itemListBad.push('the ItemList names a page that does not exist: ' + u));
+      items.forEach((it, i) => { if (it.position !== i + 1) itemListBad.push('ItemList position ' + it.position + ' should be ' + (i + 1)); });
+    }
+  }
+});
+if (!sawItemList) itemListBad.push('index.html has no ItemList of the work — a crawler cannot see the portfolio as a list');
+check('structured data: every JSON-LD block parses', jsonLdBad);
+check('structured data: the homepage ItemList is the real work, in order', itemListBad);
 
 /* ── report ───────────────────────────────────────────────── */
 
